@@ -42,7 +42,7 @@ def check(require_media=False):
     matches=[p.name for p in (ROOT/'frontend/assets').glob('*.png') if digest(p)==source['sha256']]
     add('hospital_logo_provenance',bool(matches),{'files':matches,'source':source['source']})
     return {'checked_at':datetime.now(timezone(timedelta(hours=8))).isoformat(),'technical_checks_passed':all(r['passed'] for r in results),'all_meeting_requirements_accepted':False,
-            'checks':results,'pending_acceptance':['實體麥克風與環境回音','雲端完整後端、HTTPS、持久化與推論驗收','職類指標、題目、權重及切點的教師核定','360情境配對、職類視角及逐格標準解析','新版操作導覽與跨主機還原演練']}
+            'checks':results,'pending_acceptance':['實體麥克風與環境回音','雲端完整後端、HTTPS、持久化與推論驗收','職類指標、題目、權重及切點的教師核定','360情境配對、職類視角及逐格標準解析','跨主機還原演練']}
 
 
 def main():

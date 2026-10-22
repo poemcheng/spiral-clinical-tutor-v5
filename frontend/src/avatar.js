@@ -1,10 +1,11 @@
 import {Room,RoomEvent} from 'livekit-client';
 import {clinicScene} from './immersive.js';
-export function createAvatar(container,{actor,onAction=()=>{}}={}){
+export function createAvatar(container,{actor,difficulty,onAction=()=>{}}={}){
  container.replaceChildren();container.classList.add('photo-human-stage');
  const canvas=document.createElement('canvas');canvas.setAttribute('aria-label',actor.name+'擬真人物');container.appendChild(canvas);
  const status=document.createElement('span');status.className='human-status';status.textContent='人物載入中…';container.appendChild(status);
  const rig=clinicScene(canvas,{modelUrl:actor.realistic_model_url,interactive:true,onAction});
+ rig.setBehavior(difficulty?.visual_state||'neutral');
  let disposed=false,frame,speaking=false,amplitude=0,start=performance.now();
  rig.ready.then(()=>{if(disposed)return;container.dataset.characterLoaded=actor.id;container.dataset.visualType='rigged-realistic-3d';status.textContent=actor.name+' · 聆聽中';}).catch(()=>{status.textContent='人物素材載入失敗，請重新整理';container.dataset.characterLoaded='failed';});
  function tick(){if(disposed)return;rig.renderAt((performance.now()-start)/1000,amplitude);frame=requestAnimationFrame(tick);}tick();

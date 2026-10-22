@@ -47,6 +47,11 @@ def recover_interrupted_jobs():
     with store.tx() as c:
         for row in store.all('SELECT id,data FROM sessions'):
             data = json.loads(row['data'])
+            interrupted=False
+            for job in data.get('pose_jobs',[]):
+                if job['status']=='running':
+                    job.update(status='failed',error='伺服器重新啟動，逐格分析中斷；請重新分析。');interrupted=True
+            if interrupted:store.save(c,row['id'],data)
             if data.get('video_job', {}).get('status') == 'running':
                 data['video_job'] = {'status':'failed','error':'伺服器重新啟動，影片工作已中斷；請重新產生。'}
                 store.save(c, row['id'], data)
@@ -644,7 +649,9 @@ def interaction(sid: int, user=Depends(current_user)):
     if row['step'] < 4:
         raise HTTPException(409, '請先完成情境學習。')
     from .learning_resources import resources
-    return {'resources':resources(row,case_for(row)),'questions': decision_questions(row), 'decisions': row['payload']['decisions'],
+    from .interaction_policy import policy
+    difficulty=policy(row['level'],characters.selected(row)['kind'],row['payload']['trust'])
+    return {'difficulty':difficulty,'resources':resources(row,case_for(row)),'questions': decision_questions(row), 'decisions': row['payload']['decisions'],
             'trust': row['payload']['trust'], 'scene_mode': row['payload']['adaptive_plan']['scene_mode'],
             'pairing':row['payload'].get('interaction_policy'),'minimum_turns':2,'variant':case_for(row).get('variant'),'safety_blocked':row['payload'].get('safety_blocked',False),
             'hint_budget':curriculum.hint_budget(row['level']),'hints_used':row['payload'].get('hints_used',0),'source': '案例約束標準病患；AI對話與決策分開記錄。'}
@@ -786,13 +793,13 @@ def voice_diagnostic_reply(sid:int,body:VoiceDiagnosticBody,user=Depends(student
         test['busy']=True
     try:
         history=[*test['messages'],{'role':'user','content':body.text}]
-        result,_=patient_reply(case_for(row),row,history,body.text)
+        result,facts=patient_reply(case_for(row),row,history,body.text)
         if not result.ok:raise HTTPException(503,result.error)
         turn=test['turn']+1
         path=RUNTIME/'voice-diagnostics'/f"{user['id']}-{sid}-{body.test_id}-{turn}.wav"
         virtual_video.speech(result.text,path,characters.selected(row)['gender'])
         test['messages']=[*history,{'role':'assistant','content':result.text}];test['turn']=turn
-        return {'text':result.text,'source':'ollama','model':result.model,'turn':turn,'diagnostic':True,
+        return {'text':result.text,'source':'ollama','model':result.model,'turn':turn,'diagnostic':True,'difficulty':facts.get('interaction_difficulty'),
                 'audio_url':f'/api/sessions/{sid}/voice-diagnostic/output/{body.test_id}/{turn}'}
     finally:test['busy']=False
 
@@ -838,7 +845,8 @@ def chat(sid: int, body: ChatBody, user=Depends(student)):
                               (sid, 'system', 'AI 未完成回覆：'+note, 'error', encode({'request_id':body.request_id}), time.time()))
                 return {'ok': False, 'error': note, 'note': '作答已保存，可選擇明示的劇本演練；未產生虛構AI回覆。'}
             text, source, metadata = result.text, 'ollama', {'model': result.model, 'case_hash': row['payload']['case_hash'],
-                'prompt_version':'peer-1' if body.mode=='peer' else 'profession-pairing-v5','mode':body.mode,
+                'prompt_version':'peer-1' if body.mode=='peer' else 'self-difficulty-5.3.1','mode':body.mode,
+                'interaction_difficulty':facts.get('interaction_difficulty'),
                 'retrieval_version':facts.get('retrieval_version','case-peer-1'),'evidence':facts.get('retrieved_evidence',[])}
         else:
             # Explicit scripted patient exercise, not a false AI fallback.
@@ -847,6 +855,11 @@ def chat(sid: int, body: ChatBody, user=Depends(student)):
                 lines=[f"我是{actor['name']}。目前只能使用本輪教案已提供的資料，缺漏項目需要進一步核對。",
                        '請說明您已確認的資料、目前疑慮，以及需要本職類協助的部分。',
                        '這部分資料尚未提供，我們先記錄並和負責同仁核對。']
+            if row['level']==1:
+                lines=['您好，沒關係，我願意一起確認；您想先了解哪一部分？','可以，我們先釐清已知資料與需要協助的地方。','謝謝您先確認，我願意繼續說明。']
+            elif row['level']==5:
+                lines=(['這部分您應該先確認吧？請先說明依據與具體協助需求。','您是在挑戰我的專業判斷嗎？請先確認彼此的職責與資料依據。','我們先把已確認的資料與仍有疑慮的部分說清楚，再討論下一步。']
+                       if actor['kind'] in ('clinician','support') else ['你真的了解我的情況嗎？請先說明為什麼要這樣安排。','不要只叫我照做，我還沒有理解這樣做的理由。','謝謝您願意聽我的顧慮，請先讓我知道有哪些選擇。'])
             turn = sum(m['role'] == 'user' for m in messages)
             text, source, metadata = lines[(turn-1) % len(lines)], 'scripted', {'script_version':'source-patient-2','source_file':case.get('source_file')}
         metadata['request_id'] = body.request_id
@@ -906,7 +919,7 @@ def handoff(sid: int, body: SBARBody, user=Depends(student)):
         row = owned_session(sid, user)
         need_step(row, 4)
         if row['payload'].get('safety_blocked'):raise HTTPException(409,'本輪有安全關鍵錯誤，請先完成補強重作。')
-        if row['level']==5 and len(body.coaching.strip())<10:raise HTTPException(400,'Level 5 請完成同儕指導與 PEARLS 回饋紀錄。')
+        if body.coaching.strip() and len(body.coaching.strip())<10:raise HTTPException(400,'選填同儕回饋時，請提供至少10字的具體紀錄。')
         if len(row['payload']['decisions']) != len(case_for(row)['kdp']):
             raise HTTPException(409, '請完成全部決策點。')
         evidence = c.execute("SELECT metadata FROM messages WHERE session_id=? AND role='assistant' AND source IN ('ollama','scripted','legacy_v3') AND created>=? AND COALESCE(json_extract(metadata,'$.mode'),'')!='peer'", (sid,row['payload'].get('episode_start',0))).fetchall()
@@ -921,7 +934,6 @@ def handoff(sid: int, body: SBARBody, user=Depends(student)):
                 raise HTTPException(409,'請完成指定互動對象各至少'+str(policy['turns_per_target'])+'回合：'+policy['label'])
         elif sum(json.loads(m['metadata']).get('actor',{}).get('kind','patient') in ('patient','caregiver') for m in evidence)<2:
             raise HTTPException(409, '請先完成至少兩回合病患對話。')
-        if row['level']==5 and not c.execute("SELECT id FROM messages WHERE session_id=? AND role='assistant' AND json_extract(metadata,'$.mode')='peer' AND created>=? LIMIT 1",(sid,row['payload'].get('episode_start',0))).fetchone():raise HTTPException(409,'Level 5 請先完成至少一回合虛擬學員指導。')
         plan = row['payload']['adaptive_plan']
         if plan['tier'] >= 2 and not row['payload']['scene_events']:
             raise HTTPException(409, '請完成至少一項情境操作，可使用人物下方的操作按鈕。')

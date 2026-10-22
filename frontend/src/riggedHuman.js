@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 export function riggedHuman(modelUrl){
- const group=new THREE.Group();let root,disposed=false;const meshes=[],bones=new Map(),rest=new Map();
+ const group=new THREE.Group();let root,disposed=false,behavior='neutral';const meshes=[],bones=new Map(),rest=new Map();
  const ready=new GLTFLoader().loadAsync(modelUrl).then(gltf=>{
   root=gltf.scene;if(disposed){disposeRoot(root);return;}
   const bounds=new THREE.Box3().setFromObject(root),height=bounds.max.y-bounds.min.y;
@@ -24,11 +24,13 @@ export function riggedHuman(modelUrl){
   for(const m of meshes)if(m.morphTargetInfluences)m.morphTargetInfluences.fill(0);
   expression('viseme_aa',Math.min(.65,a*.68));expression('jawOpen',Math.min(.23,a*.26));expression('viseme_O',a>.38?(Math.sin(t*12)*.5+.5)*a*.18:0);
   const phase=(t+1.9)%4.3,blink=phase<.16?Math.sin(phase/.16*Math.PI):0;expression('eyeBlinkLeft',blink);expression('eyeBlinkRight',blink);
-  expression('mouthSmileLeft',.025);expression('mouthSmileRight',.025);
-  rotate('spine02',axisX,Math.sin(t*1.5)*.006);rotate('head',axisX,Math.sin(t*.75)*.018+(a>.05?Math.sin(t*2.5)*.012:0));rotate('neck03',axisY,Math.sin(t*.4)*.018);
-  rotateWorld('upperarm01.L',-.65);rotateWorld('upperarm01.R',.65);rotate('lowerarm01.L',axisX,.08);rotate('lowerarm01.R',axisX,.08);
+  const friendly=behavior==='friendly',reserved=behavior==='reserved',talk=Math.min(1,a*3);
+  expression('mouthSmileLeft',friendly?.16:reserved?0:.025);expression('mouthSmileRight',friendly?.16:reserved?0:.025);
+  rotate('spine02',axisX,Math.sin(t*1.5)*.006+(reserved?-.012:0));rotate('head',axisX,Math.sin(t*.75)*.012+(a>.05?Math.sin(t*2.5)*.018:0)+(reserved?-.015:0));rotate('neck03',axisY,Math.sin(t*.4)*.018+(reserved?.035:0));
+  // Small speech-synchronous gestures. The rig stays volumetric from all camera directions.
+  rotateWorld('upperarm01.L',-.65+talk*(.035+Math.sin(t*1.8)*.035));rotateWorld('upperarm01.R',.65-talk*.045);rotate('lowerarm01.L',axisX,.08+talk*.13);rotate('lowerarm01.R',axisX,.08+talk*.08);
   root.updateMatrixWorld(true);for(const m of meshes)m.skeleton.update();
  }
  function disposeRoot(object){const textures=new Set(),materials=new Set(),geometries=new Set();object.traverse(o=>{if(o.geometry)geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(m){materials.add(m);for(const v of Object.values(m))if(v?.isTexture)textures.add(v);}});textures.forEach(t=>t.dispose());materials.forEach(m=>m.dispose());geometries.forEach(g=>g.dispose());}
- return {group,ready,renderAt,dispose(){disposed=true;if(root)disposeRoot(root);group.clear();}};
+ return {group,ready,renderAt,setBehavior(value){behavior=['friendly','reserved','neutral'].includes(value)?value:'neutral';},dispose(){disposed=true;if(root)disposeRoot(root);group.clear();}};
 }

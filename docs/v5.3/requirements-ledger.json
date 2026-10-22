@@ -1,6 +1,6 @@
 {
-  "version": "meeting-audit-20261022-v5.3",
-  "date": "2026-10-22",
+  "version": "meeting-audit-20261023-v5.3.1",
+  "date": "2026-10-23",
   "all_requirements_accepted": false,
   "sources": [
     {
@@ -44,7 +44,7 @@
       "id": "R05",
       "requirement": "五層教材與逐格分析",
       "status": "partial",
-      "acceptance_note": "播放器、觀察、教師回饋已完成；職類視角與標準解析待教師提供"
+      "acceptance_note": "已加入逐格33點骨架、360平面投影、動作特徵、意圖候選、學員判讀與教師回饋；臨床意義與標準解析待教師核定"
     },
     {
       "id": "R06",
@@ -62,19 +62,19 @@
       "id": "R08",
       "requirement": "人物性別年齡與3D",
       "status": "implemented",
-      "acceptance_note": "13模型雜湊及高齡、中年男女已核對"
+      "acceptance_note": "13個立體骨架角色；語音同步嘴形、小幅手勢及友善／保留姿態；13角色已實際合成對應男女聲。非真人掃描。"
     },
     {
       "id": "R09",
       "requirement": "操作影片與版本說明",
-      "status": "partial",
-      "acceptance_note": "既有導覽與歷次差異保留；新版完整操作導覽待更新"
+      "status": "implemented",
+      "acceptance_note": "已交付約4分10秒本機完整導覽及中文字幕；實際畫面擷取涵蓋學員骨架／動作分析、教師核對與回饋、學員查看；已解碼六個時間點核對成品。含授權教材，未公開影片。"
     },
     {
       "id": "R10",
       "requirement": "雙Level獨立",
       "status": "implemented",
-      "acceptance_note": "自評難度、學習解鎖及教師核定分開保存"
+      "acceptance_note": "自評1至5控制友善至困難病患／職場權威壓力；教材解鎖及正式核定另存；同儕指導是額外模式"
     },
     {
       "id": "A01",
@@ -94,5 +94,6 @@
       "status": "implemented",
       "acceptance_note": "明示教材體驗授權；不捏造能力核定或學習成果"
     }
-  ]
+  ],
+  "latest_clarification": "2026-10-22至23使用者補充：逐格為骨架與動作分析；自評Level5為困難角色互動；聲音性別對應。"
 }

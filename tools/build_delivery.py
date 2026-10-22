@@ -7,9 +7,9 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT.parent/'output'
 OUT.mkdir(exist_ok=True)
-target=OUT/'迴旋梯智鏈_v5.3.0_會議核對與逐格回饋版_20261022.zip'
+target=OUT/'迴旋梯智鏈_v5.3.1_骨架動作與互動修正版_20261023.zip'
 folders=['backend','frontend','data','tests','tools','docs','.github']
-singles=['README.md','requirements.txt','requirements.lock.txt','package.json','package-lock.json',
+singles=['README.md','requirements.txt','requirements-pose.txt','requirements.lock.txt','package.json','package-lock.json',
          'Dockerfile','compose.yaml','.dockerignore','run.py','manage.py','run_windows.bat','.env.example','.gitignore','操作活動圖.mmd','測試與交付紀錄_20261021.md']
 files=[ROOT/name for name in singles]
 for folder in folders:
@@ -17,7 +17,7 @@ for folder in folders:
                  and '__pycache__' not in p.parts and 'node_modules' not in p.parts and p.suffix not in ('.pyc','.sqlite3','.db')
                  and not (p.parent.name=='livekit' and p.suffix=='.zip')
                  and ('ffmpeg' not in p.parts or p.name in ('ffmpeg.exe','ffprobe.exe','LICENSE','README.txt','README.md','release.sha256')))
-manifest={'app_version':'5.3.0','kind':'clean_source_delivery','contains_learner_data':False,'files':{}}
+manifest={'app_version':'5.3.1','kind':'clean_source_delivery','contains_learner_data':False,'files':{}}
 with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED) as z:
     for p in sorted(set(files)):
         rel=p.relative_to(ROOT).as_posix();raw=p.read_bytes()

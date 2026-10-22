@@ -51,8 +51,15 @@ def adapt_case(case, profession, level, scores):
     if not case.get('levels') or not case.get('roles'):
         return case
     variant = dict(case['levels'][str(level)])
+    from .interaction_policy import policy
+    from .characters import PAIRINGS
+    context='patient' if PAIRINGS.get(profession,['patient'])[0]=='patient' else 'clinician'
+    difficulty=policy(level,context)
+    variant['patient_behavior']=difficulty['behavior']
+    variant['difficulty_version']=difficulty['version']
     if level==5:
-        variant['patient_behavior']=case['levels']['4']['patient_behavior']+'；'+variant['patient_behavior']
+        variant['learner_task']='在困難病患或強勢職場互動中，提出專業依據、處理質疑並協商可行方案；同儕指導為額外選修。'
+        variant['support']='低提示支持；主動釐清疑慮、專業依據、角色分工與可行選擇。'
     task = case['roles'][profession]['task']
     dims = scores.get('self_dimensions', {})
     # Scores are on a 100-point scale. Differences of one Likert point = 20.

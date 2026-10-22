@@ -1,0 +1,90 @@
+{
+  "version": "5.3.1",
+  "date": "2026-10-23",
+  "python_tests": {
+    "passed": 71,
+    "failed": 0
+  },
+  "frontend_tests": {
+    "passed": 5,
+    "failed": 0
+  },
+  "pose": {
+    "model": "MediaPipe Pose Landmarker Full float16 v1",
+    "model_sha256": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+    "clips_sampled": 4,
+    "sample_range_seconds": [
+      5,
+      7
+    ],
+    "frames_per_sample": 60,
+    "detection_frames": [
+      60,
+      54,
+      60,
+      60
+    ],
+    "clinical_accuracy_measured": false,
+    "full_length_clinical_review_completed": false
+  },
+  "voice": {
+    "actors_gender_matched": 13,
+    "male_voice": "Microsoft Zhiwei",
+    "female_voice": "Microsoft Yating",
+    "synthetic_audio_rounds_per_gender": 2,
+    "actual_whisper_and_ollama_used": true,
+    "physical_microphone_verified": false
+  },
+  "guide": {
+    "movie": "v5.3.1-operation-guide-local.mp4",
+    "bytes": 16920103,
+    "sha256": "304857e1dbbc2e52846c551d3c362f6294f6c3ed68c774fe97c6980c78e1f509",
+    "duration": 249.7,
+    "width": 1920,
+    "height": 1080,
+    "fps": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "audio_sample_rate": "48000",
+    "narrated_screenshot_walkthrough": true,
+    "continuous_recording": false,
+    "private_local_only": true,
+    "physical_microphone_verified": false,
+    "decoded_frame_comparisons": [
+      {
+        "seconds": 42,
+        "mean_absolute_pixel_difference_0_to_255": 1.288,
+        "matches_preview": true
+      },
+      {
+        "seconds": 88,
+        "mean_absolute_pixel_difference_0_to_255": 1.471,
+        "matches_preview": true
+      },
+      {
+        "seconds": 149,
+        "mean_absolute_pixel_difference_0_to_255": 1.499,
+        "matches_preview": true
+      },
+      {
+        "seconds": 179,
+        "mean_absolute_pixel_difference_0_to_255": 1.219,
+        "matches_preview": true
+      },
+      {
+        "seconds": 224,
+        "mean_absolute_pixel_difference_0_to_255": 1.471,
+        "matches_preview": true
+      },
+      {
+        "seconds": 245,
+        "mean_absolute_pixel_difference_0_to_255": 1.21,
+        "matches_preview": true
+      }
+    ],
+    "passed": true
+  },
+  "source_publication_contains_private_footage": false,
+  "original_learning_record_counts_unchanged": true,
+  "all_meeting_requirements_accepted": false
+}

@@ -119,6 +119,21 @@ class UploadedWorkflowTests(unittest.TestCase):
         sid2,_=self.interaction(profession='PT',level=1)
         self.assertEqual(self.client.post(f'/api/sessions/{sid2}/chat',json={'text':'測試權限','mode':'peer','request_id':'level1-deny-peer'}).status_code,403)
 
+    def test_level_five_difficult_interaction_can_finish_without_optional_peer_coaching(self):
+        sid,_=self.interaction(level=5)
+        info=self.client.get(f'/api/sessions/{sid}/interaction').json()
+        self.assertEqual(info['difficulty']['context'],'workplace')
+        for q in server.case_for(server.owned_session(sid,self.db.one("SELECT u.*,l.id login_id FROM users u JOIN logins l ON l.user_id=u.id WHERE u.username='source-student' ORDER BY l.id DESC LIMIT 1")))['kdp']:
+            choice=next(i for i,o in enumerate(q['options']) if o['score']==2)
+            self.assertEqual(self.client.post(f'/api/sessions/{sid}/decision',json={'item_id':q['id'],'option_id':f'o{choice}'}).status_code,200)
+        for i in range(2):
+            r=self.client.post(f'/api/sessions/{sid}/chat',json={'text':'請確認病人的已知資料及職類協助需求。','mode':'scripted','request_id':f'optional-peer-{i}'})
+            self.assertEqual(r.status_code,200,r.text)
+        self.assertEqual(self.client.post(f'/api/sessions/{sid}/scene',json={'action':'report'}).status_code,200)
+        response=self.client.post(f'/api/sessions/{sid}/handoff',json={k:'已核對案例，請協助確認資訊缺口、分工與追蹤。' for k in 'SBAR'})
+        self.assertEqual(response.status_code,200,response.text)
+        self.assertEqual(response.json()['step'],5)
+
     def test_virtual_video_upgrade_preserves_legacy_media_and_serves_new_file(self):
         sid,_=self.start()
         self.client.post(f'/api/sessions/{sid}/case',json={'case_id':'COURSE-SARC'})

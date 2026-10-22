@@ -1,0 +1,3 @@
+# Optional CPU pose analysis; the core app can run without this worker dependency.
+mediapipe==0.10.35
+opencv-contrib-python==4.13.0.92

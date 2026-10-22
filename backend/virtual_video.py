@@ -19,7 +19,8 @@ from .characters import selected
 
 RENDER_LOCK = threading.Lock()
 SPEECH_LOCK = threading.Lock()
-RENDERER = 'Three.js skinned realistic human v1 / HyperFrames 0.8.184'
+VOICE_VERSION = 'gender-strict-5.3.1'
+RENDERER = 'Three.js skinned realistic human v2 / HyperFrames 0.8.185'
 
 
 def audio_envelope(path):
@@ -33,15 +34,27 @@ def audio_envelope(path):
 
 def speech(text, target, gender='female'):
     target = Path(target);target.parent.mkdir(parents=True, exist_ok=True)
+    if gender not in ('male','female'):raise ValueError('角色語音性別未指定。')
+    fingerprint=hashlib.sha256((VOICE_VERSION+'|'+gender+'|'+text).encode()).hexdigest()
+    metadata=Path(str(target)+'.voice.json')
     with SPEECH_LOCK:
-        if not target.exists():
+        try:voice=json.loads(metadata.read_text(encoding='utf-8-sig'))
+        except (OSError,ValueError):voice={}
+        if not target.exists() or voice.get('fingerprint')!=fingerprint or voice.get('gender')!=gender:
             text_path = target.with_suffix('.txt');text_path.write_text(text, encoding='utf-8')
-            result = subprocess.run(['powershell.exe','-NoProfile','-ExecutionPolicy','Bypass','-File',str(ROOT/'tools/speak.ps1'),
+            # PowerShell 7's System.Speech can enumerate installed OneCore voices (e.g. zh-TW Zhiwei).
+            # Legacy Windows PowerShell often exposes only Hanhan Desktop. Never substitute its gender.
+            shell=shutil.which('pwsh') or shutil.which('powershell.exe')
+            if not shell:raise RuntimeError('未安裝 Windows 本機語音執行環境。')
+            result = subprocess.run([shell,'-NoProfile','-ExecutionPolicy','Bypass','-File',str(ROOT/'tools/speak.ps1'),
                 '-TextFile',str(text_path),'-OutputFile',str(target),'-Gender',gender],capture_output=True,timeout=150,
                 creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
             if result.returncode or not target.exists():
                 target.unlink(missing_ok=True)
                 raise RuntimeError('本機中文語音合成失敗：'+result.stderr.decode('utf-8',errors='replace')[-500:])
+            voice=json.loads(metadata.read_text(encoding='utf-8-sig'))
+            if voice.get('gender')!=gender:raise RuntimeError('合成聲音性別與角色不符。')
+            metadata.write_text(json.dumps({**voice,'fingerprint':fingerprint},ensure_ascii=False,indent=2),encoding='utf-8')
     with wave.open(str(target),'rb') as audio:
         return audio.getnframes()/audio.getframerate()
 
@@ -127,7 +140,7 @@ def render(case,row,module):
         if not output.exists():
             cli=shutil.which('npx.cmd') or shutil.which('npx')
             if not cli:raise RuntimeError('未安裝 Node.js/npx，無法輸出虛擬人影片。')
-            args=[cli,'--yes','hyperframes@0.8.184','render','--quality','looks','--fps','24','--workers','1','--output',str(output)]
+            args=[cli,'--yes','hyperframes@0.8.185','render','--quality','looks','--fps','24','--workers','1','--output',str(output)]
             with (project/'render.log').open('w',encoding='utf-8') as log:
                 environment=os.environ.copy()
                 local_bins=list((ROOT/'tools/ffmpeg').glob('*/bin'))
