@@ -127,7 +127,7 @@ class UploadedWorkflowTests(unittest.TestCase):
         with self.db.tx() as c:self.db.save(c,sid,row['payload'])
         runtime=Path(self.tmp.name)/'runtime';legacy=runtime/'media'/f'session_{sid*10}'/'training_video.mp4'
         legacy.parent.mkdir(parents=True);legacy.write_bytes(b'legacy-evidence-must-survive')
-        sample=Path(__file__).resolve().parents[1]/'docs/step1-4/虛擬講師_營養師_L1_示範.mp4'
+        sample=runtime/'synthetic-render.mp4';sample.write_bytes(b'synthetic-render-evidence')
         manifest={'source':'source_bound_virtual_lecturer','duration':45.08,'has_audio':True,'key':'0123456789abcdef0123'}
         with patch.object(server,'RUNTIME',runtime),patch.object(server.virtual_video,'render',return_value=(sample,manifest)):
             server.video_worker(sid,row['payload']['case_snapshot'],row,0)
@@ -144,4 +144,5 @@ class UploadedWorkflowTests(unittest.TestCase):
             self.assertEqual(self.client.get(f'/api/sessions/{sid}/generated-video/0').content,b'new-version-evidence')
             self.assertEqual(self.client.get(f'/api/sessions/{sid}/generated-video/0?version=0123456789abcdef0123').content,sample.read_bytes())
         self.assertEqual(legacy.read_bytes(),b'legacy-evidence-must-survive')
+
 
