@@ -1,0 +1,98 @@
+{
+  "version": "meeting-audit-20261022-v5.3",
+  "date": "2026-10-22",
+  "all_requirements_accepted": false,
+  "sources": [
+    {
+      "name": "1022.txt",
+      "label": "2026-10-22需求清單",
+      "sha256": "7742c0855cc1cb5a8bbe58e94e3ae40705c96f8cfd23f24f7de313bf155f3371"
+    },
+    {
+      "name": "醫事人員智慧訓練平台_會議紀錄修訂稿_20261021.md",
+      "label": "較早會議整理稿（背景資料）",
+      "sha256": "68fbbe740d2bd10897b2fb768673db68bf6223dabba88bf425aa306349e88309"
+    }
+  ],
+  "priority_rule": "後續使用者明確確認優先於較早文件中的建議或不完整文字",
+  "items": [
+    {
+      "id": "R01",
+      "requirement": "職類核心指標與文獻",
+      "status": "partial",
+      "acceptance_note": "12職類已建立來源對照；指標、題目、權重及切點待職類教師核定"
+    },
+    {
+      "id": "R02",
+      "requirement": "職類自評成果",
+      "status": "implemented",
+      "acceptance_note": "職類雷達、分數及弱項已分開；試辦校準另行追蹤"
+    },
+    {
+      "id": "R03",
+      "requirement": "正確角色對應",
+      "status": "implemented",
+      "acceptance_note": "前後端限制職類與案例角色"
+    },
+    {
+      "id": "R04",
+      "requirement": "五職類Demo",
+      "status": "implemented",
+      "acceptance_note": "RT→PT、DT→PT、PT→病患、MD→病患、RN→病患＋PT"
+    },
+    {
+      "id": "R05",
+      "requirement": "五層教材與逐格分析",
+      "status": "partial",
+      "acceptance_note": "播放器、觀察、教師回饋已完成；職類視角與標準解析待教師提供"
+    },
+    {
+      "id": "R06",
+      "requirement": "院名院徽與平台識別",
+      "status": "implemented",
+      "acceptance_note": "首頁及來源雜湊已核對；不宣稱院方已正式核准產品"
+    },
+    {
+      "id": "R07",
+      "requirement": "公開與LLM",
+      "status": "partial",
+      "acceptance_note": "公開來源及本機LLM具備；完整雲端部署未驗收"
+    },
+    {
+      "id": "R08",
+      "requirement": "人物性別年齡與3D",
+      "status": "implemented",
+      "acceptance_note": "13模型雜湊及高齡、中年男女已核對"
+    },
+    {
+      "id": "R09",
+      "requirement": "操作影片與版本說明",
+      "status": "partial",
+      "acceptance_note": "既有導覽與歷次差異保留；新版完整操作導覽待更新"
+    },
+    {
+      "id": "R10",
+      "requirement": "雙Level獨立",
+      "status": "implemented",
+      "acceptance_note": "自評難度、學習解鎖及教師核定分開保存"
+    },
+    {
+      "id": "A01",
+      "requirement": "實體麥克風",
+      "status": "awaiting_external",
+      "acceptance_note": "依使用者指定先完成自動測試，實體說話驗收尚未進行"
+    },
+    {
+      "id": "A02",
+      "requirement": "跨主機還原",
+      "status": "awaiting_external",
+      "acceptance_note": "需指定乾淨主機並比較資料筆數、關聯、分數及媒體版本"
+    },
+    {
+      "id": "A03",
+      "requirement": "Level5體驗帳號",
+      "status": "implemented",
+      "acceptance_note": "明示教材體驗授權；不捏造能力核定或學習成果"
+    }
+  ]
+}

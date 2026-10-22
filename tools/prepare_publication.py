@@ -21,12 +21,12 @@ assets['data/characters/catalog.json']=json.dumps(catalog,ensure_ascii=False,ind
 archive=OUT/'public-assets.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
     for name,data in sorted(assets.items()):z.writestr(name,data)
-manifest={'version':'5.2.0','archive_sha256':sha(archive.read_bytes()),'contains_learner_data':False,'contains_source_documents':False,'contains_real_footage':False,'files':{n:{'sha256':sha(b),'bytes':len(b)} for n,b in assets.items()}}
+manifest={'version':'5.3.0','archive_sha256':sha(archive.read_bytes()),'contains_learner_data':False,'contains_source_documents':False,'contains_real_footage':False,'files':{n:{'sha256':sha(b),'bytes':len(b)} for n,b in assets.items()}}
 (OUT/'public-assets-manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
 files={}
 for folder in ['backend','tests','frontend/src']:
     for p in (ROOT/folder).rglob('*'):
-        if p.is_file() and '__pycache__' not in p.parts and p.suffix in ('.py','.js'):files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8-sig')
+        if p.is_file() and '__pycache__' not in p.parts and p.suffix in ('.py','.js','.mjs'):files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8-sig')
 for p in (ROOT/'frontend').iterdir():
     if p.is_file() and p.suffix in ('.html','.js','.css'):files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8-sig')
 for p in (ROOT/'tools').iterdir():
@@ -35,7 +35,7 @@ for p in (ROOT/'tools').iterdir():
         files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8-sig')
 for name in ['README.md','Dockerfile','compose.yaml','.dockerignore','.gitignore','.env.example','requirements.txt','requirements.lock.txt','package.json','package-lock.json','run.py','run_windows.bat','manage.py','.github/workflows/checks.yml','.github/workflows/publish-assets.yml','data/learning_policy.json']:
     files[name]=(ROOT/name).read_text(encoding='utf-8-sig')
-for p in [*(ROOT/'docs/v5').iterdir(),*(ROOT/'docs/v5.1').iterdir(),*(ROOT/'docs/v5.2').iterdir()]:
+for p in [*(ROOT/'docs/v5').iterdir(),*(ROOT/'docs/v5.1').iterdir(),*(ROOT/'docs/v5.2').iterdir(),*(ROOT/'docs/v5.3').iterdir()]:
     if p.is_file() and p.suffix in ('.md','.csv','.json','.txt','.srt') and p.name!='public-assets-manifest.json':files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8-sig')
 for p in (ROOT/'data/characters/realistic-v1').glob('*.json'):
     files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8')
