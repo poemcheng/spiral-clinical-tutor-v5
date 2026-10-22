@@ -9,19 +9,19 @@ for p in (ROOT/'frontend/vendor').rglob('*'):
 for p in (ROOT/'frontend/assets').rglob('*'):
     if p.is_file():assets[p.relative_to(ROOT).as_posix()]=p.read_bytes()
 for p in (ROOT/'data').rglob('*'):
-    if not p.is_file() or 'sources' in p.parts or p.suffix not in ('.json','.vrm','.png'):continue
+    if not p.is_file() or 'sources' in p.parts or p.suffix not in ('.json','.vrm','.png','.glb'):continue
     if p.suffix=='.png' and 'photoreal-v1' not in p.parts:continue
     if 'video360' in p.parts and p.name!='catalog.json':continue
     assets[p.relative_to(ROOT).as_posix()]=p.read_bytes()
 catalog=json.loads(assets['data/characters/catalog.json'])
 for a in catalog['actors']:
     a['card_file']=a['atlas_file'];a['card_sha256']=a['atlas_sha256'];a['source_file']='Public generated portrait atlas'
-    a['usage']='Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.'
+    a['usage']='Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.'
 assets['data/characters/catalog.json']=json.dumps(catalog,ensure_ascii=False,indent=2).encode()
 archive=OUT/'public-assets.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
     for name,data in sorted(assets.items()):z.writestr(name,data)
-manifest={'version':'5.1.0','archive_sha256':sha(archive.read_bytes()),'contains_learner_data':False,'contains_source_documents':False,'contains_real_footage':False,'files':{n:{'sha256':sha(b),'bytes':len(b)} for n,b in assets.items()}}
+manifest={'version':'5.2.0','archive_sha256':sha(archive.read_bytes()),'contains_learner_data':False,'contains_source_documents':False,'contains_real_footage':False,'files':{n:{'sha256':sha(b),'bytes':len(b)} for n,b in assets.items()}}
 (OUT/'public-assets-manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
 files={}
 for folder in ['backend','tests','frontend/src']:
@@ -35,8 +35,10 @@ for p in (ROOT/'tools').iterdir():
         files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8-sig')
 for name in ['README.md','Dockerfile','compose.yaml','.dockerignore','.gitignore','.env.example','requirements.txt','requirements.lock.txt','package.json','package-lock.json','run.py','run_windows.bat','manage.py','.github/workflows/checks.yml','.github/workflows/publish-assets.yml','data/learning_policy.json']:
     files[name]=(ROOT/name).read_text(encoding='utf-8-sig')
-for p in [*(ROOT/'docs/v5').iterdir(),*(ROOT/'docs/v5.1').iterdir()]:
+for p in [*(ROOT/'docs/v5').iterdir(),*(ROOT/'docs/v5.1').iterdir(),*(ROOT/'docs/v5.2').iterdir()]:
     if p.is_file() and p.suffix in ('.md','.csv','.json','.txt','.srt') and p.name!='public-assets-manifest.json':files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8-sig')
+for p in (ROOT/'data/characters/realistic-v1').glob('*.json'):
+    files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8')
 files['data/characters/catalog.json']=assets['data/characters/catalog.json'].decode()
 files['public-assets-manifest.json']=json.dumps(manifest,indent=2)
 entries=[{'path':name,'mode':'100644','type':'blob','content':text} for name,text in sorted(files.items())]

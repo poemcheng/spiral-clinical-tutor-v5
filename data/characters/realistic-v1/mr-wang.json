@@ -1,0 +1,23 @@
+{
+  "actor_id": "mr-wang",
+  "file": "realistic-v1/mr-wang.glb",
+  "sha256": "09950e0b7ad12e733f5e49250518ed11b3d04fa4e3d5268feb8e677e7ededf84",
+  "bytes": 9280748,
+  "skin": "young_asian_male",
+  "hair": "short02",
+  "clothes": "male_casualsuit01",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane"
+}

@@ -1,17 +1,17 @@
 // Local recording + authenticated transcription. No third-party speech service.
-export function createVoiceInput({sid,onText,onStatus,onError,onListening=()=>{},beforeListen=()=>{}}){
+export function createVoiceInput({sid,onText,onStatus,onError,onListening=()=>{},beforeListen=()=>{},inputStreamFactory=null,transcribeUrl=null,onEvent=()=>{}}){
  let stream,context,analyser,recorder,frame,timer,disposed=false,enabled=false,cancelled=false,started=0,lastSound=0,heard=false,epoch=0,request,pending=false,cancelPermission;
  const label=(text,state)=>{onStatus(text);const el=document.querySelector('#voice-status');if(el)el.dataset.state=state;};
  function finish(cancel=false){cancelled=cancel;if(cancel){epoch++;request?.abort();cancelPermission?.();}clearTimeout(timer);cancelAnimationFrame(frame);if(recorder?.state==='recording')recorder.stop();onListening(false);}
  async function listen(){
   if(disposed||pending||recorder?.state==='recording')return;
   try{
-   if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder)throw Error('此瀏覽器無法錄音，請以 Chrome 或 Edge 開啟本機網址。');
+   if((!inputStreamFactory&&!navigator.mediaDevices?.getUserMedia)||!window.MediaRecorder)throw Error('此瀏覽器無法錄音，請以 Chrome 或 Edge 開啟本機網址。');
    beforeListen();
    if(!stream){
     pending=true;const attempt=++epoch;let permissionTimer;
-    label('等待瀏覽器麥克風權限；請在網址列允許。若內嵌瀏覽器沒有提示，請以 Chrome／Edge 開啟本機網址。','permission');
-    try{stream=await Promise.race([navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}}).then(s=>{if(disposed||attempt!==epoch){s.getTracks().forEach(t=>t.stop());throw new DOMException('錄音已取消','AbortError');}return s;}),new Promise((_,reject)=>{cancelPermission=()=>reject(new DOMException('錄音已取消','AbortError'));permissionTimer=setTimeout(()=>{epoch++;reject(Error('未收到麥克風授權；請以 Chrome／Edge 開啟 http://127.0.0.1:8705 並允許麥克風，再按開始。'));},20000);})]);}
+    label(inputStreamFactory?'準備測試音源（非實體麥克風）…':'等待瀏覽器麥克風權限；請在網址列允許。若內嵌瀏覽器沒有提示，請以 Chrome／Edge 開啟本機網址。','permission');
+    try{stream=await Promise.race([(inputStreamFactory?inputStreamFactory():navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}})).then(s=>{if(disposed||attempt!==epoch){s.getTracks().forEach(t=>t.stop());throw new DOMException('錄音已取消','AbortError');}return s;}),new Promise((_,reject)=>{cancelPermission=()=>reject(new DOMException('錄音已取消','AbortError'));permissionTimer=setTimeout(()=>{epoch++;reject(Error('音源準備逾時；請確認音源或麥克風權限後重試。'));},20000);})]);}
     finally{pending=false;cancelPermission=null;clearTimeout(permissionTimer);}
    }
    if(disposed){stream.getTracks().forEach(t=>t.stop());return;}
@@ -23,9 +23,10 @@ export function createVoiceInput({sid,onText,onStatus,onError,onListening=()=>{}
    recorder.onstop=async()=>{
     if(turn!==epoch||cancelled||disposed||!chunks.length)return;
     try{label('正在本機辨識語音…','transcribing');const blob=new Blob(chunks,{type:current.mimeType});request=new AbortController();
-     const response=await fetch(`/api/sessions/${sid}/transcribe`,{method:'POST',headers:{'Content-Type':blob.type},body:blob,signal:request.signal});
+     onEvent('recorded',{bytes:blob.size,mime:blob.type,heard,elapsedMs:performance.now()-started});
+     const response=await fetch(transcribeUrl||`/api/sessions/${sid}/transcribe`,{method:'POST',headers:{'Content-Type':blob.type},body:blob,signal:request.signal});
      const data=await response.json();if(!response.ok)throw Error(data.detail||'語音辨識失敗');if(disposed||turn!==epoch)return;
-     label('辨識完成，可確認文字或自動送出。','ready');onText(data.text);
+     onEvent('transcribed',{...data});label('辨識完成，可確認文字或自動送出。','ready');onText(data.text);
     }catch(e){if(!disposed&&turn===epoch&&e.name!=='AbortError'){label(e.message,'error');onError(e);}}
    };
    recorder.start(250);onListening(true);label('正在聆聽；停頓約1.3秒結束一輪，也可按「結束這段錄音」。','listening');

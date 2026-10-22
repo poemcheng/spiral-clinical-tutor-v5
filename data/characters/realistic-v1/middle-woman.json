@@ -1,0 +1,23 @@
+{
+  "actor_id": "middle-woman",
+  "file": "realistic-v1/middle-woman.glb",
+  "sha256": "649035f7bc85cda7f5ea97a741b0055944446ea0e1a09297493dd39835026e91",
+  "bytes": 9237776,
+  "skin": "middleage_asian_female",
+  "hair": "bob01",
+  "clothes": "female_casualsuit01",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane"
+}

@@ -2,7 +2,7 @@
 from pathlib import Path,PurePosixPath
 import argparse,hashlib,json,tempfile,urllib.request,zipfile,shutil
 ROOT=Path(__file__).resolve().parents[1]
-BASE='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.1.0/'
+BASE='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.2.0/'
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--local',type=Path);args=parser.parse_args()
     manifest=json.loads((args.local.parent/'public-assets-manifest.json').read_text()) if args.local else json.load(urllib.request.urlopen(BASE+'public-assets-manifest.json',timeout=60))
@@ -20,6 +20,12 @@ def main():
                 data=z.read(name)
                 if hashlib.sha256(data).hexdigest()!=manifest['files'][name]['sha256']:raise SystemExit('File checksum mismatch')
             for name in z.namelist():
-                dest=ROOT/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(z.read(name))
+                dest=ROOT/name
+                # An older bootstrap pack must not replace the current source catalog or compiled code.
+                if args.local and name=='data/characters/catalog.json' and dest.exists():
+                    current=json.loads(dest.read_text(encoding='utf-8'))
+                    if any(a.get('realistic_model_file') for a in current.get('actors',[])):continue
+                if args.local and name.startswith('frontend/vendor/') and dest.exists():continue
+                dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(z.read(name))
     print('Public runtime assets installed. Original teaching documents and 360 footage are supplied separately.')
 if __name__=='__main__':main()

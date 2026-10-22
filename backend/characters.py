@@ -29,6 +29,8 @@ def get_actor(aid):
     a['model_sha256']=hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None
     if a.get('atlas_file'):
         a['atlas_url']=f'/api/characters/{aid}/atlas?v={a["atlas_sha256"][:12]}'
+    if a.get('realistic_model_file'):
+        a['realistic_model_url']=f'/api/characters/{aid}/rigged?v={a["realistic_model_sha256"][:12]}'
     return a
 
 def default_actor(row, purpose='interaction'):
@@ -46,7 +48,7 @@ def selected(row,purpose='interaction'):
     if not snapshot:return get_actor(default_actor(row,purpose))
     # Resolve current visual assets without rewriting historical casting/messages.
     a=dict(snapshot);current=get_actor(a['id'])
-    for key in ('visual_type','visual_version','atlas_file','atlas_sha256','atlas_url','face'):
+    for key in ('visual_type','visual_version','atlas_file','atlas_sha256','atlas_url','face','realistic_model_file','realistic_model_sha256','realistic_model_url'):
         if key in current:a[key]=current[key]
     return a
 

@@ -1,0 +1,23 @@
+{
+  "actor_id": "auntie-lin",
+  "file": "realistic-v1/auntie-lin.glb",
+  "sha256": "7522ff5b723e726adc158739c9d84d1a27776fb55be75122a4211b33af94b480",
+  "bytes": 10192884,
+  "skin": "old_asian_female",
+  "hair": "bob01",
+  "clothes": "female_casualsuit01",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane"
+}

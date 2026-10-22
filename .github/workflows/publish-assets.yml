@@ -7,7 +7,7 @@ permissions:
   contents: write
 jobs:
   upload:
-    if: github.event_name == 'workflow_dispatch' || github.event.release.tag_name == 'v5.1.0'
+    if: github.event_name == 'workflow_dispatch' || github.event.release.tag_name == 'v5.2.0'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,14 +20,14 @@ jobs:
           npm ci
           npm run build
           python tools/prepare_publication.py
-      - name: Attach verified public files to v5.1.0
+      - name: Attach verified public files to v5.2.0
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          names=$(gh release view v5.1.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')
+          names=$(gh release view v5.2.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')
           for file in runtime/publication/public-assets.zip runtime/publication/public-assets-manifest.json docs/v5/v5-operation-guide.mp4; do
             if printf '%s\n' "$names" | grep -Fxq "$(basename "$file")"; then
               continue
             fi
-            gh release upload v5.1.0 "$file" --repo "$GITHUB_REPOSITORY"
+            gh release upload v5.2.0 "$file" --repo "$GITHUB_REPOSITORY"
           done

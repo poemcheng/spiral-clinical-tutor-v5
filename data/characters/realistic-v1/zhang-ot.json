@@ -1,0 +1,23 @@
+{
+  "actor_id": "zhang-ot",
+  "file": "realistic-v1/zhang-ot.glb",
+  "sha256": "be4da0b9537564213cb394790f251298a9f9c3021b1c1e0deb94e8bf4f80c4ce",
+  "bytes": 9309784,
+  "skin": "young_asian_female",
+  "hair": "bob01",
+  "clothes": "female_casualsuit01",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane"
+}

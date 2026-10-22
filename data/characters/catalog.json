@@ -1,5 +1,5 @@
 {
-  "version": "characters-v5-20261022",
+  "version": "characters-v5.2-realistic-20261022",
   "actors": [
     {
       "id": "chen-md",
@@ -18,9 +18,9 @@
       "model_file": "chen-md.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "31369f0baf73fd6edf8c633b3777566cbb3c6d744fc425feb517c57a7167453c",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-20261022-1",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/chen-md.png",
       "atlas_sha256": "31369f0baf73fd6edf8c633b3777566cbb3c6d744fc425feb517c57a7167453c",
       "face": {
@@ -37,7 +37,9 @@
           0.105
         ]
       },
-      "age_group": "成人"
+      "age_group": "成人",
+      "realistic_model_file": "realistic-v1/chen-md.glb",
+      "realistic_model_sha256": "a1e1ba2b6a145268c6438061a495fb6c05b803d19f68059809c06248cf485df6"
     },
     {
       "id": "lin-rn",
@@ -56,9 +58,9 @@
       "model_file": "lin-rn.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "65db43569de83132d80d823f64007cfe77c6c07594a68af026f7e2fc24c9bd14",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-20261022-1",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/lin-rn.png",
       "atlas_sha256": "65db43569de83132d80d823f64007cfe77c6c07594a68af026f7e2fc24c9bd14",
       "face": {
@@ -75,7 +77,9 @@
           0.105
         ]
       },
-      "age_group": "成人"
+      "age_group": "成人",
+      "realistic_model_file": "realistic-v1/lin-rn.glb",
+      "realistic_model_sha256": "df24102289b97c3c33c87789a1e32107af42f57b8f598c4cda3dfa4bf704d8ff"
     },
     {
       "id": "wang-pt",
@@ -94,9 +98,9 @@
       "model_file": "wang-pt.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "69a1fd337989369023cd52ccda5cd4d2277141595dfe5caba23ef3b8d4bb9da5",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-20261022-1",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/wang-pt.png",
       "atlas_sha256": "69a1fd337989369023cd52ccda5cd4d2277141595dfe5caba23ef3b8d4bb9da5",
       "face": {
@@ -113,7 +117,9 @@
           0.105
         ]
       },
-      "age_group": "成人"
+      "age_group": "成人",
+      "realistic_model_file": "realistic-v1/wang-pt.glb",
+      "realistic_model_sha256": "95ba627c5b9662b9d3371336566cf053daa337583e07bf1e8d41cb47ab291f4b"
     },
     {
       "id": "zhang-ot",
@@ -132,9 +138,9 @@
       "model_file": "zhang-ot.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "cab634d0f9a1dc2ccb746715a46c7e45a17e7130babcee50426eaa5b4a5fcaf5",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-20261022-1",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/zhang-ot.png",
       "atlas_sha256": "cab634d0f9a1dc2ccb746715a46c7e45a17e7130babcee50426eaa5b4a5fcaf5",
       "face": {
@@ -151,7 +157,9 @@
           0.105
         ]
       },
-      "age_group": "成人"
+      "age_group": "成人",
+      "realistic_model_file": "realistic-v1/zhang-ot.glb",
+      "realistic_model_sha256": "be4da0b9537564213cb394790f251298a9f9c3021b1c1e0deb94e8bf4f80c4ce"
     },
     {
       "id": "huang-dt",
@@ -170,9 +178,9 @@
       "model_file": "huang-dt.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "ccbf4e941a233b71fb0ad76f10f4fb485286088d9ba434e368accefb29daa15e",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-20261022-1",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/huang-dt.png",
       "atlas_sha256": "ccbf4e941a233b71fb0ad76f10f4fb485286088d9ba434e368accefb29daa15e",
       "face": {
@@ -189,7 +197,9 @@
           0.105
         ]
       },
-      "age_group": "成人"
+      "age_group": "成人",
+      "realistic_model_file": "realistic-v1/huang-dt.glb",
+      "realistic_model_sha256": "9c0c2f209a2a866a7449a16b2ddbf1ede9e40442ea85517b3a8a9ee3a46f539c"
     },
     {
       "id": "li-rph",
@@ -208,9 +218,9 @@
       "model_file": "li-rph.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "dfd4cc37747b6276cc7a0a9011082fb9d5507393706e554d49c4dcc793c9ba22",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-20261022-1",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/li-rph.png",
       "atlas_sha256": "dfd4cc37747b6276cc7a0a9011082fb9d5507393706e554d49c4dcc793c9ba22",
       "face": {
@@ -227,7 +237,9 @@
           0.105
         ]
       },
-      "age_group": "成人"
+      "age_group": "成人",
+      "realistic_model_file": "realistic-v1/li-rph.glb",
+      "realistic_model_sha256": "4081101dd9dd2fbaeeda7d2b5abada5bb3fe80285d08c979321b2ed623c3455b"
     },
     {
       "id": "he-sw",
@@ -246,9 +258,9 @@
       "model_file": "he-sw.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "e129b34b093fef860964d9172ce3918abeedb5d1c1f1eed96211dd75ac9334a5",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-20261022-1",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/he-sw.png",
       "atlas_sha256": "e129b34b093fef860964d9172ce3918abeedb5d1c1f1eed96211dd75ac9334a5",
       "face": {
@@ -265,7 +277,9 @@
           0.105
         ]
       },
-      "age_group": "成人"
+      "age_group": "成人",
+      "realistic_model_file": "realistic-v1/he-sw.glb",
+      "realistic_model_sha256": "56844cb6ffb5f9a7a79e356777554b1a0d149aa579de5991358d2a900f686ca1"
     },
     {
       "id": "auntie-lin",
@@ -284,9 +298,9 @@
       "model_file": "auntie-lin.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "a74b7a8c4d1b917cac3fa398efefc9bd87e315136ac3791dd025435b773d2307",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-20261022-1",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/auntie-lin.png",
       "atlas_sha256": "a74b7a8c4d1b917cac3fa398efefc9bd87e315136ac3791dd025435b773d2307",
       "face": {
@@ -303,7 +317,9 @@
           0.105
         ]
       },
-      "age_group": "高齡"
+      "age_group": "高齡",
+      "realistic_model_file": "realistic-v1/auntie-lin.glb",
+      "realistic_model_sha256": "7522ff5b723e726adc158739c9d84d1a27776fb55be75122a4211b33af94b480"
     },
     {
       "id": "mr-chen",
@@ -322,9 +338,9 @@
       "model_file": "mr-chen.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "a5ca8a28b2c5df96124f9434d8a211f44287aceb15c10ef58a4c75e0ebd583e9",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-20261022-1",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/mr-chen.png",
       "atlas_sha256": "a5ca8a28b2c5df96124f9434d8a211f44287aceb15c10ef58a4c75e0ebd583e9",
       "face": {
@@ -341,7 +357,9 @@
           0.105
         ]
       },
-      "age_group": "高齡"
+      "age_group": "高齡",
+      "realistic_model_file": "realistic-v1/mr-chen.glb",
+      "realistic_model_sha256": "18fc591739ff3b6ed18e5ef1b084425a2ddb58f546928a1167c3bc0d1a30191f"
     },
     {
       "id": "mr-wang",
@@ -360,9 +378,9 @@
       "model_file": "mr-wang.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "22834f31ff4f8038e826d46a0d5ee3a51d2063c8a28c2335c70cdda05022a286",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-20261022-1",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/mr-wang.png",
       "atlas_sha256": "22834f31ff4f8038e826d46a0d5ee3a51d2063c8a28c2335c70cdda05022a286",
       "face": {
@@ -379,7 +397,9 @@
           0.105
         ]
       },
-      "age_group": "成人"
+      "age_group": "成人",
+      "realistic_model_file": "realistic-v1/mr-wang.glb",
+      "realistic_model_sha256": "09950e0b7ad12e733f5e49250518ed11b3d04fa4e3d5268feb8e677e7ededf84"
     },
     {
       "id": "middle-man",
@@ -398,9 +418,9 @@
       "model_file": "mr-chen.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-v5-20261022",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/middle-man.png",
       "atlas_sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
       "face": {
@@ -417,7 +437,9 @@
           0.105
         ]
       },
-      "age_group": "中年"
+      "age_group": "中年",
+      "realistic_model_file": "realistic-v1/middle-man.glb",
+      "realistic_model_sha256": "369ecc72e2d67ce4cfaf1a84edfeeca05547251fdfded24caadaf78ac802e991"
     },
     {
       "id": "middle-woman",
@@ -436,9 +458,9 @@
       "model_file": "auntie-lin.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-v5-20261022",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/middle-woman.png",
       "atlas_sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
       "face": {
@@ -455,7 +477,9 @@
           0.105
         ]
       },
-      "age_group": "中年"
+      "age_group": "中年",
+      "realistic_model_file": "realistic-v1/middle-woman.glb",
+      "realistic_model_sha256": "649035f7bc85cda7f5ea97a741b0055944446ea0e1a09297493dd39835026e91"
     },
     {
       "id": "zhou-rt",
@@ -474,9 +498,9 @@
       "model_file": "chen-md.vrm",
       "source_file": "Public generated portrait atlas",
       "card_sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
-      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
-      "visual_type": "photoreal-portrait",
-      "visual_version": "photoreal-v5-20261022",
+      "usage": "Generated fictional teaching character with CC0 MakeHuman skinned 3D geometry. Original uploaded role cards are excluded.",
+      "visual_type": "rigged-realistic-3d",
+      "visual_version": "mpfb-skinned-v1",
       "atlas_file": "photoreal-v1/zhou-rt.png",
       "atlas_sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
       "face": {
@@ -493,7 +517,9 @@
           0.105
         ]
       },
-      "age_group": "成人"
+      "age_group": "成人",
+      "realistic_model_file": "realistic-v1/zhou-rt.glb",
+      "realistic_model_sha256": "98a3cae098304082ac7b4dbb06c23e8ab9eb9c47c7d40ecb99cdfd055341d8d9"
     }
   ]
 }

@@ -1,4 +1,4 @@
-# 迴旋梯智鏈 v5.1.0
+# 迴旋梯智鏈 v5.2.0
 
 中山醫學大學附設醫院醫事智慧訓練平台第五版，依2026-10-22需求自4.5.1修訂。
 
@@ -9,7 +9,7 @@
 - 13位擬真人物，含醫事人員男女、高齡男女、中年男女及醫事放射師。
 - 保留六階段流程、角色權限、來源快照及教師正式覆核；本地Ollama提供案例約束角色對話。
 
-[5.1語音與沉浸更新](docs/v5.1/語音與沉浸式更新.md) · [需求與版本差異](docs/v5/第五版差異與需求對照.md) · [部署操作](docs/v5/部署說明.md) · [文獻對照](docs/v5/職種指標文獻對照.csv) · [70秒操作導覽](https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.0.0/v5-operation-guide.mp4)
+[5.2立體角色與自動語音驗證](docs/v5.2/立體角色與語音驗證.md) · [5.1語音與沉浸更新](docs/v5.1/語音與沉浸式更新.md) · [需求與版本差異](docs/v5/第五版差異與需求對照.md) · [部署操作](docs/v5/部署說明.md) · [文獻對照](docs/v5/職種指標文獻對照.csv) · [70秒操作導覽](https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.0.0/v5-operation-guide.mp4)
 
 ## 啟動
 
@@ -39,7 +39,7 @@ npm run build
 python -m unittest discover -s tests -v
 ```
 
-本機56項測試通過。新增本機語音辨識、全教材體驗授權及沉浸式教案權限驗證；瀏覽器實測語音檔→辨識→AI→16秒角色語音播放，以及40.77秒three.js講師影片輸出。實際gemma4:12b已驗證放射師→物理治療師兩輪對話；另以合成學員實際完成8輪訓練後，瀏覽器驗證自評Level2與累積Level5、360視角、逐格定位及紀錄保存。證據在 `docs/v5/`。操作導覽由實際操作截圖組成，非連續錄影。
+本機59項測試通過。13位角色使用CC0 MakeHuman立體網格、163骨架與8種表情，不再以平面人像螢幕呈現。瀏覽器已完成兩輪真實MediaRecorder錄音→Whisper辨識→gemma4:12b案例回覆→中文TTS播放→接續收音的自動測試；音源為明示的合成測試語音，未測實體麥克風。實際gemma4:12b已驗證放射師→物理治療師兩輪對話；另以合成學員實際完成8輪訓練後，瀏覽器驗證自評Level2與累積Level5、360視角、逐格定位及紀錄保存。證據在 `docs/v5/`。操作導覽由實際操作截圖組成，非連續錄影。
 
 Docker Compose設定解析通過，但本機Docker Linux引擎未啟動，尚未完成容器建置及雲端推論驗收。Linux目前支援文字互動與既有影片；中文TTS與虛擬講師即時合成仍依賴Windows。
 

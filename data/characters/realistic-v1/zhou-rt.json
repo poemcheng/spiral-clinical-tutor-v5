@@ -1,0 +1,23 @@
+{
+  "actor_id": "zhou-rt",
+  "file": "realistic-v1/zhou-rt.glb",
+  "sha256": "98a3cae098304082ac7b4dbb06c23e8ab9eb9c47c7d40ecb99cdfd055341d8d9",
+  "bytes": 9280748,
+  "skin": "young_asian_male",
+  "hair": "short02",
+  "clothes": "male_casualsuit01",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane"
+}

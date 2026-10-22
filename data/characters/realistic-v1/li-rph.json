@@ -1,0 +1,23 @@
+{
+  "actor_id": "li-rph",
+  "file": "realistic-v1/li-rph.glb",
+  "sha256": "4081101dd9dd2fbaeeda7d2b5abada5bb3fe80285d08c979321b2ed623c3455b",
+  "bytes": 9280748,
+  "skin": "young_asian_male",
+  "hair": "short02",
+  "clothes": "male_casualsuit01",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane"
+}

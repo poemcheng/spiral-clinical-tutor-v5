@@ -566,7 +566,7 @@ def generated_lesson(sid:int,module:int,asset:str,user=Depends(current_user)):
     video=row['payload'].get('generated_videos',{}).get(str(module),{})
     key=video.get('key','')
     import re
-    allowed={'immersive.html','lecturer.js','actor-atlas.png','voice-0.wav','voice-1.wav','voice-2.wav'}
+    allowed={'immersive.html','lecturer.js','actor-model.glb','actor-atlas.png','voice-0.wav','voice-1.wav','voice-2.wav'}
     if asset not in allowed or not re.fullmatch('[0-9a-f]{20}',key):raise HTTPException(404,'尚未生成此沉浸式教案。')
     path=RUNTIME/'virtual_lessons'/key/asset
     if not path.is_file():raise HTTPException(404,'此歷史影片沒有沉浸場景，請重新產生。')
@@ -586,7 +586,7 @@ def create_video(sid: int, body: ModuleBody, user=Depends(student)):
             return row['payload']['video_job']
         existing=row['payload'].get('generated_videos',{}).get(str(body.module),{})
         actor=characters.selected(row,'lecturer')
-        if existing.get('source')=='source_bound_virtual_lecturer' and existing.get('actor',{}).get('id')==actor['id'] and existing.get('actor',{}).get('version')==actor['version'] and existing.get('actor',{}).get('atlas_sha256')==actor.get('atlas_sha256') and existing.get('renderer')==virtual_video.RENDERER:
+        if existing.get('source')=='source_bound_virtual_lecturer' and existing.get('actor',{}).get('id')==actor['id'] and existing.get('actor',{}).get('version')==actor['version'] and existing.get('actor',{}).get('realistic_model_sha256')==actor.get('realistic_model_sha256') and existing.get('renderer')==virtual_video.RENDERER:
             return {'status': 'completed', 'cached': True}
         row['payload']['video_job'] = {'status': 'running', 'module': body.module}
         store.save(c, sid, row['payload'])
@@ -728,7 +728,11 @@ def message_speech(sid:int,mid:int,user=Depends(current_user)):
 
 @app.post('/api/sessions/{sid}/transcribe')
 async def transcribe_turn(sid:int,request:Request,user=Depends(student)):
-    row=owned_session(sid,user)
+    return await decode_voice(sid,request,user)
+
+
+async def decode_voice(sid,request,user,diagnostic=False):
+    row=owned_session(sid,user,require_checkin=not diagnostic)
     if row['step']!=4 or row['status']!='active':raise HTTPException(409,'請在進行中的角色互動錄音。')
     if request.headers.get('content-type','').split(';')[0] not in ('audio/webm','audio/ogg','audio/wav','audio/mp4'):
         raise HTTPException(415,'請使用瀏覽器錄音格式。')
@@ -740,8 +744,65 @@ async def transcribe_turn(sid:int,request:Request,user=Depends(student)):
     except BlockingIOError as e:raise HTTPException(429,str(e))
     except ValueError as e:raise HTTPException(400,str(e))
     except RuntimeError as e:raise HTTPException(503,str(e))
-    with store.tx() as c:store.event(c,user['id'],sid,'speech_transcribed',{'seconds':result['seconds'],'model':result['model'],'recording_retained':False})
+    with store.tx() as c:store.event(c,user['id'],sid,'diagnostic_speech_transcribed' if diagnostic else 'speech_transcribed',{'seconds':result['seconds'],'model':result['model'],'recording_retained':False,'input_source':'controlled-test-audio' if diagnostic else 'learner-audio'})
     return result
+
+
+VOICE_TEST_LINES={1:'您好，請說明目前需要一起確認的資料。',2:'謝謝您的說明，還有哪些資訊需要再核對？'}
+voice_diagnostics={}
+voice_diagnostic_lock=threading.Lock()
+
+
+@app.get('/api/sessions/{sid}/voice-diagnostic/input/{turn}')
+def voice_diagnostic_input(sid:int,turn:int,user=Depends(student)):
+    row=owned_session(sid,user,require_checkin=False);need_step(row,4)
+    if turn not in VOICE_TEST_LINES:raise HTTPException(404,'未知測試音源。')
+    path=RUNTIME/'voice-diagnostics'/f'input-{turn}.wav'
+    virtual_video.speech(VOICE_TEST_LINES[turn],path,'female')
+    return FileResponse(path,media_type='audio/wav')
+
+
+@app.post('/api/sessions/{sid}/voice-diagnostic/transcribe')
+async def voice_diagnostic_transcribe(sid:int,request:Request,user=Depends(student)):
+    return await decode_voice(sid,request,user,diagnostic=True)
+
+
+class VoiceDiagnosticBody(BaseModel):
+    text:str=Field(min_length=1,max_length=2000)
+    test_id:str=Field(pattern=r'^[a-f0-9]{32}$')
+
+
+@app.post('/api/sessions/{sid}/voice-diagnostic/reply')
+def voice_diagnostic_reply(sid:int,body:VoiceDiagnosticBody,user=Depends(student)):
+    row=owned_session(sid,user,require_checkin=False);need_step(row,4)
+    key=(user['id'],sid,body.test_id)
+    with voice_diagnostic_lock:
+        now=time.time()
+        for old in list(voice_diagnostics):
+            if now-voice_diagnostics[old]['created']>1800:del voice_diagnostics[old]
+        if key not in voice_diagnostics and len(voice_diagnostics)>=32:raise HTTPException(429,'測試服務忙碌，請稍後再試。')
+        test=voice_diagnostics.setdefault(key,{'created':now,'messages':[],'turn':0})
+        if test.get('busy') or test['turn']>=2:raise HTTPException(409,'測試已完成或正在回覆。')
+        test['busy']=True
+    try:
+        history=[*test['messages'],{'role':'user','content':body.text}]
+        result,_=patient_reply(case_for(row),row,history,body.text)
+        if not result.ok:raise HTTPException(503,result.error)
+        turn=test['turn']+1
+        path=RUNTIME/'voice-diagnostics'/f"{user['id']}-{sid}-{body.test_id}-{turn}.wav"
+        virtual_video.speech(result.text,path,characters.selected(row)['gender'])
+        test['messages']=[*history,{'role':'assistant','content':result.text}];test['turn']=turn
+        return {'text':result.text,'source':'ollama','model':result.model,'turn':turn,'diagnostic':True,
+                'audio_url':f'/api/sessions/{sid}/voice-diagnostic/output/{body.test_id}/{turn}'}
+    finally:test['busy']=False
+
+
+@app.get('/api/sessions/{sid}/voice-diagnostic/output/{test_id}/{turn}')
+def voice_diagnostic_output(sid:int,test_id:str,turn:int,user=Depends(student)):
+    owned_session(sid,user,require_checkin=False)
+    test=voice_diagnostics.get((user['id'],sid,test_id))
+    if not test or turn not in (1,2) or turn>test['turn']:raise HTTPException(404,'找不到此測試語音。')
+    return FileResponse(RUNTIME/'voice-diagnostics'/f"{user['id']}-{sid}-{test_id}-{turn}.wav",media_type='audio/wav')
 
 
 @app.post('/api/sessions/{sid}/chat')
@@ -1022,6 +1083,7 @@ install_routes(app, owned_session, current_user, lambda:store)
 @app.get('/api/services')
 def service_status(user=Depends(current_user)):
     return {'ollama':llm.check().to_dict(),'vrm_available':all((ROOT/'data/characters'/a['model_file']).is_file() for a in characters.ACTORS.values()),
+            'realistic_available':all((ROOT/'data/characters'/a.get('realistic_model_file','missing')).is_file() for a in characters.ACTORS.values()),
             'photoreal_available':all((ROOT/'data/characters'/a.get('atlas_file','missing')).is_file() for a in characters.ACTORS.values()),
             'characters':len(characters.ACTORS),'character_version':characters.VERSION,
             'livekit_configured':voice_bridge.ready(),
@@ -1039,9 +1101,9 @@ def character_catalog(user=Depends(current_user)):return characters.catalog()
 def character_asset(aid:str,asset:str,user=Depends(current_user)):
     try:a=characters.get_actor(aid)
     except ValueError as e:raise HTTPException(404,str(e))
-    field={'card':'card_file','model':'model_file','atlas':'atlas_file'}.get(asset)
+    field={'card':'card_file','model':'model_file','atlas':'atlas_file','rigged':'realistic_model_file'}.get(asset)
     if not field or not a.get(field):raise HTTPException(404,'未知角色資源。')
-    return FileResponse(ROOT/'data/characters'/a[field],media_type='model/gltf-binary' if asset=='model' else 'image/png')
+    return FileResponse(ROOT/'data/characters'/a[field],media_type='model/gltf-binary' if asset in ('model','rigged') else 'image/png')
 
 
 @app.get('/api/sessions/{sid}/actors')

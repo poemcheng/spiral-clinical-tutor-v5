@@ -1,0 +1,23 @@
+{
+  "actor_id": "wang-pt",
+  "file": "realistic-v1/wang-pt.glb",
+  "sha256": "95ba627c5b9662b9d3371336566cf053daa337583e07bf1e8d41cb47ab291f4b",
+  "bytes": 8861656,
+  "skin": "young_asian_male",
+  "hair": "short02",
+  "clothes": "male_casualsuit04",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane"
+}

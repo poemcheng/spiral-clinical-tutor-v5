@@ -1,0 +1,23 @@
+{
+  "actor_id": "middle-man",
+  "file": "realistic-v1/middle-man.glb",
+  "sha256": "369ecc72e2d67ce4cfaf1a84edfeeca05547251fdfded24caadaf78ac802e991",
+  "bytes": 9419328,
+  "skin": "middleage_asian_male",
+  "hair": "short02",
+  "clothes": "male_casualsuit01",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane"
+}
