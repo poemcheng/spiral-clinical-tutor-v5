@@ -18,15 +18,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          current=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/v5.0.0" --jq '.object.sha')
-          verified=927ce733a3fb3860fa94059caef73d2cc696d66d
-          initial=4782a5ee4415b709657b84d68ad6f680cfd20609
-          if [ "$current" = "$initial" ]; then
-            gh api --method PATCH "repos/$GITHUB_REPOSITORY/git/refs/tags/v5.0.0" -f sha="$verified" -F force=false
-          elif [ "$current" != "$verified" ]; then
-            echo "Tag changed outside this publication; preserve it and stop."
-            exit 1
-          fi
           names=$(gh release view v5.0.0 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')
           for file in public-assets.zip public-assets-manifest.json docs/v5/v5-operation-guide.mp4; do
             if printf '%s\n' "$names" | grep -Fxq "$(basename "$file")"; then
