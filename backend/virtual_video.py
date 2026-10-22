@@ -19,7 +19,7 @@ from .characters import selected
 
 RENDER_LOCK = threading.Lock()
 SPEECH_LOCK = threading.Lock()
-RENDERER = 'Photoreal portrait atlas v2 / HyperFrames 0.8.184'
+RENDERER = 'Three.js clinic / portrait atlas v3.1 / HyperFrames 0.8.184'
 
 
 def audio_envelope(path):
@@ -58,6 +58,25 @@ def concise(value, limit=96):
     return result or value
 
 
+def write_immersive_lesson(project,case,actor,segments,duration):
+    """Interactive companion uses the same 3D renderer and actual audio envelope."""
+    data=json.dumps(segments,ensure_ascii=False).replace('<','\\u003c')
+    face=json.dumps(actor.get('face',{}))
+    title=html.escape(case['title']);name=html.escape(actor['name'])
+    content=f'''<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} · 3D教案</title>
+<style>*{{box-sizing:border-box}}body{{margin:0;background:#0d2531;color:#eef7f6;font:16px/1.6 system-ui,sans-serif}}header{{padding:12px 24px;background:#153746}}h1{{font-size:21px;margin:0}}main{{display:grid;grid-template-columns:minmax(0,1fr) 310px;min-height:calc(100vh - 85px)}}#stage{{position:relative;min-height:440px}}canvas{{display:block;width:100%;height:100%;position:absolute;inset:0;touch-action:none}}aside{{padding:24px;background:#f5f9f7;color:#193c49}}button{{background:#1c7276;color:white;border:0;padding:12px 18px;border-radius:8px;cursor:pointer;margin:4px}}audio{{width:100%;margin:12px 0}}.hint{{font-size:13px;color:#b4d4d9}}#stage:fullscreen{{width:100vw;height:100vh}}@media(max-width:700px){{main{{grid-template-columns:1fr}}#stage{{height:55vh}}}}</style>
+<header><h1>{title}</h1><span>{name} · three.js沉浸式教案</span></header><main><div id="stage"><canvas id="scene" aria-label="可拖曳環顧的3D診間"></canvas></div><aside><h2 id="section"></h2><p id="script"></p><button id="prev">上一段</button><button id="next">下一段</button><button id="play">播放講師語音</button><audio id="speech" controls></audio><button id="full">全螢幕診間</button><p id="status" role="status">人物載入中…</p><p>拖曳環顧診間，滾輪調整距離。語音嘴形依實際音訊連動。</p><small>角色為擬真人像平面，診間與攝影機為3D。依本輪教案快照生成，待教師審核。</small></aside></main><script src="lecturer.js"></script><script>
+const parts={data},rig=ClinicalLecturer.lecturerScene(document.querySelector('#scene'),{{atlasUrl:'actor-atlas.png',face:{face},interactive:true}}),audio=document.querySelector('#speech');let index=0,disposed=false;
+function select(i){{audio.pause();index=Math.max(0,Math.min(parts.length-1,i));audio.src='voice-'+index+'.wav';document.querySelector('#section').textContent=parts[index].title;document.querySelector('#script').textContent=parts[index].text;}}select(0);
+document.querySelector('#play').onclick=()=>{{if(audio.paused)audio.play().catch(e=>document.querySelector('#status').textContent=e.message);else audio.pause();}};audio.onplay=()=>document.querySelector('#play').textContent='暫停講師語音';audio.onpause=()=>document.querySelector('#play').textContent='播放講師語音';
+document.querySelector('#prev').onclick=()=>select(index-1);document.querySelector('#next').onclick=()=>select(index+1);audio.onended=()=>{{if(index<parts.length-1){{select(index+1);audio.play().catch(()=>{{}});}}}};
+document.querySelector('#full').onclick=()=>document.querySelector('#stage').requestFullscreen().catch(()=>{{document.querySelector('#status').textContent='此瀏覽器未提供全螢幕。';}});
+rig.ready.then(()=>document.querySelector('#status').textContent='3D診間已就緒，按播放聆聽講師。').catch(e=>document.querySelector('#status').textContent=e.message);
+function draw(){{if(disposed)return;const t=audio.currentTime||0,a=audio.paused?0:(parts[index].envelope[Math.floor(t/.05)]||0);rig.renderAt(parts[index].start+t,a);requestAnimationFrame(draw);}}draw();window.addEventListener('pagehide',()=>{{disposed=true;audio.pause();rig.dispose();}});
+</script></html>'''
+    (project/'immersive.html').write_text(content,encoding='utf-8')
+
+
 def build_project(case, row, module):
     actor=selected(row,'lecturer')
     variant=case.get('variant',{})
@@ -82,7 +101,7 @@ def build_project(case, row, module):
     panels=''.join(f'<section id="panel-{i}" class="panel clip" data-start="{s["start"]:.3f}" data-duration="{s["duration"]:.3f}" data-track-index="1"><div class="number">0{i+1} / 03</div><h2>{html.escape(s["title"])}</h2><p>{html.escape(s["text"])}</p></section>' for i,s in enumerate(segments))
     segment_json=json.dumps(segments,ensure_ascii=False).replace('<','\\u003c')
     content=f'''<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><title>虛擬講師｜{html.escape(case['title'])}</title><style>
-@font-face{{font-family:Lesson;src:url('font.ttc')}}*{{box-sizing:border-box}}body{{margin:0;background:#f5f8fd;color:#183251;font-family:Lesson,sans-serif}}#main{{width:960px;height:540px;position:relative;overflow:hidden}}header{{position:absolute;top:28px;left:40px;right:40px;border-bottom:3px solid #174e9a;padding-bottom:15px;font-size:22px;font-weight:700}}header span{{float:right;color:#a42d43;font-size:16px}}canvas{{position:absolute;left:40px;top:85px;width:360px;height:390px;border-radius:16px}}.panel{{position:absolute;left:445px;top:120px;width:465px;height:335px}}.number{{font-size:18px;color:#a42d43;letter-spacing:4px}}h2{{font-size:32px;margin:14px 0 20px}}p{{font-size:23px;line-height:1.7;margin:0}}footer{{position:absolute;bottom:18px;left:40px;right:40px;font-size:14px;color:#526986;border-top:1px solid #bfd0e6;padding-top:12px}}.progress{{position:absolute;bottom:0;left:0;height:5px;background:#b53a51;transform-origin:left;width:960px}}
+@font-face{{font-family:Lesson;src:url('font.ttc')}}*{{box-sizing:border-box}}body{{margin:0;background:#f5f8fd;color:#183251;font-family:Lesson,sans-serif}}#main{{width:960px;height:540px;position:relative;overflow:hidden}}header{{position:absolute;top:28px;left:40px;right:40px;border-bottom:3px solid #174e9a;padding-bottom:15px;font-size:22px;font-weight:700}}header span{{float:right;color:#a42d43;font-size:16px}}canvas{{position:absolute;left:0;top:0;width:960px;height:540px}}header{{z-index:2;background:#ffffffed;border-radius:8px;padding:10px 14px;top:14px;left:20px;right:20px;font-size:20px}}footer{{z-index:2;background:#fffffff0;border-radius:6px;padding:8px;font-size:12px}}.panel{{position:absolute;left:650px;top:100px;width:285px;height:350px;background:#fffffff0;padding:20px;border-radius:14px;box-shadow:0 8px 30px #18325120}}.number{{font-size:18px;color:#a42d43;letter-spacing:4px}}h2{{font-size:25px;margin:14px 0 16px}}p{{font-size:19px;line-height:1.65;margin:0}}footer{{position:absolute;bottom:18px;left:40px;right:40px;font-size:14px;color:#526986;border-top:1px solid #bfd0e6;padding-top:12px}}.progress{{position:absolute;bottom:0;left:0;height:5px;background:#b53a51;transform-origin:left;width:960px}}
 </style></head><body><main id="main" data-composition-id="main" data-width="960" data-height="540" data-duration="{start:.3f}"><header>{html.escape(case['title'])}<span>虛擬講師 · 教學試辦</span></header><canvas id="lecturer" width="415" height="425"></canvas>{panels}{audio}<footer>來源：上傳教案 · {html.escape(row['profession'])} / Level {row['level']}　｜　合成角色與中文語音，待教師審核</footer><div id="progress" class="progress"></div></main><script src="lecturer.js"></script><script src="gsap.min.js"></script><script>
 const rig=ClinicalLecturer.lecturerScene(document.getElementById('lecturer'),{{atlasUrl:'actor-atlas.png',face:{json.dumps(actor.get('face',{}))}}});
 const segments={segment_json};
@@ -92,6 +111,7 @@ window.addEventListener('hf-seek',event=>renderAt(event.detail.time));window.__h
 </script></body></html>'''
     content=content.replace('虛擬講師 · 教學試辦',html.escape(actor['name'])+' · 擬真教學試辦')
     (project/'index.html').write_text(content,encoding='utf-8')
+    write_immersive_lesson(project,case,actor,segments,start)
     (project/'hyperframes.json').write_text((ROOT/'data/hyperframes.json').read_text(),encoding='utf-8')
     manifest={'source':'source_bound_virtual_lecturer','source_file':case.get('source_file'), 'source_sha256':case.get('source_sha256'),
         'case_hash':row.get('payload',{}).get('case_hash'),'actor':actor,'renderer':RENDERER,'voice':'Windows zh-TW TTS '+actor['gender'],

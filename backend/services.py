@@ -34,7 +34,12 @@ def patient_reply(case, session, messages, text):
              'speaker':speaker, 'patient_behavior':case.get('patient_behavior',''), 'patient_script':case.get('patient_script',''), 'profession': session['profession'], 'level': session['level'],
              'retrieved_evidence':evidence,'retrieval_version':'local-bigram-1'}
     facts['actor']={k:actor[k] for k in ('id','name','kind','title','style','tasks')}
-    system = ('你扮演教學模擬中的指定角色。只用繁體中文，以actor指定身分第一人稱回答，60字內。'
+    facts['conversation']={'trust':session.get('payload',{}).get('trust',50),
+        'behavior':case.get('variant',{}).get('patient_behavior',''),
+        'role_task':case.get('variant',{}).get('role_task','')}
+    system = ('你扮演面對面教學模擬中的指定角色。只用自然口語繁體中文，以actor指定身分第一人稱回答，1至3句、100字內。'
+              '承接對方上一句，依actor.style與案例既有情緒回應。一次只聚焦一個疑慮，需要時只反問一個問題。'
+              '避免每輪重複自我介紹、條列教學或照讀報告。不要輸出舞台動作、旁白、括號中的表情或JSON。'
               '只依下方案例事實，不自行新增檢查、疾病、藥物或治療建議；資料未提供就說不清楚。'
               'actor是演員造型與說話風格，不是新病歷；病人姓名與事實仍依patient。'
               'actor.kind為patient時依speaker扮演本案例病人或家屬。caregiver時扮演本案例照顧者，只能知道案例中已提供資料。'

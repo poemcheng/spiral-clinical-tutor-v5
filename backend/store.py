@@ -52,6 +52,9 @@ class Store:
           user_id INTEGER NOT NULL REFERENCES users(id),profession TEXT NOT NULL,topic TEXT NOT NULL,
           level INTEGER NOT NULL CHECK(level BETWEEN 1 AND 5),data TEXT NOT NULL DEFAULT '{}',updated REAL NOT NULL,
           PRIMARY KEY(user_id,profession,topic));
+        CREATE TABLE IF NOT EXISTS learning_access (
+          user_id INTEGER PRIMARY KEY REFERENCES users(id), level INTEGER NOT NULL CHECK(level BETWEEN 1 AND 5),
+          all_paths INTEGER NOT NULL DEFAULT 0, note TEXT NOT NULL, created REAL NOT NULL);
         CREATE TABLE IF NOT EXISTS attempts (
           id INTEGER PRIMARY KEY, login_id INTEGER NOT NULL REFERENCES logins(id),
           user_id INTEGER NOT NULL REFERENCES users(id), profession TEXT NOT NULL, topic TEXT NOT NULL,

@@ -1,13 +1,15 @@
 """Install the public, checksummed runtime asset pack. Never contains user records."""
 from pathlib import Path,PurePosixPath
-import hashlib,json,tempfile,urllib.request,zipfile
+import argparse,hashlib,json,tempfile,urllib.request,zipfile,shutil
 ROOT=Path(__file__).resolve().parents[1]
-BASE='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.0.0/'
+BASE='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.1.0/'
 def main():
-    manifest=json.load(urllib.request.urlopen(BASE+'public-assets-manifest.json',timeout=60))
+    parser=argparse.ArgumentParser();parser.add_argument('--local',type=Path);args=parser.parse_args()
+    manifest=json.loads((args.local.parent/'public-assets-manifest.json').read_text()) if args.local else json.load(urllib.request.urlopen(BASE+'public-assets-manifest.json',timeout=60))
     with tempfile.TemporaryDirectory() as tmp:
         archive=Path(tmp)/'assets.zip'
-        urllib.request.urlretrieve(BASE+'public-assets.zip',archive)
+        if args.local:shutil.copyfile(args.local,archive)
+        else:urllib.request.urlretrieve(BASE+'public-assets.zip',archive)
         if hashlib.file_digest(archive.open('rb'),'sha256').hexdigest()!=manifest['archive_sha256']:raise SystemExit('Asset archive checksum mismatch')
         with zipfile.ZipFile(archive) as z:
             if set(z.namelist())!=set(manifest['files']):raise SystemExit('Asset list mismatch')

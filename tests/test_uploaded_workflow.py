@@ -145,4 +145,3 @@ class UploadedWorkflowTests(unittest.TestCase):
             self.assertEqual(self.client.get(f'/api/sessions/{sid}/generated-video/0?version=0123456789abcdef0123').content,sample.read_bytes())
         self.assertEqual(legacy.read_bytes(),b'legacy-evidence-must-survive')
 
-

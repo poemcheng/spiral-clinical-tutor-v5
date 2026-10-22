@@ -25,7 +25,8 @@ from .legacy.config import VIDEO_LIBRARY_DIR
 from .legacy.content import resolve_persona
 from .legacy.video_generator import generate_video_script
 from .legacy import video_renderer
-from . import curriculum, virtual_video, characters, voice_bridge, h5p_content, progression
+from . import curriculum, virtual_video, characters, voice_bridge, h5p_content, progression, speech_input
+from starlette.concurrency import run_in_threadpool
 
 # Windows registry may classify .js as text/plain, which breaks module scripts with nosniff.
 mimetypes.add_type('application/javascript', '.js')
@@ -544,8 +545,9 @@ def video_worker(sid,case,row,module):
                 previous=payload.setdefault('generated_videos',{}).get(str(module))
                 if previous:payload.setdefault('generated_video_history',[]).append(previous)
                 payload['generated_videos'][str(module)]={**manifest,'module':module,'file_name':destination.name,'url':f'/api/sessions/{sid}/generated-video/{module}?version={manifest["key"]}'}
+                payload['generated_videos'][str(module)]['immersive_url']=f'/api/sessions/{sid}/generated-lesson/{module}/immersive.html'
                 payload['video_script']=manifest
-                payload['video_job']={'status':'completed','module':module,'source':manifest['source'],'has_audio':True,'note':'擬真講師影片已完成：中文語音與人像說話表情。'}
+                payload['video_job']={'status':'completed','module':module,'source':manifest['source'],'has_audio':True,'note':'three.js診間講師影片已完成，並附可環顧的沉浸式教案。'}
                 store.save(c,sid,payload)
         except Exception as e:
             with store.tx() as c:
@@ -556,6 +558,19 @@ def video_worker(sid,case,row,module):
 
 class ModuleBody(BaseModel):
     module: int = Field(default=0, ge=0, le=2)
+
+
+@app.get('/api/sessions/{sid}/generated-lesson/{module}/{asset}')
+def generated_lesson(sid:int,module:int,asset:str,user=Depends(current_user)):
+    row=owned_session(sid,user)
+    video=row['payload'].get('generated_videos',{}).get(str(module),{})
+    key=video.get('key','')
+    import re
+    allowed={'immersive.html','lecturer.js','actor-atlas.png','voice-0.wav','voice-1.wav','voice-2.wav'}
+    if asset not in allowed or not re.fullmatch('[0-9a-f]{20}',key):raise HTTPException(404,'尚未生成此沉浸式教案。')
+    path=RUNTIME/'virtual_lessons'/key/asset
+    if not path.is_file():raise HTTPException(404,'此歷史影片沒有沉浸場景，請重新產生。')
+    return FileResponse(path)
 
 
 @app.post('/api/sessions/{sid}/video')
@@ -628,7 +643,8 @@ def interaction(sid: int, user=Depends(current_user)):
     row = owned_session(sid, user)
     if row['step'] < 4:
         raise HTTPException(409, '請先完成情境學習。')
-    return {'questions': decision_questions(row), 'decisions': row['payload']['decisions'],
+    from .learning_resources import resources
+    return {'resources':resources(row,case_for(row)),'questions': decision_questions(row), 'decisions': row['payload']['decisions'],
             'trust': row['payload']['trust'], 'scene_mode': row['payload']['adaptive_plan']['scene_mode'],
             'pairing':row['payload'].get('interaction_policy'),'minimum_turns':2,'variant':case_for(row).get('variant'),'safety_blocked':row['payload'].get('safety_blocked',False),
             'hint_budget':curriculum.hint_budget(row['level']),'hints_used':row['payload'].get('hints_used',0),'source': '案例約束標準病患；AI對話與決策分開記錄。'}
@@ -708,6 +724,24 @@ def message_speech(sid:int,mid:int,user=Depends(current_user)):
     try:virtual_video.speech(message['content'],path,json.loads(message['metadata']).get('actor',{}).get('gender','female'))
     except Exception as e:raise HTTPException(503,str(e))
     return FileResponse(path,media_type='audio/wav')
+
+
+@app.post('/api/sessions/{sid}/transcribe')
+async def transcribe_turn(sid:int,request:Request,user=Depends(student)):
+    row=owned_session(sid,user)
+    if row['step']!=4 or row['status']!='active':raise HTTPException(409,'請在進行中的角色互動錄音。')
+    if request.headers.get('content-type','').split(';')[0] not in ('audio/webm','audio/ogg','audio/wav','audio/mp4'):
+        raise HTTPException(415,'請使用瀏覽器錄音格式。')
+    recording=bytearray()
+    async for chunk in request.stream():
+        if len(recording)+len(chunk)>speech_input.MAX_BYTES:raise HTTPException(413,'錄音過大，請縮短至60秒。')
+        recording.extend(chunk)
+    try:result=await run_in_threadpool(speech_input.transcribe,bytes(recording))
+    except BlockingIOError as e:raise HTTPException(429,str(e))
+    except ValueError as e:raise HTTPException(400,str(e))
+    except RuntimeError as e:raise HTTPException(503,str(e))
+    with store.tx() as c:store.event(c,user['id'],sid,'speech_transcribed',{'seconds':result['seconds'],'model':result['model'],'recording_retained':False})
+    return result
 
 
 @app.post('/api/sessions/{sid}/chat')
@@ -892,7 +926,7 @@ def finish(sid: int, body: QuizBody, user=Depends(student)):
 @app.get('/api/history')
 def history(user=Depends(student)):
     rows=store.all('SELECT id,profession,topic,level,step,status,created,updated FROM sessions WHERE user_id=? ORDER BY id DESC',(user['id'],))
-    return {'sessions':rows,'progress':store.all('SELECT * FROM progress WHERE user_id=?',(user['id'],)),
+    return {'access_grant':progression.access(store,user['id']),'sessions':rows,'progress':store.all('SELECT * FROM progress WHERE user_id=?',(user['id'],)),
             'learning_progress':store.all('SELECT * FROM learning_progress WHERE user_id=?',(user['id'],)),
             'assessments':store.all('SELECT id,profession,topic,level,completed,created FROM attempts WHERE user_id=? ORDER BY id DESC',(user['id'],))}
 
@@ -991,10 +1025,10 @@ def service_status(user=Depends(current_user)):
             'photoreal_available':all((ROOT/'data/characters'/a.get('atlas_file','missing')).is_file() for a in characters.ACTORS.values()),
             'characters':len(characters.ACTORS),'character_version':characters.VERSION,
             'livekit_configured':voice_bridge.ready(),
-            'livekit_agent_configured':False,'livekit_audio_bridge':True,
+            'livekit_agent_configured':False,'livekit_audio_bridge':True,'speech_input':speech_input.status(),'voice_transport':'authenticated-http-audio',
             'h5p_available':(ROOT/'frontend/vendor/h5p/main.bundle.js').is_file(),
             'knowledge_mode':'本地案例快照與來源約束檢索；尚未建置醫療知識圖譜',
-            'video_mode':'角色卡擬真人像／語音驅動表情動畫與中文旁白，待教師審核'}
+            'video_mode':'three.js 診間場景／擬真人像與語音驅動表情；四部VR360教材，待教師審核'}
 
 
 @app.get('/api/characters')

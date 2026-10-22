@@ -1,3 +1,3 @@
-import {photoHuman} from './photoHuman.js';
-export function lecturerScene(canvas,{atlasUrl,face}={}){return photoHuman(canvas,{atlasUrl,face});}
+import {clinicScene} from './immersive.js';
+export function lecturerScene(canvas,options={}){return clinicScene(canvas,options);}
 window.ClinicalLecturer={lecturerScene};

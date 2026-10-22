@@ -6,3 +6,6 @@ Pillow>=10.0,<13
 imageio-ffmpeg==0.6.0
 httpx==0.28.1
 livekit==1.1.21
+faster-whisper==1.2.1
+av==16.0.1
+opencc-python-reimplemented==0.1.7

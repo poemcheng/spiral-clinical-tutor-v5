@@ -1,0 +1,25 @@
+{
+  "repository": "https://github.com/poemcheng/spiral-clinical-tutor-v5",
+  "final_release": "https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/tag/v5.0.0-final",
+  "final_commit": "d6a1bdfa49e8bb4deabc236842032b68e868ca35",
+  "checks_run": "https://github.com/poemcheng/spiral-clinical-tutor-v5/actions/runs/39752667508",
+  "checks_conclusion": "success",
+  "test_count": 51,
+  "assets": [
+    {
+      "name": "public-assets-manifest.json",
+      "bytes": 83794,
+      "url": "https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.0.0/public-assets-manifest.json"
+    },
+    {
+      "name": "public-assets.zip",
+      "bytes": 35053181,
+      "url": "https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.0.0/public-assets.zip"
+    },
+    {
+      "name": "v5-operation-guide.mp4",
+      "bytes": 954281,
+      "url": "https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.0.0/v5-operation-guide.mp4"
+    }
+  ]
+}

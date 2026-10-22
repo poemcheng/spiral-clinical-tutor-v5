@@ -1,14 +1,15 @@
-# 迴旋梯智鏈 v5.0.0
+# 迴旋梯智鏈 v5.1.0
 
 中山醫學大學附設醫院醫事智慧訓練平台第五版，依2026-10-22需求自4.5.1修訂。
 
+- 本機語音辨識與對話，無須先連LiveKit；three.js診間、四部VR360及可環顧講師教案。
 - 12職種獨立核心指標、自評雷達圖、弱項成果及文獻對照。
 - Demo配對：放射師／營養師→物理治療師；物理治療師／醫師→病患；護理師→病患＋物理治療師。
 - 自評Level決定互動難度；累積學習Level獨立開放單職類知識、團隊知識、情境影片、360視角與逐格分析。
 - 13位擬真人物，含醫事人員男女、高齡男女、中年男女及醫事放射師。
 - 保留六階段流程、角色權限、來源快照及教師正式覆核；本地Ollama提供案例約束角色對話。
 
-[需求與版本差異](docs/v5/第五版差異與需求對照.md) · [部署操作](docs/v5/部署說明.md) · [文獻對照](docs/v5/職種指標文獻對照.csv) · [70秒操作導覽](https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.0.0/v5-operation-guide.mp4)
+[5.1語音與沉浸更新](docs/v5.1/語音與沉浸式更新.md) · [需求與版本差異](docs/v5/第五版差異與需求對照.md) · [部署操作](docs/v5/部署說明.md) · [文獻對照](docs/v5/職種指標文獻對照.csv) · [70秒操作導覽](https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.0.0/v5-operation-guide.mp4)
 
 ## 啟動
 
@@ -17,6 +18,7 @@
 ```sh
 python -m pip install -r requirements.txt
 python tools/fetch_release_assets.py
+python tools/prepare_voice.py
 ```
 
 Windows雙擊 `run_windows.bat`，本機網址為 **http://127.0.0.1:8705**。首次本機管理員為user／1234，既有帳密不重設；學員及教師由管理員建立。從4.5.1本機升級時原始資料夾保留，移轉前須使用一致性備份。
@@ -37,7 +39,7 @@ npm run build
 python -m unittest discover -s tests -v
 ```
 
-本機51項測試通過。實際gemma4:12b已驗證放射師→物理治療師兩輪對話；另以合成學員實際完成8輪訓練後，瀏覽器驗證自評Level2與累積Level5、360視角、逐格定位及紀錄保存。證據在 `docs/v5/`。操作導覽由實際操作截圖組成，非連續錄影。
+本機56項測試通過。新增本機語音辨識、全教材體驗授權及沉浸式教案權限驗證；瀏覽器實測語音檔→辨識→AI→16秒角色語音播放，以及40.77秒three.js講師影片輸出。實際gemma4:12b已驗證放射師→物理治療師兩輪對話；另以合成學員實際完成8輪訓練後，瀏覽器驗證自評Level2與累積Level5、360視角、逐格定位及紀錄保存。證據在 `docs/v5/`。操作導覽由實際操作截圖組成，非連續錄影。
 
 Docker Compose設定解析通過，但本機Docker Linux引擎未啟動，尚未完成容器建置及雲端推論驗收。Linux目前支援文字互動與既有影片；中文TTS與虛擬講師即時合成仍依賴Windows。
 

@@ -6,7 +6,7 @@ def missing_packages(root):
     lock=Path(root)/'requirements.lock.txt'
     if not lock.is_file():return ['requirements.lock.txt unavailable']
     missing=[]
-    for line in lock.read_text(encoding='utf-8').splitlines():
+    for line in lock.read_text(encoding='utf-8-sig').splitlines():
         line=line.strip()
         if not line or line.startswith('#'):continue
         name,expected=line.split('==',1)

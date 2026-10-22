@@ -1,0 +1,40 @@
+{
+  "main_health": {
+    "status": "ok",
+    "product": "clinical-tutor",
+    "version": "5.0.0",
+    "login_entry": "/login"
+  },
+  "database_preservation": {
+    "users": {
+      "source_count": 16,
+      "v5_count": 16,
+      "unchanged": true
+    },
+    "attempts": {
+      "source_count": 17,
+      "v5_count": 17,
+      "unchanged": true
+    },
+    "sessions": {
+      "source_count": 24,
+      "v5_count": 24,
+      "unchanged": true
+    },
+    "messages": {
+      "source_count": 136,
+      "v5_count": 136,
+      "unchanged": true
+    },
+    "reviews": {
+      "source_count": 1,
+      "v5_count": 1,
+      "unchanged": true
+    }
+  },
+  "video_guide": {
+    "duration_seconds": 70,
+    "kind": "captioned guide from real browser screenshots",
+    "continuous_screen_recording": false
+  }
+}

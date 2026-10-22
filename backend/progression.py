@@ -4,10 +4,15 @@ from .config import ROOT
 POLICY=json.loads((ROOT/'data/learning_policy.json').read_text(encoding='utf-8'))
 MODEL='independent-levels-v1'
 
+def access(store,uid):
+    return store.one('SELECT level,all_paths,note FROM learning_access WHERE user_id=?',(uid,))
+
 def score_level(score):
     return next(b['level'] for b in reversed(POLICY['level_bands']) if score>=b['min'])
 
 def level_state(store,uid,profession,topic):
+    grant=access(store,uid)
+    if grant:return grant['level']
     learner=store.one('SELECT * FROM learning_progress WHERE user_id=? AND profession=? AND topic=?',(uid,profession,topic))
     if learner and json.loads(learner['data']).get('progression_model')==MODEL:return learner['level']
     return earned_state(store,uid,profession,topic)['level']
@@ -16,7 +21,8 @@ def assessment_level(store,uid,profession,topic):
     previous=store.one('SELECT scores FROM attempts WHERE user_id=? AND profession=? AND topic=? AND completed IS NOT NULL ORDER BY id DESC LIMIT 1',(uid,profession,topic))
     scores=json.loads(previous['scores'] or '{}') if previous else {}
     score=scores.get('summary',{}).get('self_mean')
-    return score_level(score) if score is not None else 1
+    grant=access(store,uid)
+    return score_level(score) if score is not None else (grant['level'] if grant else 1)
 
 def save_level(c,uid,profession,topic,level,data):
     c.execute('''INSERT INTO learning_progress VALUES (?,?,?,?,?,?) ON CONFLICT(user_id,profession,topic)
@@ -90,9 +96,12 @@ def plan(store,uid,profession,topic,level):
     safe_recent=all(r['safe'] for r in result['recent_evidence'])
     paths=[{**p,'unlocked':count>=p['practices'] and (p['mastery']==0 or mastery is not None and mastery>=p['mastery'] and safe_recent),
       'requirement':'完成本次自評即可開始' if p['id']=='core' else f"完成 {p['practices']} 輪且近期熟練度達 {p['mastery']} 分，近期安全項目通過且無待補作"} for p in POLICY['paths']]
+    grant=access(store,uid)
+    if grant and grant['all_paths']:
+        paths=[{**p,'unlocked':True,'requirement':grant['note']} for p in paths]
     tier=sum(p['unlocked'] for p in paths)
     cumulative=level_state(store,uid,profession,topic)
-    return {**result,'tier':tier,'video_count':tier,'paths':paths,'level':level,'self_level':level,'learning_level':cumulative,'policy_version':POLICY['version'],
+    return {**result,'access_grant':dict(grant) if grant else None,'tier':tier,'video_count':tier,'paths':paths,'level':level,'self_level':level,'learning_level':cumulative,'policy_version':POLICY['version'],
       'information':[{**i,'unlocked':cumulative>=i['level']} for i in POLICY['information']],
       'scene_mode':['guided','exploration','team'][tier-1],'modules':[p['module'] for p in paths if p['unlocked']],
       'reason':f"自評分流 Level {level}；累積學習 Level {cumulative}；完成 {count} 輪；近期熟練度 {mastery if mastery is not None else '待累積'}；學習積分 {result['learning_points']}",
