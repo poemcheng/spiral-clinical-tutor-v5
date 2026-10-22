@@ -1,0 +1,21 @@
+name: Publish v5 runtime assets
+on:
+  push:
+    branches: [main]
+    paths:
+      - public-assets.zip
+      - docs/v5/v5-operation-guide.mp4
+      - .github/workflows/publish-assets.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Attach verified public files to v5.0.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload v5.0.0 public-assets.zip public-assets-manifest.json docs/v5/v5-operation-guide.mp4 --repo "$GITHUB_REPOSITORY"
+
