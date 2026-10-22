@@ -1,0 +1,15 @@
+.git
+.env
+.venv
+node_modules
+runtime
+docs
+tests
+data/sources
+data/video360/*.mp4
+data/video360/*preview.jpg
+tools/ffmpeg
+tools/livekit
+**/__pycache__
+**/*.pyc
+*.zip

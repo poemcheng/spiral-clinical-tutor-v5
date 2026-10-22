@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-10-22",
+  "environment": "isolated local acceptance server; synthetic learner",
+  "model_status": {
+    "reachable": true,
+    "model_available": true,
+    "model": "gemma4:12b",
+    "available_models": [
+      "qwen2.5:1.5b",
+      "bge-m3:latest",
+      "qwen2.5:14b-instruct",
+      "qwen2.5vl:7b",
+      "qwen2.5-coder:7b",
+      "qwen3-vl:8b",
+      "qwen:14b",
+      "gemma4:12b",
+      "llava:7b",
+      "minicpm-v:8b",
+      "llama3.2-vision:11b",
+      "gemma4:latest",
+      "llama3.1:latest"
+    ],
+    "ready": true,
+    "error": "",
+    "busy": false,
+    "operation": "",
+    "queue_depth": 0
+  },
+  "pairing": "RT -> PT",
+  "turns": [
+    {
+      "prompt": "我是醫事放射師，想和您核對功能評估需要哪些檢查條件資訊。請先介紹您的職類。",
+      "ok": true,
+      "text": "我是物理治療師。我負責進行坐站、步態與平衡評估，以及肌力與移動能力訓練，並提供跌倒預防與居家運動建議。",
+      "source": "ollama",
+      "actor": "王物理治療師",
+      "model": "gemma4:12b",
+      "seconds": 12.89,
+      "error": null
+    },
+    {
+      "prompt": "以您的物理治療師身分，這個案例還有哪些資料缺口需要我們一起確認？",
+      "ok": true,
+      "text": "我們需要確認病人目前具體的肌力評估數值、目前步態的穩定性狀況，以及她對於目前居家運動計畫的執行頻率與困難度。",
+      "source": "ollama",
+      "actor": "王物理治療師",
+      "model": "gemma4:12b",
+      "seconds": 1.11,
+      "error": null
+    }
+  ],
+  "passed": true
+}

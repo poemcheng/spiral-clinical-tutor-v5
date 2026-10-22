@@ -1,0 +1,16 @@
+.venv/
+node_modules/
+runtime/
+__pycache__/
+.env
+*.pyc
+
+tools/ffmpeg/**/bin/*.exe
+tools/ffmpeg/*.zip
+tools/livekit/*.zip
+
+*.zip
+runtime-test-v5.txt
+deployment-media/
+.env.*
+!.env.example

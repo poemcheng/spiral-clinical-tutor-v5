@@ -1,0 +1,8 @@
+fastapi==0.119.1
+uvicorn==0.38.0
+pydantic==2.12.3
+python-dotenv==1.1.1
+Pillow>=10.0,<13
+imageio-ffmpeg==0.6.0
+httpx==0.28.1
+livekit==1.1.21

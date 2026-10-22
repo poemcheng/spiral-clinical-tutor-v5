@@ -1,0 +1,1729 @@
+{
+  "version": "5.0.0",
+  "archive_sha256": "50f437a143d748ca59297d9f6206e8cc0c48102ea5deb4126c880a1ed806f95c",
+  "contains_learner_data": false,
+  "contains_source_documents": false,
+  "contains_real_footage": false,
+  "files": {
+    "frontend/vendor/avatar.bundle.js": {
+      "sha256": "2d122ac702e0298de6a7b6773638323e84d2183aa4c798775b651e1aa495d44a",
+      "bytes": 407825
+    },
+    "frontend/vendor/gsap.min.js": {
+      "sha256": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "bytes": 72779
+    },
+    "frontend/vendor/lecturer.bundle.js": {
+      "sha256": "191ec147baabb38f9848a2ab1ecb12b80da5a0a6384d9439cf8822d994b9873b",
+      "bytes": 1888
+    },
+    "frontend/vendor/panorama.bundle.js": {
+      "sha256": "f8c575fa1470c5387dcfcf5df365ff266015b7497375402084de821e04fba7fa",
+      "bytes": 486791
+    },
+    "frontend/vendor/h5p/frame.bundle.js": {
+      "sha256": "e6deb39e2d0114869080bacdf4092dcb30cf2ce20f8bde3c3ba8af035fa86e0b",
+      "bytes": 143904
+    },
+    "frontend/vendor/h5p/h5p.d.ts": {
+      "sha256": "87592fb33d6f06359b89d299edb5e5f0e41ac706458278e09c68f072cd514fc5",
+      "bytes": 8044
+    },
+    "frontend/vendor/h5p/LICENSE": {
+      "sha256": "c296703063e7e262a0e9039c02c6b1c260e002dc0746f9e562fa2fb3a44c11f4",
+      "bytes": 1077
+    },
+    "frontend/vendor/h5p/main.bundle.js": {
+      "sha256": "74a3fa8b6acdee907edf2030c26161a510a6d5d75bbd2aadb49f22c964ed50d4",
+      "bytes": 22842
+    },
+    "frontend/vendor/h5p/main.bundle.js.LICENSE.txt": {
+      "sha256": "8c9946dfc859a2bfb26cc541125631cd96e7110fa20a702eb19275c9d1658805",
+      "bytes": 163
+    },
+    "frontend/vendor/h5p-libraries/provenance.json": {
+      "sha256": "bebf74aa3b1d58f9b4508181eb5880160baad5b4336d9c71e933e89763725811",
+      "bytes": 3164
+    },
+    "frontend/vendor/licenses/livekit-client-LICENSE.txt": {
+      "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+      "bytes": 10142
+    },
+    "frontend/vendor/licenses/three-LICENSE.txt": {
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+      "bytes": 1081
+    },
+    "frontend/vendor/licenses/three-vrm-LICENSE.txt": {
+      "sha256": "387a46128d34de9d85ea1e07a5a716dba532dbabca6c10adad447f48a29518d3",
+      "bytes": 1072
+    },
+    "frontend/vendor/h5p-libraries/FontAwesome-4.5/.gitignore": {
+      "sha256": "4600d1eadad61579d602f7b4cd4f1c13a7a989e112c119d766204df1bf1f993c",
+      "bytes": 3
+    },
+    "frontend/vendor/h5p-libraries/FontAwesome-4.5/fontawesome-webfont.eot": {
+      "sha256": "e219ece8f4d3e4ac455ef31cd3a7c7b5057ea68a109937fc26b03c6e99ee9322",
+      "bytes": 70807
+    },
+    "frontend/vendor/h5p-libraries/FontAwesome-4.5/fontawesome-webfont.svg": {
+      "sha256": "d67041fe5d50eef9ef671643968f7ce6b130eaaaaa2ce4d496b18d0a33aeb87b",
+      "bytes": 365616
+    },
+    "frontend/vendor/h5p-libraries/FontAwesome-4.5/fontawesome-webfont.ttf": {
+      "sha256": "7b5a4320fba0d4c8f79327645b4b9cc875a2ec617a557e849b813918eb733499",
+      "bytes": 142072
+    },
+    "frontend/vendor/h5p-libraries/FontAwesome-4.5/fontawesome-webfont.woff": {
+      "sha256": "c812ddc9e475d3e65d68a6b3b589ce598a2a5babb7afc55477d59215c4a38a40",
+      "bytes": 83588
+    },
+    "frontend/vendor/h5p-libraries/FontAwesome-4.5/fontawesome-webfont.woff2": {
+      "sha256": "ff82aeed6b9bb6701696c84d1b223d2e682eb78c89117a438ce6cfea8c498995",
+      "bytes": 66624
+    },
+    "frontend/vendor/h5p-libraries/FontAwesome-4.5/FontAwesome.otf": {
+      "sha256": "7ed24c05432403117372891543f0cb6a7922100919e7ae077c1f3faf67658dc2",
+      "bytes": 109688
+    },
+    "frontend/vendor/h5p-libraries/FontAwesome-4.5/h5p-font-awesome.min.css": {
+      "sha256": "84d901f1e5b944875a354aef551291151c68d3b859081f29ee4f218912673a65",
+      "bytes": 27420
+    },
+    "frontend/vendor/h5p-libraries/FontAwesome-4.5/library.json": {
+      "sha256": "df43b7175945262c07020965fc25116f8933ec8d8425b054586efbc421e690ad",
+      "bytes": 291
+    },
+    "frontend/vendor/h5p-libraries/FontAwesome-4.5/README.md": {
+      "sha256": "be19d0c295b8271fef4720bd44e5ae3d3f02271fe4c2d5fd8460e829fcc1d399",
+      "bytes": 436
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/.gitignore": {
+      "sha256": "9cb6f3e279ec07fbf0d7c282551e2d80a9d99d6ca9501d83651771fb2e070fc5",
+      "bytes": 18
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/.h5pignore": {
+      "sha256": "266c0515ef83b8dffab2952006a579cf208016ab2865b16251d4fba68faf2dca",
+      "bytes": 135
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/eslint.config.mjs": {
+      "sha256": "62d65348da9094cd7685bc4e7ce6a2bf606f8417c7c7c953b68e67e4c44af39d",
+      "bytes": 222
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/library.json": {
+      "sha256": "ed87e1474e215ca9ce179637cec9f40437725f3413c39565d45eabb6dc94e983",
+      "bytes": 664
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/LICENSE": {
+      "sha256": "e9126ec067be9b38931816cc4b96fe15c950c87d40fbdf2bd76a9fdba6779a9c",
+      "bytes": 1060
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/package-lock.json": {
+      "sha256": "c16ac175780443b4b6d15b0d7e2a9aa6e6f29b63730d3d07f90f4a799cbaf674",
+      "bytes": 281363
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/package.json": {
+      "sha256": "554e3f7a6e252e283ea7bd209bcdf2d9cc9cdf377912926a877acbfd0620ff75",
+      "bytes": 759
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/webpack.config.js": {
+      "sha256": "09fa92aa77bca4f0421aedb5f6f12583320313d5a07a00a7a7e9d1be595f3518",
+      "bytes": 1071
+    },
+    "frontend/vendor/h5p-libraries/H5P.FontIcons-1.0/library.json": {
+      "sha256": "bbe2c91554dc63f3049d70cfc7f8c3afbe2474abd22f47cd62c55aa2e716312d",
+      "bytes": 246
+    },
+    "frontend/vendor/h5p-libraries/H5P.FontIcons-1.0/README.md": {
+      "sha256": "e761319c071a6e3cbc9fe0c1b58103b4664d525b4644587d67f0a9cf596c2349",
+      "bytes": 1188
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/.gitignore": {
+      "sha256": "5f36c6c16bba0d0a15555ec27fe691549d3b9a9c459ab0371f4b99bc5ef12a76",
+      "bytes": 8
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/library.json": {
+      "sha256": "bebc2c7adc19daf0eab91d97a9bee7072c6780bfb6c2c8bd3c8ab54e748d8401",
+      "bytes": 1864
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/README.md": {
+      "sha256": "545ec00c66170600d197bc3898406d36cfce84d8ed4d7c1b4aa6765b117523c6",
+      "bytes": 1664
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/.gitignore": {
+      "sha256": "a1b698638d15485bec80e91a6f241aa4589410cb8f1c470fabfa78f945b91f08",
+      "bytes": 21
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/crowdin.yml": {
+      "sha256": "720e00420e99e7e202a6c062dac592925b211b6205716ec00412780c5778174d",
+      "bytes": 89
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/icon.svg": {
+      "sha256": "44c853669126379fc98157ac7b69f2c8fab6de7a9fda4ca938b89a379ceb5190",
+      "bytes": 3328
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/library.json": {
+      "sha256": "c3c70b295c5a55f77094ace91cf92cd6cb886ca9bbba2c7a4d838b7c5a441830",
+      "bytes": 1036
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/presave.js": {
+      "sha256": "59e8276792278f7cf806caa238555f99a743e6cae872c96b5ff296fe8ebe4b41",
+      "bytes": 1314
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/README.md": {
+      "sha256": "cef88d0d3cd785f1512f6b1491281e99bc15f4a54f24c3fed7ef0db8f801ca73",
+      "bytes": 1315
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/semantics.json": {
+      "sha256": "054d47862ac48ab31027715e622324d9d78e43346612ced5667bf857ee10e28d",
+      "bytes": 15528
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/upgrades.js": {
+      "sha256": "ebf05d73507f728af4f1efc5b398dee802c6da68ef041c99845f2c876e8f965b",
+      "bytes": 10720
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/.gitignore": {
+      "sha256": "b05303ac115f17045c2e9fa238defd7a93ac9fc1879c79e8072801370f64f48b",
+      "bytes": 11
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/library.json": {
+      "sha256": "db3f9253359fc5f4c846f2c64771e4a01afaebd94b973e9141d8d5424e1e44eb",
+      "bytes": 876
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/README.md": {
+      "sha256": "69325cb7dd2dc5070ef2b0500db861c185c9cdd11bce6f33f5bf8200fb437333",
+      "bytes": 3728
+    },
+    "frontend/vendor/h5p-libraries/H5P.Transition-1.0/library.json": {
+      "sha256": "fa996e5e737d77a32234159136209e335e673eb7ac16fd010ed2f59480bd448e",
+      "bytes": 322
+    },
+    "frontend/vendor/h5p-libraries/H5P.Transition-1.0/README.md": {
+      "sha256": "d8ed6b82f5086cae301237f01cfa1c5d841b4522c3820e136a24a61c14a06486",
+      "bytes": 3393
+    },
+    "frontend/vendor/h5p-libraries/H5P.Transition-1.0/transition.js": {
+      "sha256": "9e00d371e3170bf9143f103527d7cf9cc0bd1b5cc9d041cc6f6ae76b7feb6b9a",
+      "bytes": 4615
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/applied-patch-after-updating.patch": {
+      "sha256": "4cd484fd6d1471fa3eb5209ae6ac8c67838bb6b944de05891c424b00f6fadfa5",
+      "bytes": 5410
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/h5p-jquery-ui.css": {
+      "sha256": "8df32463fecc148144fe6057f3554f625948391ad89cf54e7e36085c7f43daaa",
+      "bytes": 37454
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/h5p-jquery-ui.js": {
+      "sha256": "c97ce1981a8a5bc7c22d5e3afc824dc0c25629e554f7e3f4c408cc3494cf98ad",
+      "bytes": 548958
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/library.json": {
+      "sha256": "3201ac973483f542c186d5fd9c0deefa57d15ee53c9afac79a1df6aa3ee9d478",
+      "bytes": 343
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/README.md": {
+      "sha256": "ca8a959cd8e940849dc0cca013217d69213e44d27f62968d84836424c391e0c4",
+      "bytes": 140
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/animated-overlay.gif": {
+      "sha256": "c7bcc76fb23c0430b36ec448eb79f8bc34129dae95da10f3c14ed0eacdf2f1b9",
+      "bytes": 1738
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-bg_flat_0_aaaaaa_40x100.png": {
+      "sha256": "9a8492a580bf85d3e98ae8861fbd45567e5a1f83eeafcf9574da0399d5f602ab",
+      "bytes": 180
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-bg_flat_75_ffffff_40x100.png": {
+      "sha256": "39ab7ccd9f4e82579da78a9241265df288d8eb65dbbd7cf48aed2d0129887df5",
+      "bytes": 178
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-bg_glass_55_fbf9ee_1x400.png": {
+      "sha256": "691597e8a40a891ea94d3589976ecfc33e6145c49422443b00ac2b5a0022964c",
+      "bytes": 120
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-bg_glass_65_ffffff_1x400.png": {
+      "sha256": "f0e6cd91b837d5c5644d026e5ffeccd907953317cd5c0f689901733afda260b2",
+      "bytes": 105
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-bg_glass_75_dadada_1x400.png": {
+      "sha256": "c108f5cbf2dd9ec07a26530695ddd95e1664597ce6c056ae44c162cc2e28cec4",
+      "bytes": 111
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-bg_glass_75_e6e6e6_1x400.png": {
+      "sha256": "ddf5dd4e0ef2b185e8bb0af7b6e90ebe74a84384cb4700658e76e754c8bfe550",
+      "bytes": 110
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-bg_glass_95_fef1ec_1x400.png": {
+      "sha256": "f6f1c1bedf1a0f37cfef81d12f5f012869d1ee7c984775a569827a1784d34f5c",
+      "bytes": 119
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-bg_highlight-soft_75_cccccc_1x100.png": {
+      "sha256": "54270656df079c4da5182629a080fc633b6f84b87985eb016d25a560e2c38d4a",
+      "bytes": 101
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-icons_222222_256x240.png": {
+      "sha256": "57adb0d65f4e91dacfee975d9574422bee7486c8a182d60133728c672f2cdbbc",
+      "bytes": 4369
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-icons_2e83ff_256x240.png": {
+      "sha256": "20f8c6667afc48aa433ee9eb6d8a0584bdbd6b4a4a9091ff1e6b3adb31e63bd9",
+      "bytes": 4369
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-icons_454545_256x240.png": {
+      "sha256": "07460e843c3e59aaadbb34231e699e856a2980753c7a47b66447da5d9f93fb7f",
+      "bytes": 4369
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-icons_888888_256x240.png": {
+      "sha256": "ea2e29625de3463465e93b002b065f5833e05b97f7a052b1c141e754d62e1a8b",
+      "bytes": 4369
+    },
+    "frontend/vendor/h5p-libraries/jQuery.ui-1.10/images/ui-icons_cd0a0a_256x240.png": {
+      "sha256": "1e32c6dbf5d3fd342f27a78aa881550d6412aa207f48468724a6a15402b6041b",
+      "bytes": 4369
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/images/minus-one-transparent.svg": {
+      "sha256": "b9116842ce2a892b72a4e939dd0bc92930661040bb9c6c7e0feb2a038e1086d4",
+      "bytes": 1050
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/images/minus-one.svg": {
+      "sha256": "961429eafa48e254160396a9de390a82f4fc62d746d563d33b7a80f68fc4e441",
+      "bytes": 1217
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/images/plus-one-transparent.svg": {
+      "sha256": "a30ad016a8e305178e653ff4acbec861d708393ebf76cd9f7afd6b4df9660b22",
+      "bytes": 1185
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/images/plus-one.svg": {
+      "sha256": "9a9c7c131585eff1d72a43596e9c17ca288419a7c2ff380788d52bb4891cb290",
+      "bytes": 1352
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/scripts/explainer.js": {
+      "sha256": "578fad19f62cd55cb35b0a387f3905d1350838d7e9a6b09394be398bfbc953bc",
+      "bytes": 1958
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/scripts/question.js": {
+      "sha256": "ba4987e32fde50b3b79f573c8ec00e8e4380c14aaccc9a077a7ae6fce7aebdde",
+      "bytes": 59446
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/scripts/score-points.js": {
+      "sha256": "0c4f3ffcdce2281a9ab388b1969755a1ca149277b22aab710786ef8134330411",
+      "bytes": 2111
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/styles/explainer.css": {
+      "sha256": "0f599dbf03856e35b120ebdc9c5829d5ec0cfbe0bbdf8d0fcfb86c9a602e6cab",
+      "bytes": 2301
+    },
+    "frontend/vendor/h5p-libraries/H5P.Question-1.5/styles/question.css": {
+      "sha256": "e2ec8da1f2eebec8f340010cc66868bbd39f9a6e70273d9e8f448a5d78d39064",
+      "bytes": 17070
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/css/multichoice.css": {
+      "sha256": "7ace9b34b3cc3e3701a641081cb82dd4f1aa431502f2663c2b6137f0f1f1a104",
+      "bytes": 13369
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/fonts/icomoon.eot": {
+      "sha256": "20ddb172d95cc8b66fe5695902dacf5749e69ccae38c649d392a1c84ec3948f9",
+      "bytes": 1520
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/fonts/icomoon.svg": {
+      "sha256": "250edc0ef540c5804142cb8e004324b9dcd29b2c5afd57c26eba9894abd0b13b",
+      "bytes": 1562
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/fonts/icomoon.ttf": {
+      "sha256": "9b524a3c0ba06f48747877671cb88e78727c8cd79db1348512bde15def56ffbe",
+      "bytes": 1372
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/fonts/icomoon.woff": {
+      "sha256": "0936b30df33d051a79bcb7a585fffdcd3b8814c46ff0766cc4a754c2a3a4ba6b",
+      "bytes": 1448
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/js/multichoice.js": {
+      "sha256": "6f7a6bd7784f7c5d6bf576509e1a50663d46c5b5b8f594d46314ce62c1e57ada",
+      "bytes": 33212
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/.en.json": {
+      "sha256": "31420547a8b3f5e036b1a4968f07565a79b41c688667c79d2f6c785786f6b587",
+      "bytes": 7791
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/af.json": {
+      "sha256": "38931287554ab61554e256c67d6354699b6eb63c05cb3750b56f75fbcd92d012",
+      "bytes": 8193
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/ar.json": {
+      "sha256": "29c305dd63513a736e261adcaa148406ac68b361764e499355365308bd8a50d3",
+      "bytes": 9657
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/bg.json": {
+      "sha256": "12aa24774a5a8a2fa78cb603e0c897edbcc0711481134ea433a4a4625f3ac0bb",
+      "bytes": 10897
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/bs.json": {
+      "sha256": "5eb1fa4bd03f6a9e4f4eb12f1e43344fb32282a2b3e77c1922098013af9153de",
+      "bytes": 7919
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/ca.json": {
+      "sha256": "ff092af976cb082893458f7c4e00cc07519dc5513bd5be59aa14abbe9ad72796",
+      "bytes": 8882
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/cs.json": {
+      "sha256": "d2db9b33a07f41559c8cebbec454702e0822829d219b6eef6d74c8f3519a6342",
+      "bytes": 8401
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/da.json": {
+      "sha256": "de53adde23f085d24bdad1bce221fe8cef2563e50e807a8ce4848943ca147962",
+      "bytes": 7718
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/de.json": {
+      "sha256": "7e56ede809db1d6b80cefbbd1dde8a23f9dd4be60375de12142c7b29e77cc184",
+      "bytes": 8619
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/el.json": {
+      "sha256": "941ab5f7a33f13558acbdfac981e4f00db7103c5535586c8f8d76d37534ac207",
+      "bytes": 11349
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/es-mx.json": {
+      "sha256": "5fade92cd3fe701124e892769a5911af7fda73a470309978c47c476fc6a4241a",
+      "bytes": 8810
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/es.json": {
+      "sha256": "3860de7fff35d154c99d9da4e805f2b8dde6029f19cebde6af41971bffeaf20b",
+      "bytes": 8837
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/et.json": {
+      "sha256": "e14820e43624eaf27a23efa02130016433f8b4087e257ada0e3877736596d3fd",
+      "bytes": 7849
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/eu.json": {
+      "sha256": "4a9be8bd204ad1d13f069eab55cf8cd601c2e045c9ea62d4989f57e62e2bc648",
+      "bytes": 8394
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/fa.json": {
+      "sha256": "9ed030d2d5155a617ec7bff5b00f42ce938bdfcc51e482d85e6add1116b4502c",
+      "bytes": 10181
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/fi.json": {
+      "sha256": "8923fcd80ccc7be4ad3288a2c911783ff7fae5d608f220c9dd9caf0807d6e257",
+      "bytes": 7746
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/fr.json": {
+      "sha256": "d20bd438af5f1f6ddb483e1073204918527a6e3bfa818bbd418e74f36457eade",
+      "bytes": 8540
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/ga.json": {
+      "sha256": "97ac0edbc1c63bc4889a15de66c16b7d85ccf938853d461dfaa9e728e5146535",
+      "bytes": 7925
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/gl.json": {
+      "sha256": "956316eaea888274deb3f113e8929f1defd1e65716844c2650e7e6ca46ac6812",
+      "bytes": 8494
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/he.json": {
+      "sha256": "3615e63e9b6eedc4124b881a6fab54c6a58a205a37e64f728f598024ea78bbaf",
+      "bytes": 9315
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/hi.json": {
+      "sha256": "e1394094be2755265928d419b4302f11fb09e300fb103723662fc8db74c316e7",
+      "bytes": 12667
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/hu.json": {
+      "sha256": "5ac33855d275af5a63d5e9a643e4e4c470ee4042fc8509840b6742c655349a2e",
+      "bytes": 8940
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/it.json": {
+      "sha256": "a370a6dbef7e069d6363d5174df26b9b1db6444c95e8dd4d7fa34d5471f63389",
+      "bytes": 8396
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/ja.json": {
+      "sha256": "49564be0f74e52dc0815caa567ef43b878283324fecab68694d4ac3ce7c065c9",
+      "bytes": 8971
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/ka.json": {
+      "sha256": "db84b0c1f0618618b5ee64a75c1f465d0bca8883e06c427e02d274183ed2409c",
+      "bytes": 14567
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/km.json": {
+      "sha256": "a98196ac656dd78b5552885ead4a3a05398ef97610f7541852ba82ab026e3c7c",
+      "bytes": 8397
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/ko.json": {
+      "sha256": "e602dc70888015afbd31acf48a75392e6c40276056c27c521760fc3990eb3a42",
+      "bytes": 8328
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/lt.json": {
+      "sha256": "9d4a8300480b830c718f6d071263775d051bc788e9d52e83f3cf22701ccfee43",
+      "bytes": 8613
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/lv.json": {
+      "sha256": "de02ccb64c7ad757dbb62a16fa10264eb671af6915c9abed808a129a193179a1",
+      "bytes": 8777
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/mk.json": {
+      "sha256": "07273de865ea945a79ae83f9ff32c8c411bc5053f84bfef4cc6eb06741931307",
+      "bytes": 11556
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/mn.json": {
+      "sha256": "b0e061c295b734445f8d1f8ec060afe90b0acd420b8527846e831d22b0d3b1ac",
+      "bytes": 11464
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/nb.json": {
+      "sha256": "534240a6e7ed3eb023dd0b2cfc3df0012075bf5d6c853155130066f0e5642dbd",
+      "bytes": 7770
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/nl.json": {
+      "sha256": "2ebc2cd105e8851ca65efead46834784e7e531918a5bb54101c99702364d4ab7",
+      "bytes": 8204
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/nn.json": {
+      "sha256": "546fdd1ac634e69bf3cba180dda351ffac96df449a4cb86780bd8bd80fb7c6c0",
+      "bytes": 7825
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/pl.json": {
+      "sha256": "3aefb8779ea23bd60ed6f86b114e59fdb3707db13e7a97376897e7c815a5dd8f",
+      "bytes": 8887
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/pt-br.json": {
+      "sha256": "b493629c6245941ce4cbb1a571a263adbea96ba547071fb7bce0cac53848d281",
+      "bytes": 8512
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/pt.json": {
+      "sha256": "ebdabfd1be40c2d0b02831d880321a676ec7020c36f4cd71d3d2a8fd049536dc",
+      "bytes": 8535
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/ro.json": {
+      "sha256": "052a71b1d586e050eb0398e0c8dcd9d9bdbd1bd6c634293430007a2a24957e9f",
+      "bytes": 8635
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/ru.json": {
+      "sha256": "7b1bd4861c669b8c01b51dc5a770834ba172198a1fe8aa8da4bb4d8fae87b0c1",
+      "bytes": 10542
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/sl.json": {
+      "sha256": "df0809242d29aa9ee87b987e299f5c84855254b235baf34727ffcf53580ac760",
+      "bytes": 8169
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/sma.json": {
+      "sha256": "bf04787d34f1a37e4ea57183809db626d18b3b54ea39ab0eecc4cea8aac9a095",
+      "bytes": 7790
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/sme.json": {
+      "sha256": "bf04787d34f1a37e4ea57183809db626d18b3b54ea39ab0eecc4cea8aac9a095",
+      "bytes": 7790
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/smj.json": {
+      "sha256": "bf04787d34f1a37e4ea57183809db626d18b3b54ea39ab0eecc4cea8aac9a095",
+      "bytes": 7790
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/sr.json": {
+      "sha256": "05d9f94e40ed9e529b9c536312439830a46c7a866913d856e6096f37fdd0040d",
+      "bytes": 10681
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/sv.json": {
+      "sha256": "da2fdd1d84ce35edf6bb8f4f9a37fe6a304606e5bb149179695948575e47ae53",
+      "bytes": 8084
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/sw.json": {
+      "sha256": "55250dd09af24d350c2203456cdf38cfa39ef8955e3bbaf57c03f26d909177e8",
+      "bytes": 8287
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/te.json": {
+      "sha256": "d968777ab12edbf85656531393692bcc229e9c530abc5fc53ee25e786171a732",
+      "bytes": 15637
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/th.json": {
+      "sha256": "95cf6d1a6a270726fa90327cc91bc7a22775248951f3b85f1bb3fcd852ec890b",
+      "bytes": 11343
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/tr.json": {
+      "sha256": "8ea1b24142a4e0e375cdd899a28f59b58cff87dbb68ba9a8d54189401a1a093b",
+      "bytes": 8259
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/uk.json": {
+      "sha256": "f103ae627c559092c7a25a5557cc98460b23be52476c87b9ea6ecfcdfeef6d90",
+      "bytes": 11648
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/vi.json": {
+      "sha256": "bf04787d34f1a37e4ea57183809db626d18b3b54ea39ab0eecc4cea8aac9a095",
+      "bytes": 7790
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/zh-cn.json": {
+      "sha256": "8a40c041b025b5087f8565aa95f539a6e8bf73b95101dc7e73aae957d8c5af31",
+      "bytes": 7791
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/zh-hans.json": {
+      "sha256": "dbf248b7e86baa63dd53af792e978a17dbad9c92fdc82ec67359d4baf9d581af",
+      "bytes": 7608
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/zh-hant.json": {
+      "sha256": "03323f36ff5d182c8588f2bd062ff3d156aa2c66b88aae8c32f7dfb4fc17d1d0",
+      "bytes": 7586
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/language/zh-tw.json": {
+      "sha256": "3c442deacfecee03fc4cffec1ccfbc9b05795c53e8a6d14b788003d8aaf11bc9",
+      "bytes": 7417
+    },
+    "frontend/vendor/h5p-libraries/H5P.MultiChoice-1.16/.github/workflows/ci-workflows.yml": {
+      "sha256": "684106f4f99f0073eb2f8eff1c0a1ecf90196d2c6a25f43bd85e6495bc3400d7",
+      "bytes": 496
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-help-dialog.css": {
+      "sha256": "fe5e86e3d81bad06e74f25a8257c8c060f21598dbc074bc5fdc50a1ce17d546c",
+      "bytes": 2154
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-icon.css": {
+      "sha256": "19bf68775c0c41253bb9eb317637590faf80e5b0e941cf9e34fb63700acb3382",
+      "bytes": 4808
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-message-dialog.css": {
+      "sha256": "0b55b7dd9113e2ff9a3c8904ecb38eea51560ed5793aa8670252efe307c60145",
+      "bytes": 478
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-progress-circle.css": {
+      "sha256": "8c6be8f5d3f66be93389e9e8790cd648b9c629f5a1601d978ec14eb842e65b6f",
+      "bytes": 1465
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-progressbar.css": {
+      "sha256": "4153f5cb2e479a7253390d4cf80ace672253b29a2577a956bb2c7b9c3e1bc394",
+      "bytes": 895
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-score-bar.css": {
+      "sha256": "d246deb5c0e074b0c613443fda841bbd74110bf2704aeb846e83de2ef7dc4545",
+      "bytes": 4310
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-simple-rounded-button.css": {
+      "sha256": "2ef2aa619a7d47153c5de928b6a0c9649e22ebd458d001c9d04e0744429229cd",
+      "bytes": 982
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-slider.css": {
+      "sha256": "bce59ea54164591abcaf4f87645ec0cc6f032c7ae228c7d6a62a2032afc50f8b",
+      "bytes": 639
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-speech-bubble.css": {
+      "sha256": "5b362b8850b6b6d91cc2182956878bfc9f869f1959d33dd2d5f031a96c8f119e",
+      "bytes": 1690
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-tip.css": {
+      "sha256": "8e0b22ff351edf56de7c0a16eda57061a4169c352dbdd097caf5f8400c5a84c0",
+      "bytes": 1629
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/css/joubel-ui.css": {
+      "sha256": "3be4e43423951d122a47a9576fc26e6cdaef4a1c01ac651d4f2490b75f1f818c",
+      "bytes": 1937
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/fonts/joubel.eot": {
+      "sha256": "022d64c62558178d05bbcd685ccdae3c2bfdbe4466b9f788d8caa65ab1228284",
+      "bytes": 4752
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/fonts/joubel.svg": {
+      "sha256": "32ece9653903157a70d30c09770fdb058088b032b058153adbc2ca776a7cde9a",
+      "bytes": 14092
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/fonts/joubel.ttf": {
+      "sha256": "e3349364cbff58a8e935f216166741cc3abec692a0b5e2e8e470616e99083208",
+      "bytes": 4592
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/fonts/joubel.woff": {
+      "sha256": "62e50736b7b237b53bf90679fb334d635375d51b3156d1d866cab224606d99b4",
+      "bytes": 4668
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-help-dialog.js": {
+      "sha256": "3b37c66756b6f2a7559914779b341203762ae17edb24bdd8dc743c485c1536c9",
+      "bytes": 2503
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-message-dialog.js": {
+      "sha256": "42c709073ed57b8bf96672cc0c5c2bcbf313eb242dcae20f72bb607656c4bf1c",
+      "bytes": 988
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-progress-circle.js": {
+      "sha256": "0833deddc4437aeb95b822803980f525e08cb5bc86cfef69ae5b35d5b7286841",
+      "bytes": 4642
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-progressbar.js": {
+      "sha256": "aec853c07a35ec1c680eaaafb3891c77be0ca3e4100e626eec0c71c8051a63d0",
+      "bytes": 2824
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-score-bar.js": {
+      "sha256": "09fd82813f030da072473c98e7a26a8fb312e5b01c9648df2c1183196edd7d8d",
+      "bytes": 8540
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-simple-rounded-button.js": {
+      "sha256": "a66794392f29ca2d77d9d25c076d0fcd80929e2254b7fdaac82fcf1cc5912e02",
+      "bytes": 709
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-slider.js": {
+      "sha256": "04656b67e2a3a7fd8013d277444e5d2c6a12b827701fce39cd17266b1da1a751",
+      "bytes": 2257
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-speech-bubble.js": {
+      "sha256": "d268717f6f7da5d3c2cfe3cb50c9623acaef4cb001a3caec474c62bdb8e5189e",
+      "bytes": 11040
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-throbber.js": {
+      "sha256": "6a54f177bd553b6e8964030dab770bf471831a69991707dd6970100ede681464",
+      "bytes": 332
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-tip.js": {
+      "sha256": "18b1a0836fe839b194f9ecc3ed6addcfc54fa93719adbd64cfc33a3dd3fb13c6",
+      "bytes": 3684
+    },
+    "frontend/vendor/h5p-libraries/H5P.JoubelUI-1.3/js/joubel-ui.js": {
+      "sha256": "562592845fbb92cedffa5c9da1ea7920c44e47591567f52182c3620656f519f0",
+      "bytes": 6035
+    },
+    "frontend/vendor/h5p-libraries/H5P.FontIcons-1.0/fonts/h5p.eot": {
+      "sha256": "5a6829fb5b3cd88218fa35fda3b95870e252d50ac69590b43e90024f343097a3",
+      "bytes": 16800
+    },
+    "frontend/vendor/h5p-libraries/H5P.FontIcons-1.0/fonts/h5p.svg": {
+      "sha256": "b07c53877ab7f9d4559c5337b31ad65334298c02165182628c80e17b38641fab",
+      "bytes": 63288
+    },
+    "frontend/vendor/h5p-libraries/H5P.FontIcons-1.0/fonts/h5p.ttf": {
+      "sha256": "6379c5539fd5604ef5bb96a3df6f77b8adab6d4ae567fc30bce6cb67c421b984",
+      "bytes": 16652
+    },
+    "frontend/vendor/h5p-libraries/H5P.FontIcons-1.0/fonts/h5p.woff": {
+      "sha256": "cc16da4a68c416f4ba29493c484c20632ca47570be505ca163dfff2f0a8ef19d",
+      "bytes": 16728
+    },
+    "frontend/vendor/h5p-libraries/H5P.FontIcons-1.0/styles/h5p-font-icons.css": {
+      "sha256": "7a8f0aee6e4a1748917d8cd60e995f8e2fdfc546fd1a5507aaa63a22e32b2dce",
+      "bytes": 360
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/dist/cac66257fa8bf7451242.svg": {
+      "sha256": "81f3e2fed86e5ca914c8094e4ec282d2b24efc37aef13fc93f9197b11d93f00b",
+      "bytes": 6426
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/dist/h5p-components.css": {
+      "sha256": "f792652b8c295025b2f11d866f524b87d00dc94088db7b482304a64dcfc5804d",
+      "bytes": 29638
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/dist/h5p-components.js": {
+      "sha256": "e480ce67e21c8af38ade19dfd4a232f420401ab2d4d76656820748b572cd1d90",
+      "bytes": 16285
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/README.md": {
+      "sha256": "e05201b1ac794b750da6c7520975df7a876b23a13aedf049117f2e7bd7edc94d",
+      "bytes": 349
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/SUMMARY.md": {
+      "sha256": "323766a80cd3a4ca72f21c0d3c997b264afb374c5717e04fc9050760097c3c4f",
+      "bytes": 523
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/utils.js": {
+      "sha256": "59e225eba6e7903aa7da551ce07c4ac725644a8366796486eab6e8fa6bcc5b28",
+      "bytes": 3034
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/assets/pattern.svg": {
+      "sha256": "81f3e2fed86e5ca914c8094e4ec282d2b24efc37aef13fc93f9197b11d93f00b",
+      "bytes": 6426
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/components/h5p-button.js": {
+      "sha256": "591f6abf5003dbcc6bb04b4f1c86815e9ce4a904ee1bb0ec10782eba88a19a6d",
+      "bytes": 3636
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/components/h5p-cover-page.js": {
+      "sha256": "458ce6a0993f8f28029520b7f6e7af227bbbb1f337de539fd0c2ff251127c56a",
+      "bytes": 2669
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/components/h5p-draggable.js": {
+      "sha256": "9183442443c5634c01a12d27eaf656075c8acdad1ac7ec2ac5cce73dc5c7c783",
+      "bytes": 3330
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/components/h5p-dropzone.js": {
+      "sha256": "6e8bb052eec3557b358c76f9aa931f172e4e28d7b68369aed0282192494fc578",
+      "bytes": 3512
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/components/h5p-navigation.js": {
+      "sha256": "f7ff8702f72f5bcadf6bc84653e4f301113f76020cc959f7674e521e5d90c06c",
+      "bytes": 13314
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/components/h5p-placeholder-img.js": {
+      "sha256": "57ff96ea5e029ea4d2a07145f2def7013b9a6d0d17c3fa7fdff290d8b783f253",
+      "bytes": 4809
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/components/h5p-progress-bar.js": {
+      "sha256": "ae50f51ee9d55f4f43e6e63a00807f20182e545cb4e1fb368fbea195b3dd0fef",
+      "bytes": 1651
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/components/h5p-progress-dots.js": {
+      "sha256": "85ad7e415dba0c740695f675d8b98ecfbda2c35dfc7e3892b2675f7d2d3a9f3c",
+      "bytes": 4665
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/components/h5p-result-screen.js": {
+      "sha256": "56bbb1bb21f0c06da5a3ef94e4be9522cd4ab574824cf01e050b9417fdf58409",
+      "bytes": 6006
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/entries/dist.js": {
+      "sha256": "c708e4bc1de80b1ec524f5e78b3b7836aee21d43549a140c208dd34e43482219",
+      "bytes": 1033
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/styles/h5p-button.css": {
+      "sha256": "41e76bd3a27156b308f356ed8d9d1179467fe414dddb18f7b66ba9fa678044c4",
+      "bytes": 4784
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/styles/h5p-components.css": {
+      "sha256": "dc85db5d43bd17dbfd43044e9af83c42588c3c80713a88742e0e73b6e8b00580",
+      "bytes": 5172
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/styles/h5p-cover-page.css": {
+      "sha256": "fecdebe661b7427a7e75c8be18694d83abf719c1baa63851e239be06da46ddf6",
+      "bytes": 2189
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/styles/h5p-draggable.css": {
+      "sha256": "15fa40bf215bfe9d9ccae6648d652e8390d97c3d1e717a212036e7865da168e5",
+      "bytes": 7398
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/styles/h5p-dropzone.css": {
+      "sha256": "5fd3b2d3957fce31fb0c36d9a83a446b2859094bb15110f3d40bf7a8dcd9c801",
+      "bytes": 3045
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/styles/h5p-navigation.css": {
+      "sha256": "e834dc5f2d23207cb221be6546daca1fa455b64e8ce20f73b4b572c579df0b38",
+      "bytes": 2685
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/styles/h5p-placeholder-img.css": {
+      "sha256": "37e7a094fd92ce75b8c1eac6740151ecae74c43070150c74dfff385b00bd8ed9",
+      "bytes": 125
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/styles/h5p-progress-bar.css": {
+      "sha256": "8cd795055aa45455945e12627d8b02e99e05f7b8b4c24020bf00346329c6e23c",
+      "bytes": 709
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/styles/h5p-progress-dots.css": {
+      "sha256": "8006ec79885fc90a8ef2f13fbd1cde9b2374b0f431c2370734a9b033852a88b5",
+      "bytes": 1444
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/src/styles/h5p-result-screen.css": {
+      "sha256": "bc225488dff948c07f17e2718b9239d1c2aaea46debcb1b848accaa1e1ab9c7e",
+      "bytes": 8035
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/components/button.md": {
+      "sha256": "1906729c2efc99f20bfbe241f5de55c7893bf4b245f21cec430104d1110c6ecd",
+      "bytes": 13950
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/components/cover-page.md": {
+      "sha256": "c39e93d6ef39e51e19b41f461a7c6b05ec40eed87f3a37d54dc20cbcd96a2685",
+      "bytes": 1398
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/components/navigation.md": {
+      "sha256": "5482efea4e4889ef46b836a304b67f3e77ae73d5cadcf98a31ad79a8de3010ea",
+      "bytes": 1578
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/components/placeholder-image.md": {
+      "sha256": "778206e1504a2e33be677b342294ab76bd10457fe2b56770bdbfb0f2bbcb68b3",
+      "bytes": 1055
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/components/result-screen.md": {
+      "sha256": "f1309902ecb8d51982dd333c8c385744f69d3e015b084b61a9cb6d7c7e9aa88f",
+      "bytes": 5055
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/other-commonalities/alternative.md": {
+      "sha256": "210445709af120e9405b140f4b5d2ff3eae3fb70157e70d68eb5dddf4a779406",
+      "bytes": 3558
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/other-commonalities/feedback.md": {
+      "sha256": "56c2c4172033c779b353999f0d651fe5678141e126b31a9b5749ac55f519a6f1",
+      "bytes": 4064
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/other-commonalities/icons.md": {
+      "sha256": "ff8c0c639605a17bdf4e5cea6e6eedbdf860c281ab09ad5a9bff565a58514fbd",
+      "bytes": 16405
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/other-commonalities/README.md": {
+      "sha256": "9f29e434a701a68a015bd9bf0918a64db2d7b2dca7fa61b6c8cb5ca8114ef029",
+      "bytes": 413
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/other-commonalities/variables.md": {
+      "sha256": "529762e7e1e34d2b8e9bfb4e1467062a0f3ef6411790dbd1c8a422ac0d03f3f6",
+      "bytes": 20566
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/bilde (1).png": {
+      "sha256": "87c6adde8ab3e860a5b9e73cc40fadd30180a49087b37021c724acd59896b1b7",
+      "bytes": 1436
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/bilde (2).png": {
+      "sha256": "d10c69983b91df4dff541536506f0736e38f668aa7e8a683fcc4cc4cc9848054",
+      "bytes": 3297
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/bilde (3).png": {
+      "sha256": "6da9ac6c521729a5f0f4ad9ac2bb5aa1d7c22c70a89a0989ebb4648eb9ed44d7",
+      "bytes": 2836
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/bilde (4).png": {
+      "sha256": "9566a4c67ec1cd46517c466328241542f5ec948513c37d3284150f2edb5bce57",
+      "bytes": 2586
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/bilde.png": {
+      "sha256": "bba9ad18997f86f6b0eebfa7467058e86ae4dc75b1cbfbd92266e4d9fedcc270",
+      "bytes": 1423
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/for gitbook.png": {
+      "sha256": "78e82eeec7623bae09545af31244e9c45d597ec600ff3f1ae25382b7d3e66f15",
+      "bytes": 489841
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (1) (1).png": {
+      "sha256": "6513c40b113b3b304fa00ea5dd3b72aab5d7d5ac657e5224e02071f779f2f427",
+      "bytes": 2915
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (1).png": {
+      "sha256": "9de1b0d5f40a258ec49a232343716b384349721ac49b49207ca615131b908abd",
+      "bytes": 5795
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (10).png": {
+      "sha256": "45da3e70f3b555c243fc3ee97d1857c6a7599a2ce1f1561dd4d5c05ba4f54a5a",
+      "bytes": 179190
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (11).png": {
+      "sha256": "440c32db9a98fa87aec1babd87b8223f0fc45ed086aee202f43c75baf9e0ab4d",
+      "bytes": 177997
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (12).png": {
+      "sha256": "2040e80d62742737b3bc1df6d8a570d86b1de42e731ae556942dff9fb0f0cb7d",
+      "bytes": 177907
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (13).png": {
+      "sha256": "b8811089560ceba8c46f76977bc33db5fa3ae5b8b5b66d1d623e5762a7d87eb3",
+      "bytes": 177618
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (14).png": {
+      "sha256": "b30789de6e6371bb6681db0e857ba7c8b89d16fc08c5f6d7b6557af83fd1ffe1",
+      "bytes": 167546
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (15).png": {
+      "sha256": "0823af3cca4d4a601a0d328836518faf1003eb174b627d13b23015d6cadcca33",
+      "bytes": 179958
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (16).png": {
+      "sha256": "59b7e0d9ea4e6f0d1e474b7aafe2f8e7a933131f673b742d78d0482e3e92559e",
+      "bytes": 4519
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (17).png": {
+      "sha256": "7ea36789ee3036f44d6b90467757165dc614d5565bdc7d2bdfb91e36636c0ca4",
+      "bytes": 1636
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (18).png": {
+      "sha256": "acbe211b13b2d78830e99547ecdc2470378cc928d43c350ef6ddf167af680a89",
+      "bytes": 2538
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (19).png": {
+      "sha256": "5c2a29929e86f285003cc5dbc66b7cacae8aaab990fc032037ebdafa3a2ca17c",
+      "bytes": 5751
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (2) (1).png": {
+      "sha256": "e93b9e4354116c82eff3eb818a37658b10eb0711c779435f437237134e3cb787",
+      "bytes": 1877
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (2).png": {
+      "sha256": "9de1b0d5f40a258ec49a232343716b384349721ac49b49207ca615131b908abd",
+      "bytes": 5795
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (20).png": {
+      "sha256": "d89c5f8081dbfe00c0286c509bd74e52435995c0e31fb6504dae9da97155225d",
+      "bytes": 1421
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (21).png": {
+      "sha256": "fba0422521b70b0c0ddeb0583ad56ca019c8f1493079682c429c907cd1d3f640",
+      "bytes": 1893
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (22).png": {
+      "sha256": "0636bd2e2854412eabc9ffb081041fe547845f3ebd05c72429bf482a2854b8b1",
+      "bytes": 1903
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (23).png": {
+      "sha256": "6740ac3dc1d387e68dd7a973a7bd3c45443f9149b21af67f86d161e7e0363bcd",
+      "bytes": 2589
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (24).png": {
+      "sha256": "96a9eba52c288a6b7330c2c1708e5149b15bb0e5adfdcde0750f2c5a195a6ab1",
+      "bytes": 2243
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (25).png": {
+      "sha256": "e4f2b154499863e545ec1304587a1693a6023fa83dacdfdfa8761e78876759a3",
+      "bytes": 1758
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (26).png": {
+      "sha256": "c7f9fe3039159600ff0719ac712c59ba5a74aaec7440f2813fe02f9dd49c1ce0",
+      "bytes": 2133
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (27).png": {
+      "sha256": "6a2f5a975e0ab7e3523c652bed1cd989698d0e96a40659d51c0fa274d8cb2084",
+      "bytes": 2938
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (28).png": {
+      "sha256": "bcce4a2821c720a9d35acdcbec694f0466b83ac6a7786c34f3441c582a7e8e1b",
+      "bytes": 2586
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (29).png": {
+      "sha256": "b872e1c06450ecfb3855534c7b7aecc07d9f5abc1c6dfa6de16d9138ac4340c8",
+      "bytes": 1991
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (3) (1).png": {
+      "sha256": "3e4adc26c59cfb7e520b05a740a6f6ed35fde46a0dcc6350410abb85785c4019",
+      "bytes": 2919
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (3).png": {
+      "sha256": "c06264534f5280a28243158ce86c509f75203ffc8ed87a3015633ffce41a2fd6",
+      "bytes": 3996
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (30).png": {
+      "sha256": "22dbca519004242b14ac930027bd34fa922eac8d8d7034f57b75cb947cbba955",
+      "bytes": 1672
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (31).png": {
+      "sha256": "905b68576d09af524df4299371fd3ef56c1a29aec2a96842ea68bca0f5399e6b",
+      "bytes": 1251
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (32).png": {
+      "sha256": "af37d1d9d3eff7e7180f798d6cf5f052c3fb5acc64adfc15699384c3a18cceb4",
+      "bytes": 1082
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (33).png": {
+      "sha256": "45c1f785bb8742c50756d3d3d92aa3076e9ea97167e268ce6f5cdb717ae50d25",
+      "bytes": 2739
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (34).png": {
+      "sha256": "22566080ecf6e70d4667afa3f9039f37a77f8003352c5d1e597a6f8d61c3891c",
+      "bytes": 2121
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (35).png": {
+      "sha256": "67ee653747474fe671c26990b275907dc4d7c87a6d4d1609e7e0ca560ed1b2c0",
+      "bytes": 1480
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (36).png": {
+      "sha256": "93ef4e86a350546bd51c0c913c8a89b02e13111f89a16225cf29ab841d078979",
+      "bytes": 1627
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (37).png": {
+      "sha256": "5b36abf280fbb80fa47a73266141aa1850b0e01af2651bb3865e11c22ef23d2e",
+      "bytes": 1622
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (38).png": {
+      "sha256": "e1d5853146ac8deb91f031207da0075a56f0c9515161732c4eb356bc9123916c",
+      "bytes": 698
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (39).png": {
+      "sha256": "432cea3bd788198bcc5aeb3771ef9e73d86547a9e7b979f8ccc2268eab34a63a",
+      "bytes": 1619
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (4).png": {
+      "sha256": "9f885a4b0cccca93e6b23e1f2fa9d09970e9f6d55e019bcb6fe37b9ab4dc9e55",
+      "bytes": 4045
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (40).png": {
+      "sha256": "45d52d42408ca395d84160849db36ae26392bd3f3191f03d5154198c4969f9cf",
+      "bytes": 2713
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (41).png": {
+      "sha256": "96356d07660c29a58fd2cf11743982302fff5b00393a04e14160d12a494b3a45",
+      "bytes": 12221
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (5).png": {
+      "sha256": "747e0efb4305af986f5c9540607b425dc162cff9061f6eb45db0e0fc98482ed3",
+      "bytes": 4060
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (6).png": {
+      "sha256": "7bce5d3dac3b5d2a4bd627114f9c4fba97b0a02008acb642a909757a863d4ff5",
+      "bytes": 5866
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (7).png": {
+      "sha256": "22adf3fcc8c3e0175bcc892526254a8404ad29187bc380e77608d3316363b728",
+      "bytes": 3738
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (8).png": {
+      "sha256": "fb5ccbbd2ed868f3e048a1bef6fd71b940eb8c2650580a4b3fafbea4d1cbca00",
+      "bytes": 172918
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image (9).png": {
+      "sha256": "5cce2de2c1ccda1e74c2734ce94996e9d005a6cad8bbd6251533e7961f328809",
+      "bytes": 177547
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/image.png": {
+      "sha256": "5a1a074cf477364bbc528baadf71ff90647028425e952db21c5924e712f4bfd5",
+      "bytes": 5246
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/Screenshot 2026-01-02 143239.png": {
+      "sha256": "6d727308fed1d6373fef6d6f29eef74df155ac7a30452fcfc6e9855cf0992c8f",
+      "bytes": 38701
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (1).png": {
+      "sha256": "2aa757da4b3e6e3f7cb303c66a946692ce7190bcc1d169899cec981fcd1c73ac",
+      "bytes": 8218
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (10).png": {
+      "sha256": "d2bf9e7bd4d3e55a55786e02c60c9f399e1ecaffe4681de79f45fbf666b285b3",
+      "bytes": 2051
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (11).png": {
+      "sha256": "2245efc289a1d7df13c8607dbb153556991ec887fbdc4419c9e7fe3307e2e24a",
+      "bytes": 2112
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (12).png": {
+      "sha256": "00138a165233f75e89545e44b713652bd4f9327670d1dbb22416bdda22998c92",
+      "bytes": 1627
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (13).png": {
+      "sha256": "d741b3588555a6f0318d5de6c9e0e14dd6b2b8c2f988645606b99a5be2281cf0",
+      "bytes": 11600
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (14).png": {
+      "sha256": "b9cea61370cf865f553fe20e1c10e7ffb06c8d4c9f5b2e70e0ddb2835da9d9d4",
+      "bytes": 130815
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (15).png": {
+      "sha256": "43eb508209b65dd5c8e4aab62c10f15f6e18dc1baae34fe70688ee46a474774c",
+      "bytes": 22311
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (16).png": {
+      "sha256": "45c30d27d81eb8066e99fa93e9c6c66193acd5263d03f310009b609741f7ac46",
+      "bytes": 778453
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (17).png": {
+      "sha256": "6c2203128d88490d66119845bfd3f310854062011deff5c5baac17b6fc14d363",
+      "bytes": 128084
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (18).png": {
+      "sha256": "a0bfc3c7871bffccbeb01e65934d2c6ba15a46cd6c7022ea3e8c8094227604d1",
+      "bytes": 555489
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (19).png": {
+      "sha256": "7aaee76223908d70b66c74459bdea0a8629172000f36b358221bdbc6bb4cb5d4",
+      "bytes": 34465
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (2).png": {
+      "sha256": "28da7bc8082ffac4fe2513742ccc53d78799218901e5c4d30ed6ddad6fda7218",
+      "bytes": 3437
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (20).png": {
+      "sha256": "b6c172b58171a185736304031485ea109bb4b1fd899ab46b4bc5d147ff028c0a",
+      "bytes": 4629
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (21).png": {
+      "sha256": "1fd0bfc77c08e7ff7dc9d3d2bc9ded80be8a97eeaa403d09200ff2d68acb71b5",
+      "bytes": 4710
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (22).png": {
+      "sha256": "54619fc073e9aac680f7515a30c70fa63bebf05a8f19ac57549a60e2dbe64e8d",
+      "bytes": 4750
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (23).png": {
+      "sha256": "da2d6a246c4ee547eccdda5ce0f5f9d1f586e642d07d3cad9a45e745f36cea24",
+      "bytes": 4920
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (24).png": {
+      "sha256": "7e88f20004be84a77474e47fee697894adf503b13fbb14652a9caf528242bc08",
+      "bytes": 5565
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (25).png": {
+      "sha256": "e7b35730f2cf8164b0f48406992070f1b9fd4e074a60d0460ef3b320d3dc3bba",
+      "bytes": 153648
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (26).png": {
+      "sha256": "3b0d71751b99d0b8a74d29ba79a29e371b2de8cd2f7bb26d3d69609fbc65f294",
+      "bytes": 157003
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (27).png": {
+      "sha256": "ef564a2eb657ac58c2d4fa4862ec43ace7ca3f1cbf0e03a77f19fb5d144cc2e4",
+      "bytes": 153902
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (28).png": {
+      "sha256": "3fb7a4b3a211ab5a62553b409578846e5e268957ae62070cdddcc1dba76f9270",
+      "bytes": 5379
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (29).png": {
+      "sha256": "4049cc156ddf76e6becf1abf542254bd0772088115ff9326158fd2d432a2dc8b",
+      "bytes": 2043
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (3).png": {
+      "sha256": "588e25a7529db93f68c9842b4f862065ccba01b4baa62951c50e608a2af125c8",
+      "bytes": 17848
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (30).png": {
+      "sha256": "30f2c34453c1a0534d0b29259a8170583b33561af7fe6320e5237434132e5bf9",
+      "bytes": 5148
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (31).png": {
+      "sha256": "99dd20a426923b2ff6267ca49eb1759fb0aa3c6d90940d335cc702b45056cb7d",
+      "bytes": 1943
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (32).png": {
+      "sha256": "fdb0de129491a5b6a1105e4af75e4d3d6f1e0ee49bf2dd8ab57ee08fbf348899",
+      "bytes": 4277
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (33).png": {
+      "sha256": "066f2ac9af99abd48cb71bf0984d5fb62ac8d674b9745a8794387e5ba29c00ed",
+      "bytes": 1626
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (34).png": {
+      "sha256": "696ccf98fd3e91a565d7e0e453eaaa258c53312e1611b6a4aa6d7bbfad44b020",
+      "bytes": 2062
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (35).png": {
+      "sha256": "e07551d9f34f444e8a6d52057f1d73cc605713b1744a8299f47871bf663c14b8",
+      "bytes": 2170
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (36).png": {
+      "sha256": "7c31e7c97aa86db2f38ce2d610cbbd73dda8736fc07b6d58028a006b29e6a7e1",
+      "bytes": 2089
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (37).png": {
+      "sha256": "3ad18d71bf67e162e926fdceda055e12351352b047b03757057a42c2fa51795e",
+      "bytes": 19691
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (38).png": {
+      "sha256": "00573320ea0462a7751df38ef1b9692c08878e1ecb1d9619546e10140c33e6c3",
+      "bytes": 195181
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (39).png": {
+      "sha256": "85a1741ca8da99902485074d0aeb14395d6f201cd379a402995aec784daed4f2",
+      "bytes": 4144
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (4).png": {
+      "sha256": "027ed336a372728ff5e3c64da950ad2f8daaeb174bf17b07326c95a38744dc3b",
+      "bytes": 3155
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (40).png": {
+      "sha256": "56dd314e1a9ec036f9da1e6f94067def46fe6dcc3835f1e32c4b0914060f9573",
+      "bytes": 4893
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (41).png": {
+      "sha256": "de193162ba7cd6ea614c1ebe25209c724ba7528d329ed0ed214a7a35208484f1",
+      "bytes": 2494
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (42).png": {
+      "sha256": "0a0695ca5dc1645be35abad26e50f8dbfd47a01d873c756825b8dd82b5539a34",
+      "bytes": 2891
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (43).png": {
+      "sha256": "87fafc48261c7448b1b138770cf38f98ce5d4a7e3b7782390334dbbbd15b0b6e",
+      "bytes": 2750
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (44).png": {
+      "sha256": "87fafc48261c7448b1b138770cf38f98ce5d4a7e3b7782390334dbbbd15b0b6e",
+      "bytes": 2750
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (45).png": {
+      "sha256": "ebafce8b97b43d9a0267c8b5974bceac9f6717aec62bdb88fcf6c4d2e8a44ea6",
+      "bytes": 2282
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (46).png": {
+      "sha256": "50496f1ca742d63a3befa6a6bbadc8900d566a45628aaa02c49fb55f7eef4f35",
+      "bytes": 2979
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (47).png": {
+      "sha256": "9b2c4a1c22b5697f8d0207c7f712d46c479045d5a02eb2620ff7cd9fa46a7edf",
+      "bytes": 2114
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (48).png": {
+      "sha256": "91f15ee00bbf4ab77b0c037d68a20a4fe50aa16721929d12758feb20c1173789",
+      "bytes": 4006
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (49).png": {
+      "sha256": "8194421d414a56fffc3bcc28f933a495bdaeafce08525f79ceb7471dde28d3c3",
+      "bytes": 3948
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (5).png": {
+      "sha256": "4981ae2ac1dda482684bac4e5c2ec7ce9c0972a6ce93c3dbcfac333eb5e4b7de",
+      "bytes": 4022
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (50).png": {
+      "sha256": "409bcc470e677a1b66c0c9c7a34f1b7078c8f4d86d4e5311d86ee8f3fced0b62",
+      "bytes": 2116
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (51).png": {
+      "sha256": "b235ab6f1ee556f991298f48c9e46a5997cb43bbb14dee6b384f5cfa82253104",
+      "bytes": 1645
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (52).png": {
+      "sha256": "0a70eb2b20de95b0b013328ae371b16a1b8039229877976d8bb57f2d50f95cdb",
+      "bytes": 2550
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (53).png": {
+      "sha256": "8ac872d43deaa6d98bdc17a507ddacd10f3caf5508eb6d411f2cc9925d863f55",
+      "bytes": 2207
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (54).png": {
+      "sha256": "b1324d5071874ece7a75fb492658e137d90cd336f59c7669fe088e03e8e2d5b8",
+      "bytes": 1612
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (55).png": {
+      "sha256": "570643e40e7a6a4a6496936a9fde380a46de328afe4921befe892bb5278a6257",
+      "bytes": 3446
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (56).png": {
+      "sha256": "969c5464ac6701d0491d1bb411d286cec98fcb86b8f40b250a79b3d9cb2fd6fa",
+      "bytes": 1820
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (57).png": {
+      "sha256": "969c5464ac6701d0491d1bb411d286cec98fcb86b8f40b250a79b3d9cb2fd6fa",
+      "bytes": 1820
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (58).png": {
+      "sha256": "3c0684cddf3f9f2ed2709090d718c1a26a0c05a4e0c31cc20897f5118fb9e9b2",
+      "bytes": 2939
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (59).png": {
+      "sha256": "b9462c91e16c527730bc188b45ecaaa00944380b359435332d8a44b41856c0ab",
+      "bytes": 2943
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (6).png": {
+      "sha256": "8a7eec3f510806dfc37231db8c77ecfa67686df3354e06f880d7b299150abc4f",
+      "bytes": 3342
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (60).png": {
+      "sha256": "5f6d37508d63d1685f860fbce7aab72dd06c30b8f891eca6ae70eba14b46270f",
+      "bytes": 2204
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (61).png": {
+      "sha256": "4c095888248eb5d500c998f2bd221ec8dc7c9400ba16885c1417feabc4efc2d5",
+      "bytes": 4939
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (62).png": {
+      "sha256": "06263cb7ee12b8a956f2cf41fe380c867999643087c487fad8e4ba912d313777",
+      "bytes": 1651
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (63).png": {
+      "sha256": "fd46093d6761b4471ce705370963c5366eab8f82b6832d6f379a398e26ac8eb3",
+      "bytes": 2758
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (64).png": {
+      "sha256": "96c84b06bb41025b5d6c70be081c17196bb490a7cce430df525e2af41c7edd6d",
+      "bytes": 11312
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (65).png": {
+      "sha256": "8323c88790548640370ba97ebe1a92e3f57764ccc921f167f9ea15bf2b3a7637",
+      "bytes": 2442
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (66).png": {
+      "sha256": "11a0d3055f79f382957dbb4beb2b2855c7d9661cf493669c8220d08a51a22e4e",
+      "bytes": 12452
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (67).png": {
+      "sha256": "0e3e2a9e8da075d69196fcadbe16c8ba422c64187c2b2d88bf3890603db38b79",
+      "bytes": 10121
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (68).png": {
+      "sha256": "41bb813273bad8d8352b5c0a2250512792a753f547d971d21ff8309647ab7bae",
+      "bytes": 3880
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (69).png": {
+      "sha256": "7299c276cad4c05a5211ade9e5b0f40bbc0c9174f5237fa6997dd5c1fd6c10ec",
+      "bytes": 5193
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (7).png": {
+      "sha256": "d567fb4816de0d7ce638e0139e84142ab0e6e3ee67fbc2e0fd54954b8f35b934",
+      "bytes": 4462
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (70).png": {
+      "sha256": "3de47b45d814594b2e6cc47de5730b2fb5352849aebb4e623141ec44e3c21522",
+      "bytes": 3791
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (71).png": {
+      "sha256": "3910362e8848e25e36df6326a6a23a4cafd83b4f7bbd6ec42788a6e56557d7ef",
+      "bytes": 11239
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (72).png": {
+      "sha256": "4f82edbeeaa2e7c77c98390175ccb6dbfd204ec3be29ffddf5b37e4b106d1097",
+      "bytes": 4243
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (73).png": {
+      "sha256": "dab0ff028ecda37caa9bf5abfceabcbac9a84a3bf48146735816d0b495dd211b",
+      "bytes": 5464
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (74).png": {
+      "sha256": "0f0d0a14efa7e9c07cb9d975b2cbd3967ed27510fd0b4a527b363abd8efe1620",
+      "bytes": 10130
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (75).png": {
+      "sha256": "a5220685d6a2c1933d81c0b9c3e2a1402e970b565743d825ff6c6ca6319956a9",
+      "bytes": 141411
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (76).png": {
+      "sha256": "c073dff9f59229b0a5b0ed9eacf45c41ca620048f9cbd70b574da0dc21b27d19",
+      "bytes": 77402
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (77).png": {
+      "sha256": "0df1916d568a88b1560b81efef72cb39dc2c0429b34fd0d4ace232c9c51c8082",
+      "bytes": 2941
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (78).png": {
+      "sha256": "5385270e149c2731025e10076fa7465a2ad99434184fed5c0b4bedaa5b478cb8",
+      "bytes": 2912
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (79).png": {
+      "sha256": "5b41b742082214896f13ee625b5fc816ac5a72e026aee91b8f0e99ee24550167",
+      "bytes": 1934
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (8).png": {
+      "sha256": "2018c26b38654f0c066989ce512daec81dd86c4109e2dac66ab850e5a80e646b",
+      "bytes": 2257
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (80).png": {
+      "sha256": "e9d69d6bd592e5b50e8a56658a117445c11fe82f9b8411ca52f3c22f6ef5c3e7",
+      "bytes": 6191
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (81).png": {
+      "sha256": "507546b155b14d1cf6291a822c8c928a5b376cd7159806fbf1aa164bf7925cd0",
+      "bytes": 2703
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (82).png": {
+      "sha256": "6fd3e1aa09de7a61f4cb9a74011f7530faaf0e2c7fa0ac8334a54dfd0dfa0b01",
+      "bytes": 4705
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (83).png": {
+      "sha256": "2697b0066534ab37035e66923abf1a1c026812a890fa853529813f19afed59a0",
+      "bytes": 2750
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (84).png": {
+      "sha256": "d05f99fc1c29e0cf699583f6c8d2bfbdc0d5cb44ba7a6c9ef9d06be5a5385dee",
+      "bytes": 1880
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (85).png": {
+      "sha256": "3e5b8a854fb50c41194f46c01d42ef3bcfca000cbc053b7fe31944cd7202ddc6",
+      "bytes": 2486
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (86).png": {
+      "sha256": "535d1f90485707c1232f54effaefc6038c9a2b63269ad9bcce362fa0fad4154f",
+      "bytes": 2068
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (87).png": {
+      "sha256": "7674ca0418b0b30cbf702bb0f656dc8a90eef92cc09b0f259c3581097ed005bf",
+      "bytes": 4109
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (88).png": {
+      "sha256": "2e7a9e3fbbe9251256f7f6cb27a7cd3ed99832510061ac12739b2f534fcf0d13",
+      "bytes": 10576
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (89).png": {
+      "sha256": "afcdf791a1470d74b3196d27904966e2dce353696335fee5b30ca386423e3c82",
+      "bytes": 8674
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (9).png": {
+      "sha256": "f2e3a786963839b7734bab5a1bf295f11059385ff01ac7845ceea93f19250b51",
+      "bytes": 2313
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown (90).png": {
+      "sha256": "ca1e40ac542a0f2cacccb35ea187bde427593805b3393a2ba81aa11822dfe377",
+      "bytes": 1733
+    },
+    "frontend/vendor/h5p-libraries/H5P.Components-1.0/Documentation/.gitbook/assets/unknown.png": {
+      "sha256": "e28fce244ffb8c1df2fec8edc8451338d01340f7c8d931b36826b1a088721308",
+      "bytes": 11070
+    },
+    "frontend/vendor/h5p/fonts/h5p-core-30.woff2": {
+      "sha256": "fc0fc677374df9e2db0932dd7fcc144544cbbae6ceb59f5e4efbe57852c017cd",
+      "bytes": 15080
+    },
+    "frontend/vendor/h5p/fonts/h5p-hub-publish.woff": {
+      "sha256": "ca8a59f21146b22795e13c3be14431ded6bb653046c0eaf496fcdf49576893cc",
+      "bytes": 2624
+    },
+    "frontend/vendor/h5p/fonts/h5p-hub-publish.woff2": {
+      "sha256": "c3f3e969c906dd2fbe7de0f9486af321213f1429363e15b5e94a2bc729a563df",
+      "bytes": 1384
+    },
+    "frontend/vendor/h5p/fonts/h5p-theme.woff2": {
+      "sha256": "9591c8c4c6e8a3a90f54affb3fc1970cf5e96b82c09cbe5d087a035e95d42ffc",
+      "bytes": 10244
+    },
+    "frontend/vendor/h5p/images/h5p.svg": {
+      "sha256": "dafbb2661ab0d3c57e6337a030afaab359ea7bc01e3a0f61afb2658c84049ef0",
+      "bytes": 1261
+    },
+    "frontend/vendor/h5p/images/throbber.gif": {
+      "sha256": "e7c6655c9a42e87273aad9eb790113db737ce5f11a1c076c2278584f52a473bd",
+      "bytes": 1638
+    },
+    "frontend/vendor/h5p/styles/h5p-fonts.css": {
+      "sha256": "6a468bc08aded45effe4cc9d5de16cb422e604a7a272757c107d9b87dba5f50d",
+      "bytes": 3374
+    },
+    "frontend/vendor/h5p/styles/h5p.css": {
+      "sha256": "bd1ce5c19c81392768b0a3da2382c298c5935743d90391a4f591b949bf90f9dc",
+      "bytes": 43283
+    },
+    "frontend/vendor/h5p/fonts/inter/Inter-ExtraBold.woff2": {
+      "sha256": "6f75025856f8db1b2186e9cb89be9de9894932c8b7b20f4df5e65916ff714e34",
+      "bytes": 114856
+    },
+    "frontend/vendor/h5p/fonts/inter/Inter-ExtraBoldItalic.woff2": {
+      "sha256": "53bb20ba292e2ac28a0777bf0f56f31b98be432a3cc04359e2eb608c758349c7",
+      "bytes": 121516
+    },
+    "frontend/vendor/h5p/fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-600.woff2": {
+      "sha256": "46aee58cf273df3edbb19e44db66de5a87106fe641f57e08573e62688757a003",
+      "bytes": 112048
+    },
+    "frontend/vendor/h5p/fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-600italic.woff2": {
+      "sha256": "eba31e1daf2d622f67958635e53162048f1356c15655c503b98d6ecdb6afd553",
+      "bytes": 118096
+    },
+    "frontend/vendor/h5p/fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-italic.woff2": {
+      "sha256": "09d554ab27e1b02ce25d6f5faf71e2e07e77c28beb4019dbcfcd43ec7558d3df",
+      "bytes": 114132
+    },
+    "frontend/vendor/h5p/fonts/inter/inter-v18-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-regular.woff2": {
+      "sha256": "21ab4e91a62b1c86daf7bda3818f8cf0721f91cd664a9d135923c1ed6b694e90",
+      "bytes": 108656
+    },
+    "frontend/vendor/h5p/fonts/inter/LICENSE.txt": {
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "bytes": 4380
+    },
+    "frontend/vendor/h5p/fonts/open-sans/OFL.txt": {
+      "sha256": "01cd5ffb3a528c219a86e49a814c6c53bd8a69b9a3c305dd237074ba1c811af7",
+      "bytes": 4216
+    },
+    "frontend/vendor/h5p/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-600.woff2": {
+      "sha256": "32028782d9f727a340735d527ab309e35a1329627bd0f4513e7ed4e451a88359",
+      "bytes": 56200
+    },
+    "frontend/vendor/h5p/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-600italic.woff2": {
+      "sha256": "94e8ca0e6eee74ff87df4271ff3a804414f0b44d5377f4eccd48d68f17cef36c",
+      "bytes": 59372
+    },
+    "frontend/vendor/h5p/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-700.woff2": {
+      "sha256": "73eaa9830823855f156cd4e0b27e7096f7e623ba026bb5366640fb0540cdd081",
+      "bytes": 54424
+    },
+    "frontend/vendor/h5p/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-700italic.woff2": {
+      "sha256": "ab6514c3f0ca678239df01466c3aa34e38f006e3cda016a408cfff09cc71c507",
+      "bytes": 56748
+    },
+    "frontend/vendor/h5p/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-italic.woff2": {
+      "sha256": "e4dc9aa04d9819fc4345ac9544831278f3ffd8ff4af8401199a8c8d7412cc353",
+      "bytes": 59328
+    },
+    "frontend/vendor/h5p/fonts/open-sans/open-sans-v40-cyrillic_cyrillic-ext_greek_greek-ext_hebrew_latin_latin-ext_math_symbols_vietnamese-regular.woff2": {
+      "sha256": "616b98706b02b2744e0f51dfbe070c56bfc6e73e0963b0200e9908f856a6e3de",
+      "bytes": 56272
+    },
+    "frontend/assets/hospital-logo-source.json": {
+      "sha256": "e7d4f4574ff10a42c38c4b3e8c373c08ed261ca1cc2a862ed74b5f0c52d1b99e",
+      "bytes": 174
+    },
+    "frontend/assets/hospital-logo.png": {
+      "sha256": "5532662c126d9926f20433a5573a51686e7eaf6cb9642a098b4ef460b4ac46d5",
+      "bytes": 16932
+    },
+    "frontend/assets/palette.json": {
+      "sha256": "1fc3727d2b77bbcd4e50394122cb65f99f21d04649150de8ea1c4d95254f3229",
+      "bytes": 408
+    },
+    "frontend/assets/platform-mark.svg": {
+      "sha256": "8ba9888a0d1292c525607e1c2059e4b516ae2851b9f62e8e308b63b0af2f8008",
+      "bytes": 682
+    },
+    "frontend/assets/icons/AUD.svg": {
+      "sha256": "48ad10eafb9bc8eb8f513b6704300e03730e0a7cb10cd2285d014740d005ed3c",
+      "bytes": 356
+    },
+    "frontend/assets/icons/book.svg": {
+      "sha256": "f995d00b72c864dd66aacd2957599b5e6587b57be844668f4665e1c97383d9ed",
+      "bytes": 390
+    },
+    "frontend/assets/icons/clipboard.svg": {
+      "sha256": "28d58cabadfa3f2c542accf62da00196992b8fa4f53c034db37e96410142ee49",
+      "bytes": 393
+    },
+    "frontend/assets/icons/CP.svg": {
+      "sha256": "d9b9f159e66155f8cc1c1ead7c723c525efa8ff92aef404fc95a76aa634350a1",
+      "bytes": 436
+    },
+    "frontend/assets/icons/DT.svg": {
+      "sha256": "cf6a94d2f4e1d6aedad7fb6d46525be88d8ad3edff35e7e4a48d63efcb834ae7",
+      "bytes": 334
+    },
+    "frontend/assets/icons/interaction.svg": {
+      "sha256": "603f98f3153e7568d45237fb3fd16a594efadb94b9161eef69b6e5495e2b1177",
+      "bytes": 372
+    },
+    "frontend/assets/icons/MD.svg": {
+      "sha256": "6808b9ea004196dccfefe066f7b376c78d5ff0b504e05ac1598146a70f3c6fe0",
+      "bytes": 357
+    },
+    "frontend/assets/icons/MLS.svg": {
+      "sha256": "bd14b803ddf5538d7bb57875b805caa49ae3766e9e890500f2494cd778175fe1",
+      "bytes": 357
+    },
+    "frontend/assets/icons/OT.svg": {
+      "sha256": "c5ae25388e5b61332d7b68d976a7b73e5b56b32043a3cab5c6aa0b3795353b34",
+      "bytes": 381
+    },
+    "frontend/assets/icons/play.svg": {
+      "sha256": "1803557e453455ea00ff907033f92866764f3fbb1d3f18fc20c339c17d84aff4",
+      "bytes": 343
+    },
+    "frontend/assets/icons/PT.svg": {
+      "sha256": "6f614fbc4a696f4c94a3c56cf5e1cfd1c6a3abc634a139187ec6f74d833a1183",
+      "bytes": 353
+    },
+    "frontend/assets/icons/quiz.svg": {
+      "sha256": "5b0f664b8e67c36e9433675809899c61254eca29d1834e3dd6fe455d7a2bf7cd",
+      "bytes": 376
+    },
+    "frontend/assets/icons/report.svg": {
+      "sha256": "c1538bef9fcd7005ef5a2297ab9faee51f65a407f04e18373d48f9d446ea0d30",
+      "bytes": 340
+    },
+    "frontend/assets/icons/RN.svg": {
+      "sha256": "5791371df7524b5e1c9719d0bcc19239edba32c26531971fb003617c3c479b30",
+      "bytes": 358
+    },
+    "frontend/assets/icons/RPH.svg": {
+      "sha256": "a632bbe4c2fdeee143e2302b37516ca5bc8c4af7c6ad1017b972f5ccc92aa319",
+      "bytes": 333
+    },
+    "frontend/assets/icons/RSP.svg": {
+      "sha256": "a7dbd861d445c0aa579c18c6e0e5fb842187959f31f82ecc8a52e74a1d7a7994",
+      "bytes": 363
+    },
+    "frontend/assets/icons/RT.svg": {
+      "sha256": "4de7f10a38c185478f95e0fc6d3c5a1c78966e3aaa83f543d4347cffea51cdca",
+      "bytes": 392
+    },
+    "frontend/assets/icons/ST.svg": {
+      "sha256": "0524fcacce3168773dcbbdde4da3652aea5f8d4ed90a4c2f587f105269a92ae2",
+      "bytes": 362
+    },
+    "data/course_catalog.json": {
+      "sha256": "2ea74f2ffd7d98b61ee58ef6c4933db4ce5faac166e5aedc0fa19046e9db006f",
+      "bytes": 143620
+    },
+    "data/hyperframes.json": {
+      "sha256": "ad5dadeef78a520800a9e5cdd27a92ff5ac37f11b6a07f611b6b52b9f8c79a17",
+      "bytes": 355
+    },
+    "data/learning_policy.json": {
+      "sha256": "d0849e58aa8ff8e43c0b11d11dc0bfe338dce0bea5734b06a8e447c73ca92080",
+      "bytes": 1887
+    },
+    "data/characters/auntie-lin.vrm": {
+      "sha256": "aa73dc6a7b1313e28dac4008a5615f2443d35b131bfedd06527465ad5d682949",
+      "bytes": 135104
+    },
+    "data/characters/catalog.json": {
+      "sha256": "c319a3e5d7ea51d9dab9ce9aa00f13566d6bbd2f4179ac125cf4175b7e509ca8",
+      "bytes": 17082
+    },
+    "data/characters/chen-md.vrm": {
+      "sha256": "b6ccc1adf6aeeb2d1179fc93e5b80776158159d06ce3c2f09ec6b8061addffdd",
+      "bytes": 136636
+    },
+    "data/characters/he-sw.vrm": {
+      "sha256": "44573fbac04075de265f7b246e8bbf50fbb32e30a698159b0842f118c069c9ff",
+      "bytes": 127340
+    },
+    "data/characters/huang-dt.vrm": {
+      "sha256": "098a8835629bd81fa036d708b3f145e31329913e2c8f084f18ba4e98a5f77048",
+      "bytes": 128868
+    },
+    "data/characters/li-rph.vrm": {
+      "sha256": "7e385a7849cfcedfdfe79006a7975a08c22e8b22b7915be28148f9ac5d6b662e",
+      "bytes": 136636
+    },
+    "data/characters/lin-rn.vrm": {
+      "sha256": "37f746e5da90c1dde5cc02149d8c9820a2ff9a2c50ab533560d357cd92811b1a",
+      "bytes": 128868
+    },
+    "data/characters/mr-chen.vrm": {
+      "sha256": "35e19af1ba0996851d6468890e74ab09bafdb974530376b5d629ceafbc721c64",
+      "bytes": 122224
+    },
+    "data/characters/mr-wang.vrm": {
+      "sha256": "1de12305bc23c31212fe628c1509cd1fed98342470a013a1338b6ce6a3ebcf3e",
+      "bytes": 135112
+    },
+    "data/characters/wang-pt.vrm": {
+      "sha256": "0ed0f84f760e466f1bdb12a734ef6ab46efe3ec5328a0a89a9eddbba0fa3eab5",
+      "bytes": 123764
+    },
+    "data/characters/zhang-ot.vrm": {
+      "sha256": "125ec68c12d68d8c18c75e17e3a920745ffd027e5394a63aff23563c641e3cb8",
+      "bytes": 128872
+    },
+    "data/item_banks/sarcopenia_item_bank_uploaded.json": {
+      "sha256": "d1b3415b85fea0e2a5664d76e6099afc97a220c0f76d9642b1fdefd02d50420d",
+      "bytes": 1545121
+    },
+    "data/item_banks/sarcopenia_item_bank_v1.json": {
+      "sha256": "d4c631b979cbc9cc2736898b6863decc0f89f400d4d0360668eb8dd114d2111f",
+      "bytes": 781208
+    },
+    "data/lesson_cases/case_catalog.json": {
+      "sha256": "363fb8c1deb8d4c93321cb3c0d4383bc842929fe5992b27254ee5d2d163a82ff",
+      "bytes": 38825
+    },
+    "data/overlays/SARC-DT-001.json": {
+      "sha256": "d761e191067a16b401c260b1c2e4ab0f4d8e4a66abe9cb67bfde7161606d19f3",
+      "bytes": 3516
+    },
+    "data/video360/catalog.json": {
+      "sha256": "cb7cfa71b42f98e68f5188e1c9291e3d7a2a981be7f2f370b4ba47e451e436f3",
+      "bytes": 2565
+    },
+    "data/video_lessons/video_lessons.json": {
+      "sha256": "39b7d4831939af38a494e694a4bb323dc3644502ba3b81e6625e41562d24963b",
+      "bytes": 11917
+    },
+    "data/characters/photoreal-v1/auntie-lin.png": {
+      "sha256": "a74b7a8c4d1b917cac3fa398efefc9bd87e315136ac3791dd025435b773d2307",
+      "bytes": 2471208
+    },
+    "data/characters/photoreal-v1/chen-md.png": {
+      "sha256": "31369f0baf73fd6edf8c633b3777566cbb3c6d744fc425feb517c57a7167453c",
+      "bytes": 2162856
+    },
+    "data/characters/photoreal-v1/he-sw.png": {
+      "sha256": "e129b34b093fef860964d9172ce3918abeedb5d1c1f1eed96211dd75ac9334a5",
+      "bytes": 2117693
+    },
+    "data/characters/photoreal-v1/huang-dt.png": {
+      "sha256": "ccbf4e941a233b71fb0ad76f10f4fb485286088d9ba434e368accefb29daa15e",
+      "bytes": 2199380
+    },
+    "data/characters/photoreal-v1/li-rph.png": {
+      "sha256": "dfd4cc37747b6276cc7a0a9011082fb9d5507393706e554d49c4dcc793c9ba22",
+      "bytes": 2048843
+    },
+    "data/characters/photoreal-v1/lin-rn.png": {
+      "sha256": "65db43569de83132d80d823f64007cfe77c6c07594a68af026f7e2fc24c9bd14",
+      "bytes": 1952248
+    },
+    "data/characters/photoreal-v1/middle-man.png": {
+      "sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
+      "bytes": 2342450
+    },
+    "data/characters/photoreal-v1/middle-woman.png": {
+      "sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
+      "bytes": 2321329
+    },
+    "data/characters/photoreal-v1/mr-chen.png": {
+      "sha256": "a5ca8a28b2c5df96124f9434d8a211f44287aceb15c10ef58a4c75e0ebd583e9",
+      "bytes": 2251308
+    },
+    "data/characters/photoreal-v1/mr-wang.png": {
+      "sha256": "22834f31ff4f8038e826d46a0d5ee3a51d2063c8a28c2335c70cdda05022a286",
+      "bytes": 2270882
+    },
+    "data/characters/photoreal-v1/prompts.json": {
+      "sha256": "52aa857b5ff2cb94854632a833f24d20b085a6eeb1a323605502076a8e953170",
+      "bytes": 11198
+    },
+    "data/characters/photoreal-v1/provenance.json": {
+      "sha256": "5ce71bb69da07c03da07494a74684fb8be8200c3c4b8b3377fd7dd7ecb940f3e",
+      "bytes": 4469
+    },
+    "data/characters/photoreal-v1/wang-pt.png": {
+      "sha256": "69a1fd337989369023cd52ccda5cd4d2277141595dfe5caba23ef3b8d4bb9da5",
+      "bytes": 2152989
+    },
+    "data/characters/photoreal-v1/zhang-ot.png": {
+      "sha256": "cab634d0f9a1dc2ccb746715a46c7e45a17e7130babcee50426eaa5b4a5fcaf5",
+      "bytes": 2093231
+    },
+    "data/characters/photoreal-v1/zhou-rt.png": {
+      "sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
+      "bytes": 2085466
+    }
+  }
+}

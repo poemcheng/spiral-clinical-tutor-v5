@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-22",
+  "timezone": "Asia/Taipei",
+  "interface": "web search and official publisher pages; selected linked full text",
+  "type": "targeted framework verification, not systematic review",
+  "queries": [
+    "site.world.physio physiotherapist education framework domains competence 2021",
+    "site.internationaldietetics.org international competency standards dietitians 2016",
+    "site.camrt.ca competency profile radiological technologists 2024",
+    "site.royalcollege.ca CanMEDS seven roles",
+    "site.aacnnursing.org essentials ten domains person-centered care quality safety",
+    "site.hcpc-uk.org standards proficiency occupational therapists biomedical scientists practitioner psychologists speech language therapists",
+    "site.coarc.com accreditation standards entry respiratory care"
+  ],
+  "selection": "Profession-specific authoritative frameworks; no date restriction. No claim to exhaustive retrieval.",
+  "notes": [
+    "CAMRT publisher profile page checked; final RT mapping uses accessible HCPC radiographers standards 2023.",
+    "PT 2021 PDF too large for browser extraction; publisher framework and 2025 standards summary checked.",
+    "CoARC publisher page distinguishes current 3/2024 from 2027 effective edition.",
+    "Audiology mapping from hearing-aid-dispensing standards is contextual and incomplete.",
+    "No DOI assigned to these organizational frameworks.",
+    "Version changes and local applicability require profession teachers to review; no claims of scale validation."
+  ]
+}

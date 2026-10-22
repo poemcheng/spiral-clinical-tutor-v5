@@ -1,0 +1,499 @@
+{
+  "version": "characters-v5-20261022",
+  "actors": [
+    {
+      "id": "chen-md",
+      "name": "陳醫師",
+      "profession": "MD",
+      "kind": "clinician",
+      "gender": "male",
+      "title": "老年醫學／復健科醫師",
+      "tasks": "病史與功能評估；判讀風險與安排轉介；整合復健、營養與照護計畫",
+      "style": "沉穩、專業、具安撫性，以白話解釋資訊",
+      "quote": "您好，我先了解您最近的狀況。",
+      "outfit": "#f5f7fc",
+      "hair": "#394251",
+      "glasses": true,
+      "card_file": "photoreal-v1/chen-md.png",
+      "model_file": "chen-md.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "31369f0baf73fd6edf8c633b3777566cbb3c6d744fc425feb517c57a7167453c",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-20261022-1",
+      "atlas_file": "photoreal-v1/chen-md.png",
+      "atlas_sha256": "31369f0baf73fd6edf8c633b3777566cbb3c6d744fc425feb517c57a7167453c",
+      "face": {
+        "mouth": [
+          0.5,
+          0.515,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.35,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "成人"
+    },
+    {
+      "id": "lin-rn",
+      "name": "林護理師",
+      "profession": "RN",
+      "kind": "clinician",
+      "gender": "female",
+      "title": "護理師",
+      "tasks": "生命徵象與跌倒風險評估；症狀觀察與衛教；回報異常並協調後續處置",
+      "style": "親切、細心、善於安撫，用清楚易懂的方式說明",
+      "quote": "最近有沒有頭暈、無力或容易跌倒？",
+      "outfit": "#f6f8fd",
+      "hair": "#332c28",
+      "glasses": false,
+      "card_file": "photoreal-v1/lin-rn.png",
+      "model_file": "lin-rn.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "65db43569de83132d80d823f64007cfe77c6c07594a68af026f7e2fc24c9bd14",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-20261022-1",
+      "atlas_file": "photoreal-v1/lin-rn.png",
+      "atlas_sha256": "65db43569de83132d80d823f64007cfe77c6c07594a68af026f7e2fc24c9bd14",
+      "face": {
+        "mouth": [
+          0.5,
+          0.515,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.355,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "成人"
+    },
+    {
+      "id": "wang-pt",
+      "name": "王物理治療師",
+      "profession": "PT",
+      "kind": "clinician",
+      "gender": "male",
+      "title": "物理治療師",
+      "tasks": "坐站、步態與平衡評估；肌力與移動能力訓練；跌倒預防與居家運動建議",
+      "style": "積極鼓勵、動作示範清楚，重視安全與功能改善",
+      "quote": "請先站穩，我會在旁邊保護您。",
+      "outfit": "#233752",
+      "hair": "#302b26",
+      "glasses": false,
+      "card_file": "photoreal-v1/wang-pt.png",
+      "model_file": "wang-pt.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "69a1fd337989369023cd52ccda5cd4d2277141595dfe5caba23ef3b8d4bb9da5",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-20261022-1",
+      "atlas_file": "photoreal-v1/wang-pt.png",
+      "atlas_sha256": "69a1fd337989369023cd52ccda5cd4d2277141595dfe5caba23ef3b8d4bb9da5",
+      "face": {
+        "mouth": [
+          0.5,
+          0.515,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.38,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "成人"
+    },
+    {
+      "id": "zhang-ot",
+      "name": "張職能治療師",
+      "profession": "OT",
+      "kind": "clinician",
+      "gender": "female",
+      "title": "職能治療師",
+      "tasks": "ADL與IADL評估；手功能與認知訓練；輔具與居家環境建議",
+      "style": "溫和、務實、以任務導向引導，重視生活情境",
+      "quote": "我們看看哪些活動對您最困難。",
+      "outfit": "#eef2f9",
+      "hair": "#332c28",
+      "glasses": false,
+      "card_file": "photoreal-v1/zhang-ot.png",
+      "model_file": "zhang-ot.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "cab634d0f9a1dc2ccb746715a46c7e45a17e7130babcee50426eaa5b4a5fcaf5",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-20261022-1",
+      "atlas_file": "photoreal-v1/zhang-ot.png",
+      "atlas_sha256": "cab634d0f9a1dc2ccb746715a46c7e45a17e7130babcee50426eaa5b4a5fcaf5",
+      "face": {
+        "mouth": [
+          0.5,
+          0.515,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.35,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "成人"
+    },
+    {
+      "id": "huang-dt",
+      "name": "黃營養師",
+      "profession": "DT",
+      "kind": "clinician",
+      "gender": "female",
+      "title": "營養師",
+      "tasks": "飲食史與營養風險評估；蛋白質與熱量需求分析；制定可執行的飲食建議",
+      "style": "耐心、生活化，將專業轉為白話",
+      "quote": "最近三餐吃得怎麼樣？",
+      "outfit": "#fafbfe",
+      "hair": "#46332c",
+      "glasses": false,
+      "card_file": "photoreal-v1/huang-dt.png",
+      "model_file": "huang-dt.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "ccbf4e941a233b71fb0ad76f10f4fb485286088d9ba434e368accefb29daa15e",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-20261022-1",
+      "atlas_file": "photoreal-v1/huang-dt.png",
+      "atlas_sha256": "ccbf4e941a233b71fb0ad76f10f4fb485286088d9ba434e368accefb29daa15e",
+      "face": {
+        "mouth": [
+          0.5,
+          0.515,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.35,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "成人"
+    },
+    {
+      "id": "li-rph",
+      "name": "李藥師",
+      "profession": "RPH",
+      "kind": "clinician",
+      "gender": "male",
+      "title": "藥師",
+      "tasks": "藥物盤點與服藥紀錄；交互作用與副作用評估；服藥依從性與安全衛教",
+      "style": "謹慎、清楚、重視安全，耐心解釋用藥重點",
+      "quote": "您平常有固定服用哪些藥物？",
+      "outfit": "#f9fbfe",
+      "hair": "#302c28",
+      "glasses": true,
+      "card_file": "photoreal-v1/li-rph.png",
+      "model_file": "li-rph.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "dfd4cc37747b6276cc7a0a9011082fb9d5507393706e554d49c4dcc793c9ba22",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-20261022-1",
+      "atlas_file": "photoreal-v1/li-rph.png",
+      "atlas_sha256": "dfd4cc37747b6276cc7a0a9011082fb9d5507393706e554d49c4dcc793c9ba22",
+      "face": {
+        "mouth": [
+          0.5,
+          0.515,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.35,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "成人"
+    },
+    {
+      "id": "he-sw",
+      "name": "何社工師",
+      "profession": "SW",
+      "kind": "support",
+      "gender": "female",
+      "title": "社工師／個案管理師",
+      "tasks": "家庭支持與照顧壓力評估；長照與社福資源連結；出院與追蹤照護協調",
+      "style": "關懷、耐心、擅長傾聽，協助整合外部資源",
+      "quote": "家裡平常主要是誰在照顧您？",
+      "outfit": "#d2b9a2",
+      "hair": "#3b2c26",
+      "glasses": false,
+      "card_file": "photoreal-v1/he-sw.png",
+      "model_file": "he-sw.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "e129b34b093fef860964d9172ce3918abeedb5d1c1f1eed96211dd75ac9334a5",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-20261022-1",
+      "atlas_file": "photoreal-v1/he-sw.png",
+      "atlas_sha256": "e129b34b093fef860964d9172ce3918abeedb5d1c1f1eed96211dd75ac9334a5",
+      "face": {
+        "mouth": [
+          0.5,
+          0.515,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.35,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "成人"
+    },
+    {
+      "id": "auntie-lin",
+      "name": "林阿姨",
+      "profession": null,
+      "kind": "patient",
+      "gender": "female",
+      "title": "高齡肌少症風險病患",
+      "tasks": "辨識肌少症線索；完成篩檢並提出轉介建議",
+      "style": "客氣保守、不主動抱怨，需要溫和引導",
+      "quote": "最近比較沒力，走一下就累。",
+      "outfit": "#d5c1ad",
+      "hair": "#a19b94",
+      "glasses": true,
+      "card_file": "photoreal-v1/auntie-lin.png",
+      "model_file": "auntie-lin.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "a74b7a8c4d1b917cac3fa398efefc9bd87e315136ac3791dd025435b773d2307",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-20261022-1",
+      "atlas_file": "photoreal-v1/auntie-lin.png",
+      "atlas_sha256": "a74b7a8c4d1b917cac3fa398efefc9bd87e315136ac3791dd025435b773d2307",
+      "face": {
+        "mouth": [
+          0.5,
+          0.55,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.4,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "高齡"
+    },
+    {
+      "id": "mr-chen",
+      "name": "陳先生",
+      "profession": null,
+      "kind": "patient",
+      "gender": "male",
+      "title": "術後復健病患",
+      "tasks": "疼痛溝通；安全移動；分階段復健指導",
+      "style": "焦慮但願意配合，說明安全性後較放心",
+      "quote": "我一動就會痛。",
+      "outfit": "#bfd3e8",
+      "hair": "#9b9791",
+      "glasses": false,
+      "card_file": "photoreal-v1/mr-chen.png",
+      "model_file": "mr-chen.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "a5ca8a28b2c5df96124f9434d8a211f44287aceb15c10ef58a4c75e0ebd583e9",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-20261022-1",
+      "atlas_file": "photoreal-v1/mr-chen.png",
+      "atlas_sha256": "a5ca8a28b2c5df96124f9434d8a211f44287aceb15c10ef58a4c75e0ebd583e9",
+      "face": {
+        "mouth": [
+          0.5,
+          0.55,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.41,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "高齡"
+    },
+    {
+      "id": "mr-wang",
+      "name": "王先生",
+      "profession": null,
+      "kind": "caregiver",
+      "gender": "male",
+      "title": "家屬／主要照顧者",
+      "tasks": "補充病史與居家資訊；表達照顧壓力與支持需求；配合訓練與追蹤",
+      "style": "關心病人，但在工作與照護之間拉扯",
+      "quote": "需要怎麼安排會比較安全？",
+      "outfit": "#26364d",
+      "hair": "#34312f",
+      "glasses": true,
+      "card_file": "photoreal-v1/mr-wang.png",
+      "model_file": "mr-wang.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "22834f31ff4f8038e826d46a0d5ee3a51d2063c8a28c2335c70cdda05022a286",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-20261022-1",
+      "atlas_file": "photoreal-v1/mr-wang.png",
+      "atlas_sha256": "22834f31ff4f8038e826d46a0d5ee3a51d2063c8a28c2335c70cdda05022a286",
+      "face": {
+        "mouth": [
+          0.5,
+          0.515,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.385,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "成人"
+    },
+    {
+      "id": "middle-man",
+      "name": "中年男性病患",
+      "profession": "PATIENT",
+      "kind": "patient",
+      "gender": "male",
+      "title": "虛構教學病患・中年男性",
+      "tasks": "病史與數值依本輪教案；外觀不代表新增臨床事實",
+      "style": "依教案表達疑慮，以自然口吻回應",
+      "quote": "我一動就會痛。",
+      "outfit": "#bfd3e8",
+      "hair": "#9b9791",
+      "glasses": false,
+      "card_file": "photoreal-v1/middle-man.png",
+      "model_file": "mr-chen.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-v5-20261022",
+      "atlas_file": "photoreal-v1/middle-man.png",
+      "atlas_sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
+      "face": {
+        "mouth": [
+          0.5,
+          0.53,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.35,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "中年"
+    },
+    {
+      "id": "middle-woman",
+      "name": "中年女性病患",
+      "profession": "PATIENT",
+      "kind": "patient",
+      "gender": "female",
+      "title": "虛構教學病患・中年女性",
+      "tasks": "病史與數值依本輪教案；外觀不代表新增臨床事實",
+      "style": "依教案表達疑慮，以自然口吻回應",
+      "quote": "最近比較沒力，走一下就累。",
+      "outfit": "#d5c1ad",
+      "hair": "#a19b94",
+      "glasses": true,
+      "card_file": "photoreal-v1/middle-woman.png",
+      "model_file": "auntie-lin.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-v5-20261022",
+      "atlas_file": "photoreal-v1/middle-woman.png",
+      "atlas_sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
+      "face": {
+        "mouth": [
+          0.5,
+          0.53,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.35,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "中年"
+    },
+    {
+      "id": "zhou-rt",
+      "name": "周醫事放射師",
+      "profession": "RT",
+      "kind": "clinician",
+      "gender": "male",
+      "title": "醫事放射師",
+      "tasks": "核對檢查準備與影像品質；交接DXA檢查條件與測量限制；不代替醫師診斷或物理治療師功能評估",
+      "style": "清楚、謹慎，以團隊可理解的方式說明檢查限制",
+      "quote": "您好，我先了解您最近的狀況。",
+      "outfit": "#f5f7fc",
+      "hair": "#394251",
+      "glasses": true,
+      "card_file": "photoreal-v1/zhou-rt.png",
+      "model_file": "chen-md.vrm",
+      "source_file": "Public generated portrait atlas",
+      "card_sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
+      "usage": "Generated fictional teaching character. Original uploaded role cards are excluded from this public pack.",
+      "visual_type": "photoreal-portrait",
+      "visual_version": "photoreal-v5-20261022",
+      "atlas_file": "photoreal-v1/zhou-rt.png",
+      "atlas_sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
+      "face": {
+        "mouth": [
+          0.5,
+          0.515,
+          0.18,
+          0.11
+        ],
+        "eyes": [
+          0.5,
+          0.35,
+          0.32,
+          0.105
+        ]
+      },
+      "age_group": "成人"
+    }
+  ]
+}

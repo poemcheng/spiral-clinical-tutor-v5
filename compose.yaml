@@ -1,0 +1,26 @@
+services:
+  tutor:
+    build: .
+    ports:
+      - "127.0.0.1:8705:8705"
+    environment:
+      DEPLOYMENT_MODE: public
+      BOOTSTRAP_ADMIN_PASSWORD: ${BOOTSTRAP_ADMIN_PASSWORD:?Set a strong initial admin password}
+      COOKIE_SECURE: ${COOKIE_SECURE:-1}
+      OLLAMA_URL: ${OLLAMA_URL:-http://ollama:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-gemma4:12b}
+      OLLAMA_API_KEY: ${OLLAMA_API_KEY:-}
+      VIDEO_LIBRARY_DIR: /media/lessons
+    volumes:
+      - tutor-runtime:/app/runtime
+      - ./data/video360:/app/data/video360:ro
+      - ./deployment-media:/media/lessons:ro
+    restart: unless-stopped
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama-models:/root/.ollama
+    restart: unless-stopped
+volumes:
+  tutor-runtime:
+  ollama-models:

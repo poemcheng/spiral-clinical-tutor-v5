@@ -1,0 +1,86 @@
+{
+  "version": "v5-two-axes-five-resources-20261022",
+  "status": "平台試行學習分流規則，非臨床資格認證",
+  "self_score_formula": "各職種核心指標自評分數 × 20 後等權平均（滿分100）",
+  "level_bands": [
+    {
+      "level": 1,
+      "min": 0,
+      "max": 39.9
+    },
+    {
+      "level": 2,
+      "min": 40,
+      "max": 59.9
+    },
+    {
+      "level": 3,
+      "min": 60,
+      "max": 74.9
+    },
+    {
+      "level": 4,
+      "min": 75,
+      "max": 89.9
+    },
+    {
+      "level": 5,
+      "min": 90,
+      "max": 100
+    }
+  ],
+  "independence": "自評決定題目與案例難度；累積學習依練習使用與正確性解鎖教案資訊，互不改寫。",
+  "information": [
+    {
+      "level": 1,
+      "title": "單一職類知識",
+      "kind": "background"
+    },
+    {
+      "level": 2,
+      "title": "團隊職類知識",
+      "kind": "interview"
+    },
+    {
+      "level": 3,
+      "title": "情境影片",
+      "kind": "handoff"
+    },
+    {
+      "level": 4,
+      "title": "跨團隊360度影片與視角",
+      "kind": "source_limits"
+    },
+    {
+      "level": 5,
+      "title": "影片解析與逐格分析",
+      "kind": "reflection"
+    }
+  ],
+  "mastery_window": 3,
+  "promotion_score": 80,
+  "promotion_passes": 2,
+  "paths": [
+    {
+      "id": "core",
+      "title": "核心評估與示範教案",
+      "module": "個案背景與觀察",
+      "practices": 0,
+      "mastery": 0
+    },
+    {
+      "id": "communication",
+      "title": "溝通與弱項補強教案",
+      "module": "溝通與補強反思",
+      "practices": 1,
+      "mastery": 60
+    },
+    {
+      "id": "team",
+      "title": "跨專業整合挑戰教案",
+      "module": "跨專業整合挑戰",
+      "practices": 3,
+      "mastery": 80
+    }
+  ]
+}

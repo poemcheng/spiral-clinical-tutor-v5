@@ -1,0 +1,23 @@
+"""Install the public, checksummed runtime asset pack. Never contains user records."""
+from pathlib import Path,PurePosixPath
+import hashlib,json,tempfile,urllib.request,zipfile
+ROOT=Path(__file__).resolve().parents[1]
+BASE='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.0.0/'
+def main():
+    manifest=json.load(urllib.request.urlopen(BASE+'public-assets-manifest.json',timeout=60))
+    with tempfile.TemporaryDirectory() as tmp:
+        archive=Path(tmp)/'assets.zip'
+        urllib.request.urlretrieve(BASE+'public-assets.zip',archive)
+        if hashlib.file_digest(archive.open('rb'),'sha256').hexdigest()!=manifest['archive_sha256']:raise SystemExit('Asset archive checksum mismatch')
+        with zipfile.ZipFile(archive) as z:
+            if set(z.namelist())!=set(manifest['files']):raise SystemExit('Asset list mismatch')
+            for name in z.namelist():
+                p=PurePosixPath(name)
+                if p.is_absolute() or '..' in p.parts or ':' in name or '\\' in name or not name.startswith(('frontend/vendor/','frontend/assets/','data/')) or name.startswith('data/sources/'):
+                    raise SystemExit('Unsafe asset path')
+                data=z.read(name)
+                if hashlib.sha256(data).hexdigest()!=manifest['files'][name]['sha256']:raise SystemExit('File checksum mismatch')
+            for name in z.namelist():
+                dest=ROOT/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(z.read(name))
+    print('Public runtime assets installed. Original teaching documents and 360 footage are supplied separately.')
+if __name__=='__main__':main()
