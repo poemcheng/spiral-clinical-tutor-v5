@@ -51,12 +51,12 @@ class V5Tests(unittest.TestCase):
 
     def test_media_level_gates_and_frame_notes_persist_for_teacher(self):
         from unittest.mock import patch
-        from backend import learning_resources
+        from backend import teaching_media
         from pathlib import Path
         fixture_root=Path(self.tmp.name);media=fixture_root/'data/video360';media.mkdir(parents=True)
         (media/'fixture.mp4').write_bytes(b'\x00\x00\x00\x18ftypmp42'+b'0'*100)
         (media/'catalog.json').write_text(json.dumps({'clips':[{'id':'team360-1','title':'Synthetic media permission fixture','file':'fixture.mp4','duration':10,'fps':30000/1001,'status':'test'}]}))
-        patcher=patch.object(learning_resources,'ROOT',fixture_root);patcher.start();self.addCleanup(patcher.stop)
+        patcher=patch.object(teaching_media,'ROOT',fixture_root);patcher.start();self.addCleanup(patcher.stop)
         sid,_=self.start('MD',level=5)
         self.client.post(f'/api/sessions/{sid}/case',json={'case_id':'COURSE-SARC'})
         # High self-rating still cannot unlock earned Level 4 resources.
@@ -69,6 +69,7 @@ class V5Tests(unittest.TestCase):
                 row=self.db.one('SELECT data FROM sessions WHERE id=?',(sid,));payload=json.loads(row['data']);payload['adaptive_plan']['learning_level']=level;self.db.save(c,sid,payload)
             video=self.client.get(url,headers={'Range':'bytes=0-31'})
             self.assertEqual(video.status_code,206)
+            self.assertEqual(video.content,(media/'fixture.mp4').read_bytes()[:32])
             if level==4:self.assertEqual(self.client.post(f'/api/sessions/{sid}/frame-notes',json=body).status_code,403)
         response=self.client.post(f'/api/sessions/{sid}/frame-notes',json=body)
         self.assertEqual(response.status_code,200,response.text)
