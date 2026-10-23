@@ -1,0 +1,33 @@
+{
+  "version": "5.4.1",
+  "date": "2026-10-23",
+  "backend_tests": 88,
+  "frontend_tests": 13,
+  "source_core_version": "profession-core-20261023-v1",
+  "profession_counts": {
+    "MD": 6,
+    "RPH": 6,
+    "RT": 5,
+    "MLS": 6,
+    "RN": 6,
+    "DT": 6,
+    "RSP": 7,
+    "AUD": 6,
+    "PT": 6,
+    "OT": 5,
+    "ST": 6,
+    "CP": 6
+  },
+  "browser_checks": [
+    "earned Level 2 after two completed practices",
+    "five profession team cards and original guide image",
+    "profession-specific six-axis dietitian result",
+    "legacy result with two unassessed axes",
+    "radar container clientWidth equals scrollWidth"
+  ],
+  "main_service_version": "5.4.1",
+  "existing_records_preserved": true,
+  "private_test_accounts_published": false,
+  "original_documents_published": false,
+  "movie_rerecorded_for_541": false
+}

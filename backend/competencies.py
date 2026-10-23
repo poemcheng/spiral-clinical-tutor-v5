@@ -2,8 +2,9 @@
 import copy
 import secrets
 from .legacy.builtin_cases import PROFESSIONS
+from . import core_alignment
 
-VERSION = 'profession-indicators-20261022-v5'
+VERSION = core_alignment.VERSION
 HCPC = 'https://www.hcpc-uk.org/standards/standards-of-proficiency/'
 SOURCES = {
  'MD': ('CanMEDS Physician Competency Framework 2015', 'https://www.royalcollege.ca/content/dam/document/standards-and-accreditation/canmeds-full-framework-e.pdf', 'Seven roles; 2026 comparison checked separately'),
@@ -39,10 +40,15 @@ def profile(profession):
     from .training_evidence import REFERENCES,NOTE
     title,url,location=SOURCES[profession]
     return {'version':VERSION,'profession':profession,'label':PROFESSIONS[profession]['label'],
-      'status':'平台依職類框架改編之學習指標；數量與題目是本系統課程設計，並非原文量表或臺灣執業標準，待職類教師核定。',
+      'status':'核心能力名稱及順序依使用者提供《核心能力.docx》；情境行為與題目由平台轉寫，並非正式核定量表，待職類教師審核。',
+      'source_file':core_alignment.CATALOG['source_file'],'source_sha256':core_alignment.CATALOG['source_sha256'],
       'epa_note':NOTE,'epa_reference':REFERENCES.get(profession),
-      'references':[{'title':title,'url':url,'location':location,'checked_at':'2026-10-22','support':'框架層級參照；不代表本地題目或切點已驗證'}],
-      'indicators':[{'id':f'{profession}-{i+1:02}', 'name':n,'description':d,'dimension':dim,'reference_index':0} for i,(n,d,dim) in enumerate(DEFINITIONS[profession])]}
+      'references':[{'title':'使用者提供《核心能力》職種對照','url':'/api/materials/core-competencies','location':core_alignment.CATALOG['professions'][profession]['source_label']+'欄','support':'核心能力名稱、軸數與順序的直接來源'},
+        {'title':title,'url':url,'location':location,'checked_at':'2026-10-22','support':'補充框架參照；不代表附件或本地題目已獲官方核定'}],
+      'indicators':core_alignment.indicators(profession)}
+
+def aligned_result(scores,profession):
+    return core_alignment.align(scores,profession,profile)
 
 def apply_profile(core, previous=None):
     p=profile(core['profession']);old=copy.deepcopy(core['items'])

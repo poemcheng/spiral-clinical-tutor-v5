@@ -1,0 +1,227 @@
+{
+  "version": "5.4.0",
+  "recorded_date": "2026-10-23",
+  "synthetic_accounts": true,
+  "main_flow_session": 13,
+  "sessions": [
+    {
+      "id": 13,
+      "profession": "DT",
+      "level": 5,
+      "step": 6,
+      "status": "completed",
+      "learner_rounds": 2,
+      "actors": [
+        "wang-pt"
+      ],
+      "frame_notes": 1,
+      "frame_reviews": 1
+    },
+    {
+      "id": 14,
+      "profession": "PT",
+      "level": 1,
+      "step": 4,
+      "status": "active",
+      "learner_rounds": 2,
+      "actors": [
+        "auntie-lin"
+      ],
+      "frame_notes": 0,
+      "frame_reviews": 0
+    },
+    {
+      "id": 15,
+      "profession": "MD",
+      "level": 3,
+      "step": 4,
+      "status": "active",
+      "learner_rounds": 2,
+      "actors": [
+        "auntie-lin"
+      ],
+      "frame_notes": 0,
+      "frame_reviews": 0
+    },
+    {
+      "id": 16,
+      "profession": "RN",
+      "level": 4,
+      "step": 4,
+      "status": "active",
+      "learner_rounds": 4,
+      "actors": [
+        "auntie-lin",
+        "wang-pt"
+      ],
+      "frame_notes": 0,
+      "frame_reviews": 0
+    },
+    {
+      "id": 17,
+      "profession": "RT",
+      "level": 2,
+      "step": 4,
+      "status": "active",
+      "learner_rounds": 2,
+      "actors": [
+        "wang-pt"
+      ],
+      "frame_notes": 0,
+      "frame_reviews": 0
+    }
+  ],
+  "dialogue_rounds": 12,
+  "voice": {
+    "test_id": "ae3b1bd01bc84539bf58752906358a2c",
+    "passed": true,
+    "rounds": 2,
+    "resumed": true,
+    "input_source": "controlled-synthetic-audio",
+    "physical_microphone_tested": false
+  },
+  "voices": {
+    "male": "Microsoft Zhiwei",
+    "female": "Microsoft Yating"
+  },
+  "source_hashes": {
+    "frontend/app.js": "562363046c800b945a70d23acbf25981cb5019f1c19512c19b39c034fd4d4c9d",
+    "frontend/encounter-ui.js": "2091a8467403a415fe1a0e80d32ecad372164ef3255095703c85bbed5034227f",
+    "backend/encounters.py": "bcdc9a0fdeb1801a318a1a4e12c2d6a56b03d3ea98308d8244b077219e4e935c",
+    "backend/server.py": "63584b52fba53dd0893d462606f1a29ee2e7e0d9f34cf53cc9f8ab62378073e4"
+  },
+  "bytes": 38118764,
+  "sha256": "e033786f38dedb879b604f225b929886e65e7f12eac70cff54a0384464829e05",
+  "duration": 796.067,
+  "width": 1920,
+  "height": 1080,
+  "fps": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "chapters": 78,
+  "decoded_checks": [
+    {
+      "key": "16",
+      "seconds": 141.543,
+      "ui_region_mae": 1.214,
+      "matches_capture": true
+    },
+    {
+      "key": "17",
+      "seconds": 152.492,
+      "ui_region_mae": 1.199,
+      "matches_capture": true
+    },
+    {
+      "key": "23",
+      "seconds": 215.091,
+      "ui_region_mae": 1.12,
+      "matches_capture": true
+    },
+    {
+      "key": "26",
+      "seconds": 292.217,
+      "ui_region_mae": 1.105,
+      "matches_capture": true
+    },
+    {
+      "key": "33d",
+      "seconds": 448.243,
+      "ui_region_mae": 1.052,
+      "matches_capture": true
+    },
+    {
+      "key": "33f",
+      "seconds": 468.977,
+      "ui_region_mae": 1.036,
+      "matches_capture": true
+    },
+    {
+      "key": "34f",
+      "seconds": 521.677,
+      "ui_region_mae": 1.05,
+      "matches_capture": true
+    },
+    {
+      "key": "35f",
+      "seconds": 571.81,
+      "ui_region_mae": 1.081,
+      "matches_capture": true
+    },
+    {
+      "key": "36e",
+      "seconds": 627.31,
+      "ui_region_mae": 1.074,
+      "matches_capture": true
+    },
+    {
+      "key": "37f",
+      "seconds": 406.377,
+      "ui_region_mae": 1.063,
+      "matches_capture": true
+    },
+    {
+      "key": "44",
+      "seconds": 711.952,
+      "ui_region_mae": 1.63,
+      "matches_capture": true
+    },
+    {
+      "key": "45",
+      "seconds": 721.924,
+      "ui_region_mae": 1.594,
+      "matches_capture": true
+    },
+    {
+      "key": "46",
+      "seconds": 728.777,
+      "ui_region_mae": 0.726,
+      "matches_capture": true
+    },
+    {
+      "key": "49",
+      "seconds": 753.843,
+      "ui_region_mae": 0.534,
+      "matches_capture": true
+    },
+    {
+      "key": "50",
+      "seconds": 759.81,
+      "ui_region_mae": 0.621,
+      "matches_capture": true
+    },
+    {
+      "key": "51",
+      "seconds": 767.31,
+      "ui_region_mae": 0.663,
+      "matches_capture": true
+    }
+  ],
+  "private_local_only": true,
+  "edited_recording": true,
+  "physical_microphone_tested": false,
+  "passed": true,
+  "encoded_audio_checks": [
+    {
+      "chapter": "23",
+      "actual_app_audio_correlation": 0.99999,
+      "passed": true
+    },
+    {
+      "chapter": "33d",
+      "actual_app_audio_correlation": 1.0,
+      "passed": true
+    },
+    {
+      "chapter": "36e",
+      "actual_app_audio_correlation": 0.99999,
+      "passed": true
+    },
+    {
+      "chapter": "37f",
+      "actual_app_audio_correlation": 0.99999,
+      "passed": true
+    }
+  ],
+  "subtitle_boundary_fix": "fps=30 before libass; decoded chapter 49 and 50 headings visually verified"
+}

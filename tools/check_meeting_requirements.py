@@ -21,7 +21,11 @@ def check(require_media=False):
     profiles=[competencies.profile(p) for p in competencies.DEFINITIONS]
     counts={p['profession']:len(p['indicators']) for p in profiles}
     add('profession_specific_indicators',len(profiles)==12 and len(set(counts.values()))>1,counts)
-    add('reference_mapping_and_draft_status',all(p['references'] and all(r['url'].startswith('https://') for r in p['references']) and '待職類教師核定' in p['status'] for p in profiles),{'profiles':len(profiles),'clinical_approval':False,'scope':'Checks mappings and labels, not literature validity'})
+    def valid_reference(p,r):
+        if r['url'].startswith('https://'):return True
+        return (r['url']=='/api/materials/core-competencies' and p.get('source_file')=='核心能力.docx'
+                and p.get('source_sha256')==competencies.core_alignment.CATALOG['source_sha256'])
+    add('reference_mapping_and_draft_status',all(p['references'] and all(valid_reference(p,r) for r in p['references']) and any(label in p['status'] for label in ('待職類教師核定','待職類教師審核')) for p in profiles),{'profiles':len(profiles),'clinical_approval':False,'scope':'Checks mappings and labels, not literature validity'})
     expected={'RT':['PT'],'DT':['PT'],'PT':['patient'],'MD':['patient'],'RN':['patient','PT']}
     pairings={p:characters.pairing(p)['targets'] for p in expected}
     add('five_confirmed_demo_pairings',pairings==expected,pairings)

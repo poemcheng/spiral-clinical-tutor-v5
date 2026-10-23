@@ -1,15 +1,15 @@
-import {posePanel,mountPosePanel} from '/static/pose-panel.js?v=5.4.0';
+import {posePanel,mountPosePanel} from '/static/pose-panel.js?v=5.4.1';
 
-import {frameObservation} from '/static/frame-review.js?v=5.4.0';
+import {frameObservation} from '/static/frame-review.js?v=5.4.1';
 
-import {competencyRadar} from '/static/visuals.js?v=5.0.0';
-import {curriculumPanel,mountCurriculum,stepExplanation} from '/static/learning-levels.js?v=5.4.0';
+import {competencyRadar} from '/static/visuals.js?v=5.4.1';
+import {curriculumPanel,mountCurriculum,stepExplanation} from '/static/learning-levels.js?v=5.4.1';
 
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 export function referencePanel(profile){if(!profile)return '';return `<details class="source-details"><summary>${esc(profile.label)} · 核心指標、EPA 訓練依據與題庫查核</summary><p>${esc(profile.status)}</p>${profile.epa_note?`<div class="note">${esc(profile.epa_note)}</div>`:''}${profile.epa_reference?`<p><a href="${esc(profile.epa_reference.url)}" target="_blank" rel="noopener">${esc(profile.epa_reference.title)} ↗</a><br>${esc(profile.epa_reference.scope)}</p>`:''}<p>現有 1,250 題標示待審，未驗證為正式公開考題或院方核定考核。<a href="/api/training-evidence" target="_blank" rel="noopener">查看逐題來源欄位查核摘要與公開培訓依據</a></p>${profile.references.map(r=>`<p><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)} ↗</a><br>${esc(r.location)} · ${esc(r.support)}</p>`).join('')}${profile.indicators.map(i=>`<p><b>${esc(i.id)} ${esc(i.name)}</b>：${esc(i.description)}</p>`).join('')}</details>`;}
 
-export function competencyPanel(scores,showRadar=true){const p=scores?.competency_profile;if(!p)return '';return `<section class="card"><h2>${esc(p.label)} · ${p.indicators.length}項核心指標成果</h2><div class="${showRadar?'grid2':''}">${showRadar?`<div>${competencyRadar(scores.competency_scores,'role',p)}</div>`:''}<div>${(scores.competency_results||[]).map(i=>`<div class="module"><b>${esc(i.name)} · ${i.score/20} / 5</b><progress value="${i.score}" max="100"></progress><p>${esc(i.feedback)}</p></div>`).join('')}</div></div><p class="source">${esc(scores.score_formula)}</p>${referencePanel(p)}</section>`;}
+export function competencyPanel(scores,showRadar=true){const p=scores?.competency_profile;if(!p)return '';return `<section class="card competency-results"><h2>${esc(p.label)} · ${p.indicators.length}項職種核心能力</h2><p class="source">${esc(p.source_file||'本輪指標版本')} · 名稱與順序依來源對應</p>${scores.competency_alignment?`<p class="note">${esc(scores.competency_alignment.note)}</p>`:''}<div class="${showRadar?'grid2':''}">${showRadar?`<div>${competencyRadar(scores.competency_scores,'role',p)}</div>`:''}<div>${(scores.competency_results||[]).map(i=>`<div class="module"><b>${esc(i.name)} · ${i.score===null?'未評估':(i.score/20).toFixed(1)+' / 5'}</b>${i.score===null?'':`<progress value="${i.score}" max="100"></progress>`}<p>${esc(i.feedback)}</p>${i.source_indicators?.length?`<p class="source">舊版對應指標：${esc(i.source_indicators.join('、'))}</p>`:''}</div>`).join('')}</div></div><p class="source">${esc(scores.score_formula)}</p>${referencePanel(p)}</section>`;}
 
 
 export function learningResources(l,sid){
@@ -28,7 +28,7 @@ export async function initLearningResources(resources){
  const showCurrent=()=>{if(disposed||!video.isConnected)return;const clip=media.find(c=>c.id===select.value),step=clip?.steps?.find(s=>s.start<=video.currentTime&&video.currentTime<s.end);const key=select.value+'|'+(step?.id||'');if(key!==lastStep){lastStep=key;document.querySelector('#media-current-step').innerHTML=stepExplanation(step);}};
  const change=async()=>{if(disposed||!video.isConnected)return;status.textContent='影片載入中…';video.pause();projection=select.selectedOptions[0]?.dataset.projection||'flat';const spherical=projection!=='flat';video.hidden=spherical;canvas.hidden=!spherical;document.querySelector('#panorama-controls').hidden=!spherical;
   video.src=select.selectedOptions[0]?.dataset.url||'';video.load();lastStep=null;
-  if(spherical&&!view){try{const {mountPanorama}=await import('/static/vendor/panorama.bundle.js?v=5.4.0');view=mountPanorama(canvas,video,a=>document.querySelector('#view-angle').textContent=`水平 ${a.yaw.toFixed(0)}° · 垂直 ${a.pitch.toFixed(0)}°`);}catch{video.hidden=false;canvas.hidden=true;status.textContent='目前無法建立環景；可觀看原始展開影片。';}}
+  if(spherical&&!view){try{const {mountPanorama}=await import('/static/vendor/panorama.bundle.js?v=5.4.1');view=mountPanorama(canvas,video,a=>document.querySelector('#view-angle').textContent=`水平 ${a.yaw.toFixed(0)}° · 垂直 ${a.pitch.toFixed(0)}°`);}catch{video.hidden=false;canvas.hidden=true;status.textContent='目前無法建立環景；可觀看原始展開影片。';}}
   if(disposed||!video.isConnected)return;view?.reset();const clip=media.find(c=>c.id===select.value),steps=clip?.steps||[];
   document.querySelector('#media-step-list').innerHTML=steps.length?`<details><summary>行為步驟索引 · ${steps.length}段</summary><p>點選段落先看目的與解說；Level 5可將區間帶入逐格分析。</p>${steps.map((s,i)=>`<p><button type="button" class="step-jump" data-step="${i}">${Math.floor(s.start/60)}:${String(Math.floor(s.start%60)).padStart(2,'0')} · ${esc(s.title)}</button>${document.querySelector('#pose-form')?`<button type="button" class="step-analyze" data-step="${i}">選取此動作段落分析</button>`:''}</p>`).join('')}</details>`:'<p class="source">此片尚無核定步驟索引；可自行選格觀察，目的解析需由教師補充。</p>';
   for(const b of document.querySelectorAll('.step-jump,.step-analyze'))b.onclick=()=>{const s=steps[Number(b.dataset.step)];video.pause();video.currentTime=s.start+.05;if(b.classList.contains('step-analyze')){const f=document.querySelector('#pose-form');f.elements.start.value=s.start;f.elements.end.value=Math.min(s.end,clip.duration);document.querySelector('#pose-status').textContent='已選取「'+s.title+'」，按開始逐格分析處理此段每一張圖片。';}showCurrent();};

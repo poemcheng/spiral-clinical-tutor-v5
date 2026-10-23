@@ -451,6 +451,9 @@ def get_session(sid: int, user=Depends(current_user)):
                                   WHERE session_id=? ORDER BY r.id''', (sid,))
     result['assessment'] = store.one('SELECT scores FROM attempts WHERE id=?',
                                      (row['payload'].get('assessment_attempt_id', 0),))
+    from .competencies import aligned_result
+    if result['assessment']:
+        result['report_competencies']=aligned_result(json.loads(result['assessment']['scores'] or '{}'),row['profession'])
     return result
 
 
@@ -533,7 +536,7 @@ def library_video(sid:int,user=Depends(current_user)):
 
 @app.get('/api/materials/{kind}')
 def source_material(kind:str,user=Depends(current_user)):
-    names={'curriculum':'跨職種擬真教案（依自評等級分流）.pdf','questions':'肌少症自評題庫_審題表_20261021.xlsx'}
+    names={'curriculum':'跨職種擬真教案（依自評等級分流）.pdf','questions':'肌少症自評題庫_審題表_20261021.xlsx','core-competencies':'核心能力.docx'}
     if kind not in names:raise HTTPException(404,'找不到來源文件。')
     if kind=='questions' and user['role'] not in ('teacher','admin'):raise HTTPException(403,'完整題庫與答案限教師及管理員。')
     path=ROOT/'data/sources'/names[kind]

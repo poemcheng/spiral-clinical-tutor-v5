@@ -1,5 +1,5 @@
-import {poseSnapshot} from './pose-panel.js?v=5.4.0';
-import {stepExplanation} from './learning-levels.js?v=5.4.0';
+import {poseSnapshot} from './pose-panel.js?v=5.4.1';
+import {stepExplanation} from './learning-levels.js?v=5.4.1';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number=(x,d=0)=>Number.isFinite(Number(x))?Number(x).toFixed(d):'—';
 const date=x=>new Date(x*1000).toLocaleString('zh-TW');

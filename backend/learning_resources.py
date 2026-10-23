@@ -12,7 +12,7 @@ from typing import Literal
 from .config import ROOT,RUNTIME
 from . import pose_analysis,teaching_media,learning_curriculum
 from .competencies import profile
-from . import characters
+from . import characters,team_knowledge
 
 def manifest():
     return teaching_media.manifest()
@@ -27,7 +27,7 @@ def resources(row,case):
       'steps':teaching_media.steps_for(c) if level>=3 else [],
       **({'url':f"/api/sessions/{row['id']}/resources/video/{c['id']}"} if level>=(3 if c.get('projection')=='flat' else 4) else {})} for c in manifest()['clips'] if teaching_media.applies(c,row,case)]
     return {'learning_level':level,'self_level':row['level'],'profession':p,'team_target':policy['label'],
-      'team_knowledge':[f"本職類：{p['label']}，以本輪職類任務為準。",f"互動對象：{policy['label']}；說明已知資料、限制、協助需求及追蹤。",'放射師交接檢查條件與影像品質；物理治療師負責功能及活動評估；營養師負責營養評估，角色不可互換。'],
+      'team_knowledge':team_knowledge.for_case(case,row['profession'],level,row['id']),
       'clips':[c for c in clips if c['projection']!='flat'] if level>=4 else [],
       'media':[c for c in clips if 'url' in c],
       'lesson_levels':learning_curriculum.levels(case,row['profession'],level,clips),
@@ -75,6 +75,15 @@ def note_fingerprint(note):
 def install_routes(app,owned_session,current_user,store_provider):
     def require(row,level):
         if earned(row)<level:raise HTTPException(403,f'本輪教材需累積學習 Level {level}；自評Level不會解鎖此教材。')
+
+    @app.get('/api/sessions/{sid}/resources/team-guide')
+    def team_guide(sid:int,user=Depends(current_user)):
+        row=owned_session(sid,user);require(row,2)
+        if not team_knowledge.for_case(row['payload'].get('case_snapshot',{}),row['profession'],earned(row),sid):
+            raise HTTPException(404,'本教案未提供肌少症團隊指南。')
+        path=ROOT/'data/sources/跨專業肌少症整合照護指南.png'
+        if not path.is_file():raise HTTPException(404,'團隊指南原圖尚未安裝，仍可閱讀已解鎖的團隊知識。')
+        return FileResponse(path,media_type='image/png')
 
     def job_for(row,job_id):
         job=next((x for x in row['payload'].get('pose_jobs',[]) if x['id']==job_id),None)

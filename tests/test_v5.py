@@ -38,11 +38,12 @@ class V5Tests(unittest.TestCase):
         self.assertEqual(self.client.post(f'/api/sessions/{sid}/handoff',json=handoff).status_code,200)
 
     def test_profession_results_are_distinct_and_have_reference_mapping(self):
-        expected={'RT':5,'DT':6,'PT':7,'MD':7,'RN':8}
+        expected={'RT':5,'DT':6,'PT':6,'MD':6,'RN':6}
         for prof,count in expected.items():
             sid,e=self.start(prof)
             self.assertEqual(len(e['snapshot']['items']),count)
-            self.assertTrue(e['snapshot']['competency_profile']['references'][0]['url'].startswith('https://'))
+            self.assertEqual(e['snapshot']['competency_profile']['source_file'],'核心能力.docx')
+            self.assertEqual(e['snapshot']['competency_profile']['references'][0]['url'],'/api/materials/core-competencies')
             r=self.client.get(f"/api/assessments/{e['attempt_id']}").json()['scores']
             self.assertEqual(len(r['competency_results']),count)
             self.assertTrue(all(k.startswith(prof+'-') for k in r['competency_scores']))
