@@ -1,5 +1,5 @@
-import {createVoiceInput} from '/static/voice.js?v=5.3.1';
-import {createAvatar} from '/static/vendor/avatar.bundle.js?v=5.3.1';
+import {createVoiceInput} from '/static/voice.js?v=5.3.2';
+import {createAvatar} from '/static/vendor/avatar.bundle.js?v=5.3.2';
 const $=s=>document.querySelector(s),sid=Number(new URLSearchParams(location.search).get('session'));
 let avatar,controller,context,destination,source,frame,watchdog,active=false,report;
 let audio=$('#reply');const expected=['您好，請說明目前需要一起確認的資料。','謝謝您的說明，還有哪些資訊需要再核對？'];

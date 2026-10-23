@@ -1,5 +1,5 @@
 {
-  "version": "v5-two-axes-five-resources-20261022",
+  "version": "v5-two-axes-cumulative-lessons-20261023",
   "status": "平台試行學習分流規則，非臨床資格認證",
   "self_score_formula": "各職種核心指標自評分數 × 20 後等權平均（滿分100）",
   "level_bands": [
@@ -33,27 +33,27 @@
   "information": [
     {
       "level": 1,
-      "title": "單一職類知識",
+      "title": "單一職類教案",
       "kind": "background"
     },
     {
       "level": 2,
-      "title": "團隊職類知識",
+      "title": "跨域合作教案",
       "kind": "interview"
     },
     {
       "level": 3,
-      "title": "情境影片",
+      "title": "一般影片教案",
       "kind": "handoff"
     },
     {
       "level": 4,
-      "title": "跨團隊360度影片與視角",
+      "title": "環景場域教案",
       "kind": "source_limits"
     },
     {
       "level": 5,
-      "title": "影片解析與逐格分析",
+      "title": "逐格動作分析與解釋教案",
       "kind": "reflection"
     }
   ],

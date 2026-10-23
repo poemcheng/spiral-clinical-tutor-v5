@@ -22,6 +22,8 @@ def main():
             for name in z.namelist():
                 dest=ROOT/name
                 # An older bootstrap pack must not replace the current source catalog or compiled code.
+                if dest.exists() and (name=='data/learning_policy.json' or name.startswith('data/action_lessons/')):
+                    continue
                 if args.local and name=='data/characters/catalog.json' and dest.exists():
                     current=json.loads(dest.read_text(encoding='utf-8'))
                     if any(a.get('realistic_model_file') for a in current.get('actors',[])):continue

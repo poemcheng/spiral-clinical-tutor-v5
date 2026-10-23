@@ -1,0 +1,133 @@
+{
+  "version": "5.3.2",
+  "date": "2026-10-23",
+  "python_tests": 76,
+  "frontend_tests": 7,
+  "cumulative_learning_activities": [
+    2,
+    4,
+    6,
+    8,
+    10
+  ],
+  "muscle_video_step_counts": [
+    13,
+    13
+  ],
+  "every_frame_browser_test": {
+    "clip": "sarc-analysis",
+    "start": 145,
+    "end": 167,
+    "frames": 528,
+    "detected_frames": 528,
+    "roi": [
+      0.45,
+      0.1,
+      0.35,
+      0.9
+    ],
+    "note_frame": 3481,
+    "step_snapshot": "sitstand",
+    "teacher_feedback_count": 1,
+    "level2_notes_count": 1,
+    "synthetic_isolated_fixture": true
+  },
+  "samples": [
+    {
+      "clip": "course-sarc-video",
+      "frames": 60,
+      "every_frame": true,
+      "view": {
+        "start": 150,
+        "end": 152,
+        "yaw": 0,
+        "pitch": 0,
+        "fov": 70,
+        "width": 640,
+        "height": 360,
+        "projection": "flat"
+      },
+      "first": 4496,
+      "last": 4555,
+      "detected": 60,
+      "step_ids": [
+        "sitstand"
+      ],
+      "raw_images": 60
+    },
+    {
+      "clip": "sarc-analysis",
+      "frames": 48,
+      "every_frame": true,
+      "view": {
+        "start": 145,
+        "end": 147,
+        "yaw": 0,
+        "pitch": 0,
+        "fov": 70,
+        "width": 640,
+        "height": 360,
+        "projection": "flat"
+      },
+      "first": 3480,
+      "last": 3527,
+      "detected": 48,
+      "step_ids": [
+        "sitstand"
+      ],
+      "raw_images": 48
+    },
+    {
+      "clip": "team360-2",
+      "frames": 30,
+      "every_frame": true,
+      "view": {
+        "start": 5,
+        "end": 6,
+        "yaw": -30,
+        "pitch": 0,
+        "fov": 70,
+        "width": 640,
+        "height": 480,
+        "projection": "rectilinear"
+      },
+      "first": 150,
+      "last": 179,
+      "detected": 27,
+      "step_ids": [],
+      "raw_images": 30
+    }
+  ],
+  "full_length_videos_pose_verified": false,
+  "clinical_accuracy_measured": false,
+  "all_clinical_explanations_approved": false,
+  "physical_microphone_verified": false,
+  "teacher_normal_video_review": {
+    "parallel_original_and_pose": true,
+    "next_frame_verified": 3481,
+    "raw_overlay_toggle": true,
+    "playback_synced_frame": 3596,
+    "playback_seconds": 149.835,
+    "browser_errors": 0
+  },
+  "bootstrap_preserves_current_curriculum_metadata": true,
+  "full_operation_recording": {
+    "movie": "v5.3.2-full-workflow-local.mp4",
+    "sha256": "9551b46b1f5aaf2ef04adc116caaaedf0aaddec408123c2aa424d5448ebb7858",
+    "duration": 390.766667,
+    "bytes": 19693321,
+    "chapters": 57,
+    "narrated_actual_ui_recording": true,
+    "unedited_continuous_recording": false,
+    "private_local_only": true,
+    "passed": true
+  },
+  "voice_recording_retest": {
+    "rounds": 2,
+    "passed": true,
+    "physical_microphone": false,
+    "source": "controlled test audio",
+    "model": "gemma4:12b",
+    "gender": "male"
+  }
+}

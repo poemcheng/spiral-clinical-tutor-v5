@@ -10,13 +10,12 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 from typing import Literal
 from .config import ROOT,RUNTIME
-from . import pose_analysis
+from . import pose_analysis,teaching_media,learning_curriculum
 from .competencies import profile
 from . import characters
 
 def manifest():
-    p=ROOT/'data/video360/catalog.json'
-    return json.loads(p.read_text(encoding='utf-8')) if p.exists() else {'clips':[]}
+    return teaching_media.manifest()
 
 def earned(row):
     return row['payload']['adaptive_plan'].get('learning_level',1)
@@ -24,11 +23,16 @@ def earned(row):
 def resources(row,case):
     level=earned(row);p=profile(row['profession']);policy=row['payload'].get('interaction_policy',characters.pairing(row['profession']))
     clips=[{'id':c['id'],'title':c['title'],'duration':c['duration'],'fps':c['fps'],'status':c['status'],
-      'available':(ROOT/'data/video360'/c['file']).is_file(),
-      **({'url':f"/api/sessions/{row['id']}/resources/360/{c['id']}"} if level>=4 else {})} for c in manifest()['clips']]
+      'projection':c.get('projection','equirectangular'),'available':teaching_media.path_for(c).is_file(),
+      'steps':teaching_media.steps_for(c) if level>=3 else [],
+      **({'url':f"/api/sessions/{row['id']}/resources/video/{c['id']}"} if level>=(3 if c.get('projection')=='flat' else 4) else {})} for c in manifest()['clips'] if teaching_media.applies(c,row,case)]
     return {'learning_level':level,'self_level':row['level'],'profession':p,'team_target':policy['label'],
       'team_knowledge':[f"本職類：{p['label']}，以本輪職類任務為準。",f"互動對象：{policy['label']}；說明已知資料、限制、協助需求及追蹤。",'放射師交接檢查條件與影像品質；物理治療師負責功能及活動評估；營養師負責營養評估，角色不可互換。'],
-      'clips':clips if level>=4 else [],'frame_notes':row['payload'].get('frame_notes',[]) if level>=5 else [],
+      'clips':[c for c in clips if c['projection']!='flat'] if level>=4 else [],
+      'media':[c for c in clips if 'url' in c],
+      'lesson_levels':learning_curriculum.levels(case,row['profession'],level,clips),
+      'lesson_notes':row['payload'].get('learning_notes',[]),
+      'frame_notes':row['payload'].get('frame_notes',[]) if level>=5 else [],
       'frame_reviews':row['payload'].get('frame_note_reviews',[]) if level>=5 else [],
       'pose_service':pose_analysis.availability() if level>=5 else None,
       'pose_jobs':row['payload'].get('pose_jobs',[]) if level>=5 else [],
@@ -52,12 +56,17 @@ class PoseRequest(BaseModel):
     yaw:float=Field(default=0,ge=-360,le=360,allow_inf_nan=False)
     pitch:float=Field(default=0,ge=-85,le=85,allow_inf_nan=False)
     fov:float=Field(default=70,ge=35,le=95,allow_inf_nan=False)
+    roi:list[float]|None=Field(default=None,min_length=4,max_length=4)
 
 
 class FrameReview(BaseModel):
     decision:Literal['reviewed','needs_revision']
     feedback:str=Field(min_length=10,max_length=2000)
     expected_review_id:str=Field(default='',max_length=32)
+
+class LearningNote(BaseModel):
+    lesson_id:str=Field(min_length=1,max_length=100)
+    reflection:str=Field(min_length=10,max_length=4000)
 
 
 def note_fingerprint(note):
@@ -86,11 +95,15 @@ def install_routes(app,owned_session,current_user,store_provider):
         row=owned_session(sid,user);require(row,5)
         if row['status']!='active' or row['step']<3:raise HTTPException(409,'請在進行中的情境學習或角色互動分析影片。')
         clip=next((x for x in manifest()['clips'] if x['id']==body.clip_id),None)
-        if not clip or not (ROOT/'data/video360'/clip['file']).is_file():raise HTTPException(404,'影片尚未安裝。')
-        if body.end<=body.start or body.end>clip['duration'] or body.end-body.start>300:raise HTTPException(400,'分析區間需在影片範圍內，單次最長300秒。')
+        if not clip or not teaching_media.applies(clip,row) or not teaching_media.path_for(clip).is_file():raise HTTPException(404,'此情境影片尚未安裝或不適用。')
+        if body.end<=body.start or body.end>clip['duration']+.001 or body.end-body.start>1800:raise HTTPException(400,'分析區間需在影片範圍內，單次最長1800秒。')
+        if body.roi:
+            x,y,w,h=body.roi
+            if not all(math.isfinite(v) for v in body.roi) or x<0 or y<0 or w<.05 or h<.05 or x+w>1.00001 or y+h>1.00001:raise HTTPException(400,'人物範圍需在畫面內，寬高至少5%。')
         if not pose_analysis.availability()['ready']:raise HTTPException(503,'骨架模型未就緒；請執行 python tools/setup_pose.py 並安裝 requirements-pose.txt。')
         if not pose_analysis.LOCK.acquire(blocking=False):raise HTTPException(429,'另一段影片分析中，請待完成後再試。')
         store=store_provider();job_id=secrets.token_hex(16);params=body.model_dump(exclude={'clip_id'})
+        if clip.get('projection')=='flat':params.update(yaw=0,pitch=0,fov=70)
         job={'id':job_id,'clip_id':clip['id'],'title':clip['title'],'status':'running','created':time.time(),
              'params':params,'progress':0,'version':pose_analysis.VERSION,'input_sha256':clip.get('proxy_sha256')}
         try:
@@ -126,19 +139,21 @@ def install_routes(app,owned_session,current_user,store_provider):
         return result_for(row,job_id)
 
     @app.get('/api/sessions/{sid}/pose-analysis/{job_id}/frames/{frame}')
-    def pose_frame(sid:int,job_id:str,frame:int,user=Depends(current_user)):
+    def pose_frame(sid:int,job_id:str,frame:int,overlay:bool=True,user=Depends(current_user)):
         row=owned_session(sid,user);require(row,5);job=job_for(row,job_id)
         if job['status']!='completed' or frame<0:raise HTTPException(404,'此影格尚未完成。')
-        path=RUNTIME/'pose_analysis'/job['id']/f'frame-{frame}.jpg'
+        path=RUNTIME/'pose_analysis'/job['id']/f"{'' if overlay else 'raw-'}frame-{frame}.jpg"
         if not path.is_file():raise HTTPException(404,'找不到分析影格。')
         return FileResponse(path,media_type='image/jpeg',headers={'Cache-Control':'private, no-store'})
 
+    @app.get('/api/sessions/{sid}/resources/video/{clip_id}')
     @app.get('/api/sessions/{sid}/resources/360/{clip_id}')
     def media(sid:int,clip_id:str,user=Depends(current_user)):
-        row=owned_session(sid,user);require(row,4)
+        row=owned_session(sid,user)
         clip=next((c for c in manifest()['clips'] if c['id']==clip_id),None)
-        if not clip:raise HTTPException(404,'未知360影片。')
-        path=ROOT/'data/video360'/clip['file']
+        if not clip or not teaching_media.applies(clip,row):raise HTTPException(404,'此情境未提供該影片。')
+        require(row,3 if clip.get('projection')=='flat' else 4)
+        path=teaching_media.path_for(clip)
         if not path.is_file():raise HTTPException(404,'影片尚未安裝。')
         return FileResponse(path,media_type='video/mp4')
 
@@ -150,10 +165,11 @@ def install_routes(app,owned_session,current_user,store_provider):
             row=owned_session(sid,user);require(row,5)
             if row['status']!='active':raise HTTPException(409,'已完成的訓練證據不能改寫。')
             clip=next((x for x in manifest()['clips'] if x['id']==body.clip_id),None)
-            if not clip or not math.isfinite(body.seconds) or body.seconds>clip['duration']:raise HTTPException(400,'影格時間或影片不符。')
+            if not clip or not teaching_media.applies(clip,row) or not math.isfinite(body.seconds) or body.seconds>clip['duration']:raise HTTPException(400,'影格時間、影片或主題不符。')
             if len(body.observation.strip())<5:raise HTTPException(400,'請填寫實際觀察內容。')
             data={**body.model_dump(),'frame':round(body.seconds*clip['fps']),'created':time.time(),'kind':'learner_observation','review_status':'學員觀察，待教師覆核',
                   'media_snapshot':{k:clip[k] for k in ('id','title','fps','fps_rational','projection','source_sha256','proxy_sha256') if k in clip}}
+            data['teaching_step']=teaching_media.step_at(clip,body.seconds)
             if body.analysis_id:
                 job=job_for(row,body.analysis_id);analysis=result_for(row,body.analysis_id)
                 frame=next((f for f in analysis['frames'] if f['frame']==body.analysis_frame),None)
@@ -161,11 +177,30 @@ def install_routes(app,owned_session,current_user,store_provider):
                     raise HTTPException(400,'分析影格、視角與觀察時間不符；請重新選取分析結果。')
                 data.update(seconds=frame['seconds'],frame=frame['frame'],yaw=analysis['view']['yaw'],pitch=analysis['view']['pitch'],fov=analysis['view'].get('fov',70))
                 data['analysis_snapshot']={'id':job['id'],'session_id':sid,'version':analysis['version'],'result_sha256':job['result_sha256'],
-                   'model':analysis['model'],'model_sha256':analysis['model_sha256'],'view':analysis['view'],'frame':frame,'limitation':analysis['limitation']}
+                   'model':analysis['model'],'model_sha256':analysis['model_sha256'],'view':analysis['view'],'frame':frame,'limitation':analysis['limitation'],
+                   'teaching_step':next((s for s in analysis.get('teaching_steps',[]) if s['id']==frame.get('teaching_step_id')),None)}
                 data['kind']='pose_supported_learner_observation'
             row['payload'].setdefault('frame_notes',[]).append(data)
             store.save(c,sid,row['payload']);store.event(c,user['id'],sid,'pose_supported_observation' if body.analysis_id else 'frame_observation',data)
         return data
+
+    @app.post('/api/sessions/{sid}/learning-notes')
+    def save_learning_note(sid:int,body:LearningNote,user=Depends(current_user)):
+        if user['role']!='student':raise HTTPException(403,'學習紀錄由學員建立。')
+        if len(body.reflection.strip())<10:raise HTTPException(400,'請填寫至少10字的學習判讀。')
+        from .server import case_for
+        store=store_provider()
+        with store.tx() as c:
+            row=owned_session(sid,user)
+            if row['status']!='active' or row['step']<3:raise HTTPException(409,'請在進行中的教材學習階段保存。')
+            course=case_for(row)
+            lesson=next((lesson for level in learning_curriculum.levels(course,row['profession'],earned(row),manifest()['clips']) if level['unlocked'] for lesson in level.get('lessons',[]) if lesson['id']==body.lesson_id),None)
+            if not lesson:raise HTTPException(403,'此教案未解鎖或不屬於本輪。')
+            item={'id':secrets.token_hex(16),'lesson_id':body.lesson_id,'reflection':body.reflection.strip(),'created':time.time(),
+                  'lesson_snapshot':lesson,'curriculum_version':learning_curriculum.VERSION,'affects_formal_grade':False}
+            row['payload'].setdefault('learning_notes',[]).append(item);store.save(c,sid,row['payload'])
+            store.event(c,user['id'],sid,'learning_lesson_reflection',item)
+        return item
 
     @app.post('/api/teacher/sessions/{sid}/frame-notes/{note_index}/reviews')
     def review_frame(sid:int,note_index:int,body:FrameReview,user=Depends(current_user)):

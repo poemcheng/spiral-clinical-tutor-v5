@@ -1,0 +1,105 @@
+{
+  "version": "5.3.2",
+  "movie": "v5.3.2-full-workflow-local.mp4",
+  "sha256": "9551b46b1f5aaf2ef04adc116caaaedf0aaddec408123c2aa424d5448ebb7858",
+  "bytes": 19693321,
+  "duration": 390.766667,
+  "width": 1920,
+  "height": 1080,
+  "fps": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "chapters": 57,
+  "narrated_actual_ui_recording": true,
+  "unedited_continuous_recording": false,
+  "inter_action_waits_removed": true,
+  "synthetic_accounts": true,
+  "physical_microphone_tested": false,
+  "private_local_only": true,
+  "decoded_checks": [
+    {
+      "chapter": "08",
+      "seconds": 50.881,
+      "ui_region_mae_0_to_255": 0.482,
+      "matches_capture": true
+    },
+    {
+      "chapter": "19",
+      "seconds": 121.489,
+      "ui_region_mae_0_to_255": 0.867,
+      "matches_capture": true
+    },
+    {
+      "chapter": "23",
+      "seconds": 151.287,
+      "ui_region_mae_0_to_255": 1.03,
+      "matches_capture": true
+    },
+    {
+      "chapter": "31",
+      "seconds": 190.329,
+      "ui_region_mae_0_to_255": 0.856,
+      "matches_capture": true
+    },
+    {
+      "chapter": "32",
+      "seconds": 196.353,
+      "ui_region_mae_0_to_255": 0.792,
+      "matches_capture": true
+    },
+    {
+      "chapter": "R01",
+      "seconds": 251.256,
+      "ui_region_mae_0_to_255": 1.109,
+      "matches_capture": true
+    },
+    {
+      "chapter": "R02b",
+      "seconds": 262.544,
+      "ui_region_mae_0_to_255": 1.111,
+      "matches_capture": true
+    },
+    {
+      "chapter": "R05",
+      "seconds": 320.885,
+      "ui_region_mae_0_to_255": 1.546,
+      "matches_capture": true
+    },
+    {
+      "chapter": "R08",
+      "seconds": 341.394,
+      "ui_region_mae_0_to_255": 0.718,
+      "matches_capture": true
+    },
+    {
+      "chapter": "R09",
+      "seconds": 348.745,
+      "ui_region_mae_0_to_255": 0.592,
+      "matches_capture": true
+    },
+    {
+      "chapter": "R11",
+      "seconds": 367.341,
+      "ui_region_mae_0_to_255": 0.724,
+      "matches_capture": true
+    },
+    {
+      "chapter": "R12b",
+      "seconds": 374.968,
+      "ui_region_mae_0_to_255": 0.69,
+      "matches_capture": true
+    }
+  ],
+  "passed": true,
+  "audio_measurements": {
+    "lufsIntegrated": -20.1,
+    "lufsShortTermMax": -18.5,
+    "samplePeakDb": -2,
+    "truePeakDb": -2,
+    "clipping": {
+      "count": 0,
+      "firstAt": null
+    }
+  },
+  "sound_human_listened": false
+}

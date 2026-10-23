@@ -1,0 +1,791 @@
+{
+  "version": "action-teaching-5.3.2",
+  "video_sha256": {
+    "course-sarc-video": "dec09081c25c3cfe572bbb98296bd5414835994645fc51485d432f6c33a27351",
+    "sarc-analysis": "fc54fd6f0f0d54ef2e9613bbcc0c03113f5a60df6436d142e730080130073cec"
+  },
+  "videos": {
+    "course-sarc-video": [
+      {
+        "id": "intro",
+        "start": 0,
+        "end": 35,
+        "title": "閱讀任務與情境",
+        "purpose": "辨識本次照護任務及待確認資訊。",
+        "explanation": "先讀題、查看病歷與任務告示，再進入互動。",
+        "observe": [
+          "分清楚教案背景與實際取得的資料。"
+        ],
+        "pitfall": "讀題動作不等於已完成臨床評估。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "dxa",
+        "start": 35,
+        "end": 92,
+        "title": "與放射師確認DXA資訊",
+        "purpose": "向資料提供職類核對報告與限制，避免只憑單一數值下結論。",
+        "explanation": "觀察持電話、查看報告、提問及回述的順序。",
+        "observe": [
+          "提出比較兩次資料的具體問題。",
+          "記錄對方回覆與仍缺少的功能資料。"
+        ],
+        "pitfall": "接聽電話的骨架不能證明交接內容完整，須聆聽對話。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "opening",
+        "start": 92,
+        "end": 124,
+        "title": "身分確認、需求與疑慮",
+        "purpose": "建立正確對象與此次共同目標，了解病人的挫折。",
+        "explanation": "觀察面向對方、身分詢問、就診目的與病人回應。",
+        "observe": [
+          "提問後是否留時間讓對方回答？",
+          "是否先聽懂努力未見改善的疑慮？"
+        ],
+        "pitfall": "點頭、微笑或視線方向不能單獨證明同理或理解。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "prepare",
+        "start": 124,
+        "end": 150,
+        "title": "坐站測試前的指令與示範",
+        "purpose": "讓受測者了解起止姿勢、動作次數與計時方式，建立可比較的測試條件。",
+        "explanation": "觀察座椅、雙腳、手臂位置與示範說明。",
+        "observe": [
+          "本片示範雙手交叉胸前；核對是否有上肢支撐或其他改動。",
+          "確認是否聽懂口令，再辨識準備與正式計時的差別。"
+        ],
+        "pitfall": "本片與原始文字可能有姿勢描述差異；測試規範及必要調整由教師核定。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "sitstand",
+        "start": 150,
+        "end": 175,
+        "title": "連續坐下與站起的執行",
+        "purpose": "用標準化動作過程觀察坐站轉位與下肢功能，並保留動作策略。",
+        "explanation": "逐格看坐姿、軀幹前移、離椅、站直、下降及再次接觸座椅。",
+        "observe": [
+          "區分每次起立與坐下，觀察有沒有扶手、停頓或協助。",
+          "以原始影片時鐘核對口令和完整次數，不用單張圖推算總時間。"
+        ],
+        "pitfall": "二維膝角不能當實際關節角度；一次彎膝不代表已完成一次坐站。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "explain",
+        "start": 175,
+        "end": 216,
+        "title": "說明測試結果並回應疑慮",
+        "purpose": "把觀察到的結果轉為病人可理解的資訊，接續釐清運動與生活情境。",
+        "explanation": "觀察說明結果、病人提問、查看衛教單與再次澄清。",
+        "observe": [
+          "是否把測試結果與完整診斷分開？",
+          "病人提出疑問後，說明是否有跟著調整？"
+        ],
+        "pitfall": "影片中的時間或說法不是所有族群的診斷標準；採用版本須由教師核定。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "demonstrate",
+        "start": 216,
+        "end": 234,
+        "title": "坐姿下肢動作示範",
+        "purpose": "把口頭衛教轉為可見的動作範例，說清楚起始、維持與結束。",
+        "explanation": "觀察坐姿調整、伸膝抬腿、維持與放下。",
+        "observe": [
+          "比較示範者與病人看到的角度。",
+          "核對口語指令與可見動作是否一致。"
+        ],
+        "pitfall": "本片的次數與維持時間是案例示範，不自動成為每位病人的處方。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "return-demo",
+        "start": 234,
+        "end": 257,
+        "title": "病人回做與即時修正",
+        "purpose": "透過病人實際重做確認是否理解，而不是只問「懂了嗎」。",
+        "explanation": "比較示範前後的腿部位置、支撐、維持與治療師提醒。",
+        "observe": [
+          "病人是否自行做出動作？",
+          "治療師回饋後，下一次動作有沒有改變？"
+        ],
+        "pitfall": "完成一次動作不等於已會獨立安全執行；不可用痠痛作為效果或安全的唯一依據。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "exercise",
+        "start": 257,
+        "end": 295,
+        "title": "姿勢、上肢及其他動作衛教",
+        "purpose": "將不同動作分開示範，讓病人辨識姿勢、呼吸及動作順序。",
+        "explanation": "逐格看坐姿、手臂抬起與放下；回看衛教單及前後指令。",
+        "observe": [
+          "分清楚示範、口頭描述與病人回做。",
+          "找出哪個細節需要再示範或確認。"
+        ],
+        "pitfall": "畫面未呈現的動作不能補成已完成；疼痛或異常不適需停止並由專業人員評估。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "nutrition",
+        "start": 295,
+        "end": 337,
+        "title": "了解飲食說法與轉介理由",
+        "purpose": "辨識本職類評估之外仍需營養專業協助的資訊缺口。",
+        "explanation": "觀察病人描述飲食、治療師追問及說明轉介理由。",
+        "observe": [
+          "「有吃肉喝奶」是否已交代份量、頻率與其他生活情境？",
+          "是否讓病人理解轉介與原來問題的關係？"
+        ],
+        "pitfall": "骨架不能辨識攝取量或營養是否足夠，不從表情推測依從性。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "referral",
+        "start": 337,
+        "end": 366,
+        "title": "與營養師確認接續照護",
+        "purpose": "將轉介變成可執行的接續安排，確認接收職類與所需資訊。",
+        "explanation": "觀察電話聯繫、整理資訊、確認安排與回覆病人。",
+        "observe": [
+          "是否交代需求，而非只問時間地點？",
+          "接收者是否回覆，病人是否知道下一步？"
+        ],
+        "pitfall": "影片中的門診時間與行政安排僅屬當時案例，不代表現行服務資訊。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "closing",
+        "start": 366,
+        "end": 410,
+        "title": "共同確認後續計畫",
+        "purpose": "在結束前確認回家練習、接續照護與追蹤的理解。",
+        "explanation": "觀察交付資料、說明下一步與病人回應。",
+        "observe": [
+          "請以回述或實作確認理解。",
+          "區分說完計畫與對方確實知道如何執行。"
+        ],
+        "pitfall": "影片中的給付次數、期限及門診安排需另查核，不當成最新政策。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "feedback",
+        "start": 410,
+        "end": 495.261438,
+        "title": "教師回饋與學員反思",
+        "purpose": "把實際行為、依據與改進方向連在一起。",
+        "explanation": "對照教師指出的片段，再回看學員原來的行為。",
+        "observe": [
+          "回饋是否提供具體行為與改進方法？",
+          "自己的判讀是否被前後脈絡支持？"
+        ],
+        "pitfall": "影片內歷史milestone評語不是目前登入學員的正式分數。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      }
+    ],
+    "sarc-analysis": [
+      {
+        "id": "intro",
+        "start": 0,
+        "end": 27,
+        "title": "閱讀任務與情境",
+        "purpose": "辨識本次照護任務及待確認資訊。",
+        "explanation": "先讀題、查看病歷與任務告示，再進入互動。",
+        "observe": [
+          "分清楚教案背景與實際取得的資料。"
+        ],
+        "pitfall": "讀題動作不等於已完成臨床評估。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "dxa",
+        "start": 27,
+        "end": 90,
+        "title": "與放射師確認DXA資訊",
+        "purpose": "向資料提供職類核對報告與限制，避免只憑單一數值下結論。",
+        "explanation": "觀察持電話、查看報告、提問及回述的順序。",
+        "observe": [
+          "提出比較兩次資料的具體問題。",
+          "記錄對方回覆與仍缺少的功能資料。"
+        ],
+        "pitfall": "接聽電話的骨架不能證明交接內容完整，須聆聽對話。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "opening",
+        "start": 90,
+        "end": 115,
+        "title": "身分確認、需求與疑慮",
+        "purpose": "建立正確對象與此次共同目標，了解病人的挫折。",
+        "explanation": "觀察面向對方、身分詢問、就診目的與病人回應。",
+        "observe": [
+          "提問後是否留時間讓對方回答？",
+          "是否先聽懂努力未見改善的疑慮？"
+        ],
+        "pitfall": "點頭、微笑或視線方向不能單獨證明同理或理解。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "prepare",
+        "start": 115,
+        "end": 145,
+        "title": "坐站測試前的指令與示範",
+        "purpose": "讓受測者了解起止姿勢、動作次數與計時方式，建立可比較的測試條件。",
+        "explanation": "觀察座椅、雙腳、手臂位置與示範說明。",
+        "observe": [
+          "本片示範雙手交叉胸前；核對是否有上肢支撐或其他改動。",
+          "確認是否聽懂口令，再辨識準備與正式計時的差別。"
+        ],
+        "pitfall": "本片與原始文字可能有姿勢描述差異；測試規範及必要調整由教師核定。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "sitstand",
+        "start": 145,
+        "end": 167,
+        "title": "連續坐下與站起的執行",
+        "purpose": "用標準化動作過程觀察坐站轉位與下肢功能，並保留動作策略。",
+        "explanation": "逐格看坐姿、軀幹前移、離椅、站直、下降及再次接觸座椅。",
+        "observe": [
+          "區分每次起立與坐下，觀察有沒有扶手、停頓或協助。",
+          "以原始影片時鐘核對口令和完整次數，不用單張圖推算總時間。"
+        ],
+        "pitfall": "二維膝角不能當實際關節角度；一次彎膝不代表已完成一次坐站。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "explain",
+        "start": 167,
+        "end": 207,
+        "title": "說明測試結果並回應疑慮",
+        "purpose": "把觀察到的結果轉為病人可理解的資訊，接續釐清運動與生活情境。",
+        "explanation": "觀察說明結果、病人提問、查看衛教單與再次澄清。",
+        "observe": [
+          "是否把測試結果與完整診斷分開？",
+          "病人提出疑問後，說明是否有跟著調整？"
+        ],
+        "pitfall": "影片中的時間或說法不是所有族群的診斷標準；採用版本須由教師核定。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "demonstrate",
+        "start": 207,
+        "end": 224,
+        "title": "坐姿下肢動作示範",
+        "purpose": "把口頭衛教轉為可見的動作範例，說清楚起始、維持與結束。",
+        "explanation": "觀察坐姿調整、伸膝抬腿、維持與放下。",
+        "observe": [
+          "比較示範者與病人看到的角度。",
+          "核對口語指令與可見動作是否一致。"
+        ],
+        "pitfall": "本片的次數與維持時間是案例示範，不自動成為每位病人的處方。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "return-demo",
+        "start": 224,
+        "end": 243,
+        "title": "病人回做與即時修正",
+        "purpose": "透過病人實際重做確認是否理解，而不是只問「懂了嗎」。",
+        "explanation": "比較示範前後的腿部位置、支撐、維持與治療師提醒。",
+        "observe": [
+          "病人是否自行做出動作？",
+          "治療師回饋後，下一次動作有沒有改變？"
+        ],
+        "pitfall": "完成一次動作不等於已會獨立安全執行；不可用痠痛作為效果或安全的唯一依據。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "exercise",
+        "start": 243,
+        "end": 285,
+        "title": "姿勢、上肢及其他動作衛教",
+        "purpose": "將不同動作分開示範，讓病人辨識姿勢、呼吸及動作順序。",
+        "explanation": "逐格看坐姿、手臂抬起與放下；回看衛教單及前後指令。",
+        "observe": [
+          "分清楚示範、口頭描述與病人回做。",
+          "找出哪個細節需要再示範或確認。"
+        ],
+        "pitfall": "畫面未呈現的動作不能補成已完成；疼痛或異常不適需停止並由專業人員評估。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "nutrition",
+        "start": 285,
+        "end": 329,
+        "title": "了解飲食說法與轉介理由",
+        "purpose": "辨識本職類評估之外仍需營養專業協助的資訊缺口。",
+        "explanation": "觀察病人描述飲食、治療師追問及說明轉介理由。",
+        "observe": [
+          "「有吃肉喝奶」是否已交代份量、頻率與其他生活情境？",
+          "是否讓病人理解轉介與原來問題的關係？"
+        ],
+        "pitfall": "骨架不能辨識攝取量或營養是否足夠，不從表情推測依從性。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "referral",
+        "start": 329,
+        "end": 357,
+        "title": "與營養師確認接續照護",
+        "purpose": "將轉介變成可執行的接續安排，確認接收職類與所需資訊。",
+        "explanation": "觀察電話聯繫、整理資訊、確認安排與回覆病人。",
+        "observe": [
+          "是否交代需求，而非只問時間地點？",
+          "接收者是否回覆，病人是否知道下一步？"
+        ],
+        "pitfall": "影片中的門診時間與行政安排僅屬當時案例，不代表現行服務資訊。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "closing",
+        "start": 357,
+        "end": 409,
+        "title": "共同確認後續計畫",
+        "purpose": "在結束前確認回家練習、接續照護與追蹤的理解。",
+        "explanation": "觀察交付資料、說明下一步與病人回應。",
+        "observe": [
+          "請以回述或實作確認理解。",
+          "區分說完計畫與對方確實知道如何執行。"
+        ],
+        "pitfall": "影片中的給付次數、期限及門診安排需另查核，不當成最新政策。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      },
+      {
+        "id": "feedback",
+        "start": 409,
+        "end": 477.791667,
+        "title": "教師回饋與學員反思",
+        "purpose": "把實際行為、依據與改進方向連在一起。",
+        "explanation": "對照教師指出的片段，再回看學員原來的行為。",
+        "observe": [
+          "回饋是否提供具體行為與改進方法？",
+          "自己的判讀是否被前後脈絡支持？"
+        ],
+        "pitfall": "影片內歷史milestone評語不是目前登入學員的正式分數。",
+        "sources": [
+          {
+            "title": "肌少症運動處方之全人照護.docx",
+            "sha256": "e442a859efe042200de394323ed132671f73a301ae5ffce09ccc321e8561f4d2",
+            "location": "考生任務、評分項目及場景一至三"
+          },
+          {
+            "title": "Five Times Sit to Stand Test / RehabMeasures",
+            "url": "https://www.sralab.org/rehabilitation-measures/five-times-sit-stand-test"
+          },
+          {
+            "title": "NIDDK Health Tips for Older Adults / exercise safety",
+            "url": "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-older-adults"
+          }
+        ],
+        "review_status": "已核對影片段落及來源教案；教學解說草稿，待職類教師正式核定",
+        "scope": "此為段落教學目的，不宣稱本段每一張圖皆在執行同一動作；逐格觀測與意圖假設另列。"
+      }
+    ]
+  }
+}

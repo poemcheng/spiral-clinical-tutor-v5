@@ -5,8 +5,9 @@ import math
 from pathlib import Path
 import threading
 from .config import ROOT, RUNTIME
+from . import teaching_media
 
-VERSION = 'pose-evidence-5.3.1'
+VERSION = 'pose-evidence-5.3.2'
 MODEL = ROOT / 'runtime/models/pose_landmarker_full.task'
 MODEL_URL = 'https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task'
 MODEL_SHA256 = '5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1'
@@ -88,7 +89,7 @@ def meanings(tags):
     return candidates or [{'possible':'目前無法確認特定動作意圖','basis':'可見骨架未達動作提示條件','alternative':'動作可能發生於畫面外或遭遮擋','verify':'調整視角、檢視前後影格與語音後再判讀。'}]
 
 
-def assign_tracks(poses,previous,frame,fps,next_id):
+def assign_tracks(poses,previous,frame,fps,next_id,width=640,height=480):
     """Local track IDs, not identity or profession recognition. Reject ambiguous matches."""
     used=set()
     for pose in poses:
@@ -102,7 +103,7 @@ def assign_tracks(poses,previous,frame,fps,next_id):
         old=previous.get(tid)
         if old and frame>old['frame'] and visible(p[15]) and visible(old['landmarks'][15]):
             dt=(frame-old['frame'])/fps
-            speed=math.hypot((p[15]['x']-old['landmarks'][15]['x'])*640,(p[15]['y']-old['landmarks'][15]['y'])*480)/dt
+            speed=math.hypot((p[15]['x']-old['landmarks'][15]['x'])*width,(p[15]['y']-old['landmarks'][15]['y'])*height)/dt
             pose['metrics']['left_wrist_px_s']=round(speed,1)
         previous[tid]={'center':center,'frame':frame,'landmarks':p};used.add(tid)
     for tid in list(previous):
@@ -114,7 +115,7 @@ def analyze(clip,params,directory,on_progress=lambda done,total:None):
     import cv2
     import mediapipe as mp
     from mediapipe.tasks.python import vision
-    source=ROOT/'data/video360'/clip['file']
+    source=teaching_media.path_for(clip)
     if not source.is_file():raise ValueError('影片尚未安裝。')
     source_hash=digest(source)
     if clip.get('proxy_sha256') and source_hash!=clip['proxy_sha256']:raise ValueError('影片雜湊與目錄不符，請重新匯入核對。')
@@ -129,36 +130,53 @@ def analyze(clip,params,directory,on_progress=lambda done,total:None):
         if first>=end:raise ValueError('分析區間沒有影格。')
         cap.set(cv2.CAP_PROP_POS_FRAMES,first)
         maps=None;frames=[];previous={};next_id=1
+        flat=clip.get('projection')=='flat';width=640;height=480
+        steps=teaching_media.steps_for(clip)
         options=vision.PoseLandmarkerOptions(base_options=mp.tasks.BaseOptions(model_asset_path=str(MODEL)),running_mode=vision.RunningMode.VIDEO,num_poses=4,min_pose_detection_confidence=.5,min_pose_presence_confidence=.5,min_tracking_confidence=.5)
         with vision.PoseLandmarker.create_from_options(options) as detector:
             for i in range(first,end):
                 ok,image=cap.read()
                 if not ok:raise ValueError(f'第{i}格解碼中斷；未標記為完整分析。')
-                if maps is None:maps=projection_maps(image.shape[1],image.shape[0],params['yaw'],params['pitch'],params.get('fov',70))
-                view=cv2.remap(image,*maps,cv2.INTER_LINEAR,borderMode=cv2.BORDER_WRAP)
-                rgb=cv2.cvtColor(view,cv2.COLOR_BGR2RGB)
+                if flat:
+                    height=round(image.shape[0]*width/image.shape[1]);view=cv2.resize(image,(width,height))
+                else:
+                    if maps is None:maps=projection_maps(image.shape[1],image.shape[0],params['yaw'],params['pitch'],params.get('fov',70))
+                    view=cv2.remap(image,*maps,cv2.INTER_LINEAR,borderMode=cv2.BORDER_WRAP)
+                if not cv2.imwrite(str(directory/f'raw-frame-{i}.jpg'),view,[cv2.IMWRITE_JPEG_QUALITY,86]):raise RuntimeError('原始影格輸出失敗。')
+                roi=params.get('roi') or [0,0,1,1]
+                rx,ry,rw,rh=roi
+                # Detect on the chosen person region, then map points back onto
+                # the full original frame so comparisons keep the same geometry.
+                crop=view[round(ry*height):round((ry+rh)*height),round(rx*width):round((rx+rw)*width)]
+                rgb=cv2.cvtColor(crop,cv2.COLOR_BGR2RGB)
                 result=detector.detect_for_video(mp.Image(image_format=mp.ImageFormat.SRGB,data=rgb),round(i/fps*1000))
                 poses=[]
                 for lm in result.pose_landmarks:
                     points=[{k:round(float(getattr(p,k)),4) for k in ('x','y','z','visibility','presence')} for p in lm]
-                    m,tags=metrics(points)
+                    for p in points:
+                        if not (0<=p['x']<=1 and 0<=p['y']<=1):p['visibility']=0
+                        p['x']=round(rx+p['x']*rw,4);p['y']=round(ry+p['y']*rh,4)
+                    m,tags=metrics(points,width,height)
                     poses.append({'landmarks':points,'visible_joints':sum(visible(p) for p in points),'metrics':m,'actions':tags,'interpretations':meanings(tags)})
-                next_id=assign_tracks(poses,previous,i,fps,next_id)
+                next_id=assign_tracks(poses,previous,i,fps,next_id,width,height)
                 for pose in poses:
                     pts=pose['landmarks']
                     for a,b in EDGES:
-                        if visible(pts[a]) and visible(pts[b]):cv2.line(view,(round(pts[a]['x']*640),round(pts[a]['y']*480)),(round(pts[b]['x']*640),round(pts[b]['y']*480)),(50,240,80),2,cv2.LINE_AA)
+                        if visible(pts[a]) and visible(pts[b]):cv2.line(view,(round(pts[a]['x']*width),round(pts[a]['y']*height)),(round(pts[b]['x']*width),round(pts[b]['y']*height)),(50,240,80),2,cv2.LINE_AA)
                     for p in pts:
-                        if visible(p):cv2.circle(view,(round(p['x']*640),round(p['y']*480)),3,(30,210,255),-1)
-                    if visible(pts[11]):cv2.putText(view,'P'+str(pose['track_id']),(round(pts[11]['x']*640),round(pts[11]['y']*480)-12),cv2.FONT_HERSHEY_SIMPLEX,.6,(0,255,255),2)
+                        if visible(p):cv2.circle(view,(round(p['x']*width),round(p['y']*height)),3,(30,210,255),-1)
+                    if visible(pts[11]):cv2.putText(view,'P'+str(pose['track_id']),(round(pts[11]['x']*width),round(pts[11]['y']*height)-12),cv2.FONT_HERSHEY_SIMPLEX,.6,(0,255,255),2)
                 cv2.putText(view,f'Frame {i} | {i/fps:.3f}s | {len(poses)} pose(s)',(12,25),cv2.FONT_HERSHEY_SIMPLEX,.55,(255,255,255),1,cv2.LINE_AA)
                 if not cv2.imwrite(str(directory/f'frame-{i}.jpg'),view,[cv2.IMWRITE_JPEG_QUALITY,86]):raise RuntimeError('影格輸出失敗。')
-                frames.append({'frame':i,'seconds':round(i/fps,6),'poses':poses,'status':'detected' if poses else '未偵測到可靠人體，請調整視角'})
+                step=next((s for s in steps if s['start']<=i/fps<s['end']),None)
+                frames.append({'frame':i,'seconds':round(i/fps,6),'poses':poses,'teaching_step_id':step['id'] if step else None,'status':'detected' if poses else '未偵測到可靠人體；仍可閱讀教案步驟與核對原圖'})
                 if (i-first)%5==0 or i==end-1:on_progress(i-first+1,end-first)
         result={'version':VERSION,'source':{k:clip[k] for k in ('id','title','fps_rational','projection','source_sha256','proxy_sha256') if k in clip},
                 'actual_video_sha256':source_hash,'model_sha256':digest(MODEL),'model':'MediaPipe Pose Landmarker Full float16 v1',
                 'fps':fps,'first_frame':first,'last_frame':end-1,'frame_count':len(frames),'analyzed_every_frame':True,
-                'view':{**params,'width':640,'height':480,'projection':'rectilinear'},'frames':frames,
+                'view':{**params,'width':width,'height':height,'projection':'flat' if flat else 'rectilinear'},'frames':frames,
+                'raw_frames_available':True,'teaching_steps':steps,
+                'analysis_region':params.get('roi') or [0,0,1,1],
                 'detection_frames':sum(bool(f['poses']) for f in frames),'limitation':LIMITATION,
                 'interpretation_status':'機器觀測及意圖假設，待學員判讀與教師覆核；未辨識真實身分或職類。'}
         (directory/'result.json').write_text(json.dumps(result,ensure_ascii=False,separators=(',',':')),encoding='utf-8')

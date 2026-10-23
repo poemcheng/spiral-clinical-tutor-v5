@@ -25,7 +25,7 @@ from .legacy.config import VIDEO_LIBRARY_DIR
 from .legacy.content import resolve_persona
 from .legacy.video_generator import generate_video_script
 from .legacy import video_renderer
-from . import curriculum, virtual_video, characters, voice_bridge, h5p_content, progression, speech_input
+from . import curriculum, virtual_video, characters, voice_bridge, h5p_content, progression, speech_input,learning_curriculum
 from starlette.concurrency import run_in_threadpool
 
 # Windows registry may classify .js as text/plain, which breaks module scripts with nosniff.
@@ -458,7 +458,9 @@ def get_session(sid: int, user=Depends(current_user)):
 def cases(sid: int, user=Depends(student)):
     row = owned_session(sid, user)
     scores=store.one('SELECT scores FROM attempts WHERE id=?',(row['payload'].get('assessment_attempt_id',0),))
-    return [{**{k: adapted.get(k) for k in ('id','title','summary','goals','source_file','source_pages','variant','review_status','clinical_review')},'paths':row['payload']['adaptive_plan'].get('paths',progression.plan(store,row['user_id'],row['profession'],row['topic'],row['level'])['paths'])}
+    return [{**{k: adapted.get(k) for k in ('id','title','summary','goals','source_file','source_pages','variant','review_status','clinical_review')},
+            'learning_path':[{k:l[k] for k in ('level','title','unlocked','lesson_count')} for l in learning_curriculum.levels(adapted,row['profession'],row['payload']['adaptive_plan'].get('learning_level',1))],
+            'paths':row['payload']['adaptive_plan'].get('paths',progression.plan(store,row['user_id'],row['profession'],row['topic'],row['level'])['paths'])}
             for case in registry.cases_for(row['topic'],row['profession'])
             for adapted in [curriculum.adapt_case(case,row['profession'],row['level'],json.loads(scores['scores'] or '{}') if scores else {})]]
 
