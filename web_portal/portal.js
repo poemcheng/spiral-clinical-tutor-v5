@@ -7,6 +7,6 @@ export function localServer(value){
 }
 if(typeof document!=='undefined'){
  const field=document.querySelector('#host'),status=document.querySelector('#status');
- fetch('server-config.json',{cache:'no-store'}).then(r=>r.json()).then(c=>{field.value=localStorage.getItem('clinical-lan-server')||c.default_server;document.querySelector('#fingerprint').textContent='CA 憑證 SHA-256：'+c.ca_sha256;}).catch(()=>{status.textContent='請向主機管理者確認 HTTPS 位址。';});
+ fetch('server-config.json',{cache:'no-store'}).then(r=>r.json()).then(c=>{field.value=localStorage.getItem('clinical-lan-server')||c.default_server;document.querySelector('#check-link').href=new URL('/static/connection-check.html',localServer(field.value)).href;document.querySelector('#fingerprint').textContent='CA 憑證 SHA-256：'+c.ca_sha256;}).catch(()=>{status.textContent='請向主機管理者確認 HTTPS 位址。';});
  document.querySelector('#connect').onsubmit=e=>{e.preventDefault();try{const target=localServer(field.value);localStorage.setItem('clinical-lan-server',new URL(target).origin);location.assign(target);}catch(error){status.textContent=error.message;}};
 }

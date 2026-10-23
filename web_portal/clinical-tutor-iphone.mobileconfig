@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadCertificateFileName</key>
+			<string>clinical-tutor-ca.cer</string>
+			<key>PayloadContent</key>
+			<data>
+			MIIESDCCArCgAwIBAgIUZRMZi/J6NpjLgCMEB29OBG8ziuswDQYJ
+			KoZIhvcNAQELBQAwKjEoMCYGA1UEAwwfQ2xpbmljYWwgVHV0b3Ig
+			TG9jYWwgTmV0d29yayBDQTAeFw0yNjEwMjIxMzQ2NDFaFw0zNjEw
+			MjAxMzQ2NDFaMCoxKDAmBgNVBAMMH0NsaW5pY2FsIFR1dG9yIExv
+			Y2FsIE5ldHdvcmsgQ0EwggGiMA0GCSqGSIb3DQEBAQUAA4IBjwAw
+			ggGKAoIBgQCq6aVEFHFjkvHyjOgdjGuB+P2FYZYyyndNynEGMRL2
+			mY1jWKqtdNofoHOqnn7mhy+g7fz+tJqZGhI7wI9DLl322gT8lz7T
+			wkXQ1aDZFTIFX5QcJ0+tzERnxjFoILdS5ECiCt6W4G41VkTXhN2m
+			uAcWB4LC19OQnQOz8rmLMcygcKxKRXvVeFdg3ecH+wxPMaNwdmow
+			MsFTPqCvXyq2V697+qXnGyZlaGhE8Bdio3Pvj2FKT5c5jAIv/45E
+			cy8QGPJeQbgMULivKQnW4dE0OTNGF03MUe04W1dV991HA59NyaHb
+			QER4ycPSyAOalT+Uq1FF+J+N/xa9ix8Y82XZiEn3jZjNnPPJ+T6/
+			gqvG7nvEyVGiKzn05U1IMoP/XnKP2h5MZWuOR1QxG1+LK2TQfc6w
+			HSmsaRKI+li3lYmHwI+WPtmx3RXj0+on+ifDoyU1mMrHFu3GHKl+
+			IvWFVDzQe3ukRVKFz253qoXiWaijcaVLpnWuWkEXB97sskbQTjk2
+			FWUCAwEAAaNmMGQwEgYDVR0TAQH/BAgwBgEB/wIBADAOBgNVHQ8B
+			Af8EBAMCAYYwHQYDVR0OBBYEFBLUJT2EUmMB0QIxbtXQCKuPejWD
+			MB8GA1UdIwQYMBaAFBLUJT2EUmMB0QIxbtXQCKuPejWDMA0GCSqG
+			SIb3DQEBCwUAA4IBgQAk2brT59yYIK2CHxCqBHj08D2/wP55kfjH
+			nbLom0BsMFmd81/TQbXMMEl7D3dF6sqYd2i0NgyEX3RAOVIiLEqK
+			sZja/rSzbToMe3GF2IEnfCFNZrBfxRm2r8OhBT+kYHiPrEuhFsYe
+			GlMk0T96+X6lQMPwu5Ifeaw86C3oz5qzfCeiJ12tF7apjxWEIh0z
+			C3EYfehn98LfYhROCJ24CnADuS760GSbLawY6BiA645EuGrhouTa
+			JsuYyrI/31IKlHmwWhdMHL5gyW9m1Q2JlZ32Z761C5gpwwaWIeg2
+			EJvrC1wznEO/FhWwchi7rAqB8rduFqvMQD5gIU0RnVCTXapV96R8
+			Yixc9eZ1ItjkJ+0mEkE3dibc6Ab303KOGhkQ+Zy75WESBsBzTHLY
+			/ohWw6rpsOXdtpphkxm3s1y4Jw5L+bpdUcXOvwv5E9XxToORahHG
+			HPWIZzSPX5e5vp0sQTXjdxwPE5E8ZMjyq6RQnOb9G/N8/pbj4sPF
+			f4qOmJTWjfQ=
+			</data>
+			<key>PayloadDisplayName</key>
+			<string>Clinical Tutor Local Network CA</string>
+			<key>PayloadIdentifier</key>
+			<string>local.clinical-tutor.root.959ba90803e98cbb</string>
+			<key>PayloadType</key>
+			<string>com.apple.security.root</string>
+			<key>PayloadUUID</key>
+			<string>C4076874-8580-595F-A2EC-93C919C7F1A0</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Installs the public certificate for your local teaching host. After installation, enable trust in Settings &gt; General &gt; About &gt; Certificate Trust Settings. Remove this profile when no longer using this host.</string>
+	<key>PayloadDisplayName</key>
+	<string>Clinical Tutor Local Network CA</string>
+	<key>PayloadIdentifier</key>
+	<string>local.clinical-tutor.ca-profile.959ba90803e98cbb</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>B4D4B042-B82D-558F-9E85-243E11AA9B3F</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
