@@ -1,8 +1,8 @@
 // Local recording + authenticated transcription. No third-party speech service.
 export function createVoiceInput({sid,onText,onStatus,onError,onListening=()=>{},beforeListen=()=>{},inputStreamFactory=null,transcribeUrl=null,onEvent=()=>{}}){
- let stream,context,analyser,recorder,frame,timer,disposed=false,enabled=false,cancelled=false,started=0,lastSound=0,heard=false,epoch=0,request,pending=false,cancelPermission;
- const label=(text,state)=>{onStatus(text);const el=document.querySelector('#voice-status');if(el)el.dataset.state=state;};
- function finish(cancel=false){cancelled=cancel;if(cancel){epoch++;request?.abort();cancelPermission?.();}clearTimeout(timer);cancelAnimationFrame(frame);if(recorder?.state==='recording')recorder.stop();onListening(false);}
+ let stream,context,analyser,recorder,frame,timer,retryTimer,disposed=false,enabled=false,cancelled=false,started=0,lastSound=0,heard=false,epoch=0,request,pending=false,cancelPermission;
+ const label=(text,state)=>{onStatus(text,state);const el=document.querySelector('#voice-status');if(el)el.dataset.state=state;};
+ function finish(cancel=false){cancelled=cancel;clearTimeout(retryTimer);if(cancel){epoch++;request?.abort();cancelPermission?.();}clearTimeout(timer);cancelAnimationFrame(frame);if(recorder?.state==='recording')recorder.stop();onListening(false);}
  async function listen(){
   if(disposed||pending||recorder?.state==='recording')return;
   try{
@@ -22,18 +22,19 @@ export function createVoiceInput({sid,onText,onStatus,onError,onListening=()=>{}
    recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};
    recorder.onstop=async()=>{
     if(turn!==epoch||cancelled||disposed||!chunks.length)return;
+    if(!heard){if(enabled){label('我還在聽，您可以慢慢想。','listening');retryTimer=setTimeout(()=>{if(enabled&&!disposed&&turn===epoch)listen();},0);}return;}
     try{label('正在本機辨識語音…','transcribing');const blob=new Blob(chunks,{type:current.mimeType});request=new AbortController();
      onEvent('recorded',{bytes:blob.size,mime:blob.type,heard,elapsedMs:performance.now()-started});
      const response=await fetch(transcribeUrl||`/api/sessions/${sid}/transcribe`,{method:'POST',headers:{'Content-Type':blob.type},body:blob,signal:request.signal});
      const data=await response.json();if(!response.ok)throw Error(data.detail||'語音辨識失敗');if(disposed||turn!==epoch)return;
      onEvent('transcribed',{...data});label('辨識完成，可確認文字或自動送出。','ready');onText(data.text);
-    }catch(e){if(!disposed&&turn===epoch&&e.name!=='AbortError'){label(e.message,'error');onError(e);}}
+    }catch(e){if(!disposed&&turn===epoch&&e.name!=='AbortError'){if(enabled&&/沒有辨識到清楚語音|另一段語音辨識中/.test(e.message)){label('還沒聽清楚，我會繼續聽。','listening');retryTimer=setTimeout(()=>{if(enabled&&!disposed&&turn===epoch)listen();},800);}else{enabled=false;label(e.message,'error');onError(e);}}}
    };
-   recorder.start(250);onListening(true);label('正在聆聽；停頓約1.3秒結束一輪，也可按「結束這段錄音」。','listening');
+   recorder.start(250);onListening(true);label('正在聆聽，您可以直接說話。停頓後自動回應。','listening');
    const samples=new Uint8Array(analyser.fftSize);
    function level(){if(disposed||recorder.state!=='recording')return;analyser.getByteTimeDomainData(samples);const rms=Math.sqrt(samples.reduce((s,v)=>s+((v-128)/128)**2,0)/samples.length),now=performance.now();
     if(rms>.025){heard=true;lastSound=now;}const meter=document.querySelector('#mic-level');if(meter)meter.value=Math.min(1,rms*8);
-    if(heard&&now-lastSound>1300&&now-started>1600){finish();return;}if(!heard&&now-started>12000){finish(true);label('尚未收到聲音，請檢查麥克風後再開始。','idle');return;}frame=requestAnimationFrame(level);
+    if(heard&&now-lastSound>1700&&now-started>1900){finish();return;}if(!heard&&now-started>12000){finish();return;}frame=requestAnimationFrame(level);
    }level();timer=setTimeout(()=>finish(),59000);
   }catch(e){if(disposed||e.name==='AbortError')return;enabled=false;const messages={NotAllowedError:'麥克風未獲允許，請在網址列開啟麥克風權限後重試。',NotFoundError:'找不到麥克風，請接上裝置後重試。',NotReadableError:'麥克風正被其他程式使用，請關閉後重試。'};label(messages[e.name]||e.message,'error');onError(Error(messages[e.name]||e.message));}
  }

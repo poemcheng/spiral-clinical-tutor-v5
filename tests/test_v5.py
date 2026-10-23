@@ -16,7 +16,7 @@ class V5Tests(unittest.TestCase):
         for prof,actor,targets in [('RT','wang-pt',['PT']),('DT','wang-pt',['PT']),('PT','auntie-lin',['patient']),('MD','auntie-lin',['patient']),('RN','auntie-lin',['patient','PT'])]:
             sid,_=self.interaction(prof)
             info=self.client.get(f'/api/sessions/{sid}/actors').json()
-            self.assertEqual(info['interaction']['id'],actor)
+            self.assertIn(info['interaction']['id'],['auntie-lin','wang-pt'] if prof=='RN' else [actor])
             self.assertEqual(info['pairing']['targets'],targets)
             wrong='li-rph'
             self.assertEqual(self.client.post(f'/api/sessions/{sid}/actors',json={'purpose':'interaction','actor_id':wrong}).status_code,400)

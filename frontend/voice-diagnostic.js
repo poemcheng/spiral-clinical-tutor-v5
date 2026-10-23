@@ -1,5 +1,5 @@
-import {createVoiceInput} from '/static/voice.js?v=5.3.2';
-import {createAvatar} from '/static/vendor/avatar.bundle.js?v=5.3.2';
+import {createVoiceInput} from '/static/voice.js?v=5.4.0';
+import {createAvatar} from '/static/vendor/avatar.bundle.js?v=5.4.0';
 const $=s=>document.querySelector(s),sid=Number(new URLSearchParams(location.search).get('session'));
 let avatar,controller,context,destination,source,frame,watchdog,active=false,report;
 let audio=$('#reply');const expected=['您好，請說明目前需要一起確認的資料。','謝謝您的說明，還有哪些資訊需要再核對？'];
@@ -12,7 +12,7 @@ function similarity(a,b){const norm=x=>x.replace(/[^\p{L}\p{N}]/gu,'');a=norm(a)
 try{if(!sid)throw Error('請從 Step 4 的語音自動驗證連結進入。');const r=await fetch('/api/characters');if(!r.ok)throw Error('請先登入學員帳號。');const data=await r.json();const actor=data.actors.find(a=>a.id===(new URLSearchParams(location.search).get('actor')||'wang-pt'));avatar=createAvatar($('#avatar'),{actor});await avatar.ready;$('#voice-status').textContent='立體骨架角色就緒，請按開始。';}catch(e){$('#result').textContent=e.message;$('#start').disabled=true;}
 $('#start').onclick=async()=>{
  if(active)return;const fresh=audio.cloneNode(false);audio.replaceWith(fresh);audio=fresh;active=true;$('#start').disabled=true;$('#stop').disabled=false;$('#turns').replaceChildren();
- report={test:'continuous-voice-v5.2',testId:crypto.randomUUID().replaceAll('-',''),inputSource:'controlled-synthetic-audio',physicalMicrophoneTested:false,formalLearningEvidence:false,started:performance.now(),startedAt:new Date().toISOString(),rounds:[],events:[],passed:false};update();
+ report={test:'continuous-voice-v5.4.0',testId:crypto.randomUUID().replaceAll('-',''),inputSource:'controlled-synthetic-audio',physicalMicrophoneTested:false,formalLearningEvidence:false,started:performance.now(),startedAt:new Date().toISOString(),rounds:[],events:[],passed:false};update();
  try{
   context=new AudioContext();await context.resume();destination=context.createMediaStreamDestination();
   const analyser=context.createAnalyser();analyser.fftSize=1024;context.createMediaElementSource(audio).connect(analyser);analyser.connect(context.destination);

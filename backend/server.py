@@ -25,7 +25,7 @@ from .legacy.config import VIDEO_LIBRARY_DIR
 from .legacy.content import resolve_persona
 from .legacy.video_generator import generate_video_script
 from .legacy import video_renderer
-from . import curriculum, virtual_video, characters, voice_bridge, h5p_content, progression, speech_input,learning_curriculum
+from . import curriculum, virtual_video, characters, voice_bridge, h5p_content, progression, speech_input,learning_curriculum,encounters,training_evidence
 from starlette.concurrency import run_in_threadpool
 
 # Windows registry may classify .js as text/plain, which breaks module scripts with nosniff.
@@ -492,6 +492,8 @@ def select_case(sid: int, body: CaseBody, user=Depends(student)):
         row['payload']['case_snapshot'] = case
         row['payload']['content_version']=case.get('curriculum_version','v3-import-20261021')
         row['payload']['case_hash'] = hashlib.sha256(encode(case).encode()).hexdigest()
+        row['payload']['encounter_plan']=encounters.assign(row,case)
+        row['payload'].setdefault('actors',{}).pop('interaction',None)
         store.save(c, sid, row['payload'], step=3)
         store.event(c, user['id'], sid, 'case_selected', {'case_id': case['id']})
     return {'step': 3}
@@ -650,10 +652,20 @@ def interaction(sid: int, user=Depends(current_user)):
     row = owned_session(sid, user)
     if row['step'] < 4:
         raise HTTPException(409, '請先完成情境學習。')
+    # Upgrade a resumed historical session once, keeping its original messages/case.
+    if not row['payload'].get('encounter_plan'):
+        with conversation_locks[sid],store.tx() as c:
+            latest=json.loads(c.execute('SELECT data FROM sessions WHERE id=?',(sid,)).fetchone()['data'])
+            if not latest.get('encounter_plan'):
+                latest['encounter_plan']=encounters.assign({**row,'payload':latest},case_for(row))
+                store.save(c,sid,latest)
+                store.event(c,user['id'],sid,'encounter_assigned',latest['encounter_plan'])
+            row['payload']=latest
     from .learning_resources import resources
     from .interaction_policy import policy
     difficulty=policy(row['level'],characters.selected(row)['kind'],row['payload']['trust'])
-    return {'difficulty':difficulty,'resources':resources(row,case_for(row)),'questions': decision_questions(row), 'decisions': row['payload']['decisions'],
+    return {'difficulty':difficulty,'encounter':encounters.current(row),'encounter_plan':row['payload'].get('encounter_plan'),
+            'resources':resources(row,case_for(row)),'questions': decision_questions(row), 'decisions': row['payload']['decisions'],
             'trust': row['payload']['trust'], 'scene_mode': row['payload']['adaptive_plan']['scene_mode'],
             'pairing':row['payload'].get('interaction_policy'),'minimum_turns':2,'variant':case_for(row).get('variant'),'safety_blocked':row['payload'].get('safety_blocked',False),
             'hint_budget':curriculum.hint_budget(row['level']),'hints_used':row['payload'].get('hints_used',0),'source': '案例約束標準病患；AI對話與決策分開記錄。'}
@@ -827,7 +839,14 @@ def chat(sid: int, body: ChatBody, user=Depends(student)):
         messages = store.all('SELECT * FROM messages WHERE session_id=? ORDER BY id', (sid,))
         duplicate = [m for m in messages if json.loads(m['metadata']).get('request_id') == body.request_id]
         if duplicate:
-            return {'messages': duplicate, 'duplicate': True}
+            reply=next((m for m in duplicate if m['role']=='assistant'),None)
+            if reply:
+                meta=json.loads(reply['metadata'])
+                return {'ok':True,'text':reply['content'],'source':reply['source'],'metadata':meta,'conversation':meta.get('conversation'),
+                        'audio_url':f"/api/sessions/{sid}/speech/{reply['id']}",'duplicate':True}
+            raise HTTPException(409,'原始輸入已保存，但回覆尚未完成。請以新的一輪對話重試。')
+        if body.mode!='peer' and encounters.current(row,actor) and encounters.current(row,actor)['state']=='closed':
+            raise HTTPException(409,'這場會談已結束；請選擇「繼續這場會談」或進入另一位對象。')
         with store.tx() as c:
             c.execute('INSERT INTO messages(session_id,role,content,source,metadata,created) VALUES (?,?,?,?,?,?)',
                       (sid, 'user', body.text.strip(), 'learner', encode({'request_id':body.request_id,'mode':body.mode,'actor':actor}), time.time()))
@@ -847,7 +866,8 @@ def chat(sid: int, body: ChatBody, user=Depends(student)):
                               (sid, 'system', 'AI 未完成回覆：'+note, 'error', encode({'request_id':body.request_id}), time.time()))
                 return {'ok': False, 'error': note, 'note': '作答已保存，可選擇明示的劇本演練；未產生虛構AI回覆。'}
             text, source, metadata = result.text, 'ollama', {'model': result.model, 'case_hash': row['payload']['case_hash'],
-                'prompt_version':'peer-1' if body.mode=='peer' else 'self-difficulty-5.3.1','mode':body.mode,
+                'prompt_version':'peer-1' if body.mode=='peer' else 'encounters-5.4.0','mode':body.mode,
+                'conversation':facts.get('conversation_state'),
                 'interaction_difficulty':facts.get('interaction_difficulty'),
                 'retrieval_version':facts.get('retrieval_version','case-peer-1'),'evidence':facts.get('retrieved_evidence',[])}
         else:
@@ -868,10 +888,17 @@ def chat(sid: int, body: ChatBody, user=Depends(student)):
         metadata['actor']=actor
         metadata['mode']=body.mode
         metadata['role_kind']='peer' if body.mode=='peer' else actor['kind']
+        if body.mode!='peer':
+            conversation=metadata.get('conversation') or {'phase':'active','emotion':'neutral','turns':sum(m['role']=='user' and json.loads(m['metadata']).get('actor',{}).get('id')==actor['id'] for m in messages),'version':encounters.VERSION}
+            metadata['conversation']=conversation
+            encounters.save_reply(row['payload'],actor,conversation)
         with store.tx() as c:
             message_id=c.execute('INSERT INTO messages(session_id,role,content,source,metadata,created) VALUES (?,?,?,?,?,?)',
                       (sid, 'assistant', text, source, encode(metadata), time.time())).lastrowid
             store.event(c, user['id'], sid, 'patient_reply', {'source': source, **metadata})
+            latest=json.loads(c.execute('SELECT data FROM sessions WHERE id=?',(sid,)).fetchone()['data'])
+            if body.mode!='peer':encounters.save_reply(latest,actor,conversation)
+            store.save(c,sid,latest)
         if sid in voice_bridge.rooms:
             def speak_to_room():
                 try:
@@ -883,7 +910,22 @@ def chat(sid: int, body: ChatBody, user=Depends(student)):
                 except Exception as e:
                     with store.tx() as c:store.event(c,user['id'],sid,'voice_error',{'message_id':message_id,'error':str(e)[:300]})
             threading.Thread(target=speak_to_room,daemon=True).start()
-        return {'ok': True, 'text':text,'source':source,'metadata':metadata,'audio_url':f'/api/sessions/{sid}/speech/{message_id}'}
+        return {'ok': True, 'text':text,'source':source,'metadata':metadata,'conversation':metadata.get('conversation'),'audio_url':f'/api/sessions/{sid}/speech/{message_id}'}
+
+
+@app.post('/api/sessions/{sid}/conversation/reopen')
+def reopen_conversation(sid:int,user=Depends(student)):
+    with conversation_locks[sid],store.tx() as c:
+        row=owned_session(sid,user);need_step(row,4)
+        entry=encounters.current(row)
+        if entry:entry['state']='active'
+        store.save(c,sid,row['payload']);store.event(c,user['id'],sid,'conversation_reopened',{'actor_id':characters.selected(row)['id']})
+    return {'saved':True}
+
+
+@app.get('/api/training-evidence')
+def evidence_sources(user=Depends(current_user)):
+    return training_evidence.audit()
 
 
 class SceneBody(BaseModel):
@@ -1124,6 +1166,7 @@ def character_asset(aid:str,asset:str,user=Depends(current_user)):
 def session_actors(sid:int,user=Depends(current_user)):
     row=owned_session(sid,user);case_for(row)
     return {'lecturer':characters.selected(row,'lecturer'),'interaction':characters.selected(row),'catalog':characters.catalog(),'pairing':row['payload'].get('interaction_policy'),
+            'encounter':encounters.current(row),'encounter_plan':row['payload'].get('encounter_plan'),
             'note':'角色卡提供造型與風格；病人姓名、病史與數值以本輪教案為準。團隊角色不計入病患對話最低回合。'}
 
 

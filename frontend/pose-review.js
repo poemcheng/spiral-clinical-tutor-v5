@@ -1,6 +1,6 @@
-import {poseMeasurements} from './pose-panel.js?v=5.3.2';
-import {stepExplanation,teachingForFrame} from './learning-levels.js?v=5.3.2';
-import {mountPanorama} from './vendor/panorama.bundle.js?v=5.3.2';
+import {poseMeasurements} from './pose-panel.js?v=5.4.0';
+import {stepExplanation,teachingForFrame} from './learning-levels.js?v=5.4.0';
+import {mountPanorama} from './vendor/panorama.bundle.js?v=5.4.0';
 const $=s=>document.querySelector(s),q=new URLSearchParams(location.search),sid=q.get('session'),id=q.get('analysis');
 let result,index=0,view;
 try{

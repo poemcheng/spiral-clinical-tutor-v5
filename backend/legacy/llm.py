@@ -166,7 +166,7 @@ class OllamaService:
         }
         if json_mode:
             # Ollama 原生 JSON mode，比只在 prompt 要求 JSON 穩定許多。
-            payload["format"] = "json"
+            payload["format"] = json_mode if isinstance(json_mode,dict) else "json"
         data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         return urllib.request.Request(
             f"{self.base_url}/api/chat", data=data,
@@ -175,11 +175,11 @@ class OllamaService:
 
     def chat(self, messages: List[dict], *, temperature: float = 0.5,
              max_tokens: int = OLLAMA_CHAT_TOKENS,
-             operation: str = "AI 對話") -> LLMResult:
+             operation: str = "AI 對話", json_mode: bool = False) -> LLMResult:
         """非串流完整回覆。messages = [{role, content}, ...]（含 system）。"""
         with self._model_slot(operation):
             try:
-                req = self._chat_request(messages, temperature, max_tokens, stream=False)
+                req = self._chat_request(messages, temperature, max_tokens, stream=False, json_mode=json_mode)
                 with urllib.request.urlopen(req, timeout=OLLAMA_TIMEOUT) as resp:
                     parsed = json.loads(resp.read().decode("utf-8", errors="replace"))
                 text = ((parsed.get("message") or {}).get("content") or "").strip()

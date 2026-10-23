@@ -36,9 +36,11 @@ DEFINITIONS = {
 }
 
 def profile(profession):
+    from .training_evidence import REFERENCES,NOTE
     title,url,location=SOURCES[profession]
     return {'version':VERSION,'profession':profession,'label':PROFESSIONS[profession]['label'],
       'status':'平台依職類框架改編之學習指標；數量與題目是本系統課程設計，並非原文量表或臺灣執業標準，待職類教師核定。',
+      'epa_note':NOTE,'epa_reference':REFERENCES.get(profession),
       'references':[{'title':title,'url':url,'location':location,'checked_at':'2026-10-22','support':'框架層級參照；不代表本地題目或切點已驗證'}],
       'indicators':[{'id':f'{profession}-{i+1:02}', 'name':n,'description':d,'dimension':dim,'reference_index':0} for i,(n,d,dim) in enumerate(DEFINITIONS[profession])]}
 

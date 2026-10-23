@@ -1,0 +1,142 @@
+{
+  "version": "5.4.0",
+  "date": "2026-10-23",
+  "backend_tests": {
+    "passed": 82,
+    "failed": 0
+  },
+  "frontend_tests": {
+    "passed": 11,
+    "failed": 0
+  },
+  "live_model_cases": [
+    {
+      "profession": "RT",
+      "level": 1,
+      "actor": "wang-pt",
+      "ok": true
+    },
+    {
+      "profession": "PT",
+      "level": 1,
+      "actor": "auntie-lin",
+      "ok": true
+    },
+    {
+      "profession": "MD",
+      "level": 1,
+      "actor": "auntie-lin",
+      "ok": true
+    },
+    {
+      "profession": "RN",
+      "level": 1,
+      "actor": "auntie-lin",
+      "ok": true
+    },
+    {
+      "profession": "DT",
+      "level": 1,
+      "actor": "wang-pt",
+      "ok": true
+    },
+    {
+      "profession": "RT",
+      "level": 5,
+      "actor": "wang-pt",
+      "ok": true
+    },
+    {
+      "profession": "PT",
+      "level": 5,
+      "actor": "auntie-lin",
+      "ok": true
+    },
+    {
+      "profession": "MD",
+      "level": 5,
+      "actor": "auntie-lin",
+      "ok": true
+    },
+    {
+      "profession": "RN",
+      "level": 5,
+      "actor": "auntie-lin",
+      "ok": true
+    },
+    {
+      "profession": "DT",
+      "level": 5,
+      "actor": "wang-pt",
+      "ok": true
+    },
+    {
+      "profession": "PT",
+      "level": 2,
+      "actor": "auntie-lin",
+      "ok": true
+    },
+    {
+      "profession": "PT",
+      "level": 3,
+      "actor": "auntie-lin",
+      "ok": true
+    },
+    {
+      "profession": "PT",
+      "level": 4,
+      "actor": "auntie-lin",
+      "ok": true
+    },
+    {
+      "profession": "RN",
+      "level": 5,
+      "actor": "wang-pt",
+      "ok": true
+    }
+  ],
+  "natural_closing_phases": [
+    "active",
+    "active",
+    "active",
+    "closing",
+    "closed"
+  ],
+  "continuous_voice": [
+    {
+      "gender": "male",
+      "passed": true,
+      "rounds": 2,
+      "input_source": "controlled-synthetic-audio",
+      "physical_microphone_tested": false,
+      "asr_similarities": [
+        1,
+        0.8823529411764706
+      ],
+      "llm_model": "gemma4:12b",
+      "voice_files": 2
+    },
+    {
+      "gender": "female",
+      "passed": true,
+      "rounds": 2,
+      "input_source": "controlled-synthetic-audio",
+      "physical_microphone_tested": false,
+      "asr_similarities": [
+        1,
+        0.8823529411764706
+      ],
+      "llm_model": "gemma4:12b",
+      "voice_files": 2
+    }
+  ],
+  "physical_microphone_tested": false,
+  "official_question_bank_verified": false,
+  "pending_items": 1250,
+  "limitations": [
+    "合成音源不等同真人麥克風驗收",
+    "回覆播放時暫停收音，並非全雙工搶話",
+    "模型輸出仍需教師檢核；正式 EPA 授權依訓練單位程序",
+    "虛構骨架角色，非真人掃描或電影品質數位人"
+  ]
+}

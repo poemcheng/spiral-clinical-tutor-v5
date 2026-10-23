@@ -8,7 +8,7 @@ export function clinicScene(canvas,{modelUrl,interactive=false,onAction=()=>{}}=
  renderer.setPixelRatio(interactive?Math.min(devicePixelRatio,1.5):1);renderer.outputColorSpace=THREE.SRGBColorSpace;
  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
  const scene=new THREE.Scene();scene.background=new THREE.Color('#dce6ea');
- const camera=new THREE.PerspectiveCamera(55,1,.1,100);camera.position.set(0,1.25,2.7);
+ const camera=new THREE.PerspectiveCamera(38,1,.1,100);camera.position.set(0,1.5,1.2);
  const clinic=new THREE.Group();scene.add(clinic);const disposable=[],hotspots=[];
  const standard=(color,extra={})=>new THREE.MeshStandardMaterial({color,roughness:.68,...extra});
  function box(w,h,d,color,x,y,z,extra={}){const material=standard(color,extra),mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;clinic.add(mesh);disposable.push(mesh.geometry,material);return mesh;}
@@ -30,9 +30,9 @@ export function clinicScene(canvas,{modelUrl,interactive=false,onAction=()=>{}}=
  box(.75,1.75,.45,'#f3f7f2',3.8,.87,-2.7);box(.035,.65,.05,'#64868a',3.8,1.1,-2.45);
  const rig=riggedHuman(modelUrl);clinic.add(rig.group);
  function label(text,x,y,z,action){const c=document.createElement('canvas');c.width=512;c.height=112;const ctx=c.getContext('2d');ctx.fillStyle='#183a47ee';ctx.beginPath();ctx.roundRect(2,2,508,108,25);ctx.fill();ctx.fillStyle='white';ctx.font='500 32px "Microsoft JhengHei",sans-serif';ctx.textAlign='center';ctx.fillText(text,256,69);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;const m=new THREE.SpriteMaterial({map:t,depthTest:false}),sprite=new THREE.Sprite(m);sprite.position.set(x,y,z);sprite.scale.set(1.25,.273,1);sprite.userData.action=action;clinic.add(sprite);hotspots.push(sprite);disposable.push(t,m);}
- if(interactive){label('查看案例資料',-2.2,1.7,.2,'report');label('檢查情境安全',2.3,1.7,.3,'safety');label('確認互動對象',0,2.67,0,'identify');}
+ // Keep the face clear during conversation. Equivalent controls live below the scene.
  let controls,disposed=false,videoTexture,panorama,mode='clinic',width=0,height=0;
- if(interactive){controls=new OrbitControls(camera,canvas);controls.target.set(0,1.05,0);controls.enablePan=false;controls.enableDamping=false;controls.minDistance=.45;controls.maxDistance=7;controls.minPolarAngle=.8;controls.maxPolarAngle=1.75;controls.minAzimuthAngle=-Infinity;controls.maxAzimuthAngle=Infinity;controls.update();}
+ if(interactive){controls=new OrbitControls(camera,canvas);controls.target.set(0,1.4,0);controls.enablePan=false;controls.enableDamping=false;controls.minDistance=.45;controls.maxDistance=7;controls.minPolarAngle=.8;controls.maxPolarAngle=1.75;controls.minAzimuthAngle=-Infinity;controls.maxAzimuthAngle=Infinity;controls.update();}
  const ready=rig.ready.then(()=>{canvas.dataset.visualType='rigged-realistic-3d';canvas.dataset.skinnedMeshes=String(rig.group.userData.skinnedMeshes);canvas.dataset.bones=String(rig.group.userData.bones);renderAt(0);});
  function size(){const w=canvas.clientWidth||960,h=canvas.clientHeight||540;if(width===w&&height===h)return;width=w;height=h;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
  function renderAt(time,amplitude=0){if(disposed)return;size();rig.renderAt(time,amplitude);
@@ -41,10 +41,10 @@ export function clinicScene(canvas,{modelUrl,interactive=false,onAction=()=>{}}=
  const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();let down;
  const start=e=>{down=[e.clientX,e.clientY];};const end=e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>7||mode!=='clinic')return;const rect=canvas.getBoundingClientRect();mouse.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(mouse,camera);const hit=ray.intersectObjects(hotspots)[0];if(hit)onAction(hit.object.userData.action);};
  if(interactive){canvas.addEventListener('pointerdown',start);canvas.addEventListener('pointerup',end);}
- return {ready,renderAt,setBehavior:rig.setBehavior,orbit(degrees){if(controls&&mode==='clinic'){rig.group.rotation.y+=THREE.MathUtils.degToRad(degrees);controls.update();}},focusFace(){if(controls&&mode==='clinic'){camera.position.set(0,1.58,.67);controls.target.set(0,1.5,0);controls.update();}},reset(){if(mode==='clinic'){rig.group.rotation.y=0;camera.position.set(0,1.25,2.7);controls?.target.set(0,1.05,0);controls?.update();}},setPanorama(video){
+ return {ready,renderAt,setBehavior:rig.setBehavior,setPresence:rig.setPresence,orbit(degrees){if(controls&&mode==='clinic'){rig.group.rotation.y+=THREE.MathUtils.degToRad(degrees);controls.update();}},focusFace(){if(controls&&mode==='clinic'){camera.position.set(0,1.58,.67);controls.target.set(0,1.5,0);controls.update();}},reset(){if(mode==='clinic'){rig.group.rotation.y=0;camera.position.set(0,1.5,1.2);controls?.target.set(0,1.4,0);controls?.update();}},setPanorama(video){
    if(panorama){scene.remove(panorama);panorama.geometry.dispose();panorama.material.dispose();videoTexture.dispose();panorama=null;}
    mode=video?'vr360':'clinic';clinic.visible=!video;scene.background=new THREE.Color(video?'#101a27':'#dce6ea');
    if(video){videoTexture=new THREE.VideoTexture(video);videoTexture.colorSpace=THREE.SRGBColorSpace;const geo=new THREE.SphereGeometry(25,64,40);geo.scale(-1,1,1);panorama=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({map:videoTexture}));scene.add(panorama);camera.position.set(0,1.45,.01);controls.target.set(0,1.05,0);controls.minDistance=.01;controls.maxDistance=.01;controls.minAzimuthAngle=-Infinity;controls.maxAzimuthAngle=Infinity;controls.minPolarAngle=.1;controls.maxPolarAngle=Math.PI-.1;}
-   else if(controls){controls.minDistance=.45;controls.maxDistance=7;controls.minAzimuthAngle=-Infinity;controls.maxAzimuthAngle=Infinity;controls.minPolarAngle=.8;controls.maxPolarAngle=1.75;camera.position.set(0,1.25,2.7);controls.target.set(0,1.05,0);}controls?.update();
+   else if(controls){controls.minDistance=.45;controls.maxDistance=7;controls.minAzimuthAngle=-Infinity;controls.maxAzimuthAngle=Infinity;controls.minPolarAngle=.8;controls.maxPolarAngle=1.75;camera.position.set(0,1.5,1.2);controls.target.set(0,1.4,0);}controls?.update();
   },dispose(){if(disposed)return;disposed=true;controls?.dispose();rig.dispose();if(panorama){panorama.geometry.dispose();panorama.material.dispose();videoTexture.dispose();}disposable.forEach(x=>x.dispose());renderer.dispose();canvas.removeEventListener('pointerdown',start);canvas.removeEventListener('pointerup',end);}};
 }
