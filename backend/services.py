@@ -90,6 +90,21 @@ def patient_reply(case, session, messages, text):
             facts['conversation_state']=conversation
         except (ValueError,TypeError,AttributeError) as e:
             result.ok=False;result.error='角色回覆格式不完整，請重試。';return result,facts
+        body,memory_guard=encounters.suppress_repeated_missing_question(body,messages)
+        if not body:
+            rejected=result.text
+            retry_system=system+'\n前一候選回覆重問對方已交接的缺失數值，不能使用。請承接這些缺口，簡短回答自己可協助核對的部分及交接下一步。不要再向對方詢問相同數值。仍只用已提供的案例及職責，不新增完成處置的事實。'
+            result=llm.chat([{'role':'system','content':retry_system},*history],max_tokens=500,temperature=.2,operation='v5.4會談記憶修正',json_mode=encounters.REPLY_SCHEMA)
+            if result.ok:
+                try:
+                    body,conversation=encounters.decode_reply(result.text,user_turns,facts['encounter'].get('state','active'),text)
+                    facts['conversation_state']=conversation
+                    body,memory_guard=encounters.suppress_repeated_missing_question(body,messages)
+                    memory_guard.update(retry_used=True,rejected_model_reply=rejected)
+                except (ValueError,TypeError,AttributeError):body=''
+        facts['interaction_difficulty']['dialogue_memory_guard']=memory_guard
+        if not body:
+            result.ok=False;result.error='角色重複詢問已交接的資料缺口，未產生有效的新回覆。請重試。';return result,facts
         if actor['kind'] in ('patient','caregiver'):
             body=re.sub(r'^(?:您好[，,]?|你好[，,]?)?(?:我是|我叫)[^。！？!?]{1,24}[。！？!?]\s*','',body)
         used_body=bool(body)

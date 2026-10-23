@@ -69,3 +69,29 @@ def save_reply(payload, actor, conversation):
         if entry['target']==target(actor):
             entry.update(state=conversation['phase'],turns=conversation['turns'],emotion=conversation.get('emotion','neutral'))
     return plan
+
+def suppress_repeated_missing_question(body,messages):
+    """Keep complete model statements, removing requests for already missing values.
+
+    This is dialogue memory, not a clinical assertion that a measurement is absent.
+    A learner's reported gap remains unverified and visible in the transcript.
+    """
+    topics={'握力':('握力',),'坐站':('坐站',),'前次報告':('前次','前一次','上次報告')}
+    missing=set()
+    for message in messages:
+        if message['role']!='user':continue
+        for clause in re.split(r'[。！？!?；;，,]',message['content']):
+            if re.search(r'尚未|還沒|沒有|未取得|待確認|未確認',clause):
+                missing.update(key for key,words in topics.items() if any(w in clause for w in words))
+    kept=[];removed=[]
+    for sentence in re.findall(r'[^。！？!?]+[。！？!?]?',body):
+        asks=bool(re.search(r'[？?]',sentence))
+        repeat=any(any(w in sentence for w in topics[key]) for key in missing)
+        repeat=repeat or bool(missing and re.search(r'這部分.{0,8}(?:資料|數據|數值)',sentence))
+        requests_value=bool(re.search(r'數值|多少|是否|已經|已確認|確認過|核實',sentence))
+        asks_plan=bool(re.search(r'何時|什麼時候|哪位|誰負責|如何(?:交接|回報)',sentence))
+        if asks and repeat and requests_value and not asks_plan:removed.append(sentence)
+        else:kept.append(sentence)
+    return ''.join(kept).strip(),{'version':VERSION,'missing_topics_reported_by_learner':sorted(missing),
+        'removed_repeated_questions':len(removed),'added_clinical_facts':False,
+        **({'original_model_reply':body} if removed else {})}

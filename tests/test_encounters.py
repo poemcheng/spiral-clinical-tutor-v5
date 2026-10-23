@@ -77,6 +77,17 @@ class EncounterTests(unittest.TestCase):
             self.assertEqual(a['kind'],'caregiver');self.assertEqual(a['gender'],'female');self.assertEqual(a['title'],title)
         self.assertEqual(characters.default_actor({'profession':'MD','payload':{'case_snapshot':{'id':'COURSE-ASTHMA'}}}),'middle-man')
 
+    def test_memory_keeps_complete_statements_and_does_not_ask_for_known_gaps_again(self):
+        history=[{'role':'user','content':'前次數值沒有取得，握力和坐站也尚未確認。請您協助核對功能資料。'}]
+        body='這部分我會負責核對功能資料。不過您能確認握力數值是否已經在病歷中？'
+        text,guard=encounters.suppress_repeated_missing_question(body,history)
+        self.assertEqual(text,'這部分我會負責核對功能資料。')
+        self.assertEqual(guard['removed_repeated_questions'],1)
+        self.assertFalse(guard['added_clinical_facts'])
+        self.assertEqual(guard['original_model_reply'],body)
+        plan='由誰負責確認握力數值，何時回報？'
+        self.assertEqual(encounters.suppress_repeated_missing_question(plan,history)[0],plan)
+
     def test_patient_reply_receives_profession_task_history_and_no_fake_clinical_facts(self):
         from backend.services import patient_reply
         sid,_=self.interaction('RT',level=5)
