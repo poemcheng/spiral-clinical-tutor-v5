@@ -20,3 +20,5 @@
 .voice-panel{display:flex;gap:9px;flex-wrap:wrap;align-items:center;padding:16px;border-radius:16px;background:#f0f6f7;margin:12px 0}.voice-panel p,.voice-panel audio,.voice-panel>label{width:100%;margin:4px 0}.voice-panel button{padding:10px;font-size:13px}.voice-panel meter{width:110px}.voice-panel audio{height:36px}.voice-panel input[type=file]{font-size:12px;max-width:100%}
 #interaction-360{width:100%;max-height:150px}#voice-status[data-state=listening]{color:#176b55;font-weight:700}#voice-status[data-state=error]{color:#a02e30}
 @media(max-width:650px){.photo-human-stage{height:370px!important}#panorama{height:320px!important}}
+
+.reference-card-crop{position:relative;overflow:hidden;background:#edf2f5;display:block}.reference-card-crop img,.actor-choice .reference-card-crop img{position:static;width:100%;height:100%;object-fit:contain;transform:none;max-width:100%}.library-portrait.reference-card-crop{aspect-ratio:3/4}

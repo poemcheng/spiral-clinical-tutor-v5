@@ -1,0 +1,64 @@
+{
+  "actor_id": "chen-md",
+  "file": "card-matched-v2/chen-md.glb",
+  "sha256": "af6ad45bc731e4d3b061256e0f24c8e4da32436ae7a9f55e6ad01bd0090380cc",
+  "bytes": 9185388,
+  "skin": "middleage_asian_male",
+  "hair": "short04",
+  "clothes": "male_elegantsuit01",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_E",
+    "viseme_I",
+    "viseme_U"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane",
+  "card_sha256": "a0f1055a4eadd1f751f2cfaae25239ef5a7a536b08789750a6b7a324ab4c7381",
+  "appearance_preset": {
+    "age": 0.54,
+    "hair": "short04",
+    "hair_color": "#403a36",
+    "shape": "head-rectangular",
+    "shape_weight": 0.25,
+    "weight": 0.48,
+    "glasses": true,
+    "coat": true,
+    "clothes": "male_elegantsuit01",
+    "color": "#f4f5f5",
+    "accent": "#4d6e94",
+    "notes": "中年男性、側分深棕髮、黑框眼鏡、白袍與藍襯衫"
+  },
+  "reference_face_proportions": {
+    "head_aspect": 1.1186,
+    "eye_spacing": 0.6106,
+    "nose_width": 0.2507,
+    "mouth_width": 0.424,
+    "source_card_sha256": "a0f1055a4eadd1f751f2cfaae25239ef5a7a536b08789750a6b7a324ab4c7381",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "face_controls": [
+    {
+      "target": "head-scale-vert-decr",
+      "value": 0.28968000000000005
+    },
+    {
+      "target": "head-scale-horiz-incr",
+      "value": 0.11880000000000002
+    },
+    {
+      "target": "mouth-scale-horiz-incr",
+      "value": 0.14800000000000002
+    }
+  ],
+  "likeness_status": "artistic reconstruction from card; visual review required"
+}

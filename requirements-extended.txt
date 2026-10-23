@@ -1,0 +1,8 @@
+# Optional local voice agent, retrieval and multi-user database integrations.
+-r requirements.txt
+livekit-agents==1.8.8
+livekit-plugins-silero==1.8.8
+piper-tts==1.8.0
+llama-index-core==0.14.25
+psycopg[binary]==3.2.13
+cryptography>=46,<49

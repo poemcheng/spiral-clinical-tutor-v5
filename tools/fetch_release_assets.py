@@ -2,7 +2,7 @@
 from pathlib import Path,PurePosixPath
 import argparse,hashlib,json,tempfile,urllib.request,zipfile,shutil
 ROOT=Path(__file__).resolve().parents[1]
-BASE='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.3.0/'
+BASE='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.5.0/'
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--local',type=Path);args=parser.parse_args()
     manifest=json.loads((args.local.parent/'public-assets-manifest.json').read_text()) if args.local else json.load(urllib.request.urlopen(BASE+'public-assets-manifest.json',timeout=60))

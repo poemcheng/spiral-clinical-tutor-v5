@@ -1,0 +1,23 @@
+services:
+  tutor:
+    environment:
+      DATABASE_URL: postgresql://tutor:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}@postgres:5432/clinical_tutor
+    depends_on:
+      postgres:
+        condition: service_healthy
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: clinical_tutor
+      POSTGRES_USER: tutor
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+    volumes:
+      - tutor-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U tutor -d clinical_tutor']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+volumes:
+  tutor-postgres:

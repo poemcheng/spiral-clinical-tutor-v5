@@ -1,0 +1,64 @@
+{
+  "actor_id": "huang-dt",
+  "file": "card-matched-v2/huang-dt.glb",
+  "sha256": "c5434d820ac8c74e8e664edc849d4832f2bfcbf996b0a05c81fe39332efc64af",
+  "bytes": 9256624,
+  "skin": "young_asian_female",
+  "hair": "long01",
+  "clothes": "male_elegantsuit01",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_E",
+    "viseme_I",
+    "viseme_U"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane",
+  "card_sha256": "e0e5f4beb38c9d3a0ba4ce2c80e8c7e1fa1b6370bb16812bc96cdfe25157b889",
+  "appearance_preset": {
+    "age": 0.37,
+    "hair": "long01",
+    "hair_color": "#433329",
+    "shape": "head-oval",
+    "shape_weight": 0.4,
+    "weight": 0.44,
+    "glasses": false,
+    "coat": true,
+    "clothes": "male_elegantsuit01",
+    "color": "#f4f5f5",
+    "accent": "#d7e7eb",
+    "notes": "成年女性、深棕長髮、白袍與淺藍內搭"
+  },
+  "reference_face_proportions": {
+    "head_aspect": 1.1788,
+    "eye_spacing": 0.6474,
+    "nose_width": 0.2513,
+    "mouth_width": 0.4619,
+    "source_card_sha256": "e0e5f4beb38c9d3a0ba4ce2c80e8c7e1fa1b6370bb16812bc96cdfe25157b889",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "face_controls": [
+    {
+      "target": "head-scale-vert-decr",
+      "value": 0.21744000000000002
+    },
+    {
+      "target": "head-scale-horiz-incr",
+      "value": 0.04520000000000013
+    },
+    {
+      "target": "mouth-scale-horiz-incr",
+      "value": 0.2238
+    }
+  ],
+  "likeness_status": "artistic reconstruction from card; visual review required"
+}

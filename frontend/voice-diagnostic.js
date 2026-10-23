@@ -1,21 +1,21 @@
-import {createVoiceInput} from '/static/voice.js?v=5.4.1';
-import {createAvatar} from '/static/vendor/avatar.bundle.js?v=5.4.1';
+import {createVoiceInput} from '/static/voice.js?v=5.5.0';
+import {createAvatar} from '/static/vendor/avatar.bundle.js?v=5.5.0';
 const $=s=>document.querySelector(s),sid=Number(new URLSearchParams(location.search).get('session'));
 let avatar,controller,context,destination,source,frame,watchdog,active=false,report;
 let audio=$('#reply');const expected=['您好，請說明目前需要一起確認的資料。','謝謝您的說明，還有哪些資訊需要再核對？'];
 const update=()=>{$('#report').textContent=JSON.stringify(report,null,2);};
 function event(kind,data={}){report.events.push({kind,ms:Math.round(performance.now()-report.started),...data});update();}
 function fail(error){if(!active)return;event('error',{message:error.message});report.passed=false;finish('測試未通過：'+error.message);}
-function finish(label){active=false;clearTimeout(watchdog);controller?.stop();source?.stop();source=null;audio.pause();avatar?.setSpeaking(false);cancelAnimationFrame(frame);context?.close().catch(()=>{});context=null;$('#start').disabled=false;$('#stop').disabled=true;$('#result').textContent=label;report.finishedAt=new Date().toISOString();update();}
+function finish(label){active=false;clearTimeout(watchdog);controller?.stop();source?.stop();source=null;audio.pause();avatar?.setSpeaking(false);cancelAnimationFrame(frame);context?.close().catch(()=>{});context=null;$('#start').disabled=false;$('#stop').disabled=true;$('#result').textContent=label;report.finishedAt=new Date().toISOString();report.lipSync=$('#avatar').dataset.lipSync;report.observedVisemes=$('#avatar').dataset.visemeObserved;report.visemePeak=Number($('#avatar').dataset.visemePeak||0);update();}
 async function json(url,body){const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await r.json();if(!r.ok)throw Error(d.detail||'服務錯誤');return d;}
 function similarity(a,b){const norm=x=>x.replace(/[^\p{L}\p{N}]/gu,'');a=norm(a);b=norm(b);const row=Array(b.length+1).fill(0);for(const c of a){let last=0;for(let j=1;j<=b.length;j++){const before=row[j];row[j]=c===b[j-1]?last+1:Math.max(row[j],row[j-1]);last=before;}}return row[b.length]/Math.max(a.length,b.length,1);}
 try{if(!sid)throw Error('請從 Step 4 的語音自動驗證連結進入。');const r=await fetch('/api/characters');if(!r.ok)throw Error('請先登入學員帳號。');const data=await r.json();const actor=data.actors.find(a=>a.id===(new URLSearchParams(location.search).get('actor')||'wang-pt'));avatar=createAvatar($('#avatar'),{actor});await avatar.ready;$('#voice-status').textContent='立體骨架角色就緒，請按開始。';}catch(e){$('#result').textContent=e.message;$('#start').disabled=true;}
 $('#start').onclick=async()=>{
  if(active)return;const fresh=audio.cloneNode(false);audio.replaceWith(fresh);audio=fresh;active=true;$('#start').disabled=true;$('#stop').disabled=false;$('#turns').replaceChildren();
- report={test:'continuous-voice-v5.4.0',testId:crypto.randomUUID().replaceAll('-',''),inputSource:'controlled-synthetic-audio',physicalMicrophoneTested:false,formalLearningEvidence:false,started:performance.now(),startedAt:new Date().toISOString(),rounds:[],events:[],passed:false};update();
+ report={test:'continuous-voice-v5.5.0',testId:crypto.randomUUID().replaceAll('-',''),inputSource:'controlled-synthetic-audio',physicalMicrophoneTested:false,formalLearningEvidence:false,started:performance.now(),startedAt:new Date().toISOString(),rounds:[],events:[],passed:false};update();
  try{
   context=new AudioContext();await context.resume();destination=context.createMediaStreamDestination();
-  const analyser=context.createAnalyser();analyser.fftSize=1024;context.createMediaElementSource(audio).connect(analyser);analyser.connect(context.destination);
+  const analyser=context.createAnalyser();analyser.fftSize=1024;const audioSource=context.createMediaElementSource(audio);audioSource.connect(analyser);analyser.connect(context.destination);await avatar.attachAudio(context,audioSource);
   const buffers=[];for(let turn=1;turn<=2;turn++){const r=await fetch(`/api/sessions/${sid}/voice-diagnostic/input/${turn}`);if(!r.ok)throw Error('測試音源服務未就緒');buffers.push(await context.decodeAudioData(await r.arrayBuffer()));}
   controller=createVoiceInput({sid,transcribeUrl:`/api/sessions/${sid}/voice-diagnostic/transcribe`,inputStreamFactory:async()=>destination.stream,
    onStatus:text=>{$('#voice-status').textContent=text;},onError:fail,

@@ -5,6 +5,17 @@ import secrets
 from . import characters
 
 VERSION = 'encounters-5.4.0'
+
+def unsupported_change_claims(text,case):
+    """A single measurement or a vague complaint is not a measured decline."""
+    source=case.get('patient','').split('判讀重點')[0]+case.get('patient_script','')
+    claims=[]
+    for clause in re.split('[。！？；]',text):
+        if re.search('是否|有沒有|尚未|未提供|不能確認|無法確認|不確定|您提供|您提到|您剛',clause):continue
+        for metric in ('體重','肌肉量','肌量','肌力'):
+            pattern=metric+r'[^。！？；]{0,12}(?:下降|減少|降低|變差)'
+            if re.search(pattern,clause) and not re.search(pattern,source):claims.append(metric)
+    return sorted(set(claims))
 REPLY_SCHEMA={'type':'object','properties':{
     'text':{'type':'string','minLength':1,'maxLength':150},
     'phase':{'type':'string','enum':['active','closing','closed']},

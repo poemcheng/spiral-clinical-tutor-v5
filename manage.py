@@ -12,7 +12,8 @@ sub.add_parser('init-demo')
 sub.add_parser('init-admin')
 u=sub.add_parser('create-user');u.add_argument('username');u.add_argument('--role',choices=['student','teacher'],required=True);u.add_argument('--name',default='')
 b=sub.add_parser('backup');b.add_argument('destination')
-args=p.parse_args();db=Store()
+from backend.postgres_store import open_store
+args=p.parse_args();db=open_store()
 if args.command=='init-admin':
     db.bootstrap_admin()
     print('管理員 user 已備妥。首次安裝密碼依指定為 1234；既有密碼不會被重設。')

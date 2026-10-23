@@ -69,7 +69,7 @@ def selected(row,purpose='interaction'):
     if not snapshot:return case_cast(row,get_actor(default_actor(row,purpose)),purpose)
     # Resolve current visual assets without rewriting historical casting/messages.
     a=dict(snapshot);current=get_actor(a['id'])
-    for key in ('visual_type','visual_version','atlas_file','atlas_sha256','atlas_url','face','realistic_model_file','realistic_model_sha256','realistic_model_url'):
+    for key in ('visual_type','visual_version','atlas_file','atlas_sha256','atlas_url','face','realistic_model_file','realistic_model_sha256','realistic_model_url','appearance','reference_card_sha256','likeness_status'):
         if key in current:a[key]=current[key]
     return case_cast(row,a,purpose)
 

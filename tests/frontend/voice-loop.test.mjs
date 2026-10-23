@@ -31,3 +31,10 @@ test('cancelling a pending permission request stops a microphone acquired later'
  const c=createVoiceInput({sid:1,inputStreamFactory:()=>late,onText:()=>assert.fail('late text'),onStatus:()=>{},onError:e=>assert.fail(e.message)});
  const start=c.start();c.stop();provide(h.stream);await start;await nextTick();assert.equal(c.enabled,false);assert.ok(h.stopped>0);
 });
+
+test('sustained speech can interrupt playback after one start; stop cancels the monitor',async()=>{
+ const h=harness();await h.c.start();h.c.pause();let interruptions=0;
+ h.c.watchInterrupt(()=>{interruptions++;});h.sound(true);h.frame(100);h.frame(500);
+ assert.equal(interruptions,1);assert.equal(h.c.enabled,true);
+ h.c.watchInterrupt(()=>{interruptions++;});h.c.stop();h.frame(1000);assert.equal(interruptions,1);
+});

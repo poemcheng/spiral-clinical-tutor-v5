@@ -1,0 +1,64 @@
+{
+  "actor_id": "mr-wang",
+  "file": "card-matched-v2/mr-wang.glb",
+  "sha256": "efbdcfb9982799423a8b4420b93c3527175b286910e7f521403040fbfafdb1e9",
+  "bytes": 9094768,
+  "skin": "middleage_asian_male",
+  "hair": "short04",
+  "clothes": "male_casualsuit05",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_E",
+    "viseme_I",
+    "viseme_U"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane",
+  "card_sha256": "c732226f06ce31487cea0090f2f2dd54f52637dc3b76625d55ad97d7f0e5e776",
+  "appearance_preset": {
+    "age": 0.66,
+    "hair": "short04",
+    "hair_color": "#5d5951",
+    "shape": "head-square",
+    "shape_weight": 0.22,
+    "weight": 0.5,
+    "glasses": true,
+    "coat": false,
+    "clothes": "male_casualsuit05",
+    "color": "#26384d",
+    "accent": "#94b0c9",
+    "notes": "中高齡男性、灰黑側分髮、黑框眼鏡、深藍外套與藍襯衫"
+  },
+  "reference_face_proportions": {
+    "head_aspect": 1.135,
+    "eye_spacing": 0.6186,
+    "nose_width": 0.2452,
+    "mouth_width": 0.3828,
+    "source_card_sha256": "c732226f06ce31487cea0090f2f2dd54f52637dc3b76625d55ad97d7f0e5e776",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "face_controls": [
+    {
+      "target": "head-scale-vert-decr",
+      "value": 0.2700000000000001
+    },
+    {
+      "target": "head-scale-horiz-incr",
+      "value": 0.1028
+    },
+    {
+      "target": "mouth-scale-horiz-incr",
+      "value": 0.06559999999999999
+    }
+  ],
+  "likeness_status": "artistic reconstruction from card; visual review required"
+}

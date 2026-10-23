@@ -1,9 +1,9 @@
-import {posePanel,mountPosePanel} from '/static/pose-panel.js?v=5.4.1';
+import {posePanel,mountPosePanel} from '/static/pose-panel.js?v=5.5.0';
 
-import {frameObservation} from '/static/frame-review.js?v=5.4.1';
+import {frameObservation} from '/static/frame-review.js?v=5.5.0';
 
-import {competencyRadar} from '/static/visuals.js?v=5.4.1';
-import {curriculumPanel,mountCurriculum,stepExplanation} from '/static/learning-levels.js?v=5.4.1';
+import {competencyRadar} from '/static/visuals.js?v=5.5.0';
+import {curriculumPanel,mountCurriculum,stepExplanation} from '/static/learning-levels.js?v=5.5.0';
 
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -28,7 +28,7 @@ export async function initLearningResources(resources){
  const showCurrent=()=>{if(disposed||!video.isConnected)return;const clip=media.find(c=>c.id===select.value),step=clip?.steps?.find(s=>s.start<=video.currentTime&&video.currentTime<s.end);const key=select.value+'|'+(step?.id||'');if(key!==lastStep){lastStep=key;document.querySelector('#media-current-step').innerHTML=stepExplanation(step);}};
  const change=async()=>{if(disposed||!video.isConnected)return;status.textContent='影片載入中…';video.pause();projection=select.selectedOptions[0]?.dataset.projection||'flat';const spherical=projection!=='flat';video.hidden=spherical;canvas.hidden=!spherical;document.querySelector('#panorama-controls').hidden=!spherical;
   video.src=select.selectedOptions[0]?.dataset.url||'';video.load();lastStep=null;
-  if(spherical&&!view){try{const {mountPanorama}=await import('/static/vendor/panorama.bundle.js?v=5.4.1');view=mountPanorama(canvas,video,a=>document.querySelector('#view-angle').textContent=`水平 ${a.yaw.toFixed(0)}° · 垂直 ${a.pitch.toFixed(0)}°`);}catch{video.hidden=false;canvas.hidden=true;status.textContent='目前無法建立環景；可觀看原始展開影片。';}}
+  if(spherical&&!view){try{const {mountPanorama}=await import('/static/vendor/panorama.bundle.js?v=5.5.0');view=mountPanorama(canvas,video,a=>document.querySelector('#view-angle').textContent=`水平 ${a.yaw.toFixed(0)}° · 垂直 ${a.pitch.toFixed(0)}°`);}catch{video.hidden=false;canvas.hidden=true;status.textContent='目前無法建立環景；可觀看原始展開影片。';}}
   if(disposed||!video.isConnected)return;view?.reset();const clip=media.find(c=>c.id===select.value),steps=clip?.steps||[];
   document.querySelector('#media-step-list').innerHTML=steps.length?`<details><summary>行為步驟索引 · ${steps.length}段</summary><p>點選段落先看目的與解說；Level 5可將區間帶入逐格分析。</p>${steps.map((s,i)=>`<p><button type="button" class="step-jump" data-step="${i}">${Math.floor(s.start/60)}:${String(Math.floor(s.start%60)).padStart(2,'0')} · ${esc(s.title)}</button>${document.querySelector('#pose-form')?`<button type="button" class="step-analyze" data-step="${i}">選取此動作段落分析</button>`:''}</p>`).join('')}</details>`:'<p class="source">此片尚無核定步驟索引；可自行選格觀察，目的解析需由教師補充。</p>';
   for(const b of document.querySelectorAll('.step-jump,.step-analyze'))b.onclick=()=>{const s=steps[Number(b.dataset.step)];video.pause();video.currentTime=s.start+.05;if(b.classList.contains('step-analyze')){const f=document.querySelector('#pose-form');f.elements.start.value=s.start;f.elements.end.value=Math.min(s.end,clip.duration);document.querySelector('#pose-status').textContent='已選取「'+s.title+'」，按開始逐格分析處理此段每一張圖片。';}showCurrent();};

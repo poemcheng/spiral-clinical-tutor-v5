@@ -1,0 +1,64 @@
+{
+  "actor_id": "he-sw",
+  "file": "card-matched-v2/he-sw.glb",
+  "sha256": "3e868c273ee1ae11b34284eae90adc15f921fc639cd83860305b2133028d4843",
+  "bytes": 9243656,
+  "skin": "young_asian_female",
+  "hair": "long01",
+  "clothes": "male_elegantsuit01",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_E",
+    "viseme_I",
+    "viseme_U"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane",
+  "card_sha256": "e62524ff6c6c9b6e3d15c57683fd4027fd18c9195fa37b0841ed0781bd446f6d",
+  "appearance_preset": {
+    "age": 0.43,
+    "hair": "long01",
+    "hair_color": "#513d2f",
+    "shape": "head-round",
+    "shape_weight": 0.13,
+    "weight": 0.46,
+    "glasses": false,
+    "coat": false,
+    "clothes": "male_elegantsuit01",
+    "color": "#c7b5a5",
+    "accent": "#f2eee8",
+    "notes": "成年女性、棕色長髮、米褐西裝與淺色內搭"
+  },
+  "reference_face_proportions": {
+    "head_aspect": 1.1456,
+    "eye_spacing": 0.6515,
+    "nose_width": 0.2342,
+    "mouth_width": 0.4171,
+    "source_card_sha256": "e62524ff6c6c9b6e3d15c57683fd4027fd18c9195fa37b0841ed0781bd446f6d",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "face_controls": [
+    {
+      "target": "head-scale-vert-decr",
+      "value": 0.2572800000000002
+    },
+    {
+      "target": "head-scale-horiz-incr",
+      "value": 0.037000000000000144
+    },
+    {
+      "target": "mouth-scale-horiz-incr",
+      "value": 0.1342000000000001
+    }
+  ],
+  "likeness_status": "artistic reconstruction from card; visual review required"
+}

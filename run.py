@@ -55,8 +55,8 @@ def main():
                 from tools.start_livekit import main as start_local_voice
                 start_local_voice()
             except Exception as e:print('Local voice is unavailable: '+str(e))
-        from backend.store import Store
-        bootstrap=Store()
+        from backend.postgres_store import open_store
+        bootstrap=open_store()
         bootstrap.bootstrap_admin()
         bootstrap.conn.close()
         if os.getenv('OPEN_PLATFORM_BROWSER')=='1':

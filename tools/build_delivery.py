@@ -8,10 +8,10 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT.parent/'output'
 OUT.mkdir(exist_ok=True)
 APP_VERSION=json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version']
-target=OUT/f'迴旋梯智鏈_v{APP_VERSION}_核心能力與Level2團隊知識版_20261023.zip'
-folders=['backend','frontend','data','tests','tools','docs','.github']
+target=OUT/f'迴旋梯智鏈_v{APP_VERSION}_角色對應與同網路語音版_20261023.zip'
+folders=['backend','frontend','data','tests','tools','docs','.github','web_portal']
 singles=['README.md','requirements.txt','requirements-pose.txt','requirements.lock.txt','package.json','package-lock.json',
-         'Dockerfile','compose.yaml','.dockerignore','run.py','manage.py','run_windows.bat','.env.example','.gitignore','操作活動圖.mmd','測試與交付紀錄_20261021.md']
+         'Dockerfile','compose.yaml','compose.postgres.yaml','requirements-extended.txt','.dockerignore','run.py','manage.py','run_windows.bat','.env.example','.gitignore','操作活動圖.mmd','測試與交付紀錄_20261021.md']
 files=[ROOT/name for name in singles]
 for folder in folders:
     files.extend(p for p in (ROOT/folder).rglob('*') if p.is_file()

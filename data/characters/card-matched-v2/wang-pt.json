@@ -1,0 +1,64 @@
+{
+  "actor_id": "wang-pt",
+  "file": "card-matched-v2/wang-pt.glb",
+  "sha256": "7ef4089a913022d6d4def457c7113b29c904b5ac932c5265d17c10ae3e638e53",
+  "bytes": 9494344,
+  "skin": "young_asian_male",
+  "hair": "short01",
+  "clothes": "male_casualsuit06",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_E",
+    "viseme_I",
+    "viseme_U"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane",
+  "card_sha256": "74a44d54df256f3d9d8a298b8c32668c3158933e681139e6b28e83851263c81d",
+  "appearance_preset": {
+    "age": 0.31,
+    "hair": "short01",
+    "hair_color": "#29271f",
+    "shape": "head-square",
+    "shape_weight": 0.18,
+    "weight": 0.47,
+    "glasses": false,
+    "coat": false,
+    "clothes": "male_casualsuit06",
+    "color": "#233752",
+    "accent": "#28966a",
+    "notes": "年輕男性、短黑髮、海軍藍上衣與綠色背帶"
+  },
+  "reference_face_proportions": {
+    "head_aspect": 1.2138,
+    "eye_spacing": 0.6391,
+    "nose_width": 0.2444,
+    "mouth_width": 0.4676,
+    "source_card_sha256": "74a44d54df256f3d9d8a298b8c32668c3158933e681139e6b28e83851263c81d",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "face_controls": [
+    {
+      "target": "head-scale-vert-decr",
+      "value": 0.17544000000000012
+    },
+    {
+      "target": "head-scale-horiz-incr",
+      "value": 0.06180000000000008
+    },
+    {
+      "target": "mouth-scale-horiz-incr",
+      "value": 0.23520000000000008
+    }
+  ],
+  "likeness_status": "artistic reconstruction from card; visual review required"
+}

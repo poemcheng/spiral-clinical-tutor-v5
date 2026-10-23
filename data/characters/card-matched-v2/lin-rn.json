@@ -1,0 +1,64 @@
+{
+  "actor_id": "lin-rn",
+  "file": "card-matched-v2/lin-rn.glb",
+  "sha256": "a5b3cab050085131f976a8f02ae223f1236d23f24bb0da94afe95aa7014c52c5",
+  "bytes": 9875776,
+  "skin": "young_asian_female",
+  "hair": "ponytail01",
+  "clothes": "female_casualsuit02",
+  "license": "CC0-1.0",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_E",
+    "viseme_I",
+    "viseme_U"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane",
+  "card_sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
+  "appearance_preset": {
+    "age": 0.33,
+    "hair": "ponytail01",
+    "hair_color": "#392c23",
+    "shape": "head-oval",
+    "shape_weight": 0.32,
+    "weight": 0.43,
+    "glasses": false,
+    "coat": false,
+    "clothes": "female_casualsuit02",
+    "color": "#f4f5f5",
+    "accent": "#304b72",
+    "notes": "年輕女性、深棕綁髮、白色藍邊護理服"
+  },
+  "reference_face_proportions": {
+    "head_aspect": 1.1552,
+    "eye_spacing": 0.6585,
+    "nose_width": 0.2399,
+    "mouth_width": 0.4317,
+    "source_card_sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "face_controls": [
+    {
+      "target": "head-scale-vert-decr",
+      "value": 0.2457600000000001
+    },
+    {
+      "target": "head-scale-horiz-incr",
+      "value": 0.02300000000000013
+    },
+    {
+      "target": "mouth-scale-horiz-incr",
+      "value": 0.1634
+    }
+  ],
+  "likeness_status": "artistic reconstruction from card; visual review required"
+}

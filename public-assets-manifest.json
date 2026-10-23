@@ -1,25 +1,25 @@
 {
-  "version": "5.0.0",
-  "archive_sha256": "50f437a143d748ca59297d9f6206e8cc0c48102ea5deb4126c880a1ed806f95c",
+  "version": "5.5.0",
+  "archive_sha256": "e87a0b613e4d0a4a1e27c55287c5935d6b920490de68ccce2313e6cf342dc114",
   "contains_learner_data": false,
   "contains_source_documents": false,
   "contains_real_footage": false,
   "files": {
     "frontend/vendor/avatar.bundle.js": {
-      "sha256": "2d122ac702e0298de6a7b6773638323e84d2183aa4c798775b651e1aa495d44a",
-      "bytes": 407825
+      "sha256": "075f78e00d67dea67ec979529303a6a58d6049a2c071f5dc9b00aa8b91adc39c",
+      "bytes": 1068023
     },
     "frontend/vendor/gsap.min.js": {
       "sha256": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
       "bytes": 72779
     },
     "frontend/vendor/lecturer.bundle.js": {
-      "sha256": "191ec147baabb38f9848a2ab1ecb12b80da5a0a6384d9439cf8822d994b9873b",
-      "bytes": 1888
+      "sha256": "1696ef9f73f9ac9545f34c85dd74c35e9fd7878831bf78cfc9c31fade0777c64",
+      "bytes": 601685
     },
     "frontend/vendor/panorama.bundle.js": {
-      "sha256": "f8c575fa1470c5387dcfcf5df365ff266015b7497375402084de821e04fba7fa",
-      "bytes": 486791
+      "sha256": "9a95a37bfd6f2429b6cbf7b17b1b5e3cb39ff88e5890ebb6e115a13447179340",
+      "bytes": 487258
     },
     "frontend/vendor/h5p/frame.bundle.js": {
       "sha256": "e6deb39e2d0114869080bacdf4092dcb30cf2ce20f8bde3c3ba8af035fa86e0b",
@@ -1585,6 +1585,10 @@
       "sha256": "0524fcacce3168773dcbbdde4da3652aea5f8d4ed90a4c2f587f105269a92ae2",
       "bytes": 362
     },
+    "data/core_competencies.json": {
+      "sha256": "20722c6c3c6926a07764fa0ffe75c1e214feaf7002aca243d24c5f2214cddcba",
+      "bytes": 3476
+    },
     "data/course_catalog.json": {
       "sha256": "2ea74f2ffd7d98b61ee58ef6c4933db4ce5faac166e5aedc0fa19046e9db006f",
       "bytes": 143620
@@ -1594,48 +1598,100 @@
       "bytes": 355
     },
     "data/learning_policy.json": {
-      "sha256": "d0849e58aa8ff8e43c0b11d11dc0bfe338dce0bea5734b06a8e447c73ca92080",
-      "bytes": 1887
+      "sha256": "e77a213d9767c681e2eb99fb95d8a7a45670b65379e3ec502c911beae9477d04",
+      "bytes": 1891
+    },
+    "data/action_lessons/media_catalog.json": {
+      "sha256": "65381c9d4c91e4a52783637ae11d98f35ea5b81dcf788b2d871fa86b23a685c9",
+      "bytes": 3718
+    },
+    "data/action_lessons/sarcopenia_steps.json": {
+      "sha256": "35b0781cef092489acd68fee047b23365d0cc703eecbd4d2bc527632ae8c99c7",
+      "bytes": 41864
+    },
+    "data/characters/auntie-lin.png": {
+      "sha256": "cdec697ff84a0170a6163813471c7ac6c063420d6196569792fe7aa3d506de7b",
+      "bytes": 1958813
     },
     "data/characters/auntie-lin.vrm": {
       "sha256": "aa73dc6a7b1313e28dac4008a5615f2443d35b131bfedd06527465ad5d682949",
       "bytes": 135104
     },
+    "data/characters/card-face-proportions.json": {
+      "sha256": "cf2430ae078ccf7d04d757a3cc45b0ddf01d4e71e60e34ed8f1938c7187ad099",
+      "bytes": 4142
+    },
     "data/characters/catalog.json": {
-      "sha256": "c319a3e5d7ea51d9dab9ce9aa00f13566d6bbd2f4179ac125cf4175b7e509ca8",
-      "bytes": 17082
+      "sha256": "acefd24f4b8fb222ae0e586517607fb30458cf4a58e83cddd93c3b666cf2401b",
+      "bytes": 31818
+    },
+    "data/characters/chen-md.png": {
+      "sha256": "a0f1055a4eadd1f751f2cfaae25239ef5a7a536b08789750a6b7a324ab4c7381",
+      "bytes": 1819820
     },
     "data/characters/chen-md.vrm": {
       "sha256": "b6ccc1adf6aeeb2d1179fc93e5b80776158159d06ce3c2f09ec6b8061addffdd",
       "bytes": 136636
     },
+    "data/characters/he-sw.png": {
+      "sha256": "e62524ff6c6c9b6e3d15c57683fd4027fd18c9195fa37b0841ed0781bd446f6d",
+      "bytes": 1848426
+    },
     "data/characters/he-sw.vrm": {
       "sha256": "44573fbac04075de265f7b246e8bbf50fbb32e30a698159b0842f118c069c9ff",
       "bytes": 127340
+    },
+    "data/characters/huang-dt.png": {
+      "sha256": "e0e5f4beb38c9d3a0ba4ce2c80e8c7e1fa1b6370bb16812bc96cdfe25157b889",
+      "bytes": 1901101
     },
     "data/characters/huang-dt.vrm": {
       "sha256": "098a8835629bd81fa036d708b3f145e31329913e2c8f084f18ba4e98a5f77048",
       "bytes": 128868
     },
+    "data/characters/li-rph.png": {
+      "sha256": "b195b81465a56dbf36db0ee554ea5e0e25e333942d030c29ddf28e09037cdf67",
+      "bytes": 1906796
+    },
     "data/characters/li-rph.vrm": {
       "sha256": "7e385a7849cfcedfdfe79006a7975a08c22e8b22b7915be28148f9ac5d6b662e",
       "bytes": 136636
+    },
+    "data/characters/lin-rn.png": {
+      "sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
+      "bytes": 1834007
     },
     "data/characters/lin-rn.vrm": {
       "sha256": "37f746e5da90c1dde5cc02149d8c9820a2ff9a2c50ab533560d357cd92811b1a",
       "bytes": 128868
     },
+    "data/characters/mr-chen.png": {
+      "sha256": "e06b1f0678442abe6697cb5aa3b0c53f69cc2495663c08d4c9503345afdbd792",
+      "bytes": 1924752
+    },
     "data/characters/mr-chen.vrm": {
       "sha256": "35e19af1ba0996851d6468890e74ab09bafdb974530376b5d629ceafbc721c64",
       "bytes": 122224
+    },
+    "data/characters/mr-wang.png": {
+      "sha256": "c732226f06ce31487cea0090f2f2dd54f52637dc3b76625d55ad97d7f0e5e776",
+      "bytes": 1892432
     },
     "data/characters/mr-wang.vrm": {
       "sha256": "1de12305bc23c31212fe628c1509cd1fed98342470a013a1338b6ce6a3ebcf3e",
       "bytes": 135112
     },
+    "data/characters/wang-pt.png": {
+      "sha256": "74a44d54df256f3d9d8a298b8c32668c3158933e681139e6b28e83851263c81d",
+      "bytes": 1877979
+    },
     "data/characters/wang-pt.vrm": {
       "sha256": "0ed0f84f760e466f1bdb12a734ef6ab46efe3ec5328a0a89a9eddbba0fa3eab5",
       "bytes": 123764
+    },
+    "data/characters/zhang-ot.png": {
+      "sha256": "12df6ae23422a4803afd6c5efb5fad47f9210d4c7c9dba5b507079992019dbbf",
+      "bytes": 1858151
     },
     "data/characters/zhang-ot.vrm": {
       "sha256": "125ec68c12d68d8c18c75e17e3a920745ffd027e5394a63aff23563c641e3cb8",
@@ -1664,6 +1720,110 @@
     "data/video_lessons/video_lessons.json": {
       "sha256": "39b7d4831939af38a494e694a4bb323dc3644502ba3b81e6625e41562d24963b",
       "bytes": 11917
+    },
+    "data/characters/card-matched-v2/auntie-lin.glb": {
+      "sha256": "e2beaabfdd8bc30a99336599b0968b4a68796a1660e65315c41560a8a5c36a6f",
+      "bytes": 10091408
+    },
+    "data/characters/card-matched-v2/auntie-lin.json": {
+      "sha256": "08da6714f328010c77562dffeae47be33fb367f85e4db84669d29296afd3f666",
+      "bytes": 1894
+    },
+    "data/characters/card-matched-v2/chen-md.glb": {
+      "sha256": "af6ad45bc731e4d3b061256e0f24c8e4da32436ae7a9f55e6ad01bd0090380cc",
+      "bytes": 9185388
+    },
+    "data/characters/card-matched-v2/chen-md.json": {
+      "sha256": "58cb505faffae89ee485be0540b333c51b9c79b1d263b6de53e5a868e74195d4",
+      "bytes": 1901
+    },
+    "data/characters/card-matched-v2/he-sw.glb": {
+      "sha256": "3e868c273ee1ae11b34284eae90adc15f921fc639cd83860305b2133028d4843",
+      "bytes": 9243656
+    },
+    "data/characters/card-matched-v2/he-sw.json": {
+      "sha256": "65bdf7bba02f4f3deb6cf616927a9d0481a588d5f13528a106f06aa668f4d54b",
+      "bytes": 1880
+    },
+    "data/characters/card-matched-v2/huang-dt.glb": {
+      "sha256": "c5434d820ac8c74e8e664edc849d4832f2bfcbf996b0a05c81fe39332efc64af",
+      "bytes": 9256624
+    },
+    "data/characters/card-matched-v2/huang-dt.json": {
+      "sha256": "b838e02ff15bd06bbdf2825bda58b7660722c0e01b87a1299169e8072037e464",
+      "bytes": 1865
+    },
+    "data/characters/card-matched-v2/li-rph.glb": {
+      "sha256": "afac9a241416a9d5ccd50fc8c38d3888d1cb901d3f477edcb0d756061102b4f8",
+      "bytes": 9038060
+    },
+    "data/characters/card-matched-v2/li-rph.json": {
+      "sha256": "1a66fb73e96e5c8c1e96a3383edb1c18d639104047a17ac9a575af2d6b551b9a",
+      "bytes": 1891
+    },
+    "data/characters/card-matched-v2/lin-rn.glb": {
+      "sha256": "a5b3cab050085131f976a8f02ae223f1236d23f24bb0da94afe95aa7014c52c5",
+      "bytes": 9875776
+    },
+    "data/characters/card-matched-v2/lin-rn.json": {
+      "sha256": "0f156ffa3df03f35470f1313bcf7fa2ab97eff4ab0406c1cec66178a24b9f55f",
+      "bytes": 1872
+    },
+    "data/characters/card-matched-v2/middle-man.glb": {
+      "sha256": "9ae636db2dd9d15e812ff642f2229f9b51eb96482f00bd74a3b9ef0436f8d698",
+      "bytes": 9761264
+    },
+    "data/characters/card-matched-v2/middle-man.json": {
+      "sha256": "90638fa0e68887833a60973759dc1d80393ed383f685ce12bbb2c66e3bd2ec8c",
+      "bytes": 1893
+    },
+    "data/characters/card-matched-v2/middle-woman.glb": {
+      "sha256": "f046ed5feebde0b8fd4d4cfd535186ba732743c29376fdbb51d234a0f320400e",
+      "bytes": 9459616
+    },
+    "data/characters/card-matched-v2/middle-woman.json": {
+      "sha256": "137ad23a9f56b5eaafb11aae9c503df1ae536bb2a9fee5bdf7466a13279ea683",
+      "bytes": 1885
+    },
+    "data/characters/card-matched-v2/mr-chen.glb": {
+      "sha256": "73969153447b87034dbc89f7c3adc32b4030ce1a441d6a454c1e9258744c5387",
+      "bytes": 10099120
+    },
+    "data/characters/card-matched-v2/mr-chen.json": {
+      "sha256": "46d93fdec13d54e53e46b7ee11cf26676161ffe6e8d31e789129e2c2c9dd1d62",
+      "bytes": 1890
+    },
+    "data/characters/card-matched-v2/mr-wang.glb": {
+      "sha256": "efbdcfb9982799423a8b4420b93c3527175b286910e7f521403040fbfafdb1e9",
+      "bytes": 9094768
+    },
+    "data/characters/card-matched-v2/mr-wang.json": {
+      "sha256": "99dcc8d32a6ec2cd9c08e729f5295266af47da47ddb3e2b9acdb82aa98951a33",
+      "bytes": 1889
+    },
+    "data/characters/card-matched-v2/wang-pt.glb": {
+      "sha256": "7ef4089a913022d6d4def457c7113b29c904b5ac932c5265d17c10ae3e638e53",
+      "bytes": 9494344
+    },
+    "data/characters/card-matched-v2/wang-pt.json": {
+      "sha256": "5aff66f23c13402ca8a6bdf07aeee68ed01b020aaea4688ae939d0224833d67b",
+      "bytes": 1884
+    },
+    "data/characters/card-matched-v2/zhang-ot.glb": {
+      "sha256": "ff4aea1736092dd40a4a90c0998f2be8b182ceb3f6669d3c952539283dbf85a3",
+      "bytes": 9862492
+    },
+    "data/characters/card-matched-v2/zhang-ot.json": {
+      "sha256": "e61dc6e63e1b0b7f661e9e6a426521ff68eab88af0491b4e787d6f99658b14e4",
+      "bytes": 1888
+    },
+    "data/characters/card-matched-v2/zhou-rt.glb": {
+      "sha256": "44ec315f548778133e9675b6ebf479a42840e49d37e476ed58fccec0395f64c5",
+      "bytes": 9480324
+    },
+    "data/characters/card-matched-v2/zhou-rt.json": {
+      "sha256": "033529fcafde305222c492defc5e46d7bd647f1d2bcf01f4f752d22f48697b5d",
+      "bytes": 1880
     },
     "data/characters/photoreal-v1/auntie-lin.png": {
       "sha256": "a74b7a8c4d1b917cac3fa398efefc9bd87e315136ac3791dd025435b773d2307",

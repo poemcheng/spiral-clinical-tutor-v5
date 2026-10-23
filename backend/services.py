@@ -24,19 +24,13 @@ def patient_reply(case, session, messages, text):
     from . import encounters
     actor=selected(session)
     from .interaction_policy import policy,response_stance
-    def grams(value):
-        return {value[i:i+2] for i in range(len(value)-1)}
-    query=grams(text)
+    from .knowledge_retrieval import retrieve
     patient_facts=case['patient'].split('判讀重點')[0]
-    # Interaction difficulty is a user-confirmed scenario policy, not a quote from the source PDF.
-    chunks=[patient_facts,case.get('patient_script','')]
-    ranked=sorted(enumerate(chunks),key=lambda pair:len(query & grams(pair[1])),reverse=True)[:3]
-    evidence=[{'chunk_id':f"{case['id']}-c{i}",'source_file':case.get('source_file','既有案例'),
-               'excerpt':chunk,'sha256':hashlib.sha256(chunk.encode()).hexdigest()} for i,chunk in ranked]
+    evidence,retrieval_version=retrieve(case,text)
     speaker={'COURSE-ICU':'病患家屬','COURSE-STROKE':'太太','COURSE-DEM':'女兒','COURSE-PEDXR':'阿嬤'}.get(case['id'],'病人')
     facts = {'case_id': case['id'], 'title': case['title'], 'patient': patient_facts,
              'speaker':speaker, 'patient_behavior':case.get('patient_behavior',''), 'patient_script':case.get('patient_script',''), 'profession': session['profession'], 'level': session['level'],
-             'retrieved_evidence':evidence,'retrieval_version':'local-bigram-2-case-only'}
+             'retrieved_evidence':evidence,'retrieval_version':retrieval_version}
     facts['actor']={k:actor[k] for k in ('id','name','kind','title','style','tasks')}
     if actor['kind'] in ('patient','caregiver'):
         # Role-card aliases (e.g. Auntie Lin) are not the patient's clinical name.
@@ -107,6 +101,19 @@ def patient_reply(case, session, messages, text):
             result.ok=False;result.error='角色重複詢問已交接的資料缺口，未產生有效的新回覆。請重試。';return result,facts
         if actor['kind'] in ('patient','caregiver'):
             body=re.sub(r'^(?:您好[，,]?|你好[，,]?)?(?:我是|我叫)[^。！？!?]{1,24}[。！？!?]\s*','',body)
+        unsupported=encounters.unsupported_change_claims(body,case)
+        if unsupported:
+            retry_system=system+'\n前一候選回覆把病人含糊的「更差」說成'+ '、'.join(unsupported)+'實際下降，來源沒有這項前後變化。請只回應來源已提供的單次數值、主訴與待核對事項，不新增變化、檢查結果或已完成處置。'
+            result=llm.chat([{'role':'system','content':retry_system},*history],max_tokens=500,temperature=.2,operation='v5.5來源變化核對',json_mode=encounters.REPLY_SCHEMA)
+            if result.ok:
+                try:
+                    body,conversation=encounters.decode_reply(result.text,user_turns,facts['encounter'].get('state','active'),text)
+                    facts['conversation_state']=conversation
+                    body,_=encounters.suppress_repeated_missing_question(body,messages)
+                except (ValueError,TypeError,AttributeError):body=''
+            if not result.ok or not body or encounters.unsupported_change_claims(body,case):
+                result.ok=False;result.error='角色回覆包含來源未支持的前後變化，未採用該回覆。請重試。';return result,facts
+        facts['source_change_guard']={'unsupported_metrics':unsupported,'retry_used':bool(unsupported),'passed':True}
         used_body=bool(body)
         if stance['applied']:
             # Preserve complete model clauses, never truncate a clinical sentence mid-claim.

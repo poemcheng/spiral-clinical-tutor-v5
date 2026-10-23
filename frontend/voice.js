@@ -1,8 +1,16 @@
 // Local recording + authenticated transcription. No third-party speech service.
 export function createVoiceInput({sid,onText,onStatus,onError,onListening=()=>{},beforeListen=()=>{},inputStreamFactory=null,transcribeUrl=null,onEvent=()=>{}}){
- let stream,context,analyser,recorder,frame,timer,retryTimer,disposed=false,enabled=false,cancelled=false,started=0,lastSound=0,heard=false,epoch=0,request,pending=false,cancelPermission;
+ let stream,context,analyser,recorder,frame,timer,retryTimer,interruptFrame,disposed=false,enabled=false,cancelled=false,started=0,lastSound=0,heard=false,epoch=0,request,pending=false,cancelPermission;
  const label=(text,state)=>{onStatus(text,state);const el=document.querySelector('#voice-status');if(el)el.dataset.state=state;};
- function finish(cancel=false){cancelled=cancel;clearTimeout(retryTimer);if(cancel){epoch++;request?.abort();cancelPermission?.();}clearTimeout(timer);cancelAnimationFrame(frame);if(recorder?.state==='recording')recorder.stop();onListening(false);}
+ function finish(cancel=false){cancelled=cancel;clearTimeout(retryTimer);cancelAnimationFrame(interruptFrame);if(cancel){epoch++;request?.abort();cancelPermission?.();}clearTimeout(timer);cancelAnimationFrame(frame);if(recorder?.state==='recording')recorder.stop();onListening(false);}
+ function watchInterrupt(callback){
+  cancelAnimationFrame(interruptFrame);if(!enabled||disposed||!analyser)return;
+  const samples=new Uint8Array(analyser.fftSize);let loudSince=0;
+  function check(){if(!enabled||disposed)return;analyser.getByteTimeDomainData(samples);const rms=Math.sqrt(samples.reduce((s,v)=>s+((v-128)/128)**2,0)/samples.length),now=performance.now();
+   if(rms>.065){if(!loudSince)loudSince=now;if(now-loudSince>320){onEvent('interrupted',{source:'echo-cancelled-microphone'});callback();return;}}else loudSince=0;
+   interruptFrame=requestAnimationFrame(check);
+  }interruptFrame=requestAnimationFrame(check);
+ }
  async function listen(){
   if(disposed||pending||recorder?.state==='recording')return;
   try{
@@ -38,5 +46,5 @@ export function createVoiceInput({sid,onText,onStatus,onError,onListening=()=>{}
    }level();timer=setTimeout(()=>finish(),59000);
   }catch(e){if(disposed||e.name==='AbortError')return;enabled=false;const messages={NotAllowedError:'麥克風未獲允許，請在網址列開啟麥克風權限後重試。',NotFoundError:'找不到麥克風，請接上裝置後重試。',NotReadableError:'麥克風正被其他程式使用，請關閉後重試。'};label(messages[e.name]||e.message,'error');onError(Error(messages[e.name]||e.message));}
  }
- return {async start(){enabled=true;await listen();},finish(){finish();},stop(){enabled=false;finish(true);stream?.getTracks().forEach(t=>t.stop());stream=null;context?.close().catch(()=>{});context=null;analyser=null;label('語音對話已停止。','idle');},pause(){finish(true);},resume(){if(enabled&&!disposed)return listen();},get enabled(){return enabled;},dispose(){disposed=true;enabled=false;finish(true);stream?.getTracks().forEach(t=>t.stop());context?.close().catch(()=>{});}};
+ return {async start(){enabled=true;await listen();},watchInterrupt,finish(){finish();},stop(){enabled=false;finish(true);stream?.getTracks().forEach(t=>t.stop());stream=null;context?.close().catch(()=>{});context=null;analyser=null;label('語音對話已停止。','idle');},pause(){finish(true);},resume(){cancelAnimationFrame(interruptFrame);if(enabled&&!disposed)return listen();},get enabled(){return enabled;},dispose(){disposed=true;enabled=false;finish(true);stream?.getTracks().forEach(t=>t.stop());context?.close().catch(()=>{});}};
 }

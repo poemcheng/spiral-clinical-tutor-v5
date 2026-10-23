@@ -6,6 +6,7 @@ import {riggedHuman} from './riggedHuman.js';
 export function clinicScene(canvas,{modelUrl,interactive=false,onAction=()=>{}}={}){
  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,preserveDrawingBuffer:true});
  renderer.setPixelRatio(interactive?Math.min(devicePixelRatio,1.5):1);renderer.outputColorSpace=THREE.SRGBColorSpace;
+ renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.9;
  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
  const scene=new THREE.Scene();scene.background=new THREE.Color('#dce6ea');
  const camera=new THREE.PerspectiveCamera(38,1,.1,100);camera.position.set(0,1.5,1.2);
@@ -41,7 +42,7 @@ export function clinicScene(canvas,{modelUrl,interactive=false,onAction=()=>{}}=
  const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();let down;
  const start=e=>{down=[e.clientX,e.clientY];};const end=e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>7||mode!=='clinic')return;const rect=canvas.getBoundingClientRect();mouse.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(mouse,camera);const hit=ray.intersectObjects(hotspots)[0];if(hit)onAction(hit.object.userData.action);};
  if(interactive){canvas.addEventListener('pointerdown',start);canvas.addEventListener('pointerup',end);}
- return {ready,renderAt,setBehavior:rig.setBehavior,setPresence:rig.setPresence,orbit(degrees){if(controls&&mode==='clinic'){rig.group.rotation.y+=THREE.MathUtils.degToRad(degrees);controls.update();}},focusFace(){if(controls&&mode==='clinic'){camera.position.set(0,1.58,.67);controls.target.set(0,1.5,0);controls.update();}},reset(){if(mode==='clinic'){rig.group.rotation.y=0;camera.position.set(0,1.5,1.2);controls?.target.set(0,1.4,0);controls?.update();}},setPanorama(video){
+ return {ready,renderAt,setVisemes:rig.setVisemes,setBehavior:rig.setBehavior,setPresence:rig.setPresence,orbit(degrees){if(controls&&mode==='clinic'){rig.group.rotation.y+=THREE.MathUtils.degToRad(degrees);controls.update();}},focusFace(){if(controls&&mode==='clinic'){camera.position.set(0,1.58,.67);controls.target.set(0,1.5,0);controls.update();}},reset(){if(mode==='clinic'){rig.group.rotation.y=0;camera.position.set(0,1.5,1.2);controls?.target.set(0,1.4,0);controls?.update();}},setPanorama(video){
    if(panorama){scene.remove(panorama);panorama.geometry.dispose();panorama.material.dispose();videoTexture.dispose();panorama=null;}
    mode=video?'vr360':'clinic';clinic.visible=!video;scene.background=new THREE.Color(video?'#101a27':'#dce6ea');
    if(video){videoTexture=new THREE.VideoTexture(video);videoTexture.colorSpace=THREE.SRGBColorSpace;const geo=new THREE.SphereGeometry(25,64,40);geo.scale(-1,1,1);panorama=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({map:videoTexture}));scene.add(panorama);camera.position.set(0,1.45,.01);controls.target.set(0,1.05,0);controls.minDistance=.01;controls.maxDistance=.01;controls.minAzimuthAngle=-Infinity;controls.maxAzimuthAngle=Infinity;controls.minPolarAngle=.1;controls.maxPolarAngle=Math.PI-.1;}

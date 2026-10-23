@@ -32,7 +32,10 @@ from starlette.concurrency import run_in_threadpool
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('text/css', '.css')
 app = FastAPI(title='醫事人員智慧訓練平台', version=VERSION)
-store = Store()
+from .postgres_store import open_store
+store = open_store()
+from . import voice_agents
+voice_agents.prepare()
 conversation_locks = defaultdict(threading.Lock)
 video_locks = defaultdict(threading.Lock)
 login_failures = defaultdict(list)
@@ -172,7 +175,7 @@ def login(body: LoginBody, response: Response, request: Request):
                   (hashlib.sha256(token.encode()).hexdigest(), user['id'], now+12*3600))
         store.event(c, user['id'], None, 'login', {'role': user['role']})
     response.set_cookie(COOKIE, token, httponly=True, samesite='strict',
-                        secure=os.getenv('COOKIE_SECURE', '0') == '1')
+                        secure=request.url.scheme=='https' or os.getenv('COOKIE_SECURE', '0') == '1')
     return {k: user[k] for k in ('id', 'username', 'display_name', 'role')}
 
 
@@ -829,6 +832,15 @@ def voice_diagnostic_output(sid:int,test_id:str,turn:int,user=Depends(student)):
     return FileResponse(RUNTIME/'voice-diagnostics'/f"{user['id']}-{sid}-{test_id}-{turn}.wav",media_type='audio/wav')
 
 
+@app.get('/api/sessions/{sid}/xapi')
+def session_xapi(sid:int,user=Depends(current_user)):
+    from .xapi import statement,activity_base
+    row=owned_session(sid,user,require_checkin=False)
+    learner=store.one('SELECT id FROM users WHERE id=?',(row['user_id'],))
+    events=store.all('SELECT * FROM events WHERE session_id=? ORDER BY id',(sid,))
+    return {'version':'1.0.3','statements':[statement(e,learner,row,activity_base()) for e in events],'more':''}
+
+
 @app.post('/api/sessions/{sid}/chat')
 def chat(sid: int, body: ChatBody, user=Depends(student)):
     if body.mode not in ('ai', 'scripted','peer'):
@@ -872,7 +884,7 @@ def chat(sid: int, body: ChatBody, user=Depends(student)):
                 'prompt_version':'peer-1' if body.mode=='peer' else 'encounters-5.4.0','mode':body.mode,
                 'conversation':facts.get('conversation_state'),
                 'interaction_difficulty':facts.get('interaction_difficulty'),
-                'retrieval_version':facts.get('retrieval_version','case-peer-1'),'evidence':facts.get('retrieved_evidence',[])}
+                'retrieval_version':facts.get('retrieval_version','case-peer-1'),'evidence':facts.get('retrieved_evidence',[]),'source_change_guard':facts.get('source_change_guard')}
         else:
             # Explicit scripted patient exercise, not a false AI fallback.
             lines = [case.get('patient_behavior') or '您可以先說明接下來要問什麼嗎？', '我擔心做不到，能不能先一起討論我的疑慮？', '請再用簡單的話說明下一步。']
@@ -1146,7 +1158,7 @@ def service_status(user=Depends(current_user)):
             'photoreal_available':all((ROOT/'data/characters'/a.get('atlas_file','missing')).is_file() for a in characters.ACTORS.values()),
             'characters':len(characters.ACTORS),'character_version':characters.VERSION,
             'livekit_configured':voice_bridge.ready(),
-            'livekit_agent_configured':False,'livekit_audio_bridge':True,'speech_input':speech_input.status(),'voice_transport':'authenticated-http-audio',
+            'livekit_agent_configured':voice_agents.available() and voice_bridge.ready(),'livekit_audio_bridge':True,'speech_input':speech_input.status(),'voice_transport':'authenticated-http-audio; optional-livekit-agents',
             'h5p_available':(ROOT/'frontend/vendor/h5p/main.bundle.js').is_file(),
             'knowledge_mode':'本地案例快照與來源約束檢索；尚未建置醫療知識圖譜',
             'video_mode':'three.js 診間場景／擬真人像與語音驅動表情；四部VR360教材，待教師審核'}
@@ -1249,6 +1261,31 @@ def h5p_evidence(sid:int,body:H5PEvidenceBody,user=Depends(student)):
             row['payload'].setdefault('h5p_states',{})[version]={'answers':body.state['answers'][:3]}
         store.save(c,sid,row['payload'])
     return {'saved':True,'formal_score_changed':False}
+
+
+from .livekit_proxy import install as install_livekit_proxy
+install_livekit_proxy(app,current_user,COOKIE)
+
+
+@app.post('/api/sessions/{sid}/voice-agent')
+def start_voice_agent(sid:int,request:Request,user=Depends(student)):
+    from . import voice_agents
+    row=owned_session(sid,user);need_step(row,4)
+    if not voice_agents.available():raise HTTPException(503,'請安裝 requirements-extended.txt 以啟用 LiveKit Agents。')
+    if not voice_bridge.ready():raise HTTPException(503,'LiveKit 伺服器尚未啟動。')
+    identity=f"student-{user['id']}-{secrets.token_hex(8)}"
+    try:voice_agents.start(sid,user,identity)
+    except Exception as e:raise HTTPException(503,'即時語音代理啟動失敗：'+str(e)[:200])
+    with store.tx() as c:store.event(c,user['id'],sid,'voice_agent_started',{'transport':'LiveKit Agents','recording':False})
+    url=('wss://' if request.url.scheme=='https' else 'ws://')+request.headers['host']+'/livekit'
+    return {'url':url,'token':livekit_token(identity,voice_bridge.room_name(sid),False),'agent_ready':True,'observer':False}
+
+
+@app.delete('/api/sessions/{sid}/voice-agent')
+def stop_voice_agent(sid:int,user=Depends(student)):
+    from . import voice_agents
+    owned_session(sid,user,require_checkin=False);voice_agents.stop(sid)
+    return {'stopped':True}
 
 
 @app.post('/api/sessions/{sid}/livekit')

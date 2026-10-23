@@ -1,7 +1,7 @@
 // Shared card presentation. All URLs come from authenticated server catalog entries.
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const kind={clinician:'跨專業同仁',support:'支援同仁',patient:'病患',caregiver:'照顧者'};
-const portrait=(a,cls='portrait-crop')=>`<span class="${cls} photo-crop"><img src="${esc(a.atlas_url)}" alt="${esc(a.name)}擬真人物"></span>`;
+const portrait=(a,cls='portrait-crop')=>`<span class="${cls} reference-card-crop"><img src="${esc(a.card_url)}" alt="${esc(a.name)}擬真人物"></span>`;
 export function characterPanel(info,purpose,readonly=false){
  if(!info)return '';
  const selected=info[purpose],actors=info.catalog.actors.filter(a=>purpose==='lecturer'?['clinician','support'].includes(a.kind):!info.pairing||info.pairing.targets.includes(['patient','caregiver'].includes(a.kind)?'patient':a.profession));

@@ -1,0 +1,106 @@
+{
+  "chen-md": {
+    "head_aspect": 1.1186,
+    "eye_spacing": 0.6106,
+    "nose_width": 0.2507,
+    "mouth_width": 0.424,
+    "source_card_sha256": "a0f1055a4eadd1f751f2cfaae25239ef5a7a536b08789750a6b7a324ab4c7381",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "lin-rn": {
+    "head_aspect": 1.1552,
+    "eye_spacing": 0.6585,
+    "nose_width": 0.2399,
+    "mouth_width": 0.4317,
+    "source_card_sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "wang-pt": {
+    "head_aspect": 1.2138,
+    "eye_spacing": 0.6391,
+    "nose_width": 0.2444,
+    "mouth_width": 0.4676,
+    "source_card_sha256": "74a44d54df256f3d9d8a298b8c32668c3158933e681139e6b28e83851263c81d",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "zhang-ot": {
+    "head_aspect": 1.1606,
+    "eye_spacing": 0.688,
+    "nose_width": 0.2432,
+    "mouth_width": 0.4455,
+    "source_card_sha256": "12df6ae23422a4803afd6c5efb5fad47f9210d4c7c9dba5b507079992019dbbf",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "huang-dt": {
+    "head_aspect": 1.1788,
+    "eye_spacing": 0.6474,
+    "nose_width": 0.2513,
+    "mouth_width": 0.4619,
+    "source_card_sha256": "e0e5f4beb38c9d3a0ba4ce2c80e8c7e1fa1b6370bb16812bc96cdfe25157b889",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "li-rph": {
+    "head_aspect": 1.1385,
+    "eye_spacing": 0.6099,
+    "nose_width": 0.2553,
+    "mouth_width": 0.4287,
+    "source_card_sha256": "b195b81465a56dbf36db0ee554ea5e0e25e333942d030c29ddf28e09037cdf67",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "he-sw": {
+    "head_aspect": 1.1456,
+    "eye_spacing": 0.6515,
+    "nose_width": 0.2342,
+    "mouth_width": 0.4171,
+    "source_card_sha256": "e62524ff6c6c9b6e3d15c57683fd4027fd18c9195fa37b0841ed0781bd446f6d",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "auntie-lin": {
+    "head_aspect": 1.0949,
+    "eye_spacing": 0.5977,
+    "nose_width": 0.2298,
+    "mouth_width": 0.3812,
+    "source_card_sha256": "cdec697ff84a0170a6163813471c7ac6c063420d6196569792fe7aa3d506de7b",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "mr-chen": {
+    "head_aspect": 1.0987,
+    "eye_spacing": 0.5802,
+    "nose_width": 0.238,
+    "mouth_width": 0.3591,
+    "source_card_sha256": "e06b1f0678442abe6697cb5aa3b0c53f69cc2495663c08d4c9503345afdbd792",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "mr-wang": {
+    "head_aspect": 1.135,
+    "eye_spacing": 0.6186,
+    "nose_width": 0.2452,
+    "mouth_width": 0.3828,
+    "source_card_sha256": "c732226f06ce31487cea0090f2f2dd54f52637dc3b76625d55ad97d7f0e5e776",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "middle-man": {
+    "head_aspect": 1.1865,
+    "eye_spacing": 0.5946,
+    "nose_width": 0.2293,
+    "mouth_width": 0.3544,
+    "source_card_sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "middle-woman": {
+    "head_aspect": 1.1963,
+    "eye_spacing": 0.6243,
+    "nose_width": 0.2366,
+    "mouth_width": 0.3672,
+    "source_card_sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "zhou-rt": {
+    "head_aspect": 1.1855,
+    "eye_spacing": 0.6114,
+    "nose_width": 0.2239,
+    "mouth_width": 0.3539,
+    "source_card_sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  }
+}
