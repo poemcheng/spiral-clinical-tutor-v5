@@ -1,5 +1,9 @@
 $ErrorActionPreference='Stop'
 $taskRoot=Split-Path $PSScriptRoot -Parent
+if (-not (Test-Path -LiteralPath (Join-Path $taskRoot 'runtime/internet-tools/cloudflared.exe'))) {
+    & (Join-Path $taskRoot '.venv/Scripts/python.exe') (Join-Path $taskRoot 'tools/install_cloudflared.py')
+    if ($LASTEXITCODE -ne 0) {throw 'Official connector installation failed.'}
+}
 $taskState=Join-Path $taskRoot 'runtime/internet-service.json'
 if (Test-Path -LiteralPath $taskState) {
     $taskProcessId=(Get-Content -Raw -LiteralPath $taskState | ConvertFrom-Json).pid
