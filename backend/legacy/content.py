@@ -355,6 +355,16 @@ def load_cases() -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         except Exception as exc:
             report["errors"].append(f"case_catalog.json: {exc}")
 
+    # The seven platform-authored lesson seeds must remain available on a clean
+    # installation where the original Markdown teaching files are not shipped.
+    from .published_case_seeds import CASES as published_seeds
+    for item in published_seeds:
+        c = normalize_case(dict(item), source_file="published_case_seeds")
+        old = by_id.get(c["id"])
+        if not old or len(c["kdp"]) >= len(old["kdp"]):
+            by_id[c["id"]] = c
+        report["published_seeds"] = report.get("published_seeds", 0) + 1
+
     if LESSON_CASES_DIR.exists():
         for path in sorted(LESSON_CASES_DIR.glob("*.md")):
             if path.name.startswith("00_") or path.name.upper() == "INDEX.MD":

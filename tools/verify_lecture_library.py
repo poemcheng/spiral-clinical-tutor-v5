@@ -8,7 +8,9 @@ from backend.services import registry
 def verify(strict=False,enrich=False):
     data=lecture_library.catalog();coverage=set();actors=set();files=0
     for entry in data['lectures']:
-        case=curriculum.adapt_case(registry.case(entry['case_id']),entry['audiences'][0],1,{})
+        source=registry.case(entry['case_id'])
+        assert source is not None,('Published teaching case is missing',entry['case_id'])
+        case=curriculum.adapt_case(source,entry['audiences'][0],1,{})
         actor=characters.get_actor(entry['actor_id'])
         assert entry['source_fingerprint']==lecture_library.source_fingerprint(case),'Stale teaching source'
         assert entry['actor_model_sha256']==actor['realistic_model_sha256'],'Stale actor appearance'

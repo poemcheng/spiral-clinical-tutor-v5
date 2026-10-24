@@ -4,9 +4,9 @@
   "contains_real_footage": false,
   "contains_original_teaching_footage": false,
   "contains_private_epa_frames": false,
-  "version": "5.6.2",
-  "release": "v5.6.2",
-  "archive_sha256": "296e93bcd1ecafbf9284161ef93231afb761cbb5dff3199470e9002df28f8839",
+  "version": "5.6.3",
+  "release": "v5.6.3",
+  "archive_sha256": "1d080117b9398dad45a0ba1778f7cb71db8f9349692e4734c2a10a4178d98e52",
   "archive_bytes": 354862952,
   "files": {
     "data/action_lessons/media_catalog.json": {

@@ -1,4 +1,4 @@
-import hashlib,json,unittest
+import hashlib,json,shutil,unittest
 from pathlib import Path
 from unittest.mock import patch
 import test_uploaded_workflow as fixtures
@@ -60,6 +60,23 @@ class LectureLibraryTests(unittest.TestCase):
         case=server.registry.case('COURSE-SARC');before=lecture_library.source_fingerprint(case)
         altered={**case,'variant':{'level':5,'weak_dimensions':['COM']},'goals':['personal draft']}
         self.assertEqual(before,lecture_library.source_fingerprint(altered))
+
+    def test_clean_install_without_original_markdown_keeps_every_published_source(self):
+        from backend.legacy import content
+        from types import SimpleNamespace
+        root=Path(self.tmp.name)/'portable-lessons';root.mkdir()
+        shutil.copyfile(content.LESSON_CASES_DIR/'case_catalog.json',root/'case_catalog.json')
+        with patch.object(content,'LESSON_CASES_DIR',root):
+            cases,report=content.load_cases()
+        self.assertEqual(report['published_seeds'],7)
+        self.assertEqual(report['markdown'],0)
+        portable=SimpleNamespace(cases=cases,case_map={c['id']:c for c in cases})
+        server.curriculum.install(portable)
+        expected={c['id'] for c in server.registry.cases if not c.get('teacher_authored')}
+        self.assertEqual(set(portable.case_map),expected)
+        for entry in lecture_library.catalog()['lectures']:
+            case=server.curriculum.adapt_case(portable.case_map[entry['case_id']],entry['audiences'][0],1,{})
+            self.assertEqual(entry['source_fingerprint'],lecture_library.source_fingerprint(case),entry['case_id'])
 
     def test_unpublished_case_is_distinguished_from_an_uninstalled_library(self):
         sid,root,entry=self.prepare()
