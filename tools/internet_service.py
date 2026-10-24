@@ -96,13 +96,17 @@ def tunnel_loop():
                     atomic_json(RUNTIME/'internet-connection.json',connection)
                     atomic_json(ROOT/'web_portal/internet.json',connection)
                     def publish(data):
-                        for attempt in range(5):
+                        attempt=0
+                        while True:
+                            try:current=json.loads((RUNTIME/'internet-connection.json').read_text(encoding='utf-8'))
+                            except (OSError,ValueError):current={}
+                            if current.get('url')!=data['url']:return
                             try:
                                 with urllib.request.urlopen(data['url']+'/health',timeout=15) as r:json.load(r)
                                 data.update(ready=True,updated=now());atomic_json(RUNTIME/'internet-connection.json',data);atomic_json(ROOT/'web_portal/internet.json',data)
                                 publish_url(data);return
                             except Exception as e:
-                                print('Portal update pending:',str(e),flush=True);time.sleep(20)
+                                print('Portal update pending:',str(e),flush=True);attempt+=1;time.sleep(min(60,10*attempt))
                     threading.Thread(target=publish,args=(dict(connection),),daemon=True).start()
             connection.update(ready=False,updated=now());atomic_json(RUNTIME/'internet-connection.json',connection)
         time.sleep(10)
