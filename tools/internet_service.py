@@ -107,28 +107,41 @@ def tunnel_loop():
             connection.update(ready=False,updated=now());atomic_json(RUNTIME/'internet-connection.json',connection)
         time.sleep(10)
 
-def backup_loop():
+def backup_loop(stop=None,interval=15):
     cfg=settings();base=Path(cfg.get('backup_directory',str(RUNTIME/'encrypted-learning-backups'))).resolve();base.mkdir(parents=True,exist_ok=True)
     state={'local_interval_seconds':15,'github_interval_seconds':300,'github_repository':PRIVATE_REPO,'scope':'帳號、學習歷程、對話、教師回饋、自訂教案與個人分析／影片；共用EPA影格與原始教材由既有主機保存'}
-    stamp=None;latest=None;last_cloud=0;last_scan=0
-    while True:
+    stamp=None;latest=None;last_cloud=0
+    state_lock=threading.RLock();cloud_busy=threading.Event()
+    def sync_remote(snapshot):
+        nonlocal last_cloud
+        try:
+            commit=push_backup(snapshot,cfg)
+            with state_lock:
+                state['github']={'snapshot':snapshot.name,'commit':commit,'synced':now(),'verified_push':True};state.pop('github_error',None)
+                last_cloud=time.time();atomic_json(RUNTIME/'backup-status.json',state)
+        except Exception as e:
+            with state_lock:
+                state['github_error']=str(e);last_cloud=time.time()-240;atomic_json(RUNTIME/'backup-status.json',state)
+        finally:cloud_busy.clear()
+    while not (stop and stop.is_set()):
         try:
             db=RUNTIME/'clinical_tutor.sqlite3';wal=Path(str(db)+'-wal')
             current=tuple((p.stat().st_mtime_ns,p.stat().st_size) if p.exists() else None for p in (db,wal))
             request=RUNTIME/'backup-request';forced=request.exists()
             if current!=stamp or forced:
                 dest=base/(datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:6])
-                state['local']=create_snapshot(RUNTIME,dest,VERSION);latest=dest;stamp=current
-                state.pop('local_error',None);request.unlink(missing_ok=True)
+                meta=create_snapshot(RUNTIME,dest,VERSION);latest=dest;stamp=current
+                with state_lock:state['local']=meta;state.pop('local_error',None)
+                request.unlink(missing_ok=True)
                 print('Verified encrypted snapshot:',dest.name,flush=True)
-            if latest and (forced or time.time()-last_cloud>=300):
-                try:
-                    commit=push_backup(latest,cfg);state['github']={'snapshot':latest.name,'commit':commit,'synced':now(),'verified_push':True};state.pop('github_error',None);last_cloud=time.time()
-                except Exception as e:state['github_error']=str(e);last_cloud=time.time()-240
-            state['checked']=now();atomic_json(RUNTIME/'backup-status.json',state)
+            if latest and not cloud_busy.is_set() and (forced or time.time()-last_cloud>=300):
+                cloud_busy.set();last_cloud=time.time()
+                threading.Thread(target=sync_remote,args=(latest,),daemon=True).start()
+            with state_lock:state['checked']=now();atomic_json(RUNTIME/'backup-status.json',state)
         except Exception as e:
-            state['local_error']=str(e);state['checked']=now();atomic_json(RUNTIME/'backup-status.json',state)
-        time.sleep(15)
+            with state_lock:state['local_error']=str(e);state['checked']=now();atomic_json(RUNTIME/'backup-status.json',state)
+        if stop:stop.wait(interval)
+        else:time.sleep(interval)
 
 if __name__=='__main__':
     RUNTIME.mkdir(exist_ok=True)

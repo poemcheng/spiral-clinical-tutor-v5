@@ -1,4 +1,4 @@
-import contextlib,json,sqlite3,tempfile,unittest
+import contextlib,json,sqlite3,tempfile,threading,time,unittest
 from pathlib import Path
 from unittest.mock import patch
 from cryptography.fernet import Fernet,InvalidToken
@@ -9,6 +9,23 @@ from backend import internet_access,server
 import test_workflow as workflow
 
 class BackupTests(unittest.TestCase):
+    def test_slow_remote_upload_cannot_block_new_local_snapshots(self):
+        from tools import internet_service as service
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime=Path(tmp);db=runtime/'clinical_tutor.sqlite3';db.write_bytes(b'initial')
+            stop=threading.Event();release=threading.Event();uploading=threading.Event();count=[]
+            def snapshot(runtime,destination,version):
+                destination.mkdir(parents=True);count.append(destination)
+                db.write_bytes(str(len(count)).encode());return {'verified':True,'snapshot':destination.name}
+            def upload(*args):uploading.set();release.wait(2);return 'synthetic-commit'
+            with patch.object(service,'RUNTIME',runtime),patch.object(service,'settings',return_value={}),patch.object(service,'create_snapshot',side_effect=snapshot),patch.object(service,'push_backup',side_effect=upload):
+                thread=threading.Thread(target=service.backup_loop,args=(stop,.02));thread.start()
+                try:
+                    self.assertTrue(uploading.wait(1));deadline=time.time()+1
+                    while len(count)<3 and time.time()<deadline:time.sleep(.01)
+                    self.assertGreaterEqual(len(count),3)
+                finally:stop.set();release.set();thread.join(2);time.sleep(.05)
+
     def test_encrypted_roundtrip_preserves_records_and_excludes_recovery_and_push_keys(self):
         from backend.store import Store
         with tempfile.TemporaryDirectory() as tmp:
