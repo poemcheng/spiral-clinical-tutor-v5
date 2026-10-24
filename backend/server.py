@@ -1188,13 +1188,15 @@ install_routes(app, owned_session, current_user, lambda:store)
 
 
 @app.get('/api/services')
-def service_status(user=Depends(current_user)):
+def service_status(request:Request,user=Depends(current_user)):
+    from .internet_access import external
+    internet=external(request)
     return {'ollama':llm.check().to_dict(),'vrm_available':all((ROOT/'data/characters'/a['model_file']).is_file() for a in characters.ACTORS.values()),
             'realistic_available':all((ROOT/'data/characters'/a.get('realistic_model_file','missing')).is_file() for a in characters.ACTORS.values()),
             'photoreal_available':all((ROOT/'data/characters'/a.get('atlas_file','missing')).is_file() for a in characters.ACTORS.values()),
             'characters':len(characters.ACTORS),'character_version':characters.VERSION,
-            'livekit_configured':voice_bridge.ready(),
-            'livekit_agent_configured':voice_agents.available() and voice_bridge.ready(),'livekit_audio_bridge':True,'speech_input':speech_input.status(),'voice_transport':'authenticated-http-audio; optional-livekit-agents',
+            'livekit_configured':not internet and voice_bridge.ready(),
+            'livekit_agent_configured':not internet and voice_agents.available() and voice_bridge.ready(),'livekit_audio_bridge':not internet,'speech_input':speech_input.status(),'voice_transport':'authenticated-http-audio' if internet else 'authenticated-http-audio; optional-livekit-agents',
             'h5p_available':(ROOT/'frontend/vendor/h5p/main.bundle.js').is_file(),
             'knowledge_mode':'本地案例快照與教師端Graphify來源關聯查找；教案、對話與明確詞彙關聯，不自動核定臨床結論',
             'video_mode':'three.js 診間場景／擬真人像與語音驅動表情；四部VR360教材，待教師審核'}
@@ -1478,3 +1480,5 @@ def inline_session_lesson(sid:int,user=Depends(current_user)):
     return {k:case.get(k) for k in ('id','title','summary','patient','goals','pre_knowledge','source_file','source_pages','review_status','variant')}
 
 app.mount('/static',StaticFiles(directory=ROOT/'frontend'),name='static')
+from .internet_access import install as install_internet_access
+install_internet_access(app,administrator)

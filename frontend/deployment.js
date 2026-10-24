@@ -1,0 +1,8 @@
+import {api,esc,page,requireRole,status} from './workspace-common.js?v=5.7.0-r1';
+async function render(){
+ await requireRole('admin');const d=await api('/api/admin/deployment'),n=d.internet,b=d.backup;
+ page('外網與備份管理','學員、教師與管理員共用同一份主機資料，外網操作完成後即保存。',`<p id="workspace-status" role="status"></p><section class="card"><h2>外網學習入口</h2>${n.url?`<p><a href="${esc(n.url)}/login" target="_blank" rel="noopener">${esc(n.url)}/login</a></p>`:'<p>外網服務尚未啟動。</p>'}<p>${n.ready?'外網入口已通過連線檢查':'等待外網連線檢查'}。${n.temporary?'目前使用測試網址，服務重新啟動時網址可能改變。':''}</p><p>本機須持續開機連網。學員使用連續語音對話，教師可即時查看逐字稿、逐格觀察及保存回饋。</p></section><section class="card"><h2>加密學習資料備份</h2><p>本機：${b.local?.verified?'已完成驗證，'+esc(b.local.created):'尚無成功備份'}<br>GitHub 私有備份：${b.github?.verified_push?'已推送，'+esc(b.github.synced):'尚待授權或同步'}</p><p>本機每15秒檢查資料變更後備份；GitHub 每5分鐘同步新的加密快照，無變更不重複上傳。</p>${b.local_error?`<p class="error">本機備份失敗：${esc(b.local_error)}</p>`:''}${b.github_error?`<p class="error">GitHub 尚未同步：${esc(b.github_error)}</p>`:''}<p class="source">${esc(b.scope||'備份涵蓋帳號、對話、成績、教師回饋與自訂教案。')}。解密金鑰只保存在主機，還原需使用金鑰與加密備份；不覆寫正在使用的資料庫。</p><button id="backup-now">立即備份與同步</button><button id="refresh-deployment" class="secondary">重新整理狀態</button></section>`);
+ document.querySelector('#refresh-deployment').onclick=()=>render().catch(e=>status(e.message,true));
+ document.querySelector('#backup-now').onclick=async e=>{e.target.disabled=true;try{await api('/api/admin/deployment/backup','POST',{});status('已排入加密備份，約15秒後重新整理查看結果。');}catch(e){status(e.message,true);}finally{e.target.disabled=false;}};
+}
+render().catch(e=>page('無法開啟部署管理',e.message,'<a href="/login">登入平台</a>'));
