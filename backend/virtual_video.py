@@ -100,7 +100,7 @@ function draw(){{if(disposed)return;const t=audio.currentTime||0,a=audio.paused?
     (project/'immersive.html').write_text(content,encoding='utf-8')
 
 
-def build_project(case, row, module):
+def build_project(case, row, module, *, lecture_sections=None):
     actor=selected(row,'lecturer')
     variant=case.get('variant',{})
     sections=[('個案背景',concise(case['patient'])),
@@ -108,7 +108,8 @@ def build_project(case, row, module):
         (f"Level {row['level']} 練習重點",concise(variant.get('learner_task') or case['pre_knowledge'][0]))]
     if module==1:sections[1:]=[('弱項補強',concise('；'.join(variant.get('supplement_tasks') or case['goals'][:2]))),('溝通練習','先確認病人的疑慮，再用回覆示教確認理解，並記錄需要教師協助的資訊。')]
     if module==2:sections[1:]=[('團隊整合',concise(variant.get('role_task') or case['goals'][0])),('交接與追蹤','以SBAR整理目前狀況、背景資料、本職類評估，以及具體協助需求與追蹤計畫。')]
-    key=hashlib.sha256(json.dumps([case,row['profession'],row['level'],module,actor,RENDERER],ensure_ascii=False,sort_keys=True).encode()).hexdigest()[:20]
+    if lecture_sections is not None:sections=lecture_sections
+    key=hashlib.sha256(json.dumps([case,row['profession'],row['level'],module,actor,RENDERER,lecture_sections],ensure_ascii=False,sort_keys=True).encode()).hexdigest()[:20]
     project=RUNTIME/'virtual_lessons'/key;project.mkdir(parents=True,exist_ok=True)
     segments=[];start=0
     for i,(title,text) in enumerate(sections):

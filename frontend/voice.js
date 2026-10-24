@@ -14,11 +14,11 @@ export function createVoiceInput({sid,onText,onStatus,onError,onListening=()=>{}
  async function listen(){
   if(disposed||pending||recorder?.state==='recording')return;
   try{
-   if((!inputStreamFactory&&!navigator.mediaDevices?.getUserMedia)||!window.MediaRecorder)throw Error('此瀏覽器無法錄音，請以 Chrome 或 Edge 開啟本機網址。');
+   if((!inputStreamFactory&&!navigator.mediaDevices?.getUserMedia)||!window.MediaRecorder)throw Error('無法啟用錄音。iPhone 請用 Safari，確認已信任主機 HTTPS 憑證；電腦可使用 Chrome／Edge。');
    beforeListen();
    if(!stream){
     pending=true;const attempt=++epoch;let permissionTimer;
-    label(inputStreamFactory?'準備測試音源（非實體麥克風）…':'等待瀏覽器麥克風權限；請在網址列允許。若內嵌瀏覽器沒有提示，請以 Chrome／Edge 開啟本機網址。','permission');
+    label(inputStreamFactory?'準備測試音源（非實體麥克風）…':'等待瀏覽器麥克風權限；請在網址列允許。若內嵌瀏覽器沒有提示，iPhone 請改用 Safari，電腦請用 Chrome／Edge。','permission');
     try{stream=await Promise.race([(inputStreamFactory?inputStreamFactory():navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}})).then(s=>{if(disposed||attempt!==epoch){s.getTracks().forEach(t=>t.stop());throw new DOMException('錄音已取消','AbortError');}return s;}),new Promise((_,reject)=>{cancelPermission=()=>reject(new DOMException('錄音已取消','AbortError'));permissionTimer=setTimeout(()=>{epoch++;reject(Error('音源準備逾時；請確認音源或麥克風權限後重試。'));},20000);})]);}
     finally{pending=false;cancelPermission=null;clearTimeout(permissionTimer);}
    }

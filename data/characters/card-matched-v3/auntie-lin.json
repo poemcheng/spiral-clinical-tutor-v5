@@ -1,0 +1,71 @@
+{
+  "actor_id": "auntie-lin",
+  "file": "card-matched-v3/auntie-lin.glb",
+  "sha256": "ab287f466caf07110fb10caf09b09f3804654f7f79d88ab1a555b01e6deeaf6d",
+  "bytes": 20422300,
+  "skin": "old_asian_female",
+  "hair": "short03",
+  "clothes": "male_casualsuit05",
+  "license": "CC0 base human geometry; supplied fictional reference-card appearance retains its source rights",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_E",
+    "viseme_I",
+    "viseme_U"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane",
+  "card_sha256": "cdec697ff84a0170a6163813471c7ac6c063420d6196569792fe7aa3d506de7b",
+  "appearance_preset": {
+    "age": 0.88,
+    "hair": "short03",
+    "hair_color": "#b9b6ab",
+    "shape": "head-round",
+    "shape_weight": 0.31,
+    "weight": 0.45,
+    "glasses": true,
+    "coat": false,
+    "clothes": "male_casualsuit05",
+    "color": "#cdb9a0",
+    "accent": "#e5d3c1",
+    "notes": "高齡女性、灰白短髮、細框眼鏡、米色針織外套"
+  },
+  "reference_face_proportions": {
+    "head_aspect": 1.0949,
+    "eye_spacing": 0.5977,
+    "nose_width": 0.2298,
+    "mouth_width": 0.3812,
+    "source_card_sha256": "cdec697ff84a0170a6163813471c7ac6c063420d6196569792fe7aa3d506de7b",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "face_controls": [
+    {
+      "target": "head-scale-vert-decr",
+      "value": 0.3181200000000001
+    },
+    {
+      "target": "head-scale-horiz-incr",
+      "value": 0.14460000000000006
+    },
+    {
+      "target": "mouth-scale-horiz-incr",
+      "value": 0.06240000000000001
+    }
+  ],
+  "likeness_status": "reference fitted geometry, surface appearance and 3D hair; multi-view visual acceptance pending",
+  "face_fitting": {
+    "landmarks": 80,
+    "source_card_sha256": "cdec697ff84a0170a6163813471c7ac6c063420d6196569792fe7aa3d506de7b",
+    "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+    "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+    "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
+  }
+}

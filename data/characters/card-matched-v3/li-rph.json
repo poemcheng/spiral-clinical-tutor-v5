@@ -1,0 +1,71 @@
+{
+  "actor_id": "li-rph",
+  "file": "card-matched-v3/li-rph.glb",
+  "sha256": "26d0a6b1359219730fa2ba88a4db69d7421587dca493c3c060bf71389b4c91e3",
+  "bytes": 10911368,
+  "skin": "young_asian_male",
+  "hair": "short04",
+  "clothes": "male_elegantsuit01",
+  "license": "CC0 base human geometry; supplied fictional reference-card appearance retains its source rights",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_E",
+    "viseme_I",
+    "viseme_U"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane",
+  "card_sha256": "b195b81465a56dbf36db0ee554ea5e0e25e333942d030c29ddf28e09037cdf67",
+  "appearance_preset": {
+    "age": 0.46,
+    "hair": "short04",
+    "hair_color": "#38312a",
+    "shape": "head-oval",
+    "shape_weight": 0.14,
+    "weight": 0.46,
+    "glasses": true,
+    "coat": true,
+    "clothes": "male_elegantsuit01",
+    "color": "#f4f5f5",
+    "accent": "#5f80a1",
+    "notes": "成年男性、深色側分短髮、黑框眼鏡、白袍與藍襯衫"
+  },
+  "reference_face_proportions": {
+    "head_aspect": 1.1385,
+    "eye_spacing": 0.6099,
+    "nose_width": 0.2553,
+    "mouth_width": 0.4287,
+    "source_card_sha256": "b195b81465a56dbf36db0ee554ea5e0e25e333942d030c29ddf28e09037cdf67",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "face_controls": [
+    {
+      "target": "head-scale-vert-decr",
+      "value": 0.26580000000000004
+    },
+    {
+      "target": "head-scale-horiz-incr",
+      "value": 0.12020000000000008
+    },
+    {
+      "target": "mouth-scale-horiz-incr",
+      "value": 0.1574000000000001
+    }
+  ],
+  "likeness_status": "reference fitted geometry, surface appearance and 3D hair; multi-view visual acceptance pending",
+  "face_fitting": {
+    "landmarks": 80,
+    "source_card_sha256": "b195b81465a56dbf36db0ee554ea5e0e25e333942d030c29ddf28e09037cdf67",
+    "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+    "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+    "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
+  }
+}

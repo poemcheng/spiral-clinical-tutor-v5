@@ -10,8 +10,22 @@ if ($listener) {
     Stop-Process -Id $owner.ProcessId
 }
 & (Join-Path $root '.venv/Scripts/python.exe') (Join-Path $root 'tools/start_livekit.py') --lan-address $addresses[0]
-$arguments=@('tools/run_lan.py')
+if ($LASTEXITCODE -ne 0) {throw 'Voice server startup failed; inspect runtime/livekit.log.'}
+$arguments=@('tools/run_lan.py','--background-log')
 foreach ($address in $addresses) {$arguments+=@('--address',$address)}
-Start-Process -FilePath (Join-Path $root '.venv/Scripts/python.exe') -ArgumentList $arguments -WorkingDirectory $root -WindowStyle Hidden -RedirectStandardOutput (Join-Path $root 'runtime/lan.log') -RedirectStandardError (Join-Path $root 'runtime/lan.err.log')
-Write-Output 'LAN HTTPS process started. Clients must trust runtime/lan-tls/clinical-tutor-ca.cer. Run tools/allow_lan_firewall.ps1 as Administrator if blocked.'
+$pythonw=Join-Path $root '.venv/Scripts/pythonw.exe'
+if (-not (Test-Path -LiteralPath $pythonw)) {throw 'Project pythonw.exe is missing; install the Windows virtual environment first.'}
+# WMI creates the host outside the launching terminal's process job.
+$startup=New-CimInstance -ClassName Win32_ProcessStartup -ClientOnly -Property @{ShowWindow=[uint16]0}
+$commandLine='"'+$pythonw+'" '+($arguments -join ' ')
+$created=Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine=$commandLine;CurrentDirectory=$root;ProcessStartupInformation=$startup}
+if ($created.ReturnValue -ne 0) {throw "Independent LAN host launch failed: $($created.ReturnValue)"}
+$expectedVersion=(Get-Content -LiteralPath (Join-Path $root 'package.json') -Raw | ConvertFrom-Json).version
+$ready=$false
+for ($attempt=0;$attempt -lt 50;$attempt++) {
+    try {$health=Invoke-RestMethod -Uri 'http://127.0.0.1:8705/health' -TimeoutSec 1;if ($health.version -eq $expectedVersion) {$ready=$true;break}} catch {}
+    Start-Sleep -Milliseconds 200
+}
+if (-not $ready) {throw 'LAN host did not become ready. Inspect runtime/lan-service.log.'}
+Write-Output "LAN host verified: version $expectedVersion, PID $($created.ProcessId). Log: runtime/lan-service.log"
 foreach ($address in $addresses) {Write-Output "https://${address}:8765/login"}

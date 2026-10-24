@@ -1,0 +1,71 @@
+{
+  "actor_id": "lin-rn",
+  "file": "card-matched-v3/lin-rn.glb",
+  "sha256": "2f5022a9522cc731554196d724f2b25a579da4cced8ed214f064bc364c20404c",
+  "bytes": 12742752,
+  "skin": "young_asian_female",
+  "hair": "ponytail01",
+  "clothes": "female_casualsuit02",
+  "license": "CC0 base human geometry; supplied fictional reference-card appearance retains its source rights",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_E",
+    "viseme_I",
+    "viseme_U"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane",
+  "card_sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
+  "appearance_preset": {
+    "age": 0.33,
+    "hair": "ponytail01",
+    "hair_color": "#392c23",
+    "shape": "head-oval",
+    "shape_weight": 0.32,
+    "weight": 0.43,
+    "glasses": false,
+    "coat": false,
+    "clothes": "female_casualsuit02",
+    "color": "#f4f5f5",
+    "accent": "#304b72",
+    "notes": "年輕女性、深棕綁髮、白色藍邊護理服"
+  },
+  "reference_face_proportions": {
+    "head_aspect": 1.1552,
+    "eye_spacing": 0.6585,
+    "nose_width": 0.2399,
+    "mouth_width": 0.4317,
+    "source_card_sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "face_controls": [
+    {
+      "target": "head-scale-vert-decr",
+      "value": 0.2457600000000001
+    },
+    {
+      "target": "head-scale-horiz-incr",
+      "value": 0.02300000000000013
+    },
+    {
+      "target": "mouth-scale-horiz-incr",
+      "value": 0.1634
+    }
+  ],
+  "likeness_status": "reference fitted geometry, surface appearance and 3D hair; multi-view visual acceptance pending",
+  "face_fitting": {
+    "landmarks": 80,
+    "source_card_sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
+    "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+    "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+    "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
+  }
+}

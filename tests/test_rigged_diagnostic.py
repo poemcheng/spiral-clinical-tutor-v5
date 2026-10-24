@@ -13,6 +13,20 @@ import test_uploaded_workflow as fixtures
 
 
 class RiggedAssets(unittest.TestCase):
+    def test_reference_hairstyles_are_closed_skinned_volumes(self):
+        for actor in characters.ACTORS.values():
+            blob=(characters.ROOT/'data/characters'/actor['realistic_model_file']).read_bytes()
+            g=json.loads(blob[20:20+struct.unpack_from('<I',blob,12)[0]])
+            hair=next((m for m in g['meshes'] if m['name'].startswith('Card hairstyle closed 3D volume')),None)
+            self.assertIsNotNone(hair,actor['id'])
+            primitive=hair['primitives'][0];self.assertIn('JOINTS_0',primitive['attributes'])
+            bounds=g['accessors'][primitive['attributes']['POSITION']]
+            self.assertGreater(bounds['max'][2]-bounds['min'][2],.04,actor['id'])
+            rear=next(m for m in g['meshes'] if m['name']=='Reference fitted rounded rear hair')
+            rear_primitive=rear['primitives'][0];self.assertIn('JOINTS_0',rear_primitive['attributes'])
+            rear_bounds=g['accessors'][rear_primitive['attributes']['POSITION']]
+            self.assertGreater(rear_bounds['max'][2]-rear_bounds['min'][2],.04,actor['id'])
+
     def test_all_cast_members_have_deep_skinned_geometry_and_facial_shapes(self):
         catalog=json.loads((characters.ROOT/'data/characters/catalog.json').read_text(encoding='utf-8'))
         for actor in catalog['actors']:
@@ -37,6 +51,18 @@ class VoiceDiagnosticTests(unittest.TestCase):
     tearDown=fixtures.UploadedWorkflowTests.tearDown
     start=fixtures.UploadedWorkflowTests.start
     interaction=fixtures.UploadedWorkflowTests.interaction
+
+    def test_physical_microphone_mp4_diagnostic_is_owned_and_not_formal_learning(self):
+        sid,_=self.interaction('RT');url=f'/api/sessions/{sid}/voice-diagnostic/microphone-transcribe'
+        with patch.object(server.speech_input,'transcribe',return_value={'text':'真人測試句','seconds':2,'model':'fixture','local':True}):
+            response=self.client.post(url,content=b'mp4 fixture',headers={'Content-Type':'audio/mp4'})
+            self.assertEqual(response.status_code,200,response.text)
+            self.assertEqual(self.faculty.post(url,content=b'x',headers={'Content-Type':'audio/mp4'}).status_code,403)
+            with TestClient(server.app) as anonymous:self.assertEqual(anonymous.post(url,content=b'x',headers={'Content-Type':'audio/mp4'}).status_code,401)
+        event=json.loads(self.db.one("SELECT data FROM events WHERE session_id=? AND kind='diagnostic_speech_transcribed'",(sid,))['data'])
+        self.assertEqual(event['input_source'],'physical-microphone');self.assertFalse(event['recording_retained'])
+        self.assertEqual(self.db.one('SELECT COUNT(*) n FROM messages WHERE session_id=?',(sid,))['n'],0)
+        self.assertEqual(json.loads(self.db.one('SELECT data FROM sessions WHERE id=?',(sid,))['data'])['decisions'],{})
 
     def test_two_real_service_turns_are_isolated_from_formal_learning(self):
         sid,_=self.interaction('RT');test_id='d'*32

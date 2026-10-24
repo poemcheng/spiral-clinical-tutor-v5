@@ -1,4 +1,4 @@
-import {sceneControls,voiceControls} from './immersive-ui.js?v=5.5.0';
+import {sceneControls,voiceControls} from './immersive-ui.js?v=5.6.0';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function interactionStage(s,i,actors,services,messages){
  const a=actors.interaction,e=i.encounter||{title:'案例會談',task:s.data.case.variant?.role_task||'釐清本教案疑慮與下一步。',state:'active'},entries=i.encounter_plan?.entries||[];

@@ -1,11 +1,23 @@
 """Start the local LiveKit server, optionally on LAN; credentials stay in ignored runtime/."""
-import json,argparse,ipaddress,os
+import json,argparse,ipaddress,os,time
 from pathlib import Path
 import secrets
 import socket
 import subprocess
 from urllib.parse import urlparse
 ROOT=Path(__file__).resolve().parents[1]
+
+def stop_server():
+ executable=str(ROOT/'tools/livekit/livekit-server.exe').replace("'","''")
+ ps="Get-CimInstance Win32_Process -Filter \"Name='livekit-server.exe'\" | Where-Object {$_.ExecutablePath -eq '"+executable+"'} | ForEach-Object {Stop-Process -Id $_.ProcessId}"
+ subprocess.run(['powershell.exe','-NoProfile','-Command',ps],capture_output=True,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0),check=True)
+
+def start_background():
+ command='"'+str(ROOT/'.venv/Scripts/pythonw.exe')+'" "'+str(ROOT/'tools/run_livekit_host.py')+'"'
+ quote=lambda value:str(value).replace("'","''")
+ ps="$startup=New-CimInstance -ClassName Win32_ProcessStartup -ClientOnly -Property @{ShowWindow=[uint16]0}; $created=Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine='"+quote(command)+"';CurrentDirectory='"+quote(ROOT)+"';ProcessStartupInformation=$startup}; if($created.ReturnValue -ne 0){throw 'Independent voice host launch failed'}; $created.ProcessId"
+ result=subprocess.run(['powershell.exe','-NoProfile','-Command',ps],capture_output=True,text=True,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0),check=True)
+ return int(result.stdout.strip())
 def free_port():
  for port in range(7880,7900):
   with socket.socket() as probe:
@@ -18,8 +30,7 @@ def main():
  if args.lan_address and (not ipaddress.ip_address(args.lan_address).is_private or ipaddress.ip_address(args.lan_address).is_loopback):raise SystemExit('請指定同網路的內部 IPv4。')
  if args.force_restart:
   # Stop only this bundled server. Never enumerate or stop unrelated services.
-  ps="Get-CimInstance Win32_Process -Filter \"Name='livekit-server.exe'\" | Where-Object {$_.CommandLine -like '*Medical_Turtor*' -or $_.ExecutablePath -eq '"+str(ROOT/'tools/livekit/livekit-server.exe').replace("'","''")+"'} | ForEach-Object {Stop-Process -Id $_.ProcessId}"
-  subprocess.run(['powershell.exe','-NoProfile','-Command',ps],capture_output=True,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0),check=True)
+  stop_server()
  runtime=ROOT/'runtime';runtime.mkdir(exist_ok=True)
  private=runtime/'livekit-private.json'
  if private.exists() and not args.force_restart:cfg=json.loads(private.read_text())
@@ -27,13 +38,22 @@ def main():
   cfg={'LIVEKIT_URL':f'ws://127.0.0.1:{free_port()}','LIVEKIT_API_KEY':'clinical-'+secrets.token_hex(8),'LIVEKIT_API_SECRET':secrets.token_urlsafe(36)}
   private.write_text(json.dumps(cfg),encoding='utf-8')
  port=urlparse(cfg['LIVEKIT_URL']).port
- try:
-  with socket.create_connection(('127.0.0.1',port),timeout=.5):print(f'LiveKit already listening on loopback:{port}');return
- except OSError:pass
  config=runtime/'livekit.yaml'
+ try:
+  with socket.create_connection(('127.0.0.1',port),timeout=.5):pass
+  current=config.read_text(encoding='utf-8') if config.exists() else ''
+  if args.lan_address and not ('bind_addresses: [0.0.0.0]' in current and f'node_ip: {args.lan_address}\n' in current):
+   stop_server()
+  else:
+   print(f'LiveKit already listening on loopback:{port}');return
+ except OSError:pass
  address=args.lan_address or '127.0.0.1';binding='0.0.0.0' if args.lan_address else '127.0.0.1'
  config.write_text(f'port: {port}\nbind_addresses: [{binding}]\nrtc:\n  tcp_port: 7881\n  port_range_start: 7882\n  port_range_end: 7982\n  use_external_ip: false\n  enable_loopback_candidate: true\n  node_ip: {address}\nkeys:\n  '+cfg['LIVEKIT_API_KEY']+': '+cfg['LIVEKIT_API_SECRET']+'\n',encoding='utf-8')
- with (runtime/'livekit.log').open('ab') as log:
-  p=subprocess.Popen([str(ROOT/'tools/livekit/livekit-server.exe'),'--config',str(config)],cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
- print('LiveKit started, PID '+str(p.pid)+'; private credentials remain in runtime/.')
+ pid=start_background()
+ for attempt in range(100):
+  try:
+   with socket.create_connection(('127.0.0.1',port),timeout=.3):
+    print('LiveKit verified, host PID '+str(pid)+'; private credentials remain in runtime/.');return
+  except OSError:time.sleep(.1)
+ raise RuntimeError('Voice server did not become ready; inspect runtime/livekit.log.')
 if __name__=='__main__':main()

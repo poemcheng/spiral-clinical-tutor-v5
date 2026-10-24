@@ -1,5 +1,5 @@
 {
-  "version": "characters-5.5.0-card-matched-v2",
+  "version": "characters-5.5.1-reference-fitted-v3",
   "actors": [
     {
       "id": "chen-md",
@@ -20,7 +20,7 @@
       "card_sha256": "a0f1055a4eadd1f751f2cfaae25239ef5a7a536b08789750a6b7a324ab4c7381",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/chen-md.png",
       "atlas_sha256": "31369f0baf73fd6edf8c633b3777566cbb3c6d744fc425feb517c57a7167453c",
       "face": {
@@ -38,8 +38,8 @@
         ]
       },
       "age_group": "成人",
-      "realistic_model_file": "card-matched-v2/chen-md.glb",
-      "realistic_model_sha256": "af6ad45bc731e4d3b061256e0f24c8e4da32436ae7a9f55e6ad01bd0090380cc",
+      "realistic_model_file": "card-matched-v3/chen-md.glb",
+      "realistic_model_sha256": "67888fc5f4e6446e6863db605752f621f6ffd3ba6c3f35c55048e9947c3be281",
       "appearance": {
         "age": 0.54,
         "hair": "short04",
@@ -55,7 +55,7 @@
         "notes": "中年男性、側分深棕髮、黑框眼鏡、白袍與藍襯衫"
       },
       "reference_card_sha256": "a0f1055a4eadd1f751f2cfaae25239ef5a7a536b08789750a6b7a324ab4c7381",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.1186,
         "eye_spacing": 0.6106,
@@ -63,6 +63,13 @@
         "mouth_width": 0.424,
         "source_card_sha256": "a0f1055a4eadd1f751f2cfaae25239ef5a7a536b08789750a6b7a324ab4c7381",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "a0f1055a4eadd1f751f2cfaae25239ef5a7a536b08789750a6b7a324ab4c7381",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -84,7 +91,7 @@
       "card_sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/lin-rn.png",
       "atlas_sha256": "65db43569de83132d80d823f64007cfe77c6c07594a68af026f7e2fc24c9bd14",
       "face": {
@@ -102,8 +109,8 @@
         ]
       },
       "age_group": "成人",
-      "realistic_model_file": "card-matched-v2/lin-rn.glb",
-      "realistic_model_sha256": "a5b3cab050085131f976a8f02ae223f1236d23f24bb0da94afe95aa7014c52c5",
+      "realistic_model_file": "card-matched-v3/lin-rn.glb",
+      "realistic_model_sha256": "2f5022a9522cc731554196d724f2b25a579da4cced8ed214f064bc364c20404c",
       "appearance": {
         "age": 0.33,
         "hair": "ponytail01",
@@ -119,7 +126,7 @@
         "notes": "年輕女性、深棕綁髮、白色藍邊護理服"
       },
       "reference_card_sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.1552,
         "eye_spacing": 0.6585,
@@ -127,6 +134,13 @@
         "mouth_width": 0.4317,
         "source_card_sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "f141e9c1cd658a2ec23e4474d717dd0b3aad16bcd0846541439efe4d9913cd8f",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -148,7 +162,7 @@
       "card_sha256": "74a44d54df256f3d9d8a298b8c32668c3158933e681139e6b28e83851263c81d",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/wang-pt.png",
       "atlas_sha256": "69a1fd337989369023cd52ccda5cd4d2277141595dfe5caba23ef3b8d4bb9da5",
       "face": {
@@ -166,8 +180,8 @@
         ]
       },
       "age_group": "成人",
-      "realistic_model_file": "card-matched-v2/wang-pt.glb",
-      "realistic_model_sha256": "7ef4089a913022d6d4def457c7113b29c904b5ac932c5265d17c10ae3e638e53",
+      "realistic_model_file": "card-matched-v3/wang-pt.glb",
+      "realistic_model_sha256": "5634e35441a5edb8db4670a0bc7000ecbc47e999cb755a28796db723e8933142",
       "appearance": {
         "age": 0.31,
         "hair": "short01",
@@ -183,7 +197,7 @@
         "notes": "年輕男性、短黑髮、海軍藍上衣與綠色背帶"
       },
       "reference_card_sha256": "74a44d54df256f3d9d8a298b8c32668c3158933e681139e6b28e83851263c81d",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.2138,
         "eye_spacing": 0.6391,
@@ -191,6 +205,13 @@
         "mouth_width": 0.4676,
         "source_card_sha256": "74a44d54df256f3d9d8a298b8c32668c3158933e681139e6b28e83851263c81d",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "74a44d54df256f3d9d8a298b8c32668c3158933e681139e6b28e83851263c81d",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -212,7 +233,7 @@
       "card_sha256": "12df6ae23422a4803afd6c5efb5fad47f9210d4c7c9dba5b507079992019dbbf",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/zhang-ot.png",
       "atlas_sha256": "cab634d0f9a1dc2ccb746715a46c7e45a17e7130babcee50426eaa5b4a5fcaf5",
       "face": {
@@ -230,8 +251,8 @@
         ]
       },
       "age_group": "成人",
-      "realistic_model_file": "card-matched-v2/zhang-ot.glb",
-      "realistic_model_sha256": "ff4aea1736092dd40a4a90c0998f2be8b182ceb3f6669d3c952539283dbf85a3",
+      "realistic_model_file": "card-matched-v3/zhang-ot.glb",
+      "realistic_model_sha256": "57e3bc0d4386b3611e9996cff82b670fab1e9b56e006af400f9a4b37c6a436ea",
       "appearance": {
         "age": 0.35,
         "hair": "ponytail01",
@@ -247,7 +268,7 @@
         "notes": "成年女性、深棕綁髮、白色深藍領工作服"
       },
       "reference_card_sha256": "12df6ae23422a4803afd6c5efb5fad47f9210d4c7c9dba5b507079992019dbbf",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.1606,
         "eye_spacing": 0.688,
@@ -255,6 +276,13 @@
         "mouth_width": 0.4455,
         "source_card_sha256": "12df6ae23422a4803afd6c5efb5fad47f9210d4c7c9dba5b507079992019dbbf",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "12df6ae23422a4803afd6c5efb5fad47f9210d4c7c9dba5b507079992019dbbf",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -276,7 +304,7 @@
       "card_sha256": "e0e5f4beb38c9d3a0ba4ce2c80e8c7e1fa1b6370bb16812bc96cdfe25157b889",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/huang-dt.png",
       "atlas_sha256": "ccbf4e941a233b71fb0ad76f10f4fb485286088d9ba434e368accefb29daa15e",
       "face": {
@@ -294,8 +322,8 @@
         ]
       },
       "age_group": "成人",
-      "realistic_model_file": "card-matched-v2/huang-dt.glb",
-      "realistic_model_sha256": "c5434d820ac8c74e8e664edc849d4832f2bfcbf996b0a05c81fe39332efc64af",
+      "realistic_model_file": "card-matched-v3/huang-dt.glb",
+      "realistic_model_sha256": "5f2b71ffae9fbb7f7ef1310746f31f2a75da9b556070c0771f6b847dcaaf19b0",
       "appearance": {
         "age": 0.37,
         "hair": "long01",
@@ -311,7 +339,7 @@
         "notes": "成年女性、深棕長髮、白袍與淺藍內搭"
       },
       "reference_card_sha256": "e0e5f4beb38c9d3a0ba4ce2c80e8c7e1fa1b6370bb16812bc96cdfe25157b889",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.1788,
         "eye_spacing": 0.6474,
@@ -319,6 +347,13 @@
         "mouth_width": 0.4619,
         "source_card_sha256": "e0e5f4beb38c9d3a0ba4ce2c80e8c7e1fa1b6370bb16812bc96cdfe25157b889",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "e0e5f4beb38c9d3a0ba4ce2c80e8c7e1fa1b6370bb16812bc96cdfe25157b889",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -340,7 +375,7 @@
       "card_sha256": "b195b81465a56dbf36db0ee554ea5e0e25e333942d030c29ddf28e09037cdf67",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/li-rph.png",
       "atlas_sha256": "dfd4cc37747b6276cc7a0a9011082fb9d5507393706e554d49c4dcc793c9ba22",
       "face": {
@@ -358,8 +393,8 @@
         ]
       },
       "age_group": "成人",
-      "realistic_model_file": "card-matched-v2/li-rph.glb",
-      "realistic_model_sha256": "afac9a241416a9d5ccd50fc8c38d3888d1cb901d3f477edcb0d756061102b4f8",
+      "realistic_model_file": "card-matched-v3/li-rph.glb",
+      "realistic_model_sha256": "26d0a6b1359219730fa2ba88a4db69d7421587dca493c3c060bf71389b4c91e3",
       "appearance": {
         "age": 0.46,
         "hair": "short04",
@@ -375,7 +410,7 @@
         "notes": "成年男性、深色側分短髮、黑框眼鏡、白袍與藍襯衫"
       },
       "reference_card_sha256": "b195b81465a56dbf36db0ee554ea5e0e25e333942d030c29ddf28e09037cdf67",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.1385,
         "eye_spacing": 0.6099,
@@ -383,6 +418,13 @@
         "mouth_width": 0.4287,
         "source_card_sha256": "b195b81465a56dbf36db0ee554ea5e0e25e333942d030c29ddf28e09037cdf67",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "b195b81465a56dbf36db0ee554ea5e0e25e333942d030c29ddf28e09037cdf67",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -404,7 +446,7 @@
       "card_sha256": "e62524ff6c6c9b6e3d15c57683fd4027fd18c9195fa37b0841ed0781bd446f6d",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/he-sw.png",
       "atlas_sha256": "e129b34b093fef860964d9172ce3918abeedb5d1c1f1eed96211dd75ac9334a5",
       "face": {
@@ -422,8 +464,8 @@
         ]
       },
       "age_group": "成人",
-      "realistic_model_file": "card-matched-v2/he-sw.glb",
-      "realistic_model_sha256": "3e868c273ee1ae11b34284eae90adc15f921fc639cd83860305b2133028d4843",
+      "realistic_model_file": "card-matched-v3/he-sw.glb",
+      "realistic_model_sha256": "ef1c0a751bea7054ff338794f1542c915601828e0d36da79283e3811cb3086b9",
       "appearance": {
         "age": 0.43,
         "hair": "long01",
@@ -439,7 +481,7 @@
         "notes": "成年女性、棕色長髮、米褐西裝與淺色內搭"
       },
       "reference_card_sha256": "e62524ff6c6c9b6e3d15c57683fd4027fd18c9195fa37b0841ed0781bd446f6d",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.1456,
         "eye_spacing": 0.6515,
@@ -447,6 +489,13 @@
         "mouth_width": 0.4171,
         "source_card_sha256": "e62524ff6c6c9b6e3d15c57683fd4027fd18c9195fa37b0841ed0781bd446f6d",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "e62524ff6c6c9b6e3d15c57683fd4027fd18c9195fa37b0841ed0781bd446f6d",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -468,7 +517,7 @@
       "card_sha256": "cdec697ff84a0170a6163813471c7ac6c063420d6196569792fe7aa3d506de7b",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/auntie-lin.png",
       "atlas_sha256": "a74b7a8c4d1b917cac3fa398efefc9bd87e315136ac3791dd025435b773d2307",
       "face": {
@@ -486,8 +535,8 @@
         ]
       },
       "age_group": "高齡",
-      "realistic_model_file": "card-matched-v2/auntie-lin.glb",
-      "realistic_model_sha256": "e2beaabfdd8bc30a99336599b0968b4a68796a1660e65315c41560a8a5c36a6f",
+      "realistic_model_file": "card-matched-v3/auntie-lin.glb",
+      "realistic_model_sha256": "ab287f466caf07110fb10caf09b09f3804654f7f79d88ab1a555b01e6deeaf6d",
       "appearance": {
         "age": 0.88,
         "hair": "short03",
@@ -503,7 +552,7 @@
         "notes": "高齡女性、灰白短髮、細框眼鏡、米色針織外套"
       },
       "reference_card_sha256": "cdec697ff84a0170a6163813471c7ac6c063420d6196569792fe7aa3d506de7b",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.0949,
         "eye_spacing": 0.5977,
@@ -511,6 +560,13 @@
         "mouth_width": 0.3812,
         "source_card_sha256": "cdec697ff84a0170a6163813471c7ac6c063420d6196569792fe7aa3d506de7b",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "cdec697ff84a0170a6163813471c7ac6c063420d6196569792fe7aa3d506de7b",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -532,7 +588,7 @@
       "card_sha256": "e06b1f0678442abe6697cb5aa3b0c53f69cc2495663c08d4c9503345afdbd792",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/mr-chen.png",
       "atlas_sha256": "a5ca8a28b2c5df96124f9434d8a211f44287aceb15c10ef58a4c75e0ebd583e9",
       "face": {
@@ -550,8 +606,8 @@
         ]
       },
       "age_group": "高齡",
-      "realistic_model_file": "card-matched-v2/mr-chen.glb",
-      "realistic_model_sha256": "73969153447b87034dbc89f7c3adc32b4030ce1a441d6a454c1e9258744c5387",
+      "realistic_model_file": "card-matched-v3/mr-chen.glb",
+      "realistic_model_sha256": "5d86965f904751ab4b03e122e2997240edf0296b25e820dc316dc5c0f98007ad",
       "appearance": {
         "age": 0.85,
         "hair": "short04",
@@ -567,7 +623,7 @@
         "notes": "高齡男性、灰黑側分髮、偏瘦長臉、淺藍襯衫"
       },
       "reference_card_sha256": "e06b1f0678442abe6697cb5aa3b0c53f69cc2495663c08d4c9503345afdbd792",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.0987,
         "eye_spacing": 0.5802,
@@ -575,6 +631,13 @@
         "mouth_width": 0.3591,
         "source_card_sha256": "e06b1f0678442abe6697cb5aa3b0c53f69cc2495663c08d4c9503345afdbd792",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "e06b1f0678442abe6697cb5aa3b0c53f69cc2495663c08d4c9503345afdbd792",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -596,7 +659,7 @@
       "card_sha256": "c732226f06ce31487cea0090f2f2dd54f52637dc3b76625d55ad97d7f0e5e776",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/mr-wang.png",
       "atlas_sha256": "22834f31ff4f8038e826d46a0d5ee3a51d2063c8a28c2335c70cdda05022a286",
       "face": {
@@ -614,8 +677,8 @@
         ]
       },
       "age_group": "成人",
-      "realistic_model_file": "card-matched-v2/mr-wang.glb",
-      "realistic_model_sha256": "efbdcfb9982799423a8b4420b93c3527175b286910e7f521403040fbfafdb1e9",
+      "realistic_model_file": "card-matched-v3/mr-wang.glb",
+      "realistic_model_sha256": "186a263dca2cbe442d598aeda2a5a99b5dabbcffbc737cf16594282366c0e775",
       "appearance": {
         "age": 0.66,
         "hair": "short04",
@@ -631,7 +694,7 @@
         "notes": "中高齡男性、灰黑側分髮、黑框眼鏡、深藍外套與藍襯衫"
       },
       "reference_card_sha256": "c732226f06ce31487cea0090f2f2dd54f52637dc3b76625d55ad97d7f0e5e776",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.135,
         "eye_spacing": 0.6186,
@@ -639,6 +702,13 @@
         "mouth_width": 0.3828,
         "source_card_sha256": "c732226f06ce31487cea0090f2f2dd54f52637dc3b76625d55ad97d7f0e5e776",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "c732226f06ce31487cea0090f2f2dd54f52637dc3b76625d55ad97d7f0e5e776",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -660,7 +730,7 @@
       "card_sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/middle-man.png",
       "atlas_sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
       "face": {
@@ -678,8 +748,8 @@
         ]
       },
       "age_group": "中年",
-      "realistic_model_file": "card-matched-v2/middle-man.glb",
-      "realistic_model_sha256": "9ae636db2dd9d15e812ff642f2229f9b51eb96482f00bd74a3b9ef0436f8d698",
+      "realistic_model_file": "card-matched-v3/middle-man.glb",
+      "realistic_model_sha256": "f11e41c238d5511bce378383f2f40fb3cd3274b51ecc4d262dc3b2dfe0b590af",
       "appearance": {
         "age": 0.6,
         "hair": "short01",
@@ -695,7 +765,7 @@
         "notes": "中年男性、短黑髮、偏方長臉、淺藍襯衫"
       },
       "reference_card_sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.1865,
         "eye_spacing": 0.5946,
@@ -703,6 +773,13 @@
         "mouth_width": 0.3544,
         "source_card_sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "2c238703adda83fdf3687ab9754aad0e721420c2316f82e7c42dd7e0aeb51cb2",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -724,7 +801,7 @@
       "card_sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/middle-woman.png",
       "atlas_sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
       "face": {
@@ -742,8 +819,8 @@
         ]
       },
       "age_group": "中年",
-      "realistic_model_file": "card-matched-v2/middle-woman.glb",
-      "realistic_model_sha256": "f046ed5feebde0b8fd4d4cfd535186ba732743c29376fdbb51d234a0f320400e",
+      "realistic_model_file": "card-matched-v3/middle-woman.glb",
+      "realistic_model_sha256": "ecdbdc83cb3cce3d4c98b639ed7e59ac857df9e5ffd8f3114cf1135c8df29cc4",
       "appearance": {
         "age": 0.59,
         "hair": "bob02",
@@ -759,7 +836,7 @@
         "notes": "中年女性、齊肩黑髮、灰綠色上衣"
       },
       "reference_card_sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.1963,
         "eye_spacing": 0.6243,
@@ -767,6 +844,13 @@
         "mouth_width": 0.3672,
         "source_card_sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "353bade14404f991fcfe0b3e809090b5cd74a8da9e3b8ced70aa7b04846af192",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     },
     {
@@ -788,7 +872,7 @@
       "card_sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
       "usage": "Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.",
       "visual_type": "rigged-realistic-3d",
-      "visual_version": "card-matched-v2",
+      "visual_version": "card-matched-v3",
       "atlas_file": "photoreal-v1/zhou-rt.png",
       "atlas_sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
       "face": {
@@ -806,8 +890,8 @@
         ]
       },
       "age_group": "成人",
-      "realistic_model_file": "card-matched-v2/zhou-rt.glb",
-      "realistic_model_sha256": "44ec315f548778133e9675b6ebf479a42840e49d37e476ed58fccec0395f64c5",
+      "realistic_model_file": "card-matched-v3/zhou-rt.glb",
+      "realistic_model_sha256": "d58e811cef595db2ec50736598b0cd9f4de16844025c06f9c7eeb467c60d616a",
       "appearance": {
         "age": 0.33,
         "hair": "short01",
@@ -823,7 +907,7 @@
         "notes": "年輕男性、短黑側分髮、海軍藍V領工作服"
       },
       "reference_card_sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
-      "likeness_status": "artistic reconstruction from card; visual review required",
+      "likeness_status": "Reference-fitted front appearance; unseen side/back inferred from anatomical mesh; visual review required",
       "reference_face_proportions": {
         "head_aspect": 1.1855,
         "eye_spacing": 0.6114,
@@ -831,6 +915,13 @@
         "mouth_width": 0.3539,
         "source_card_sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
         "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+      },
+      "face_fitting": {
+        "landmarks": 80,
+        "source_card_sha256": "cf07c9c840e475302fca18b778ccb32efcb023560e31d014592e0134a3c36fc3",
+        "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+        "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+        "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
       }
     }
   ]

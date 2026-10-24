@@ -8,13 +8,14 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT.parent/'output'
 OUT.mkdir(exist_ok=True)
 APP_VERSION=json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version']
-target=OUT/f'迴旋梯智鏈_v{APP_VERSION}_角色對應與同網路語音版_20261023.zip'
+target=OUT/f'迴旋梯智鏈_v{APP_VERSION}_來源約束與教案分支回饋版_20261024.zip'
 folders=['backend','frontend','data','tests','tools','docs','.github','web_portal']
 singles=['README.md','requirements.txt','requirements-pose.txt','requirements.lock.txt','package.json','package-lock.json',
          'Dockerfile','compose.yaml','compose.postgres.yaml','requirements-extended.txt','.dockerignore','run.py','manage.py','run_windows.bat','.env.example','.gitignore','操作活動圖.mmd','測試與交付紀錄_20261021.md']
 files=[ROOT/name for name in singles]
 for folder in folders:
     files.extend(p for p in (ROOT/folder).rglob('*') if p.is_file()
+                 and not any(part in ('realistic-v1','card-matched-v2') for part in p.parts)
                  and '__pycache__' not in p.parts and 'node_modules' not in p.parts and p.suffix not in ('.pyc','.sqlite3','.db')
                  and not (p.parent.name=='livekit' and p.suffix=='.zip')
                  and ('ffmpeg' not in p.parts or p.name in ('ffmpeg.exe','ffprobe.exe','LICENSE','README.txt','README.md','release.sha256')))
@@ -29,4 +30,4 @@ with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED) as z:
 with zipfile.ZipFile(target) as z:
     assert z.testzip() is None
     assert not any('/runtime/' in n or '/.venv/' in n or '/node_modules/' in n for n in z.namelist())
-print(json.dumps({'path':str(target),'files':len(manifest['files']),'bytes':target.stat().st_size,'private_data_included':False},ensure_ascii=False))
+print(json.dumps({'path':str(target),'files':len(manifest['files']),'bytes':target.stat().st_size,'private_data_included':False},ensure_ascii=True))

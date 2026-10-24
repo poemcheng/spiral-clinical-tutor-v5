@@ -1,17 +1,23 @@
 """Explicit public allowlist. Local runtime, original documents and real footage never enter it."""
 from pathlib import Path
-import hashlib,json,zipfile
+import hashlib,json,zipfile,subprocess,sys
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'runtime/publication';OUT.mkdir(parents=True,exist_ok=True)
+subprocess.run([sys.executable,str(ROOT/'tools/verify_lecture_library.py'),'--strict'],check=True)
 def sha(data):return hashlib.sha256(data).hexdigest()
 assets={}
-original_cards={a['card_file'] for a in json.loads((ROOT/'data/characters/catalog.json').read_text(encoding='utf-8'))['actors']}
+catalog_source=json.loads((ROOT/'data/characters/catalog.json').read_text(encoding='utf-8'))
+original_cards={a['card_file'] for a in catalog_source['actors']}
+active_model_folders={Path(a['realistic_model_file']).parts[0] for a in catalog_source['actors']}
+version=json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version']
 for p in (ROOT/'frontend/vendor').rglob('*'):
     if p.is_file():assets[p.relative_to(ROOT).as_posix()]=p.read_bytes()
 for p in (ROOT/'frontend/assets').rglob('*'):
     if p.is_file():assets[p.relative_to(ROOT).as_posix()]=p.read_bytes()
 for p in (ROOT/'data').rglob('*'):
-    if not p.is_file() or 'sources' in p.parts or p.suffix not in ('.json','.vrm','.png','.glb'):continue
+    if not p.is_file() or 'sources' in p.parts:continue
+    if p.suffix not in ('.json','.vrm','.png','.glb') and not (p.suffix=='.mp4' and p.is_relative_to(ROOT/'data/public_lectures')):continue
     if 'realistic-v1' in p.parts:continue
+    if any(part.startswith('card-matched-v') and part not in active_model_folders for part in p.parts):continue
     if p.suffix=='.png' and 'photoreal-v1' not in p.parts and p.name not in original_cards:continue
     if 'video360' in p.parts and p.name!='catalog.json':continue
     assets[p.relative_to(ROOT).as_posix()]=p.read_bytes()
@@ -21,8 +27,8 @@ for a in catalog['actors']:
     a['usage']='Fictional role-card reference and card-matched CC0 MakeHuman skinned geometry. Not a scan of a real patient.'
 assets['data/characters/catalog.json']=json.dumps(catalog,ensure_ascii=False,indent=2).encode()
 archive=OUT/'public-assets.zip'
-frozen=ROOT/'runtime/release-5.5.0/public-assets.zip'
-if frozen.exists() and json.loads((ROOT/'package.json').read_text())['version']=='5.5.0':
+frozen=ROOT/'runtime'/f'release-{version}'/'public-assets.zip'
+if frozen.exists():
     import shutil
     shutil.copyfile(frozen,archive)
     with zipfile.ZipFile(archive) as z:
@@ -46,13 +52,13 @@ for p in (ROOT/'tools').iterdir():
 for name in ['README.md','Dockerfile','compose.yaml','compose.postgres.yaml','.dockerignore','.gitignore','.env.example','requirements.txt','requirements-extended.txt','requirements-pose.txt','requirements.lock.txt','package.json','package-lock.json','run.py','run_windows.bat','manage.py','.github/workflows/checks.yml','.github/workflows/publish-assets.yml','.github/workflows/pages.yml','data/learning_policy.json']:
     files[name]=(ROOT/name).read_text(encoding='utf-8-sig')
 for p in [p for d in (ROOT/'docs').glob('v5*') if d.is_dir() for p in d.iterdir()]:
-    if p.is_file() and p.suffix in ('.md','.csv','.json','.txt','.srt') and p.name!='public-assets-manifest.json':files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8-sig')
+    if p.is_file() and p.suffix in ('.md','.csv','.json','.txt','.srt','.vtt') and p.name!='public-assets-manifest.json':files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8-sig')
 for p in (ROOT/'data/characters/realistic-v1').glob('*.json'):
     files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8')
-for p in (ROOT/'data/characters/card-matched-v2').glob('*.json'):
+for p in (ROOT/'data/characters/card-matched-v3').glob('*.json'):
     files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8')
 for p in (ROOT/'web_portal').iterdir():
-    if p.is_file() and p.suffix in ('.html','.css','.js','.json','.cer'):files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8')
+    if p.is_file() and p.suffix in ('.html','.css','.js','.json','.cer','.mobileconfig'):files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8')
 files['data/characters/card-face-proportions.json']=(ROOT/'data/characters/card-face-proportions.json').read_text(encoding='utf-8')
 for p in (ROOT/'data/action_lessons').glob('*.json'):
     files[p.relative_to(ROOT).as_posix()]=p.read_text(encoding='utf-8')

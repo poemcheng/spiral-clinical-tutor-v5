@@ -25,7 +25,7 @@ from .legacy.config import VIDEO_LIBRARY_DIR
 from .legacy.content import resolve_persona
 from .legacy.video_generator import generate_video_script
 from .legacy import video_renderer
-from . import curriculum, virtual_video, characters, voice_bridge, h5p_content, progression, speech_input,learning_curriculum,encounters,training_evidence
+from . import curriculum, virtual_video, characters, voice_bridge, h5p_content, progression, speech_input,learning_curriculum,encounters,training_evidence,standardized_patient,branching,lecture_library
 from starlette.concurrency import run_in_threadpool
 
 # Windows registry may classify .js as text/plain, which breaks module scripts with nosniff.
@@ -506,7 +506,7 @@ def select_case(sid: int, body: CaseBody, user=Depends(student)):
 
 
 @app.get('/api/sessions/{sid}/learning')
-def learning(sid: int, user=Depends(current_user)):
+def learning(sid: int, request:Request, user=Depends(current_user)):
     row = owned_session(sid, user)
     case = case_for(row)
     vl = original_video(case)
@@ -515,6 +515,7 @@ def learning(sid: int, user=Depends(current_user)):
         'resources':__import__('backend.learning_resources',fromlist=['resources']).resources(row,case),
         'library_video':{'title':vl['title'],'url':f'/api/sessions/{sid}/library-video','available':vl['video_available']} if vl else None,
         'video_job':row['payload'].get('video_job'),'script':row['payload'].get('video_script'),
+        'lecture_library':lecture_library.available(row,case),'can_generate_video':request.url.hostname in ('localhost','127.0.0.1','::1'),
         'note':'虛擬講師依本輪教案快照合成中文語音與擬真人像表情；教學內容待教師審核。'}
 
 
@@ -575,6 +576,24 @@ class ModuleBody(BaseModel):
     module: int = Field(default=0, ge=0, le=2)
 
 
+@app.get('/api/sessions/{sid}/lecture-library')
+def published_lectures(sid:int,user=Depends(current_user)):
+    row=owned_session(sid,user)
+    if row['step']<3:raise HTTPException(409,'請先選定教案。')
+    return lecture_library.available(row,case_for(row))
+
+
+@app.get('/api/sessions/{sid}/lecture-library/{lecture_id}/{module}')
+def published_lecture_video(sid:int,lecture_id:str,module:int,user=Depends(current_user)):
+    row=owned_session(sid,user)
+    if row['step']<3:raise HTTPException(409,'請先選定教案。')
+    try:path=lecture_library.resolve(row,case_for(row),lecture_id,module)
+    except PermissionError as e:raise HTTPException(403,str(e))
+    except ValueError as e:raise HTTPException(404,str(e))
+    except FileNotFoundError as e:raise HTTPException(404,str(e))
+    return FileResponse(path,media_type='video/mp4',headers={'Cache-Control':'private, max-age=3600','ETag':'"'+lecture_id+'-'+str(module)+'"'})
+
+
 @app.get('/api/sessions/{sid}/generated-lesson/{module}/{asset}')
 def generated_lesson(sid:int,module:int,asset:str,user=Depends(current_user)):
     row=owned_session(sid,user)
@@ -589,7 +608,7 @@ def generated_lesson(sid:int,module:int,asset:str,user=Depends(current_user)):
 
 
 @app.post('/api/sessions/{sid}/video')
-def create_video(sid: int, body: ModuleBody, user=Depends(student)):
+def create_video(sid: int, body: ModuleBody, request:Request, user=Depends(student)):
     with store.tx() as c:
         row = owned_session(sid, user)
         if row['step'] < 3:
@@ -597,6 +616,10 @@ def create_video(sid: int, body: ModuleBody, user=Depends(student)):
         case = case_for(row)
         if body.module >= row['payload']['adaptive_plan']['video_count']:
             raise HTTPException(403, '此補強影片尚未解鎖。')
+        if request.url.hostname not in ('localhost','127.0.0.1','::1'):
+            published=lecture_library.available(row,case)['lectures']
+            if published:return {'status':'completed','published':True,'note':'請直接播放已發布講師影片。'}
+            raise HTTPException(409,'此講師版本尚未發布。請由管理者在主機本機生成並同步影片庫；手機與平板只需播放已發布版本。')
         if row['payload'].get('video_job', {}).get('status') == 'running':
             return row['payload']['video_job']
         existing=row['payload'].get('generated_videos',{}).get(str(body.module),{})
@@ -673,7 +696,7 @@ def interaction(sid: int, user=Depends(current_user)):
     return {'difficulty':difficulty,'encounter':encounters.current(row),'encounter_plan':row['payload'].get('encounter_plan'),
             'resources':resources(row,case_for(row)),'questions': decision_questions(row), 'decisions': row['payload']['decisions'],
             'trust': row['payload']['trust'], 'scene_mode': row['payload']['adaptive_plan']['scene_mode'],
-            'pairing':row['payload'].get('interaction_policy'),'minimum_turns':2,'variant':case_for(row).get('variant'),'safety_blocked':row['payload'].get('safety_blocked',False),
+            'pairing':row['payload'].get('interaction_policy'),'minimum_turns':2,'record_sections':[{'id':r['id'],'title':r['title']} for r in standardized_patient.records(case_for(row))],'variant':case_for(row).get('variant'),'safety_blocked':row['payload'].get('safety_blocked',False),
             'hint_budget':curriculum.hint_budget(row['level']),'hints_used':row['payload'].get('hints_used',0),'source': '案例約束標準病患；AI對話與決策分開記錄。'}
 
 
@@ -698,6 +721,8 @@ def decision(sid: int, body: DecisionBody, user=Depends(student)):
         option = q['options'][int(body.option_id[1:])]
         record = {'option_id': body.option_id, 'score': option['score'], 'max_score': 2,
                   'feedback': option['feedback'], 'dimension': option['dimension'], 'critical':bool(q.get('critical')), 'at': time.time()}
+        practice=[r['id'] for r in row['payload'].get('branching_runs',[]) if any(x['question_id']==q['id'] for x in r.get('summary',{}).get('choices',[]))]
+        record['prior_branching_practice']={'run_ids':practice,'feedback_path_reported':bool(practice),'independent_first_attempt':not bool(practice)}
         row['payload']['decisions'][q['id']] = record
         record.update(actor=characters.selected(row),case_hash=row['payload']['case_hash'])
         if q.get('critical') and option['score']==0:row['payload']['safety_blocked']=True
@@ -758,7 +783,7 @@ async def transcribe_turn(sid:int,request:Request,user=Depends(student)):
     return await decode_voice(sid,request,user)
 
 
-async def decode_voice(sid,request,user,diagnostic=False):
+async def decode_voice(sid,request,user,diagnostic=False,diagnostic_source='controlled-test-audio'):
     row=owned_session(sid,user,require_checkin=not diagnostic)
     if row['step']!=4 or row['status']!='active':raise HTTPException(409,'請在進行中的角色互動錄音。')
     if request.headers.get('content-type','').split(';')[0] not in ('audio/webm','audio/ogg','audio/wav','audio/mp4'):
@@ -771,7 +796,7 @@ async def decode_voice(sid,request,user,diagnostic=False):
     except BlockingIOError as e:raise HTTPException(429,str(e))
     except ValueError as e:raise HTTPException(400,str(e))
     except RuntimeError as e:raise HTTPException(503,str(e))
-    with store.tx() as c:store.event(c,user['id'],sid,'diagnostic_speech_transcribed' if diagnostic else 'speech_transcribed',{'seconds':result['seconds'],'model':result['model'],'recording_retained':False,'input_source':'controlled-test-audio' if diagnostic else 'learner-audio'})
+    with store.tx() as c:store.event(c,user['id'],sid,'diagnostic_speech_transcribed' if diagnostic else 'speech_transcribed',{'seconds':result['seconds'],'model':result['model'],'recording_retained':False,'input_source':diagnostic_source if diagnostic else 'learner-audio'})
     return result
 
 
@@ -792,6 +817,11 @@ def voice_diagnostic_input(sid:int,turn:int,user=Depends(student)):
 @app.post('/api/sessions/{sid}/voice-diagnostic/transcribe')
 async def voice_diagnostic_transcribe(sid:int,request:Request,user=Depends(student)):
     return await decode_voice(sid,request,user,diagnostic=True)
+
+
+@app.post('/api/sessions/{sid}/voice-diagnostic/microphone-transcribe')
+async def voice_diagnostic_microphone(sid:int,request:Request,user=Depends(student)):
+    return await decode_voice(sid,request,user,diagnostic=True,diagnostic_source='physical-microphone')
 
 
 class VoiceDiagnosticBody(BaseModel):
@@ -884,7 +914,7 @@ def chat(sid: int, body: ChatBody, user=Depends(student)):
                 'prompt_version':'peer-1' if body.mode=='peer' else 'encounters-5.4.0','mode':body.mode,
                 'conversation':facts.get('conversation_state'),
                 'interaction_difficulty':facts.get('interaction_difficulty'),
-                'retrieval_version':facts.get('retrieval_version','case-peer-1'),'evidence':facts.get('retrieved_evidence',[]),'source_change_guard':facts.get('source_change_guard')}
+                'retrieval_version':facts.get('retrieval_version','case-peer-1'),'evidence':facts.get('retrieved_evidence',[]),'source_change_guard':facts.get('source_change_guard'),'disclosure':facts.get('disclosure')}
         else:
             # Explicit scripted patient exercise, not a false AI fallback.
             lines = [case.get('patient_behavior') or '您可以先說明接下來要問什麼嗎？', '我擔心做不到，能不能先一起討論我的疑慮？', '請再用簡單的話說明下一步。']
@@ -1261,6 +1291,114 @@ def h5p_evidence(sid:int,body:H5PEvidenceBody,user=Depends(student)):
             row['payload'].setdefault('h5p_states',{})[version]={'answers':body.state['answers'][:3]}
         store.save(c,sid,row['payload'])
     return {'saved':True,'formal_score_changed':False}
+
+
+@app.get('/api/sessions/{sid}/patient-records')
+def patient_records(sid:int,user=Depends(current_user)):
+    row=owned_session(sid,user)
+    if row['step']<4:raise HTTPException(409,'請先進入互動階段。')
+    return {'sections':[{'id':r['id'],'title':r['title']} for r in standardized_patient.records(case_for(row))],
+            'case_hash':row['payload']['case_hash'],'readonly':user['role']!='student' or row['step']!=4 or row['status']!='active'}
+
+
+class RecordLookupBody(BaseModel):
+    section_id:str=Field(max_length=30)
+    event_id:str=Field(min_length=8,max_length=80)
+    case_hash:str=Field(min_length=64,max_length=64)
+
+
+@app.post('/api/sessions/{sid}/patient-records')
+def lookup_patient_record(sid:int,body:RecordLookupBody,user=Depends(student)):
+    with store.tx() as c:
+        row=owned_session(sid,user);need_step(row,4)
+        if body.case_hash!=row['payload']['case_hash']:raise HTTPException(409,'教案版本已變更，請重新載入。')
+        try:record=standardized_patient.lookup(case_for(row),body.section_id)
+        except ValueError as e:raise HTTPException(400,str(e))
+        prior=store.all("SELECT data FROM events WHERE session_id=? AND kind='case_record_viewed'",(sid,))
+        if not any(json.loads(r['data'])['event_id']==body.event_id for r in prior):
+            if len(prior)>=200:raise HTTPException(409,'本輪查閱紀錄已達上限。')
+            store.event(c,user['id'],sid,'case_record_viewed',{'event_id':body.event_id,'section_id':body.section_id,'title':record['title'],
+                'source_hash':record['source_hash'],'case_hash':body.case_hash,'actor_id':characters.selected(row)['id'],'is_performed_exam':False})
+    return record
+
+
+@app.get('/api/sessions/{sid}/branching/h5p.json')
+def branching_manifest(sid:int,user=Depends(current_user)):
+    row=owned_session(sid,user)
+    if row['step']<4:raise HTTPException(409,'請先進入互動階段。')
+    return branching.manifest()
+
+
+@app.get('/api/sessions/{sid}/branching/content/content.json')
+def branching_content(sid:int,user=Depends(current_user)):
+    row=owned_session(sid,user)
+    if row['step']<4:raise HTTPException(409,'請先進入互動階段。')
+    return branching.content(row)[0]
+
+
+@app.get('/api/sessions/{sid}/branching/state')
+def branching_state(sid:int,user=Depends(current_user)):
+    row=owned_session(sid,user)
+    if row['step']<4:raise HTTPException(409,'請先進入互動階段。')
+    return {**branching.state_for(row),'readonly':user['role']!='student' or row['step']!=4 or row['status']!='active'}
+
+
+class BranchEvidenceBody(BaseModel):
+    event_id:str=Field(min_length=8,max_length=80)
+    run_id:str=Field(pattern=r'^[a-f0-9]{32}$')
+    content_version:str=Field(min_length=64,max_length=64)
+    verb:str=Field(max_length=30)
+    state:dict=Field(default_factory=dict)
+
+
+@app.post('/api/sessions/{sid}/branching/evidence')
+def branching_evidence(sid:int,body:BranchEvidenceBody,user=Depends(student)):
+    if len(encode(body.model_dump()))>12000:raise HTTPException(413,'分支事件過大。')
+    with store.tx() as c:
+        row=owned_session(sid,user);need_step(row,4);params,version,mapping=branching.content(row)
+        if body.content_version!=version:raise HTTPException(409,'角色或教案已變更，請重新載入分支練習。')
+        if body.verb not in ('started','navigated','restarted','progressed','completed','answered'):raise HTTPException(400,'未知分支事件。')
+        try:canonical=branching.validate_state(params,body.state)
+        except ValueError as e:raise HTTPException(400,str(e))
+        prior=store.all("SELECT data FROM events WHERE session_id=? AND kind='branching_practice'",(sid,))
+        digest=hashlib.sha256(encode(body.model_dump()).encode()).hexdigest()
+        duplicate=next((json.loads(r['data']) for r in prior if json.loads(r['data'])['event_id']==body.event_id),None)
+        if duplicate:
+            if duplicate.get('request_hash')!=digest:raise HTTPException(409,'事件識別碼已被另一筆資料使用。')
+            return {'saved':True,'duplicate':True,'formal_score_changed':False}
+        if len(prior)>=500:raise HTTPException(409,'本輪分支練習事件已達上限。')
+        runs=row['payload'].setdefault('branching_runs',[]);run=next((r for r in runs if r['id']==body.run_id),None)
+        if run:
+            old=run['state']['userPath']
+            if run['content_version']!=version or canonical['userPath'][:len(old)]!=old:raise HTTPException(409,'已有不同的練習進度，請重新載入；重練需保留為新一輪。')
+        else:
+            if len(runs)>=30:raise HTTPException(409,'本次訓練的分支練習已達 30 輪；歷程保留供教師檢視。')
+            run={'id':body.run_id,'content_version':version,'case_hash':row['payload']['case_hash'],'actor':characters.selected(row),
+                 'created':time.time(),'title':row['payload']['case_snapshot']['title'],'source_file':row['payload']['case_snapshot'].get('source_file')};runs.append(run)
+        summary=branching.analyze(params,mapping,canonical['userPath']);run.update(state=canonical,summary=summary,updated=time.time())
+        store.event(c,user['id'],sid,'branching_practice',{'event_id':body.event_id,'run_id':body.run_id,'content_version':version,'request_hash':digest,
+            'verb':body.verb,'path':canonical['userPath'],'outcome':summary['outcome'],'case_hash':run['case_hash'],'formal_score_changed':False})
+        store.save(c,sid,row['payload'])
+    return {'saved':True,'summary':summary,'formal_score_changed':False}
+
+
+class BranchReviewBody(BaseModel):
+    run_id:str=Field(pattern=r'^[a-f0-9]{32}$')
+    feedback:str=Field(min_length=10,max_length=2000)
+    expected_review_id:str=Field(default='',max_length=32)
+
+
+@app.post('/api/teacher/sessions/{sid}/branching/review')
+def review_branching(sid:int,body:BranchReviewBody,user=Depends(teacher)):
+    with store.tx() as c:
+        row=owned_session(sid,user);run=next((r for r in row['payload'].get('branching_runs',[]) if r['id']==body.run_id),None)
+        if not run:raise HTTPException(404,'找不到本次分支歷程。')
+        reviews=row['payload'].setdefault('branching_reviews',[]);last=next((r for r in reversed(reviews) if r['run_id']==body.run_id),None)
+        if (last['id'] if last else '')!=body.expected_review_id:raise HTTPException(409,'已有較新教師回饋，請重新載入。')
+        review={'id':secrets.token_hex(16),'run_id':body.run_id,'content_version':run['content_version'],'case_hash':run['case_hash'],
+                'feedback':body.feedback,'teacher':user['display_name'],'created':time.time(),'formal_score_changed':False}
+        reviews.append(review);store.save(c,sid,row['payload']);store.event(c,user['id'],sid,'branching_teacher_feedback',review)
+    return {'saved':True,'review':review,'formal_score_changed':False}
 
 
 from .livekit_proxy import install as install_livekit_proxy

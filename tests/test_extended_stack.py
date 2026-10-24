@@ -6,6 +6,21 @@ from backend.postgres_store import translate
 from tools.run_lan import certificates
 
 class ExtendedStackTests(unittest.TestCase):
+    def test_iphone_profile_contains_only_the_public_ca_and_can_be_removed(self):
+        import plistlib
+        from tools.prepare_iphone_profile import create_profile
+        from cryptography import x509
+        from cryptography.hazmat.primitives import hashes
+        with tempfile.TemporaryDirectory() as folder:
+            directory=Path(folder);certificates(['192.168.68.108'],directory)
+            target=directory/'iphone.mobileconfig';fingerprint=create_profile(directory/'clinical-tutor-ca.cer',target)
+            profile=plistlib.loads(target.read_bytes());self.assertFalse(profile['PayloadRemovalDisallowed'])
+            self.assertEqual(len(profile['PayloadContent']),1)
+            payload=profile['PayloadContent'][0];self.assertEqual(payload['PayloadType'],'com.apple.security.root')
+            ca=x509.load_der_x509_certificate(payload['PayloadContent'])
+            self.assertEqual(ca.fingerprint(hashes.SHA256()).hex(),fingerprint)
+            self.assertNotIn('PRIVATE KEY',target.read_text());self.assertNotIn('com.apple.mdm',target.read_text())
+
     def test_vague_worsening_is_not_an_observed_weight_or_muscle_decline(self):
         from backend.encounters import unsupported_change_claims
         case={'patient':'體重44.3kg，ALMI5.20；主訴努力三個月為什麼更差。'}

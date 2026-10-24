@@ -1,6 +1,6 @@
 {
-  "version": "5.5.0",
-  "archive_sha256": "e87a0b613e4d0a4a1e27c55287c5935d6b920490de68ccce2313e6cf342dc114",
+  "version": "5.6.0",
+  "archive_sha256": "50165566b184516728b3467ec6bc4f03c59f84ad23343570416d7c0b3a663b14",
   "contains_learner_data": false,
   "contains_source_documents": false,
   "contains_real_footage": false,
@@ -42,8 +42,8 @@
       "bytes": 163
     },
     "frontend/vendor/h5p-libraries/provenance.json": {
-      "sha256": "bebf74aa3b1d58f9b4508181eb5880160baad5b4336d9c71e933e89763725811",
-      "bytes": 3164
+      "sha256": "c6616845b85e5f6029a24f07967fc8b914e349ce6363da66b6f6350e513f4057",
+      "bytes": 4294
     },
     "frontend/vendor/licenses/livekit-client-LICENSE.txt": {
       "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
@@ -96,6 +96,110 @@
     "frontend/vendor/h5p-libraries/FontAwesome-4.5/README.md": {
       "sha256": "be19d0c295b8271fef4720bd44e5ae3d3f02271fe4c2d5fd8460e829fcc1d399",
       "bytes": 436
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/.gitignore": {
+      "sha256": "5f36c6c16bba0d0a15555ec27fe691549d3b9a9c459ab0371f4b99bc5ef12a76",
+      "bytes": 8
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/crowdin.yml": {
+      "sha256": "720e00420e99e7e202a6c062dac592925b211b6205716ec00412780c5778174d",
+      "bytes": 89
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/icon.svg": {
+      "sha256": "3c1bfa269cbe8dcef5f9741c439efc50d1fbd63a8dc216907f789b170b78f996",
+      "bytes": 1977
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/library.json": {
+      "sha256": "3efbe05be9879c6887114a32bc82ba417fc9844c21a2617c870ab40c51eb32a4",
+      "bytes": 445
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/README.md": {
+      "sha256": "c4c748e6aec47741a35dd40f941efd433a51ad8ee9e677396df1578d0c721e81",
+      "bytes": 1242
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/semantics.json": {
+      "sha256": "c72bc1032396e18f67ff7b3a7b86310bf229af73007560d85db8a7852cc80e76",
+      "bytes": 388
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/text.css": {
+      "sha256": "823b31b9000b23ac06b0570533685d3b8b3587e5ca01d517026a822f7a289866",
+      "bytes": 445
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/text.js": {
+      "sha256": "855a357cd9a940284cebd76e84139e375bb51b2902a7129df0a0b648a61da9f1",
+      "bytes": 934
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/.h5pignore": {
+      "sha256": "98db6311a5b8d28ffb3d853c5a31e268abf9e5dc0a8ebf27694708a2d5c2c6fd",
+      "bytes": 63
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/branching-question-icon.svg": {
+      "sha256": "8efad31b77a0484028050a991c86a54084fc08960132bac20dc57acc35a2fccb",
+      "bytes": 1510
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/branchingQuestion.css": {
+      "sha256": "0185f7d705f3bc66474bcb17c8b1260cc97c8ca76c2ece0a9a934438b10ca8cf",
+      "bytes": 2346
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/branchingQuestion.js": {
+      "sha256": "bf9124498a5d848ae2063285d00ffdaf60b66fca4f5dbf0baf02ec7cf359f5cc",
+      "bytes": 17817
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/library.json": {
+      "sha256": "7164567653024d507a77a492121a5ce24daeeff6044707efa2215ca4a228c26c",
+      "bytes": 780
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/semantics.json": {
+      "sha256": "862766c71fe52ec84a88bcd96572cbf7169bdbb3c1ac4595f1197924e7668b8d",
+      "bytes": 3027
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/.babelrc": {
+      "sha256": "73c5f70cc580b8e38ff6748cf53111a383377da8048e12516745c48904a63a3a",
+      "bytes": 128
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/.eslintrc.json": {
+      "sha256": "45b9965a87a0afddd5da7c67d753b2a1343d4fae0706245a9a2eea9ae3beccd1",
+      "bytes": 1109
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/.gitignore": {
+      "sha256": "77b8faa0154f4330fc7cdc833dec3a2f04bd6043a3c0b5d1bf42c3132e6d653f",
+      "bytes": 56
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/.h5pignore": {
+      "sha256": "e2a83bb86ff848fa62483ebb98c68f7007a808fdea75e677eaccc1ae951ecc9e",
+      "bytes": 99
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/icon.svg": {
+      "sha256": "f69e02bd634f84e3040505f023ffc60dd16fc321dd45c3090a4d384853948578",
+      "bytes": 5520
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/library.json": {
+      "sha256": "c4b573b0c2b0fab4d7956832358142ca54765ccc0988ae582dd0557942c55a69",
+      "bytes": 994
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/package-lock.json": {
+      "sha256": "017d998b93d9746c5b07ad22a3987b14c7b7cd199334ef8eeb6c1a8f7e260fe2",
+      "bytes": 204459
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/package.json": {
+      "sha256": "0e3ffc34a0ba3fe301fadf9e69d01a4c8cbd010d942f1d626b923b59aaf85bc7",
+      "bytes": 1103
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/README.md": {
+      "sha256": "6e092e69d9bd378a8995085ba02fa50dc60f5057eafacd09d3a0f20c111f3a63",
+      "bytes": 1238
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/semantics.json": {
+      "sha256": "5e8a71922ef81950961a7a79b86b9b8e017e9b73cb6ee5761437c9af94e7622b",
+      "bytes": 13232
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/upgrades.js": {
+      "sha256": "ebf3b48471368c4e5d92376043b63491b642d5632471b34a506655ee6e6f549d",
+      "bytes": 2203
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/webpack.config.js": {
+      "sha256": "a23f31c1ee0199533862a749cb99e0a7ff141940742371af3988d3ba8d6757bd",
+      "bytes": 2157
     },
     "frontend/vendor/h5p-libraries/H5P.Components-1.0/.gitignore": {
       "sha256": "9cb6f3e279ec07fbf0d7c282551e2d80a9d99d6ca9501d83651771fb2e070fc5",
@@ -1409,6 +1513,670 @@
       "sha256": "e28fce244ffb8c1df2fec8edc8451338d01340f7c8d931b36826b1a088721308",
       "bytes": 11070
     },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/0fcd45fbfc419c42c8b9.ttf": {
+      "sha256": "f205cc511821ea56078a105557fcea6253129404d411c997e1866fbd006abb68",
+      "bytes": 172064
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/17451a4c1cd55e33ac57.ttf": {
+      "sha256": "7d0b991ee3e0be7af01ad7ea8cd2beea6c00a25e679a0226b6737f079aafff86",
+      "bytes": 170760
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/1b4c977a235aeeb2f0ba.woff": {
+      "sha256": "780f5807217c53a8cb1a3bacc0182581533537a1e98d7ef7d305848b6b0606e9",
+      "bytes": 1576
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/1d8407e941dbaa85ceb8.eot": {
+      "sha256": "972a62c282f4eaf2b320839ab81edb33697c3baca7a05759a0e7d8b348f95ee9",
+      "bytes": 1644
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/6bede58e856278b0f8f1.ttf": {
+      "sha256": "79e851404657dac2106b3d22ad256d47824a9a5765458edb72c9102a45816d95",
+      "bytes": 171676
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/8c63e7c3f511df705d23.svg": {
+      "sha256": "c75d836eb6dadae4f4f2d50755c132f8b080fbf8c2065864c8dc2c40d083a72f",
+      "bytes": 2738
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/bcdd30ac373d312c7427.ttf": {
+      "sha256": "10ee47551d369f125304925ac08b9299b492f17c4c1cacac0c7508d0d27a0af4",
+      "bytes": 1500
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/ce61b8b68994802f2e55.ttf": {
+      "sha256": "a6d343d425bc38db90152fa06058b1c7391eca9264f334ef65c1ce175085c6f6",
+      "bytes": 170420
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/h5p-branching-scenario.css": {
+      "sha256": "4e4fcbd4019dcdadf6e991be5add982a40e08261308b72384205429c79d822cf",
+      "bytes": 23556
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/h5p-branching-scenario.js": {
+      "sha256": "78066fae88f18074f264129a8636765e63b40c72a6e06e0f83a084e6cf3a7a61",
+      "bytes": 53277
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/.en.json": {
+      "sha256": "14b113d144b7ec1f04e33d30fc5559eab68d0a128afd1fd0a5159362b325122f",
+      "bytes": 6563
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/af.json": {
+      "sha256": "ed4b1f2247930a32f40ab8a5f7cca82ac4f7d870cf646710dabe78b0729458b6",
+      "bytes": 6557
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/ar.json": {
+      "sha256": "f10d0f6a7f7c646d7f957922b21ec2770f814592df19c145d89447200a3ceb76",
+      "bytes": 6664
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/bg.json": {
+      "sha256": "bcbf9b9fc93be43f96e82434cb315d90b064da858023aa687980330e6487dfd5",
+      "bytes": 7733
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/ca.json": {
+      "sha256": "8c055465f2e812551048eb43e4d6948b59c20a118bc8f824d38f7c5cfb0a8cf9",
+      "bytes": 6931
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/cs.json": {
+      "sha256": "282a3fdaa30f880143cb7a9c3fa861f2a6bf6174ccb81e50be10d6025440320c",
+      "bytes": 6837
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/cy.json": {
+      "sha256": "262c1bb07cccf57994cb94017e579c192388865cd93af074776252adf9a416bf",
+      "bytes": 6771
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/da.json": {
+      "sha256": "fb4b06c7c633cf724fbe8abae342820afeca645e5de573da3f38315da0b201f7",
+      "bytes": 6627
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/de.json": {
+      "sha256": "b3fa8c3e340a5a7d898e61ca5377fcaee45c6847d2ce72a459f608b5e276f1e1",
+      "bytes": 7050
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/el.json": {
+      "sha256": "7f655feae2902b95627f13eed3db5adf105e4133183baa1ec8a8f1598106b13a",
+      "bytes": 9583
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/es-mx.json": {
+      "sha256": "da6d28d59cbb1d84ed33059b6687e77e4c20128781320f24c5d8704fdd7499da",
+      "bytes": 7149
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/es.json": {
+      "sha256": "1d557abcafebaa2b8f6e37f775f080510eaabb949dfc3860e2f29cf7dc70dd62",
+      "bytes": 7122
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/et.json": {
+      "sha256": "91ffce33a88d9aed283f379edea5d63436b5189a46328ce725fe21fe95589b75",
+      "bytes": 6694
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/eu.json": {
+      "sha256": "f8f30e41ea96f4797bfeb95617e0416d508ed4ebceaaefa134cee835c3236914",
+      "bytes": 6944
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/fa.json": {
+      "sha256": "2176f1b62b8073e1ddbd13b83c6e890f33bc7e48da1ab15a081fcd67a5d6fb5e",
+      "bytes": 7528
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/fi.json": {
+      "sha256": "0bcab68f166eea2e9328957e8f4054ed6ff5018559634f9092021a458b2b563f",
+      "bytes": 6814
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/fr.json": {
+      "sha256": "c7815285b3959fedcd70ea72e99523a5a2f6c81d85a087f34fa80c77db940434",
+      "bytes": 7128
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/gl.json": {
+      "sha256": "c63ba00a74067391935768b59de6d52a2c5a9c03805181aa2de0a02dc8c3ad9f",
+      "bytes": 7018
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/he.json": {
+      "sha256": "4db1334329ebd0a0775ef4b798662c3e0078dce0c137f26c0bc4637fade93e73",
+      "bytes": 7495
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/it.json": {
+      "sha256": "d00f1d18eae8fe4b5adbf5843dbaac9b19018eb1a2ba71b0c77befb3d2f26fa0",
+      "bytes": 6930
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/ka.json": {
+      "sha256": "3ad506960f1ff3fa0d0ef9a8ce031f69b802bafdfe06ede3ee1ac1588193a051",
+      "bytes": 9748
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/km.json": {
+      "sha256": "756459d63b911c33e9c5bca38e5bd40baf1f9927fc74642dd83e4b3f23249796",
+      "bytes": 6794
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/ko.json": {
+      "sha256": "a39963c110de5f1a5f832a65eba49f4049483a791794f141bb6082e9ed89d06a",
+      "bytes": 6894
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/lt.json": {
+      "sha256": "51c5480442b4d9564245a927e4bd1ed4554207aee6c2205c986557d8bcc6efeb",
+      "bytes": 6879
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/lv.json": {
+      "sha256": "1de0e87ba811b400d8077ee828655bcbda59c09f26f4700fac705f6943ae7050",
+      "bytes": 6850
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/nb.json": {
+      "sha256": "38680120a9e77f9213fecbd11390da4a29c9a2fa7fe54239e39094f78234b6ab",
+      "bytes": 6689
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/nl.json": {
+      "sha256": "10f1e4e1bd695e7b0a4fa58ec588b3cc76115788fadbd03966e8bd0d18e21b0e",
+      "bytes": 6846
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/nn.json": {
+      "sha256": "e99e66bc9b46a71f14b32da4061845e05320685469d4ccff5a72ced9769d7dc2",
+      "bytes": 6691
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/pt-br.json": {
+      "sha256": "8b428b5bce851ee3077163441f8920cec8cb840370b6c314f03a1d37cf915f04",
+      "bytes": 6996
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/pt.json": {
+      "sha256": "722e6aaf3b1f4cf85f0baa97ee866d67583782a73af55ec222b43a102f724f46",
+      "bytes": 7125
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/ro.json": {
+      "sha256": "6f3648be856f58160001137974d72867c80e853e4fac66ddc0c6f1d2e6d8a705",
+      "bytes": 7192
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/ru.json": {
+      "sha256": "7525caaf310c33ae63438365ce652ca7bba11a6ffabfebbe16bebacd90e5f4f4",
+      "bytes": 7753
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/sk.json": {
+      "sha256": "d312df6172f534855ff7b3a6ccc499077a7b02376d6fd56ef9a520424093758e",
+      "bytes": 6974
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/sl.json": {
+      "sha256": "ec8b7391d8c68bd9ab6c4a6adc89d4d9604ba248d1b667134e93f3071060a757",
+      "bytes": 6516
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/sr.json": {
+      "sha256": "80817011e50b8213cf7de9ad31d26374cfd576e5f2c117132b73c323b91dcde2",
+      "bytes": 7961
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/sv.json": {
+      "sha256": "9b5698ad7edc0aa0d2a0e67d38e5d4bb7beecbde5f4338989383356bb619147c",
+      "bytes": 6813
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/sw.json": {
+      "sha256": "9fd03ef82bcb563d4c6f4bd3b51abf2b34ed55937e16f6cc30e6bdac652cc287",
+      "bytes": 6769
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/tr.json": {
+      "sha256": "2f3f20a77a43e0d1ab4bddb81d7a8facbee2cf920d02bb1511264c7a86456fe6",
+      "bytes": 6931
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/language/zh-cn.json": {
+      "sha256": "59782bfa6bcf325cba843a131bac39a48927993e92fcf8629530e4ac121560da",
+      "bytes": 6172
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/assets/end-screen-default.jpg": {
+      "sha256": "2589f5c04bd7a9e9e38e73570bd6d050b7c3aab56e27e356589866dc7ac13e1b",
+      "bytes": 15920
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/assets/start-screen-default.jpg": {
+      "sha256": "47cecd9412bd0056b173e167920fb6addfb9842c37777014005215567a48488a",
+      "bytes": 39320
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/entries/dist.js": {
+      "sha256": "e22f96ca779a27dd21dfc89150d1052572467f83858ac330346435284dee33a6",
+      "bytes": 112
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/LICENSE.txt": {
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "bytes": 11560
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-Black.ttf": {
+      "sha256": "3872e9b39760a1b59ac1e192633dbb3b58e595b4d423930ac7ded525e9ae25e0",
+      "bytes": 171480
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-BlackItalic.ttf": {
+      "sha256": "013d22a4fb2638adba28555ee19366f4585f6dc533b7c332f4931a231497cb22",
+      "bytes": 177552
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-Bold.ttf": {
+      "sha256": "7d0b991ee3e0be7af01ad7ea8cd2beea6c00a25e679a0226b6737f079aafff86",
+      "bytes": 170760
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-BoldItalic.ttf": {
+      "sha256": "a4bcac14f419a97de0917198a4bc51c3ed4fc4a3db9f68a5102f23664ee01354",
+      "bytes": 174952
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-Italic.ttf": {
+      "sha256": "5fce8b6f8ba9f4d19f0d535e241d56a2b8e72bb07e7df711d968d092ef7f9fca",
+      "bytes": 173932
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-Light.ttf": {
+      "sha256": "a6d343d425bc38db90152fa06058b1c7391eca9264f334ef65c1ce175085c6f6",
+      "bytes": 170420
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-LightItalic.ttf": {
+      "sha256": "364a23e13c64937c3fcea3db778628b89379c893849bbade6e5bf83c5f605c6a",
+      "bytes": 176616
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-Medium.ttf": {
+      "sha256": "f205cc511821ea56078a105557fcea6253129404d411c997e1866fbd006abb68",
+      "bytes": 172064
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-MediumItalic.ttf": {
+      "sha256": "f177eed10d2470d13ec68d04907a582829d0ee8281f8a02a906f6954c7816e58",
+      "bytes": 176864
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-Regular.ttf": {
+      "sha256": "79e851404657dac2106b3d22ad256d47824a9a5765458edb72c9102a45816d95",
+      "bytes": 171676
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-Thin.ttf": {
+      "sha256": "3d91f7aa69cb7f7064035895c566ac5cb9b2084582d351af7267bb4e0fba60f5",
+      "bytes": 171904
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/Roboto-ThinItalic.ttf": {
+      "sha256": "f5e89a344894a60f0f98f1c0182ba51f5046e29dde3118820d39025445aeaae8",
+      "bytes": 176300
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/scripts/genericScreen.js": {
+      "sha256": "b7f27d5dfeefedd710362c0c6b6f3aee8880d2b461a25df1db424d317fcb33fe",
+      "bytes": 12299
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/scripts/h5p-branching-scenario.js": {
+      "sha256": "f97fcc405d4a88f462ad882dc08b7ebaab3e53553a958afa9bd7f17813232c8d",
+      "bytes": 25492
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/scripts/libraryScreen.js": {
+      "sha256": "106e13bc6ec276b9104a4433c2ba8ff7a7099359c9821a482d445331fbd8c792",
+      "bytes": 54748
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/scripts/libraryScreenOverlay.js": {
+      "sha256": "c6dee6cde96af480ffc2cc55196407cfcca63e2332048a52ff55233aa7d0657d",
+      "bytes": 2494
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/scripts/scoring.js": {
+      "sha256": "6457752da4296a8032040c5c507c9c45040992767412309dad60840335cd8dee",
+      "bytes": 11405
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/styles/branchingQuestion.scss": {
+      "sha256": "e91fa7d4dcea8a327c9f655cd2cd81478e584574bbaa52bfaddf5e0fa1893c07",
+      "bytes": 5292
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/styles/genericScreen.scss": {
+      "sha256": "9eaa9a11a7169dc8572cde1911bc1b22a35dbd707b4bda5b2693b68b170068ea",
+      "bytes": 10388
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/styles/h5p-branching-scenario.scss": {
+      "sha256": "d6f392d3ea61ed5e4d1c5f356462baae3a262fbefbe60146469705c6ee85d616",
+      "bytes": 3484
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/styles/libraryScreen.scss": {
+      "sha256": "07bd09bc8d67cc047c4e8100fb0e1d73c1060cc1e04be5d5226743f2df3b4fb0",
+      "bytes": 7086
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/styles/libraryScreenOverlay.scss": {
+      "sha256": "a951fc84e701f34bb6fe0223ccdd10384a5c309b2a07dfc5bb80bbeccf3471ea",
+      "bytes": 1354
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/scripts/services/util.js": {
+      "sha256": "488e425c013455fd12bd6e764cabbec798eb348ec85511a1da6f686bcef5adaa",
+      "bytes": 589
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/icons/bs.eot": {
+      "sha256": "972a62c282f4eaf2b320839ab81edb33697c3baca7a05759a0e7d8b348f95ee9",
+      "bytes": 1644
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/icons/bs.svg": {
+      "sha256": "c75d836eb6dadae4f4f2d50755c132f8b080fbf8c2065864c8dc2c40d083a72f",
+      "bytes": 2738
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/icons/bs.ttf": {
+      "sha256": "10ee47551d369f125304925ac08b9299b492f17c4c1cacac0c7508d0d27a0af4",
+      "bytes": 1500
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/src/fonts/icons/bs.woff": {
+      "sha256": "780f5807217c53a8cb1a3bacc0182581533537a1e98d7ef7d305848b6b0606e9",
+      "bytes": 1576
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/assets/end-screen-default.jpg": {
+      "sha256": "2589f5c04bd7a9e9e38e73570bd6d050b7c3aab56e27e356589866dc7ac13e1b",
+      "bytes": 15920
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/dist/assets/start-screen-default.jpg": {
+      "sha256": "47cecd9412bd0056b173e167920fb6addfb9842c37777014005215567a48488a",
+      "bytes": 39320
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingScenario-1.11/.github/workflows/ci-workflows.yml": {
+      "sha256": "607d24d36d8b84bece8a60fdbcb3e18321a3401e76527ce43c8dab365ab3f7a2",
+      "bytes": 598
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/.en.json": {
+      "sha256": "8d660b9fd121e5feed1d8c96d6d55852bd7f6385f881bdeeac2763015218d488",
+      "bytes": 900
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/ar.json": {
+      "sha256": "6589380e9dc9a75f1270f9dbe0eb2699959ef01266de703fcf4077d29629351b",
+      "bytes": 981
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/bg.json": {
+      "sha256": "0a2486b9fb2655a3c718ce905c9bd7f1194ec2fbf321eb3c7d48d2afa036aac2",
+      "bytes": 1219
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/ca.json": {
+      "sha256": "acb99c3f340c3324895ce8f94b3e6bac1a5ccb82c1699824c49256e5f43f2c92",
+      "bytes": 950
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/cs.json": {
+      "sha256": "e2d23585488722f379a38ef6509d1a7c3ca4d7e149d95e230a5580c678ef1a92",
+      "bytes": 930
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/de.json": {
+      "sha256": "b85c535d487ce31cd233ede03b290117a84e3a3538da45690eb0f55fb696f95f",
+      "bytes": 944
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/el.json": {
+      "sha256": "593b08cc46897a94f4f6613f93a909d20ff34ea7dd9cbfbdda74aeb3677d4aa5",
+      "bytes": 1134
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/es-mx.json": {
+      "sha256": "105a8344c1a178025fb0d4cd46045558006c34e58001f659c88d6a5f86e45bf3",
+      "bytes": 973
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/es.json": {
+      "sha256": "3272015423788b4da83a60d99a69eeb65edb966f2a20db962efee5152ef3eb52",
+      "bytes": 975
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/et.json": {
+      "sha256": "4bb665faa30700969e4e3164787b52f6644acce03abdf7d8387fce0411bffccc",
+      "bytes": 915
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/eu.json": {
+      "sha256": "1308bd96c5f717dbe1494f6d9a68e69e6167ce5fcc94b1850acda8f14887f5bf",
+      "bytes": 915
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/fi.json": {
+      "sha256": "7df8b28ea14598d6d30235bed443fc6e76b0de4ed9613e6f1a8461ff31de2018",
+      "bytes": 933
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/fr.json": {
+      "sha256": "5c2f11df1a40efc53369531d314441cc474c9e4b2f1ccc2a6d72d5976cb8259e",
+      "bytes": 937
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/gl.json": {
+      "sha256": "bf71de32efdd82caf0cdfab3f99772599231cef1fe4d17d8399850faf73165f1",
+      "bytes": 969
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/it.json": {
+      "sha256": "fcf6ca452df49ddb91de68055112d15dfacae81fb4aa40fd7f347029c9778658",
+      "bytes": 932
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/ka.json": {
+      "sha256": "ffaceb923f690aae25a3b79813f99aa6e9df381063f771ad3ffaa052a40a805c",
+      "bytes": 1293
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/ko.json": {
+      "sha256": "588c43329463af4041df349d8b994c75091d35ddb92fe26410e70327cb37b14d",
+      "bytes": 934
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/lt.json": {
+      "sha256": "10b16bb6feb1a69772c6217c6f763dfed73092708f8f98e77f6f729b867de335",
+      "bytes": 951
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/lv.json": {
+      "sha256": "9fd59a3bcd8eab4a9bd74e5a823db13ee9feb3fb95d6ffe83f326e0163d1e764",
+      "bytes": 993
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/mn.json": {
+      "sha256": "4b9eeffd5a3e8cd6b7072d4c6fa7d2852dc9160df8138f97286d556d5c4b5d65",
+      "bytes": 1104
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/nb.json": {
+      "sha256": "7ea5e92c7f64d451297e7653706ac7ba39c032ae1928d60bb6ad4ec4ac20902f",
+      "bytes": 934
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/nl.json": {
+      "sha256": "daebc7c998f67c477e35d83ec429b9ce7e6502f52b7526f0600ba78f45ea119f",
+      "bytes": 914
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/nn.json": {
+      "sha256": "2ece12d0f5baa3d082876655252a404cd00ec6370ff51dd61977402db0d4b95f",
+      "bytes": 945
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/pt-br.json": {
+      "sha256": "ae690fcd388bac33f5d4e552d7bd73004f45ee49bb61d49d2bf72335291b893f",
+      "bytes": 930
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/pt.json": {
+      "sha256": "398e6630ec90d1fb482d3a819ced4903d91b9d17021c06dfe2ef4a05686c360c",
+      "bytes": 937
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/ro.json": {
+      "sha256": "dcd31b84e833146022ff69bbad40a8ef104e02914936b024fc4402311ac0926a",
+      "bytes": 928
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/ru.json": {
+      "sha256": "7b43370cdbbb0e08249f00220e0429e51f27a82b2d33785fb4285e90769a092c",
+      "bytes": 1095
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/sl.json": {
+      "sha256": "b19db2ac0ef0641622d946d770d97d258799077afa1be1dcf0d5d33c25dab243",
+      "bytes": 930
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/sma.json": {
+      "sha256": "8d660b9fd121e5feed1d8c96d6d55852bd7f6385f881bdeeac2763015218d488",
+      "bytes": 900
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/sme.json": {
+      "sha256": "8d660b9fd121e5feed1d8c96d6d55852bd7f6385f881bdeeac2763015218d488",
+      "bytes": 900
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/smj.json": {
+      "sha256": "8d660b9fd121e5feed1d8c96d6d55852bd7f6385f881bdeeac2763015218d488",
+      "bytes": 900
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/sv.json": {
+      "sha256": "24ce82b405e2dfbc245c3793d23c5ba0ac341fffe2cc46329d6e67c5998322b4",
+      "bytes": 913
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/sw.json": {
+      "sha256": "e44183215cbee46fc075c0544326891e85b1c11872d95458e9229f32ea28f079",
+      "bytes": 915
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/language/zh.json": {
+      "sha256": "4995f9773c3db2b1b7bee612331f73ddda306c8e2ca32916448645b3ed0be9b6",
+      "bytes": 881
+    },
+    "frontend/vendor/h5p-libraries/H5P.BranchingQuestion-1.0/.github/workflows/ci-workflows.yml": {
+      "sha256": "44103b8ec4ae4459dc7a9c3ff5a6696ef28e0cb965450b1da2eb5bd35e0623ac",
+      "bytes": 281
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/.en.json": {
+      "sha256": "aad55dd5d892694e779909ee331a953d77c941836aca43c66205580b222d8597",
+      "bytes": 59
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/af.json": {
+      "sha256": "863f2a3ef06c530c035891c9038ffcb784c35f1cbab5817b3b6f55bf1d13a20d",
+      "bytes": 59
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/ar.json": {
+      "sha256": "2e751059f34bf397b54399a6442ddef9e304303bcbf4762f068bc3585e4dc205",
+      "bytes": 60
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/bg.json": {
+      "sha256": "51bd03a002c1de2fedffc347a1ea57781591535066fc9c1a6769c3d59f6e8ad7",
+      "bytes": 70
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/ca.json": {
+      "sha256": "e7e7384ee77655b73513c1de8c6d86765633cc8640a866a21dca16df9aa27917",
+      "bytes": 56
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/cs.json": {
+      "sha256": "e7e7384ee77655b73513c1de8c6d86765633cc8640a866a21dca16df9aa27917",
+      "bytes": 56
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/da.json": {
+      "sha256": "e7e7384ee77655b73513c1de8c6d86765633cc8640a866a21dca16df9aa27917",
+      "bytes": 56
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/de.json": {
+      "sha256": "e7e7384ee77655b73513c1de8c6d86765633cc8640a866a21dca16df9aa27917",
+      "bytes": 56
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/el.json": {
+      "sha256": "e035f793a1ee46719a605c21346481b83cc74f7f6fc9c0aa1db75d6682018277",
+      "bytes": 67
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/es-mx.json": {
+      "sha256": "cf2b18d9511e8cdc3cb1c30264b80d0aac9d6b946f6e91f79d68f42987b5e703",
+      "bytes": 60
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/es.json": {
+      "sha256": "586f89cec4e8d2007955b3345ac4c558fcfda546153a6f493d482976bada33d3",
+      "bytes": 58
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/et.json": {
+      "sha256": "b6d3f9ab07173084bdf0053a6b5e470969abccb2a3ba9583614af7abb7250a87",
+      "bytes": 57
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/eu.json": {
+      "sha256": "7c0774f30b2bbe41ce1f29920839ac7874ad6f5ec0de26698f7cb4b8c9915eb1",
+      "bytes": 61
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/fa.json": {
+      "sha256": "6983b01acccabd893d4112a9af75ec1b73fb53c33cf310aeb06181f3756a0ae6",
+      "bytes": 61
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/fi.json": {
+      "sha256": "f02f2d1a64fcc7c90d947849a2440fda2093a4ec86a95ca96dca2b1f79b5f5f1",
+      "bytes": 58
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/fr.json": {
+      "sha256": "7f6e534692e6026f8a351da6cc8eb8c9a55300cb5bb834859e1d81105ad5ccb1",
+      "bytes": 57
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/gl.json": {
+      "sha256": "cf2b18d9511e8cdc3cb1c30264b80d0aac9d6b946f6e91f79d68f42987b5e703",
+      "bytes": 60
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/he.json": {
+      "sha256": "7902653763274cc6171f402475487aa40aed85dc44415e205a8c44bfac4ffaba",
+      "bytes": 63
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/hu.json": {
+      "sha256": "e7e7384ee77655b73513c1de8c6d86765633cc8640a866a21dca16df9aa27917",
+      "bytes": 56
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/it.json": {
+      "sha256": "e35922e75fe4b0d7b15c455ee465f765d15cb0c1ea22b8f5194f4e9a9d3d8fce",
+      "bytes": 57
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/ja.json": {
+      "sha256": "2dc43a879dceec4d679e4c26d1edae339a90650cfd0f85d39bd38a44a1911904",
+      "bytes": 64
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/ka.json": {
+      "sha256": "f30e8885107b0b8271388897162a74b2e8aa1dc6ca30d3bc46b286127859d497",
+      "bytes": 73
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/km.json": {
+      "sha256": "364a8c1aba4e80e3e745636026f731267b0a3a77cf377effd729db668f0c98c6",
+      "bytes": 73
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/ko.json": {
+      "sha256": "92b28e8b8ea42048ddc683469719cf744bb1e61da2b4f04a55ca66fb8d5bdb50",
+      "bytes": 62
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/lt.json": {
+      "sha256": "931f1c443b37264e79725f676723a54cd534c73f3647c5185f86df3eea1a1686",
+      "bytes": 62
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/lv.json": {
+      "sha256": "ff23ba8274b67e580f2f8983309b63abc4a78eb452e651af02c437e53ec32770",
+      "bytes": 61
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/mn.json": {
+      "sha256": "74660efd4e1df32573ef8289e78d2dd8b282a4aa5f0324be0f6a9e229b2b59aa",
+      "bytes": 65
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/nb.json": {
+      "sha256": "b6d3f9ab07173084bdf0053a6b5e470969abccb2a3ba9583614af7abb7250a87",
+      "bytes": 57
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/nl.json": {
+      "sha256": "81429a2c134651d1e98456aaee3c921df2cce71dc6371300df3028d79953f75f",
+      "bytes": 60
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/nn.json": {
+      "sha256": "e7e7384ee77655b73513c1de8c6d86765633cc8640a866a21dca16df9aa27917",
+      "bytes": 56
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/pl.json": {
+      "sha256": "e7e7384ee77655b73513c1de8c6d86765633cc8640a866a21dca16df9aa27917",
+      "bytes": 56
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/pt-br.json": {
+      "sha256": "cf2b18d9511e8cdc3cb1c30264b80d0aac9d6b946f6e91f79d68f42987b5e703",
+      "bytes": 60
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/pt.json": {
+      "sha256": "2b209935bac0dcf8047d804ca551917cb59f18f65cbe0e6430b2cff0d74f3e9a",
+      "bytes": 57
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/ro.json": {
+      "sha256": "aad55dd5d892694e779909ee331a953d77c941836aca43c66205580b222d8597",
+      "bytes": 59
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/ru.json": {
+      "sha256": "74660efd4e1df32573ef8289e78d2dd8b282a4aa5f0324be0f6a9e229b2b59aa",
+      "bytes": 65
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/sl.json": {
+      "sha256": "c97ce440a685d69f09471612911916f595f7042c5d9fee40bb578828d35c349b",
+      "bytes": 63
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/sma.json": {
+      "sha256": "aad55dd5d892694e779909ee331a953d77c941836aca43c66205580b222d8597",
+      "bytes": 59
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/sme.json": {
+      "sha256": "aad55dd5d892694e779909ee331a953d77c941836aca43c66205580b222d8597",
+      "bytes": 59
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/smj.json": {
+      "sha256": "aad55dd5d892694e779909ee331a953d77c941836aca43c66205580b222d8597",
+      "bytes": 59
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/sr.json": {
+      "sha256": "e7e7384ee77655b73513c1de8c6d86765633cc8640a866a21dca16df9aa27917",
+      "bytes": 56
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/sv.json": {
+      "sha256": "e7e7384ee77655b73513c1de8c6d86765633cc8640a866a21dca16df9aa27917",
+      "bytes": 56
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/sw.json": {
+      "sha256": "429216fa2312144ad83dc9521ac720938ddb3bb02ae2777e36a302db6a7ff6b3",
+      "bytes": 64
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/te.json": {
+      "sha256": "b820086757dd2a1df66a0e7a3e5b3cf076170a0be81486e29579a722be31b180",
+      "bytes": 79
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/th.json": {
+      "sha256": "8b7c801804c4fd0177a02956ab1af6de367bbc7c1aae62b5f14ce6038ca98881",
+      "bytes": 76
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/tr.json": {
+      "sha256": "ac7af2d61119ee3f4fa8f7d3392fd8dcfe2accf23b946b0f74f63fe425afebfd",
+      "bytes": 60
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/uk.json": {
+      "sha256": "769db7f5c32548a0c71a271fb9d0ce7523a3f71ffe9889232185127c14b95da9",
+      "bytes": 63
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/language/vi.json": {
+      "sha256": "602b9faad86584e63c157a4441f7f24d376df7030b5b320872448ddfd8e35c04",
+      "bytes": 60
+    },
+    "frontend/vendor/h5p-libraries/H5P.AdvancedText-1.1/.github/workflows/ci-workflows.yml": {
+      "sha256": "44103b8ec4ae4459dc7a9c3ff5a6696ef28e0cb965450b1da2eb5bd35e0623ac",
+      "bytes": 281
+    },
     "frontend/vendor/h5p/fonts/h5p-core-30.woff2": {
       "sha256": "fc0fc677374df9e2db0932dd7fcc144544cbbae6ceb59f5e4efbe57852c017cd",
       "bytes": 15080
@@ -1622,8 +2390,8 @@
       "bytes": 4142
     },
     "data/characters/catalog.json": {
-      "sha256": "acefd24f4b8fb222ae0e586517607fb30458cf4a58e83cddd93c3b666cf2401b",
-      "bytes": 31818
+      "sha256": "99f62b3f14902046047b82ac8d530763eaba012111b1ca56d60543ffcc8a417b",
+      "bytes": 38582
     },
     "data/characters/chen-md.png": {
       "sha256": "a0f1055a4eadd1f751f2cfaae25239ef5a7a536b08789750a6b7a324ab4c7381",
@@ -1713,6 +2481,10 @@
       "sha256": "d761e191067a16b401c260b1c2e4ab0f4d8e4a66abe9cb67bfde7161606d19f3",
       "bytes": 3516
     },
+    "data/public_lectures/catalog.json": {
+      "sha256": "866d843f3069146095398a2fefa7b1b5ddc065d877c69c178ec8b38ef6df9fb8",
+      "bytes": 176085
+    },
     "data/video360/catalog.json": {
       "sha256": "cb7cfa71b42f98e68f5188e1c9291e3d7a2a981be7f2f370b4ba47e451e436f3",
       "bytes": 2565
@@ -1721,109 +2493,877 @@
       "sha256": "39b7d4831939af38a494e694a4bb323dc3644502ba3b81e6625e41562d24963b",
       "bytes": 11917
     },
-    "data/characters/card-matched-v2/auntie-lin.glb": {
-      "sha256": "e2beaabfdd8bc30a99336599b0968b4a68796a1660e65315c41560a8a5c36a6f",
-      "bytes": 10091408
+    "data/public_lectures/0125ebae629065648709d3ee/module-0.mp4": {
+      "sha256": "ad432c57d8f7a10d3963cb5359afa5ab0a5d8eebb5b3e8af9206a5f3c341c23e",
+      "bytes": 484168
     },
-    "data/characters/card-matched-v2/auntie-lin.json": {
-      "sha256": "08da6714f328010c77562dffeae47be33fb367f85e4db84669d29296afd3f666",
-      "bytes": 1894
+    "data/public_lectures/0125ebae629065648709d3ee/module-1.mp4": {
+      "sha256": "d6d7d5b48983dad7811b3e1b1271ec5393e36bbf27f349ff2bcd18a8c7afbd94",
+      "bytes": 547106
     },
-    "data/characters/card-matched-v2/chen-md.glb": {
-      "sha256": "af6ad45bc731e4d3b061256e0f24c8e4da32436ae7a9f55e6ad01bd0090380cc",
-      "bytes": 9185388
+    "data/public_lectures/0125ebae629065648709d3ee/module-2.mp4": {
+      "sha256": "238adbdd99f358296fc3e1711c90642014698b718752fff271efae2ab0817484",
+      "bytes": 556138
     },
-    "data/characters/card-matched-v2/chen-md.json": {
-      "sha256": "58cb505faffae89ee485be0540b333c51b9c79b1d263b6de53e5a868e74195d4",
-      "bytes": 1901
+    "data/public_lectures/0125ebae629065648709d3ee/script.json": {
+      "sha256": "161d2aaaac5b4f79211b63f814e9890f7c911f32ee01d1c8a8c63189ebe364da",
+      "bytes": 766
     },
-    "data/characters/card-matched-v2/he-sw.glb": {
-      "sha256": "3e868c273ee1ae11b34284eae90adc15f921fc639cd83860305b2133028d4843",
-      "bytes": 9243656
+    "data/public_lectures/0507fd1193a21cb2e7908be2/module-0.mp4": {
+      "sha256": "553852f34554d70637bfc2864b82e952ed80f514e3657e370661252cefca4583",
+      "bytes": 550392
     },
-    "data/characters/card-matched-v2/he-sw.json": {
-      "sha256": "65bdf7bba02f4f3deb6cf616927a9d0481a588d5f13528a106f06aa668f4d54b",
-      "bytes": 1880
+    "data/public_lectures/0507fd1193a21cb2e7908be2/module-1.mp4": {
+      "sha256": "98955037c3a311de391a4f1c70729cfc2186c056f150ed7dff685fa56f8fc6e7",
+      "bytes": 589629
     },
-    "data/characters/card-matched-v2/huang-dt.glb": {
-      "sha256": "c5434d820ac8c74e8e664edc849d4832f2bfcbf996b0a05c81fe39332efc64af",
-      "bytes": 9256624
+    "data/public_lectures/0507fd1193a21cb2e7908be2/module-2.mp4": {
+      "sha256": "6078bd34fcd1e401e7abb2ad15bb4e71a60f9593b281fdc24b196816aabbb121",
+      "bytes": 652388
     },
-    "data/characters/card-matched-v2/huang-dt.json": {
-      "sha256": "b838e02ff15bd06bbdf2825bda58b7660722c0e01b87a1299169e8072037e464",
-      "bytes": 1865
+    "data/public_lectures/0507fd1193a21cb2e7908be2/script.json": {
+      "sha256": "f9456b385787708cef195c83685ad863fb7a1e406c7a508b69ee45f777afe0a8",
+      "bytes": 763
     },
-    "data/characters/card-matched-v2/li-rph.glb": {
-      "sha256": "afac9a241416a9d5ccd50fc8c38d3888d1cb901d3f477edcb0d756061102b4f8",
-      "bytes": 9038060
+    "data/public_lectures/06e4a360cd2f2488a910fa97/module-0.mp4": {
+      "sha256": "14d2c90088bb29cb3252fbd116ad115f4f686c121a48a7adcfe1916d41badc90",
+      "bytes": 475216
     },
-    "data/characters/card-matched-v2/li-rph.json": {
-      "sha256": "1a66fb73e96e5c8c1e96a3383edb1c18d639104047a17ac9a575af2d6b551b9a",
-      "bytes": 1891
+    "data/public_lectures/06e4a360cd2f2488a910fa97/module-1.mp4": {
+      "sha256": "7e87d271e04360622c8269ee0111b6d66b71515f6262e34a008ef7e8dace46cd",
+      "bytes": 446222
     },
-    "data/characters/card-matched-v2/lin-rn.glb": {
-      "sha256": "a5b3cab050085131f976a8f02ae223f1236d23f24bb0da94afe95aa7014c52c5",
-      "bytes": 9875776
+    "data/public_lectures/06e4a360cd2f2488a910fa97/module-2.mp4": {
+      "sha256": "eb40f8b752151b2d677fa5828155e7da9205a82e65e2697e1a368054a2726041",
+      "bytes": 548295
     },
-    "data/characters/card-matched-v2/lin-rn.json": {
-      "sha256": "0f156ffa3df03f35470f1313bcf7fa2ab97eff4ab0406c1cec66178a24b9f55f",
-      "bytes": 1872
+    "data/public_lectures/06e4a360cd2f2488a910fa97/script.json": {
+      "sha256": "e538495f1f77fe9937894e37abf9ac8bc739d61eca83ac1cfe21160a3f8f2508",
+      "bytes": 735
     },
-    "data/characters/card-matched-v2/middle-man.glb": {
-      "sha256": "9ae636db2dd9d15e812ff642f2229f9b51eb96482f00bd74a3b9ef0436f8d698",
-      "bytes": 9761264
+    "data/public_lectures/0b621216bbdb7bbcb9e316ca/module-0.mp4": {
+      "sha256": "a7f7b58684b58625ddf4c4f197764ad94952ef824625838855d4194f9bbadca3",
+      "bytes": 533910
     },
-    "data/characters/card-matched-v2/middle-man.json": {
-      "sha256": "90638fa0e68887833a60973759dc1d80393ed383f685ce12bbb2c66e3bd2ec8c",
-      "bytes": 1893
+    "data/public_lectures/0b621216bbdb7bbcb9e316ca/module-1.mp4": {
+      "sha256": "d3c47583643c80bae98e0374a6cccb06c60752c9dae3a406eebf7db4d4c84b76",
+      "bytes": 547640
     },
-    "data/characters/card-matched-v2/middle-woman.glb": {
-      "sha256": "f046ed5feebde0b8fd4d4cfd535186ba732743c29376fdbb51d234a0f320400e",
-      "bytes": 9459616
+    "data/public_lectures/0b621216bbdb7bbcb9e316ca/module-2.mp4": {
+      "sha256": "d077b5da6a8709887e090f61d79435b46081f6a4eb4f08578bdccde7ce0a0d4c",
+      "bytes": 645575
     },
-    "data/characters/card-matched-v2/middle-woman.json": {
-      "sha256": "137ad23a9f56b5eaafb11aae9c503df1ae536bb2a9fee5bdf7466a13279ea683",
-      "bytes": 1885
+    "data/public_lectures/0b621216bbdb7bbcb9e316ca/script.json": {
+      "sha256": "3ce327d8bd5ee560cf347488bc368e37eb1cfc5ef1c2c40a63d8dfbb5f327c9b",
+      "bytes": 756
     },
-    "data/characters/card-matched-v2/mr-chen.glb": {
-      "sha256": "73969153447b87034dbc89f7c3adc32b4030ce1a441d6a454c1e9258744c5387",
-      "bytes": 10099120
+    "data/public_lectures/0f35a2427b97955cbd699bd4/module-0.mp4": {
+      "sha256": "40c07f98d69f3160e794944bca3bbdd731c951dbeac04ee7968eac095ea15b4d",
+      "bytes": 535573
     },
-    "data/characters/card-matched-v2/mr-chen.json": {
-      "sha256": "46d93fdec13d54e53e46b7ee11cf26676161ffe6e8d31e789129e2c2c9dd1d62",
-      "bytes": 1890
+    "data/public_lectures/0f35a2427b97955cbd699bd4/module-1.mp4": {
+      "sha256": "7f14f84911fc1775609fdf4a7a2f966bdd0b96ee4d4dda91b81e9c2e24273544",
+      "bytes": 586082
     },
-    "data/characters/card-matched-v2/mr-wang.glb": {
-      "sha256": "efbdcfb9982799423a8b4420b93c3527175b286910e7f521403040fbfafdb1e9",
-      "bytes": 9094768
+    "data/public_lectures/0f35a2427b97955cbd699bd4/module-2.mp4": {
+      "sha256": "03c1f132cb58d5ffea7101e34e6773df77327d355023ebd07c386cc91deed9a6",
+      "bytes": 640243
     },
-    "data/characters/card-matched-v2/mr-wang.json": {
-      "sha256": "99dcc8d32a6ec2cd9c08e729f5295266af47da47ddb3e2b9acdb82aa98951a33",
-      "bytes": 1889
+    "data/public_lectures/0f35a2427b97955cbd699bd4/script.json": {
+      "sha256": "4f8fddc1e8d339536a931223400144e8d75b99b3800426dc527dae6007b98050",
+      "bytes": 760
     },
-    "data/characters/card-matched-v2/wang-pt.glb": {
-      "sha256": "7ef4089a913022d6d4def457c7113b29c904b5ac932c5265d17c10ae3e638e53",
-      "bytes": 9494344
+    "data/public_lectures/104d84195f0cb9cc224be572/module-0.mp4": {
+      "sha256": "691b63a789c66133c5e93b4f63418219a68e003b93b19c3443ca80478caf714c",
+      "bytes": 437286
     },
-    "data/characters/card-matched-v2/wang-pt.json": {
-      "sha256": "5aff66f23c13402ca8a6bdf07aeee68ed01b020aaea4688ae939d0224833d67b",
-      "bytes": 1884
+    "data/public_lectures/104d84195f0cb9cc224be572/module-1.mp4": {
+      "sha256": "0feb235da3cb76861855077c597b9373178358ae64a8a7f142de284b218e9b34",
+      "bytes": 459361
     },
-    "data/characters/card-matched-v2/zhang-ot.glb": {
-      "sha256": "ff4aea1736092dd40a4a90c0998f2be8b182ceb3f6669d3c952539283dbf85a3",
-      "bytes": 9862492
+    "data/public_lectures/104d84195f0cb9cc224be572/module-2.mp4": {
+      "sha256": "9e0d8aacda4cdadef05b354cc81800f2860e4468df111cf011494b07c2e1ca77",
+      "bytes": 476216
     },
-    "data/characters/card-matched-v2/zhang-ot.json": {
-      "sha256": "e61dc6e63e1b0b7f661e9e6a426521ff68eab88af0491b4e787d6f99658b14e4",
-      "bytes": 1888
+    "data/public_lectures/104d84195f0cb9cc224be572/script.json": {
+      "sha256": "b9239121b4e59dd64cc5072bc538b42313170bbc48e6495cc09b6703f0ac60fb",
+      "bytes": 722
     },
-    "data/characters/card-matched-v2/zhou-rt.glb": {
-      "sha256": "44ec315f548778133e9675b6ebf479a42840e49d37e476ed58fccec0395f64c5",
-      "bytes": 9480324
+    "data/public_lectures/112dc37a84e888e52996a2e1/module-0.mp4": {
+      "sha256": "c016f5fd8695fcef0f81498566b62ea09e7c809a674af9130f1db5f72126b2bd",
+      "bytes": 508808
     },
-    "data/characters/card-matched-v2/zhou-rt.json": {
-      "sha256": "033529fcafde305222c492defc5e46d7bd647f1d2bcf01f4f752d22f48697b5d",
-      "bytes": 1880
+    "data/public_lectures/112dc37a84e888e52996a2e1/module-1.mp4": {
+      "sha256": "ecc19b6ad9f53d7e84535d3fdb4025cc17a7109ac1b91c58673b51294e2054da",
+      "bytes": 588099
+    },
+    "data/public_lectures/112dc37a84e888e52996a2e1/module-2.mp4": {
+      "sha256": "16227eb1a5524a877f5fef04687607a199e7340bc25503a1a4ed0d9dc2a64927",
+      "bytes": 624322
+    },
+    "data/public_lectures/112dc37a84e888e52996a2e1/script.json": {
+      "sha256": "7d3c516c40d22835d0616912d7d64d6bb28542f301ce250a0ae24e4e2eb62f8c",
+      "bytes": 774
+    },
+    "data/public_lectures/254bedb288f7aaef50c94efc/module-0.mp4": {
+      "sha256": "3670eea8affe104e4f939c01960146c2c4fee64b75754849f9018fc05a4a72d8",
+      "bytes": 446348
+    },
+    "data/public_lectures/254bedb288f7aaef50c94efc/module-1.mp4": {
+      "sha256": "1afe0f86bee6e30ebf70514712d7eeb07122376d04b24d1ccc52957b9a96cb2d",
+      "bytes": 471230
+    },
+    "data/public_lectures/254bedb288f7aaef50c94efc/module-2.mp4": {
+      "sha256": "55b69284cc5261622bb8d4e648b868ace925e36e67a8800295f50880518d7892",
+      "bytes": 470496
+    },
+    "data/public_lectures/254bedb288f7aaef50c94efc/script.json": {
+      "sha256": "e37d234507bd7003a4d8f91b7e46254d64f784b5cf67d7d1b685063c3991449e",
+      "bytes": 722
+    },
+    "data/public_lectures/25a42f75cf4eddf77fa067ea/module-0.mp4": {
+      "sha256": "e5a3fdb43eb2867589818aa013d381e321ba3f588b0224f7404f039ee42d3026",
+      "bytes": 450521
+    },
+    "data/public_lectures/25a42f75cf4eddf77fa067ea/module-1.mp4": {
+      "sha256": "77fa91dbf38ddf04c05d85787bfe9dd660e92c43768ccb1483986d3e36d1f332",
+      "bytes": 539703
+    },
+    "data/public_lectures/25a42f75cf4eddf77fa067ea/module-2.mp4": {
+      "sha256": "8eb20b7109b11b09644da0571d11f581057052566d0de8c86e6156b0aab3de33",
+      "bytes": 550389
+    },
+    "data/public_lectures/25a42f75cf4eddf77fa067ea/script.json": {
+      "sha256": "c31840518c6bbd1ab2aea14af28c106c12cee5b534ee7fd78cc212ae9792d5ab",
+      "bytes": 756
+    },
+    "data/public_lectures/2891e2688ca6e6f60fb71b0f/module-0.mp4": {
+      "sha256": "1ca57207e95da9623e94f6c5f95a59af126386594926853645e1c8124ff1244b",
+      "bytes": 473277
+    },
+    "data/public_lectures/2891e2688ca6e6f60fb71b0f/module-1.mp4": {
+      "sha256": "2538e14cdd8c766d3d2fb0a3a889e017243305a6fe33ef8a54f1ee030449504d",
+      "bytes": 505658
+    },
+    "data/public_lectures/2891e2688ca6e6f60fb71b0f/module-2.mp4": {
+      "sha256": "4afd7bc66a1519d513aa0e50001f5fe28ad425c3402cc6c88d20a165c698c362",
+      "bytes": 586501
+    },
+    "data/public_lectures/2891e2688ca6e6f60fb71b0f/script.json": {
+      "sha256": "5c10b303bd29d637b818d222dc6ce3c6c4ae0bcd3b654d11a89c14deb11dc0e3",
+      "bytes": 750
+    },
+    "data/public_lectures/32412f314d947d1e64c8a88a/module-0.mp4": {
+      "sha256": "d680c866094ed499ce295e644e6c108221e66343cd3ab31114d14c6c2a83b25e",
+      "bytes": 528337
+    },
+    "data/public_lectures/32412f314d947d1e64c8a88a/module-1.mp4": {
+      "sha256": "40d32070a83b2ac2777333a823c15ead7dda0036f3d228643f5c741ef630d508",
+      "bytes": 582277
+    },
+    "data/public_lectures/32412f314d947d1e64c8a88a/module-2.mp4": {
+      "sha256": "3f049460b8d161620049befc1351f292998e129d5878ef6640296e1c81a6cd50",
+      "bytes": 651083
+    },
+    "data/public_lectures/32412f314d947d1e64c8a88a/script.json": {
+      "sha256": "ee48268bf208fe4e84fe4403d7e764c64d9646ce5ced3a79bbe4921c5aa9b4b0",
+      "bytes": 768
+    },
+    "data/public_lectures/35ad80690ca9ee6e7fb96bb0/module-0.mp4": {
+      "sha256": "8950ba4ab7ffff6212942c05807396b5ef57d651adf1c516b7c496ea84a3f631",
+      "bytes": 476088
+    },
+    "data/public_lectures/35ad80690ca9ee6e7fb96bb0/module-1.mp4": {
+      "sha256": "c7efc33345ca620cbcb2a48b296ce35b9c2146266d3ed75a7bac3d9b2c28d5e1",
+      "bytes": 571014
+    },
+    "data/public_lectures/35ad80690ca9ee6e7fb96bb0/module-2.mp4": {
+      "sha256": "9dfe7527170fbc40d13c0b47a66bf1f810aff086502b5058d3acf4b4dada901a",
+      "bytes": 561150
+    },
+    "data/public_lectures/35ad80690ca9ee6e7fb96bb0/script.json": {
+      "sha256": "c75acd5c38fe7104137d8109463789b7c2a99981b6f98d012ef28ba412b1f065",
+      "bytes": 774
+    },
+    "data/public_lectures/3fcac5f37aef7a10d2caf7a1/module-0.mp4": {
+      "sha256": "7835d7d9dfd725396fa5198e0d0eabc13e14181300068b31af581adeea82d00a",
+      "bytes": 486413
+    },
+    "data/public_lectures/3fcac5f37aef7a10d2caf7a1/module-1.mp4": {
+      "sha256": "2e58b844e2ec3a2d21f65ad778235e9f9f114e5e8384149f87880db267b7ee51",
+      "bytes": 593716
+    },
+    "data/public_lectures/3fcac5f37aef7a10d2caf7a1/module-2.mp4": {
+      "sha256": "9f3b9c75facd93eeb395b9fa2722c35bf140737c020aa8d5c129f1c81a457aab",
+      "bytes": 572137
+    },
+    "data/public_lectures/3fcac5f37aef7a10d2caf7a1/script.json": {
+      "sha256": "8afe3ef66fa4cb4290eace4de8fed63982500706cf0ef8d6585058c67da2642c",
+      "bytes": 762
+    },
+    "data/public_lectures/44eb98db9a2fdcaf1569c72b/module-0.mp4": {
+      "sha256": "574047fc76969cef5dcdc45c77f8005b6e9234e17ce6c703a7364a4e9a26e823",
+      "bytes": 497039
+    },
+    "data/public_lectures/44eb98db9a2fdcaf1569c72b/module-1.mp4": {
+      "sha256": "ec3fd4fcab0c1a607b2b27581dfa74e4b96cadaba24ab062f2926d0a12f78604",
+      "bytes": 519908
+    },
+    "data/public_lectures/44eb98db9a2fdcaf1569c72b/module-2.mp4": {
+      "sha256": "78834234f28beb7c3c8ceaf23eb9a04f3f9c3ad8fc516a65ea88f7a3cf6d2b88",
+      "bytes": 636515
+    },
+    "data/public_lectures/44eb98db9a2fdcaf1569c72b/script.json": {
+      "sha256": "f9c81ffdf616b7c95a2487c0c92f395a4018fbf6aee0c4c43856e586873691af",
+      "bytes": 732
+    },
+    "data/public_lectures/47c3f45a7cff63ea8e0b56d4/module-0.mp4": {
+      "sha256": "a7a62fc4f6ca39725b1711ebb96a7ff411aa4a91fc3b193c254588a10e86b620",
+      "bytes": 536300
+    },
+    "data/public_lectures/47c3f45a7cff63ea8e0b56d4/module-1.mp4": {
+      "sha256": "490106838b07fd4c0afe912fb8235f336ca2ad2694d32d77fa63943a9e0c1145",
+      "bytes": 647976
+    },
+    "data/public_lectures/47c3f45a7cff63ea8e0b56d4/module-2.mp4": {
+      "sha256": "72a7222cbe94f659bc88a83ac2cc6fa09848ac78b7290efb67edb8bca54ef250",
+      "bytes": 648873
+    },
+    "data/public_lectures/47c3f45a7cff63ea8e0b56d4/script.json": {
+      "sha256": "81a622a95f3189865e8f02605e136e67d534db1b944ad6bf3f85640bbb1a5cd0",
+      "bytes": 782
+    },
+    "data/public_lectures/539f4568e01f0269f12b2ab7/module-0.mp4": {
+      "sha256": "a8b55b32baf3beb4029f85450e5034192a253da24ab0f43624b624b83a3a9f2c",
+      "bytes": 492031
+    },
+    "data/public_lectures/539f4568e01f0269f12b2ab7/module-1.mp4": {
+      "sha256": "56348b0bca7d6427f60a6d79f00922d9a34d04d68a7826de3d1f54f5a676429d",
+      "bytes": 481554
+    },
+    "data/public_lectures/539f4568e01f0269f12b2ab7/module-2.mp4": {
+      "sha256": "dff3098a13005b5bc52258ce95e60aba586411f57f42a9418e8a20ee02343f1d",
+      "bytes": 589980
+    },
+    "data/public_lectures/539f4568e01f0269f12b2ab7/script.json": {
+      "sha256": "8df93f14e2ef0ce9e46a896e52635d1ba1fcc8e724404d8f2d65b09772e43d32",
+      "bytes": 747
+    },
+    "data/public_lectures/57276a3a7073a0a90235275e/module-0.mp4": {
+      "sha256": "ec26526c36ac853f701301e4958575ac0c79d76c197dcb2d6220d2b30b947ed4",
+      "bytes": 536275
+    },
+    "data/public_lectures/57276a3a7073a0a90235275e/module-1.mp4": {
+      "sha256": "36b2325448922459916d74dbae4079348b47b42b340ad81c32f3084029aa1b80",
+      "bytes": 612402
+    },
+    "data/public_lectures/57276a3a7073a0a90235275e/module-2.mp4": {
+      "sha256": "a0925b9cdd1bf97e4f4554b03cbe1e1314bd5a0bacd224f51a1ed9538b8f00e0",
+      "bytes": 653439
+    },
+    "data/public_lectures/57276a3a7073a0a90235275e/script.json": {
+      "sha256": "4d8500b00a466ce13c894e91e0074dcfa5f6c9dcbc64153f1d5284f8e543d025",
+      "bytes": 765
+    },
+    "data/public_lectures/5883c60d297090c9b94651ff/module-0.mp4": {
+      "sha256": "1c54bd02898d609378d36657eab54ea8389ce9113837fa7dd6d9dfe3da77f27c",
+      "bytes": 462082
+    },
+    "data/public_lectures/5883c60d297090c9b94651ff/module-1.mp4": {
+      "sha256": "1da2c77747a5f21196b83a97eecdda7feaa178b199d5d619cc573d193a3a3db0",
+      "bytes": 474869
+    },
+    "data/public_lectures/5883c60d297090c9b94651ff/module-2.mp4": {
+      "sha256": "74d7cae6469f313b112acfc359e0033de4ab2ea179ff9294fe2dad7893907e93",
+      "bytes": 527181
+    },
+    "data/public_lectures/5883c60d297090c9b94651ff/script.json": {
+      "sha256": "1769f12aa45ce29b14a956b9ace2505e6085d02c73d32c5ee05117d0d8033d92",
+      "bytes": 759
+    },
+    "data/public_lectures/65308ad18b86bea9580b10c9/module-0.mp4": {
+      "sha256": "8d146e3603f08e9d1a28a9593e8243684060ff2add0bdd9b06e5717b6ecb6980",
+      "bytes": 466389
+    },
+    "data/public_lectures/65308ad18b86bea9580b10c9/module-1.mp4": {
+      "sha256": "11b19d1729dbd8f86ffa10a7d20ab072f3cedfe4ec31abe17a59c139df5e7721",
+      "bytes": 468112
+    },
+    "data/public_lectures/65308ad18b86bea9580b10c9/module-2.mp4": {
+      "sha256": "c5b0d85e7e4edd72ae5cc785109b4b3c373cdd2945d68dde82f08f3701508120",
+      "bytes": 475564
+    },
+    "data/public_lectures/65308ad18b86bea9580b10c9/script.json": {
+      "sha256": "02a3cb45726afbef37f79aa289254e3bbe55493a325758b17864a4b4b4c28759",
+      "bytes": 731
+    },
+    "data/public_lectures/71c5159716902d0091046c1f/module-0.mp4": {
+      "sha256": "a0ba1c34ed2f6681ac5be76f7a84a88e17f1af9760bd8662eba47a211c426842",
+      "bytes": 477180
+    },
+    "data/public_lectures/71c5159716902d0091046c1f/module-1.mp4": {
+      "sha256": "e5b2768af45f64c761f206f55a84546351b112b5aaf62422c650680fbfc11053",
+      "bytes": 551866
+    },
+    "data/public_lectures/71c5159716902d0091046c1f/module-2.mp4": {
+      "sha256": "aa65baaf2e0f2e215a2dea1da4f489908ae84b57cce5f9ae6eb9c39b87f29941",
+      "bytes": 557878
+    },
+    "data/public_lectures/71c5159716902d0091046c1f/script.json": {
+      "sha256": "a57dea9f07015d23b6ad8fdd2c738739648b31d74e3dac21b7a12888e5cb0092",
+      "bytes": 761
+    },
+    "data/public_lectures/73a63749e46c39e212fcebf8/module-0.mp4": {
+      "sha256": "26125932dd570ffe4713a8f24572a693ba7eef3c01ef178230ca38ca41d9209d",
+      "bytes": 529339
+    },
+    "data/public_lectures/73a63749e46c39e212fcebf8/module-1.mp4": {
+      "sha256": "d9c0a22cb0d37d876efe49a958bfbbd11b7dac6c6bf5385b970123a1e9d42cc8",
+      "bytes": 514747
+    },
+    "data/public_lectures/73a63749e46c39e212fcebf8/module-2.mp4": {
+      "sha256": "a782722ed6f7c3ccfe5060cfd2e26368f902aa90e305dc7ca384a7ee87f9475a",
+      "bytes": 615464
+    },
+    "data/public_lectures/73a63749e46c39e212fcebf8/script.json": {
+      "sha256": "7d16490d0bf572471a7edd46c3e2b75a195b998c85229cab16f8bbbbe9ff2821",
+      "bytes": 758
+    },
+    "data/public_lectures/76165af1e76be52d6b06d99f/module-0.mp4": {
+      "sha256": "d422f8e5385dd41d1f09b64f98e37e6e7796c5e706b2cc8186577ee0374385bd",
+      "bytes": 517463
+    },
+    "data/public_lectures/76165af1e76be52d6b06d99f/module-1.mp4": {
+      "sha256": "8af1a6aa2dfb415c0a67f876749904edabbb41047c4ef111e1d2e77398081503",
+      "bytes": 608057
+    },
+    "data/public_lectures/76165af1e76be52d6b06d99f/module-2.mp4": {
+      "sha256": "9043b0b792687abe05ed1de0173d44457b901ed0d405f55739207ec446d21315",
+      "bytes": 622682
+    },
+    "data/public_lectures/76165af1e76be52d6b06d99f/script.json": {
+      "sha256": "3f064576adc693656a19ab839bbad4a8d1d901ec71ae023c8b8965765f61730d",
+      "bytes": 766
+    },
+    "data/public_lectures/7beafc28bc3f26c7850505b4/module-0.mp4": {
+      "sha256": "668ea5710b66c4be798e515e5b3a9cd89d9ebf269d4e388d19b7dfff31fd762b",
+      "bytes": 464495
+    },
+    "data/public_lectures/7beafc28bc3f26c7850505b4/module-1.mp4": {
+      "sha256": "13637b567c3185a725d02f5f57a7d19ffebbca2432decb1ae8123d2b74fb3c61",
+      "bytes": 472327
+    },
+    "data/public_lectures/7beafc28bc3f26c7850505b4/module-2.mp4": {
+      "sha256": "9216ebd39b8cda8c2d49db08b2c2dc9777a9a5e07bcde5f7a215911b66b838c8",
+      "bytes": 474574
+    },
+    "data/public_lectures/7beafc28bc3f26c7850505b4/script.json": {
+      "sha256": "788402ed03dd35d117f6f3d81c42a3e055833299c13dd1b66164d66d4d0f9ffc",
+      "bytes": 728
+    },
+    "data/public_lectures/7c6fc77b4863bdf284cbb062/module-0.mp4": {
+      "sha256": "910b968ad36de489a5a730408f1359f8d0996bc4eca8447745dbf0acc1b9d9aa",
+      "bytes": 473862
+    },
+    "data/public_lectures/7c6fc77b4863bdf284cbb062/module-1.mp4": {
+      "sha256": "f66ac72ad8c6db18882fdf7ea30ca0ff73b6a9ed83a5ae3c92dbb7337d160470",
+      "bytes": 483152
+    },
+    "data/public_lectures/7c6fc77b4863bdf284cbb062/module-2.mp4": {
+      "sha256": "68d5a5c613de9e7f2f7ff9cac8a2b9a02272a8951a734c91162779f4cfc40282",
+      "bytes": 571041
+    },
+    "data/public_lectures/7c6fc77b4863bdf284cbb062/script.json": {
+      "sha256": "b29d81461d3f621234bf4cd6c04ba4e9dc344933bea01e29cf35e135ae6d94a5",
+      "bytes": 735
+    },
+    "data/public_lectures/7ea2df70d26ed5faa00cb387/module-0.mp4": {
+      "sha256": "9a904b5d78a91f198e7a26ae2201e4ccc5ad96eb2f3a28ff5cfffddbe1e16b33",
+      "bytes": 500023
+    },
+    "data/public_lectures/7ea2df70d26ed5faa00cb387/module-1.mp4": {
+      "sha256": "28245994054683dfde012323680a9c2a1817c805261339f2c5a06202b7fc1aa0",
+      "bytes": 521004
+    },
+    "data/public_lectures/7ea2df70d26ed5faa00cb387/module-2.mp4": {
+      "sha256": "ffba5a9033ba0e1014502661b17453431f9efcb0d61c673c1d6ab274cc77b2c8",
+      "bytes": 572844
+    },
+    "data/public_lectures/7ea2df70d26ed5faa00cb387/script.json": {
+      "sha256": "f9627330db6fbf3981051d257aee2b7ef3accc090ab93ed04e4469ffbc262bf4",
+      "bytes": 749
+    },
+    "data/public_lectures/813caf7cf1bd2cfa0a01de6e/module-0.mp4": {
+      "sha256": "da1ede7451584d82151be2fc23085ac27c4aa8f07086443903774fdbbe395e8f",
+      "bytes": 434695
+    },
+    "data/public_lectures/813caf7cf1bd2cfa0a01de6e/module-1.mp4": {
+      "sha256": "343cb792174988e4e5a243ec018891ea9c7673b699954db2a479692d3ce7358a",
+      "bytes": 469497
+    },
+    "data/public_lectures/813caf7cf1bd2cfa0a01de6e/module-2.mp4": {
+      "sha256": "bff394b928ef8c8baba835015fb8b9fb2733b164eb6dfc5061e5d8224ad01938",
+      "bytes": 471973
+    },
+    "data/public_lectures/813caf7cf1bd2cfa0a01de6e/script.json": {
+      "sha256": "a466fa897f6a7367640aa8ae0b21dc09a2161f02b1ee4cfa47f151c632fbcf09",
+      "bytes": 722
+    },
+    "data/public_lectures/830f06fb5ff7b9f00179cc4e/module-0.mp4": {
+      "sha256": "507fa40c85ed479f93768623317e42bce20a3701df18f5c8c6c24ae6c108e5f3",
+      "bytes": 538462
+    },
+    "data/public_lectures/830f06fb5ff7b9f00179cc4e/module-1.mp4": {
+      "sha256": "4d0e888dc1b3e33f5c2adcd4deb46be097d4492e2869f6f39df9acbb7bbd8873",
+      "bytes": 647826
+    },
+    "data/public_lectures/830f06fb5ff7b9f00179cc4e/module-2.mp4": {
+      "sha256": "8792f713afe16c6b22dc84aa12a2c184b826ad676fd1c2e1c2d941f27a69508b",
+      "bytes": 641560
+    },
+    "data/public_lectures/830f06fb5ff7b9f00179cc4e/script.json": {
+      "sha256": "e5f50fa05eb0b136d3bb3da13a5f0eda1061867f5f97b176542331c99c8783a8",
+      "bytes": 780
+    },
+    "data/public_lectures/894106ccd5c8c4efc0afd784/module-0.mp4": {
+      "sha256": "0e33b64732878454838d02fdaf5941a2d7cee03ba4ecad940b296096c4310eeb",
+      "bytes": 481718
+    },
+    "data/public_lectures/894106ccd5c8c4efc0afd784/module-1.mp4": {
+      "sha256": "a56643705d013496235100371bd6eb2f883f7042fc4a8fed752e9d9439b7ae12",
+      "bytes": 617131
+    },
+    "data/public_lectures/894106ccd5c8c4efc0afd784/module-2.mp4": {
+      "sha256": "0425f27021cf032e71367271bd3efb3b3f6ee67170f82845260da31ee981b6a9",
+      "bytes": 627315
+    },
+    "data/public_lectures/894106ccd5c8c4efc0afd784/script.json": {
+      "sha256": "842e2a62b2bfcb8533408a9e0b41542ad906beced0951918d67269a7088e1218",
+      "bytes": 765
+    },
+    "data/public_lectures/b0c50c7d08d512cab4ca80be/module-0.mp4": {
+      "sha256": "f37aae3515b77518bcdaa18283cfb0486a3698da0b9c367af027ed11904b2c04",
+      "bytes": 491994
+    },
+    "data/public_lectures/b0c50c7d08d512cab4ca80be/module-1.mp4": {
+      "sha256": "3988f90b09bfdbbb59c17a166c0d7729769c7a72e916b099a1b0bd0fb9cd795e",
+      "bytes": 527985
+    },
+    "data/public_lectures/b0c50c7d08d512cab4ca80be/module-2.mp4": {
+      "sha256": "4ad1c712cf7a858e908ae8bd919c9df6e77f57ee6347f4c15ece67afaf0453cd",
+      "bytes": 551989
+    },
+    "data/public_lectures/b0c50c7d08d512cab4ca80be/script.json": {
+      "sha256": "0ae744e25ce8e22a52c7c1e2ae66abeebd4271d7308232cc587936cd4dd3e9f1",
+      "bytes": 768
+    },
+    "data/public_lectures/b32917549d0d136f3ae27567/module-0.mp4": {
+      "sha256": "07b69dfed2baef384b8982cd33d232a20a1877fd026bdb9e084211849782863a",
+      "bytes": 467419
+    },
+    "data/public_lectures/b32917549d0d136f3ae27567/module-1.mp4": {
+      "sha256": "6efa16171c0da8cb17fa69e3b31c830044216a5f3de559f4fc46ef6dc8c8000d",
+      "bytes": 487338
+    },
+    "data/public_lectures/b32917549d0d136f3ae27567/module-2.mp4": {
+      "sha256": "b26a1c0cf5e498e00b3ba41ed34bfef60ee45872b49fa4e5f55672b1f82693da",
+      "bytes": 550029
+    },
+    "data/public_lectures/b32917549d0d136f3ae27567/script.json": {
+      "sha256": "395c37102ab0517f359c89a49165f1e9043ccf13fe325d8e28fbb57ff35efbd1",
+      "bytes": 747
+    },
+    "data/public_lectures/c12f5bc8263c5d4bad58d472/module-0.mp4": {
+      "sha256": "01c5d7acea8f4f72ba09756d649229a95cbaf1bcc54333b0e90f7b15eb9b4334",
+      "bytes": 447051
+    },
+    "data/public_lectures/c12f5bc8263c5d4bad58d472/module-1.mp4": {
+      "sha256": "e622ba4a9a1f8d3f4b9b355757e76bc78e8cf83a8f8fbcddbc05e80bca8de3d5",
+      "bytes": 521048
+    },
+    "data/public_lectures/c12f5bc8263c5d4bad58d472/module-2.mp4": {
+      "sha256": "59ef7c75a1f415306145a6154c78631be663428c8891629a78e4a8e76b50a5a0",
+      "bytes": 555887
+    },
+    "data/public_lectures/c12f5bc8263c5d4bad58d472/script.json": {
+      "sha256": "be0f3f8b2ba38efd612a19fa0495343ffdcf357873120d0bb320a6d999b53971",
+      "bytes": 750
+    },
+    "data/public_lectures/c6f196a432d24a303f8f47ed/module-0.mp4": {
+      "sha256": "878373f26a4e99400117da94ff7bbc79702a4564fafea84621c7fc3097b5aa93",
+      "bytes": 515244
+    },
+    "data/public_lectures/c6f196a432d24a303f8f47ed/module-1.mp4": {
+      "sha256": "89ebc09ec31351447768533d4c84de2436b33fa8586d020c26cdb6a50688f4d7",
+      "bytes": 559389
+    },
+    "data/public_lectures/c6f196a432d24a303f8f47ed/module-2.mp4": {
+      "sha256": "5ec0f04e6173f49a5002db8ca784b4478f57c5838f1d36cb2dc8cb2bd126a11f",
+      "bytes": 632697
+    },
+    "data/public_lectures/c6f196a432d24a303f8f47ed/script.json": {
+      "sha256": "4c1001ebe211041c27b9e24ca0619740c248fa4f6ab28bc608dfd751d15fa3d3",
+      "bytes": 741
+    },
+    "data/public_lectures/c9e4fc39ced3bd9b7f85dd72/module-0.mp4": {
+      "sha256": "6827214b1b6f3a43de2c87a72876193efd90696ca5e8d8d6d51f9879ed20e6d5",
+      "bytes": 534492
+    },
+    "data/public_lectures/c9e4fc39ced3bd9b7f85dd72/module-1.mp4": {
+      "sha256": "283c8a01a9207ea8df9c5bad50944926c23015ed1ed2c2ffd59d75dc4fc8fb2b",
+      "bytes": 537241
+    },
+    "data/public_lectures/c9e4fc39ced3bd9b7f85dd72/module-2.mp4": {
+      "sha256": "682d70d632b960dcfe5ea652b59487f46cd10df8710b9fcef2eeaf8bee2f2d28",
+      "bytes": 639976
+    },
+    "data/public_lectures/c9e4fc39ced3bd9b7f85dd72/script.json": {
+      "sha256": "9e425ea349bd9524b65ea091ed5c889789f80c6ef20b93a7f5cdb4b44093f715",
+      "bytes": 747
+    },
+    "data/public_lectures/d0859bb955df6f8cf4921748/module-0.mp4": {
+      "sha256": "aaaa8c9733e0f9bbb78e3e0fa7d2c0456a5ef83fcc35d3475b7f8d50dfec44a4",
+      "bytes": 463636
+    },
+    "data/public_lectures/d0859bb955df6f8cf4921748/module-1.mp4": {
+      "sha256": "dca9a86dbeedc36d227f2fe4f55a8721ee848dbfc7adbe7bd02af2061abfc77b",
+      "bytes": 477108
+    },
+    "data/public_lectures/d0859bb955df6f8cf4921748/module-2.mp4": {
+      "sha256": "80e414fb9478fc2e431583dc362801baefb35bc366c2fd20b9314c1d0e4ffdc6",
+      "bytes": 564963
+    },
+    "data/public_lectures/d0859bb955df6f8cf4921748/script.json": {
+      "sha256": "e69f9c9a0f570232b9bd33fedd438efe37af3ecb90f10546ded9da2dd9e40ea8",
+      "bytes": 735
+    },
+    "data/public_lectures/d3f64da05f7192d7a2bddc6d/module-0.mp4": {
+      "sha256": "ca50402d1bfb9cce44e81a464ebba2dd1c6f3ea8ae75862e0b6fba4cf27c1a36",
+      "bytes": 508018
+    },
+    "data/public_lectures/d3f64da05f7192d7a2bddc6d/module-1.mp4": {
+      "sha256": "40602f650180fad5afb30ec4ba6146dc609c18d18fd17fbbc03bbf2aa9a7cce1",
+      "bytes": 571968
+    },
+    "data/public_lectures/d3f64da05f7192d7a2bddc6d/module-2.mp4": {
+      "sha256": "64cd2db9873a0cff13adb5d1327365429a257256538f0754b4310f3a94e3458e",
+      "bytes": 623245
+    },
+    "data/public_lectures/d3f64da05f7192d7a2bddc6d/script.json": {
+      "sha256": "71345ef8465176ac505c43d9c7383f98234dd94c7f006040ec81fbacc955d91f",
+      "bytes": 768
+    },
+    "data/public_lectures/d6ca8ecd58c10c75070f0634/module-0.mp4": {
+      "sha256": "d4782a3b6b389474ae949910f44282717074d766455d4bfb20d1a2e6b1cb6203",
+      "bytes": 486548
+    },
+    "data/public_lectures/d6ca8ecd58c10c75070f0634/module-1.mp4": {
+      "sha256": "c5df6fb166e76f75bf88e04fe79766ce09ea43591215c62d0a6be2bb1628e83e",
+      "bytes": 555105
+    },
+    "data/public_lectures/d6ca8ecd58c10c75070f0634/module-2.mp4": {
+      "sha256": "a7bd4fae6a2274f7a19eb82b9bdbc7dece98ecd477c12a8dc5e8aec2ff4c8f9e",
+      "bytes": 608274
+    },
+    "data/public_lectures/d6ca8ecd58c10c75070f0634/script.json": {
+      "sha256": "02f61a286e8681768e9ac17743c9818019b85ee79a6483bc71874c56b24fb728",
+      "bytes": 747
+    },
+    "data/public_lectures/df4f00bb5f86c3795bb92d14/module-0.mp4": {
+      "sha256": "17cb3204bcb2369f23b12160f504d836133ec4be726bfb8069543c9e9ce54d22",
+      "bytes": 466989
+    },
+    "data/public_lectures/df4f00bb5f86c3795bb92d14/module-1.mp4": {
+      "sha256": "5c324e17f9acc69f3074f2311c1e7936afcf2bfb749b8327f60c32953c04cf0d",
+      "bytes": 460214
+    },
+    "data/public_lectures/df4f00bb5f86c3795bb92d14/module-2.mp4": {
+      "sha256": "22108eeda7569766ba537591ba842ffa10731ff25f13fbaba78a2b7925d2844a",
+      "bytes": 478721
+    },
+    "data/public_lectures/df4f00bb5f86c3795bb92d14/script.json": {
+      "sha256": "871339bf5d0d79ec68fdac90f7a4b02c006ebcf3da017348c71979cc7befd9a5",
+      "bytes": 731
+    },
+    "data/public_lectures/e2cfc357bdf052ea1e9e24dd/module-0.mp4": {
+      "sha256": "1bc858938c7c001cea49cca069617a06dd78ec28f33a5caedace94cc49631e8e",
+      "bytes": 507030
+    },
+    "data/public_lectures/e2cfc357bdf052ea1e9e24dd/module-1.mp4": {
+      "sha256": "b41a4156c68dddf33a18cb61b63ecbbb0e0eeecda2023db175cf009bbb3ac56e",
+      "bytes": 457124
+    },
+    "data/public_lectures/e2cfc357bdf052ea1e9e24dd/module-2.mp4": {
+      "sha256": "319e4718767fdb1778ac074530195b761cdf7df0ad8caf3bffe62e8ec460c90b",
+      "bytes": 587581
+    },
+    "data/public_lectures/e2cfc357bdf052ea1e9e24dd/script.json": {
+      "sha256": "a9c460fb4d19ca0e85d671c70ba72ddd44ec3dbf9a01d101430b242a291f04bf",
+      "bytes": 750
+    },
+    "data/public_lectures/e643e2f8b295163b3ae071d0/module-0.mp4": {
+      "sha256": "77156eab1550b408e47dfc2edd70e01185c9d08f275328389e323cc8bad2c2b6",
+      "bytes": 512861
+    },
+    "data/public_lectures/e643e2f8b295163b3ae071d0/module-1.mp4": {
+      "sha256": "e9bf07b215b28ce816306bccceaeb721aafe57b68777fd523c119b6b888ed107",
+      "bytes": 579001
+    },
+    "data/public_lectures/e643e2f8b295163b3ae071d0/module-2.mp4": {
+      "sha256": "213e07152cd3955164d1758963cd3dfba6705705bd9710696d731773623162e8",
+      "bytes": 643202
+    },
+    "data/public_lectures/e643e2f8b295163b3ae071d0/script.json": {
+      "sha256": "223ad62bacc97662a5c4e5a8f43823b6c427ab2026ffc97dbd0aa515298e864c",
+      "bytes": 750
+    },
+    "data/public_lectures/e70b6b6764a3160dd3e63457/module-0.mp4": {
+      "sha256": "6055dd8ac0a2c0f945aea41296997aaabb9bf29d65c2161ebe29bb92a1af2d8e",
+      "bytes": 502252
+    },
+    "data/public_lectures/e70b6b6764a3160dd3e63457/module-1.mp4": {
+      "sha256": "d76f1624ad433c45126b3f1a504e8571b1de7ef857a8f38d8b86ed49fa1eb5af",
+      "bytes": 590658
+    },
+    "data/public_lectures/e70b6b6764a3160dd3e63457/module-2.mp4": {
+      "sha256": "5d0aadf008c456e3b1aca8c1ef248898d4faa1a02e5082484d4b1cb418f3d01a",
+      "bytes": 584139
+    },
+    "data/public_lectures/e70b6b6764a3160dd3e63457/script.json": {
+      "sha256": "28bfe6d43ebf853286d48c98091be8fb9aef365b06b44bc4356032ea3274575e",
+      "bytes": 786
+    },
+    "data/public_lectures/e86e48b72d9431d38155b96d/module-0.mp4": {
+      "sha256": "20fd4a6d8e63146699e94df53165dc793181948a45efb7299ed4fa2c45853e30",
+      "bytes": 449802
+    },
+    "data/public_lectures/e86e48b72d9431d38155b96d/module-1.mp4": {
+      "sha256": "289ef770c8b25cadbb2dea961e2c804a5e459e323a37ff37f439658dc861f8e7",
+      "bytes": 492389
+    },
+    "data/public_lectures/e86e48b72d9431d38155b96d/module-2.mp4": {
+      "sha256": "c770c1f6c888fbf97e79644822e137d55ba09dfbc595b0e4b9821f78062bbf2d",
+      "bytes": 554067
+    },
+    "data/public_lectures/e86e48b72d9431d38155b96d/script.json": {
+      "sha256": "e68fe3bf94c12e5dc525fe6ad19b5395585a679e0089bbdcaf5353e616b77846",
+      "bytes": 741
+    },
+    "data/public_lectures/eb765bd344d43526367ea343/module-0.mp4": {
+      "sha256": "8130a9833a06c22970350e62c7b4afa1d3d891ef97160d7f04a58c6cef6f3d4d",
+      "bytes": 538123
+    },
+    "data/public_lectures/eb765bd344d43526367ea343/module-1.mp4": {
+      "sha256": "a266f74171b05e097d419bfbe0d983a1588f8563d27dba32ddcb4cacdabac1f3",
+      "bytes": 531686
+    },
+    "data/public_lectures/eb765bd344d43526367ea343/module-2.mp4": {
+      "sha256": "1b56c3aebd3c3a8df7843a6815f8c56c97c637809b93d0dfbdcca3d5c2dd1d1d",
+      "bytes": 638047
+    },
+    "data/public_lectures/eb765bd344d43526367ea343/script.json": {
+      "sha256": "c1c246dae0fc24470dbfc2faae38815757d0c6e619553038c6287838df74df2d",
+      "bytes": 753
+    },
+    "data/public_lectures/ed21b38ea48f18ac378848e8/module-0.mp4": {
+      "sha256": "1d2f90d3c0ab3b200e31f6cb89556c7ba53a4add3c253218bd37450895fd2aa0",
+      "bytes": 524433
+    },
+    "data/public_lectures/ed21b38ea48f18ac378848e8/module-1.mp4": {
+      "sha256": "c95ffacbcfb3ce62984788f932b5e2d2c1c64548b578b725e18e9ddb16eb13b7",
+      "bytes": 569576
+    },
+    "data/public_lectures/ed21b38ea48f18ac378848e8/module-2.mp4": {
+      "sha256": "01f236fef3c003a180b9f866beed6b10a7d7f8de6f60a825d2d9532689c52cba",
+      "bytes": 648014
+    },
+    "data/public_lectures/ed21b38ea48f18ac378848e8/script.json": {
+      "sha256": "db03411943f769f6274c29c35d311f1fd05ca401862fe6bd6d014832975acf5d",
+      "bytes": 750
+    },
+    "data/public_lectures/f69ad4d9ead77a908c38c53e/module-0.mp4": {
+      "sha256": "8a328e6c02d917ca1bb871ebb6cfc505429655cd9feed337047226312940a38c",
+      "bytes": 488601
+    },
+    "data/public_lectures/f69ad4d9ead77a908c38c53e/module-1.mp4": {
+      "sha256": "2fca3e0fbab3d9bdd5670faf07b30c4b51ce5f5dcd0845976698d170da218dfe",
+      "bytes": 478217
+    },
+    "data/public_lectures/f69ad4d9ead77a908c38c53e/module-2.mp4": {
+      "sha256": "24e0b746eddb301ca6ba9b4720deecb31f7788866811130c6f7924317b00c2a0",
+      "bytes": 587980
+    },
+    "data/public_lectures/f69ad4d9ead77a908c38c53e/script.json": {
+      "sha256": "298de756cd3ae2094ace64ddfb870114101b5740c2a10270bc6ada3036328092",
+      "bytes": 750
+    },
+    "data/public_lectures/f81d98b7476ff4bccd863ebb/module-0.mp4": {
+      "sha256": "a8bd5746e077f07701361a28e793db6fd4d2c08d52a60e6b3de975708c3ca67e",
+      "bytes": 537142
+    },
+    "data/public_lectures/f81d98b7476ff4bccd863ebb/module-1.mp4": {
+      "sha256": "5af26be67fb49a1770a38aac744f234dd2cd74b2669cb227c38fea0050e2f00c",
+      "bytes": 526702
+    },
+    "data/public_lectures/f81d98b7476ff4bccd863ebb/module-2.mp4": {
+      "sha256": "cd29eb429a35192d2e38b043e4d14c10e18bb3153d9e145fed9cb1a9ea7f6913",
+      "bytes": 643101
+    },
+    "data/public_lectures/f81d98b7476ff4bccd863ebb/script.json": {
+      "sha256": "1e2494a96f58c4969c42769ab417c3203abac34616297f0aa06a92421830309f",
+      "bytes": 750
+    },
+    "data/public_lectures/fb189bb8cd7c7153eb8425ad/module-0.mp4": {
+      "sha256": "42914b88a596baa9d11f8276bf408e4b4b0f3a0bc28c249653379b6c57b6d144",
+      "bytes": 478921
+    },
+    "data/public_lectures/fb189bb8cd7c7153eb8425ad/module-1.mp4": {
+      "sha256": "bcdd1480cae49a5e45f2aa137ad0c45194099434ee1bf4e9009ee6ae95f53558",
+      "bytes": 461241
+    },
+    "data/public_lectures/fb189bb8cd7c7153eb8425ad/module-2.mp4": {
+      "sha256": "8396e12fb100364b9c7d9c299a774d1d4970d7271e5cfafaa37e47b237999c33",
+      "bytes": 475046
+    },
+    "data/public_lectures/fb189bb8cd7c7153eb8425ad/script.json": {
+      "sha256": "499549b575e6b452a030d7e4b05aa05f3fba02beb2fa5d1f9f3c7215b9c97306",
+      "bytes": 737
+    },
+    "data/public_lectures/fbba767113ed71d05e0f21d1/module-0.mp4": {
+      "sha256": "98df8a775786d6407670184b4de5611f1a85fb16189e81943eaca281e0998b9e",
+      "bytes": 472772
+    },
+    "data/public_lectures/fbba767113ed71d05e0f21d1/module-1.mp4": {
+      "sha256": "6a6aec73264450b9a5408c99c6a21d69323834e55d97bfd33dc43d13006215af",
+      "bytes": 458423
+    },
+    "data/public_lectures/fbba767113ed71d05e0f21d1/module-2.mp4": {
+      "sha256": "ab5927240bca9d95a2cc3363a908530bed5e5c76613230bf961b7b134b6699ff",
+      "bytes": 476383
+    },
+    "data/public_lectures/fbba767113ed71d05e0f21d1/script.json": {
+      "sha256": "4fef79623858589c929f99cf7ec048530214a73d770e561d1e45e1a7712bdcde",
+      "bytes": 728
+    },
+    "data/public_lectures/fe41803b05638571188d9444/module-0.mp4": {
+      "sha256": "bb1cd4382ed9357342b7e8a5881ba9a0b35a1fdef77012c6f5e621a6c0a13b8a",
+      "bytes": 475375
+    },
+    "data/public_lectures/fe41803b05638571188d9444/module-1.mp4": {
+      "sha256": "41315a6ba37b642e15b1e6208170c71efa408fa52603f3e31ef09def35cb288e",
+      "bytes": 470441
+    },
+    "data/public_lectures/fe41803b05638571188d9444/module-2.mp4": {
+      "sha256": "2bd722546de39b4244ea27a8fe9a03e42b0bf778c965d0f372709fea11c32b2e",
+      "bytes": 473561
+    },
+    "data/public_lectures/fe41803b05638571188d9444/script.json": {
+      "sha256": "91dfa670a9eb4f40f9322369418554ae306b419c347fa57c85cb58c9626f6b72",
+      "bytes": 728
+    },
+    "data/characters/card-matched-v3/auntie-lin.glb": {
+      "sha256": "ab287f466caf07110fb10caf09b09f3804654f7f79d88ab1a555b01e6deeaf6d",
+      "bytes": 20422300
+    },
+    "data/characters/card-matched-v3/auntie-lin.json": {
+      "sha256": "faab7525d402462357faf8aa5e938fb2bfc63939d2458159bac81fceaff62c47",
+      "bytes": 2471
+    },
+    "data/characters/card-matched-v3/chen-md.glb": {
+      "sha256": "67888fc5f4e6446e6863db605752f621f6ffd3ba6c3f35c55048e9947c3be281",
+      "bytes": 10852552
+    },
+    "data/characters/card-matched-v3/chen-md.json": {
+      "sha256": "9b6f45e6d62d6611f4febc97dc08bdd014d8759b8771f1dcbeabd5bee8b0ae89",
+      "bytes": 2479
+    },
+    "data/characters/card-matched-v3/he-sw.glb": {
+      "sha256": "ef1c0a751bea7054ff338794f1542c915601828e0d36da79283e3811cb3086b9",
+      "bytes": 11354280
+    },
+    "data/characters/card-matched-v3/he-sw.json": {
+      "sha256": "be2297ee3d01b316d764f7e81893e36fb3202ef2f4daf7d00d5d749629da2fdb",
+      "bytes": 2458
+    },
+    "data/characters/card-matched-v3/huang-dt.glb": {
+      "sha256": "5f2b71ffae9fbb7f7ef1310746f31f2a75da9b556070c0771f6b847dcaaf19b0",
+      "bytes": 11247752
+    },
+    "data/characters/card-matched-v3/huang-dt.json": {
+      "sha256": "de9b2f6cd873ddac08fdcfaf1f9acb49760d6da9e0414da8cb3d06b22b8c3687",
+      "bytes": 2443
+    },
+    "data/characters/card-matched-v3/li-rph.glb": {
+      "sha256": "26d0a6b1359219730fa2ba88a4db69d7421587dca493c3c060bf71389b4c91e3",
+      "bytes": 10911368
+    },
+    "data/characters/card-matched-v3/li-rph.json": {
+      "sha256": "3f81c943f8b1d845cb912d41b38a8e959e10cb05c64ee2c514349dbe8df262ec",
+      "bytes": 2469
+    },
+    "data/characters/card-matched-v3/lin-rn.glb": {
+      "sha256": "2f5022a9522cc731554196d724f2b25a579da4cced8ed214f064bc364c20404c",
+      "bytes": 12742752
+    },
+    "data/characters/card-matched-v3/lin-rn.json": {
+      "sha256": "834675fb4be61507d5a223b6fbb1cfdeaa7b20cd65991a35aeb887e841798d0f",
+      "bytes": 2450
+    },
+    "data/characters/card-matched-v3/middle-man.glb": {
+      "sha256": "f11e41c238d5511bce378383f2f40fb3cd3274b51ecc4d262dc3b2dfe0b590af",
+      "bytes": 12498568
+    },
+    "data/characters/card-matched-v3/middle-man.json": {
+      "sha256": "45db85f73cc62be9c70b04cea03ed84b71d79d0f0083eadab2ff90d13db81440",
+      "bytes": 2471
+    },
+    "data/characters/card-matched-v3/middle-woman.glb": {
+      "sha256": "ecdbdc83cb3cce3d4c98b639ed7e59ac857df9e5ffd8f3114cf1135c8df29cc4",
+      "bytes": 13356708
+    },
+    "data/characters/card-matched-v3/middle-woman.json": {
+      "sha256": "19094dcf1145c0d0e8e15a538837d0fe0b586950a32f086a0ab4b048f13708dd",
+      "bytes": 2463
+    },
+    "data/characters/card-matched-v3/mr-chen.glb": {
+      "sha256": "5d86965f904751ab4b03e122e2997240edf0296b25e820dc316dc5c0f98007ad",
+      "bytes": 12536096
+    },
+    "data/characters/card-matched-v3/mr-chen.json": {
+      "sha256": "50becc204f8d87ff1b99f48a3c0f16d45f428ce8fdd9cf94612cccd8f8bd8390",
+      "bytes": 2467
+    },
+    "data/characters/card-matched-v3/mr-wang.glb": {
+      "sha256": "186a263dca2cbe442d598aeda2a5a99b5dabbcffbc737cf16594282366c0e775",
+      "bytes": 19989912
+    },
+    "data/characters/card-matched-v3/mr-wang.json": {
+      "sha256": "b43673fe82b269964b782a2432faa61623565a21ce07e6e0649ceabc75a56795",
+      "bytes": 2467
+    },
+    "data/characters/card-matched-v3/wang-pt.glb": {
+      "sha256": "5634e35441a5edb8db4670a0bc7000ecbc47e999cb755a28796db723e8933142",
+      "bytes": 12932264
+    },
+    "data/characters/card-matched-v3/wang-pt.json": {
+      "sha256": "f5fddf3d8a4ace4cc06894a59c210e5dedf94b70811e811a897ef9f3f5962a94",
+      "bytes": 2462
+    },
+    "data/characters/card-matched-v3/zhang-ot.glb": {
+      "sha256": "57e3bc0d4386b3611e9996cff82b670fab1e9b56e006af400f9a4b37c6a436ea",
+      "bytes": 12589544
+    },
+    "data/characters/card-matched-v3/zhang-ot.json": {
+      "sha256": "57c93d291c5e7536a1eb20ca2e10d1f32b20e80b8089dc5124cb1beee110f7c9",
+      "bytes": 2466
+    },
+    "data/characters/card-matched-v3/zhou-rt.glb": {
+      "sha256": "d58e811cef595db2ec50736598b0cd9f4de16844025c06f9c7eeb467c60d616a",
+      "bytes": 13165852
+    },
+    "data/characters/card-matched-v3/zhou-rt.json": {
+      "sha256": "e8b539433da3e1d32300e5b0961e9b6f3d88f311193329792465612b8649d242",
+      "bytes": 2458
     },
     "data/characters/photoreal-v1/auntie-lin.png": {
       "sha256": "a74b7a8c4d1b917cac3fa398efefc9bd87e315136ac3791dd025435b773d2307",

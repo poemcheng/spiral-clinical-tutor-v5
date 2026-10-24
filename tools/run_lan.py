@@ -3,7 +3,7 @@
 The private CA key and host key remain in ignored runtime/lan-tls. Users install
 the CA certificate on their own devices; this tool never changes trust stores.
 """
-import argparse,asyncio,datetime,ipaddress,json,socket,sys
+import argparse,asyncio,datetime,ipaddress,json,socket,sys,os
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 
@@ -36,13 +36,28 @@ async def serve(addresses,https_port):
     import uvicorn
     from backend.server import app
     cert,key=certificates(addresses,ROOT/'runtime/lan-tls')
+    from tools.prepare_iphone_profile import create_profile
+    from tools.lan_bootstrap import LanBootstrap
+    create_profile(cert.parent/'clinical-tutor-ca.cer',ROOT/'web_portal/clinical-tutor-iphone.mobileconfig')
     urls=[f'https://{ip}:{https_port}/login' for ip in addresses]
     (ROOT/'runtime/lan-tls/connection.json').write_text(json.dumps({'urls':urls,'ca_certificate':'clinical-tutor-ca.cer','requires_client_certificate_trust':True},indent=2),encoding='utf-8')
     print(json.dumps({'local':'http://127.0.0.1:8705/login','lan':urls,'certificate':str(cert.parent/'clinical-tutor-ca.cer')},ensure_ascii=False),flush=True)
     local=uvicorn.Server(uvicorn.Config(app,host='127.0.0.1',port=8705,log_level='info'))
-    secure=uvicorn.Server(uvicorn.Config(app,host='0.0.0.0',port=https_port,ssl_certfile=str(cert),ssl_keyfile=str(key),lifespan='off',log_level='info'))
-    await asyncio.gather(local.serve(),secure.serve())
+    # Only the protocol router binds the LAN address. The real application stays TLS.
+    with socket.socket() as probe:
+        probe.bind(('127.0.0.1',0));internal_port=probe.getsockname()[1]
+    secure=uvicorn.Server(uvicorn.Config(app,host='127.0.0.1',port=internal_port,ssl_certfile=str(cert),ssl_keyfile=str(key),lifespan='off',log_level='info'))
+    bootstrap=LanBootstrap(ROOT,addresses,internal_port,https_port)
+    async def public_listener():
+        while not secure.started:await asyncio.sleep(.05)
+        await bootstrap.serve()
+    await asyncio.gather(local.serve(),secure.serve(),public_listener())
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--address',action='append',required=True);p.add_argument('--https-port',type=int,default=8765);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--address',action='append',required=True);p.add_argument('--https-port',type=int,default=8765);p.add_argument('--background-log',action='store_true');a=p.parse_args()
+    if a.background_log:
+        log=ROOT/'runtime/lan-service.log';log.parent.mkdir(parents=True,exist_ok=True)
+        sys.stdout=sys.stderr=log.open('a',encoding='utf-8',buffering=1)
+        print('\nLAN HOST START '+datetime.datetime.now(datetime.timezone.utc).isoformat(),flush=True)
+    (ROOT/'runtime/lan-host.json').write_text(json.dumps({'pid':os.getpid(),'started_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'addresses':a.address,'background_log':a.background_log},indent=2),encoding='utf-8')
     asyncio.run(serve(a.address,a.https_port))

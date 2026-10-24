@@ -1,0 +1,71 @@
+{
+  "actor_id": "zhang-ot",
+  "file": "card-matched-v3/zhang-ot.glb",
+  "sha256": "57e3bc0d4386b3611e9996cff82b670fab1e9b56e006af400f9a4b37c6a436ea",
+  "bytes": 12589544,
+  "skin": "young_asian_female",
+  "hair": "ponytail01",
+  "clothes": "female_casualsuit02",
+  "license": "CC0 base human geometry; supplied fictional reference-card appearance retains its source rights",
+  "source": "MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02",
+  "bones": 163,
+  "morph_targets": [
+    "jawOpen",
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "mouthSmileLeft",
+    "mouthSmileRight",
+    "viseme_aa",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_E",
+    "viseme_I",
+    "viseme_U"
+  ],
+  "geometry": "anatomical skinned mesh; no portrait plane",
+  "card_sha256": "12df6ae23422a4803afd6c5efb5fad47f9210d4c7c9dba5b507079992019dbbf",
+  "appearance_preset": {
+    "age": 0.35,
+    "hair": "ponytail01",
+    "hair_color": "#493325",
+    "shape": "head-invertedtriangular",
+    "shape_weight": 0.18,
+    "weight": 0.42,
+    "glasses": false,
+    "coat": false,
+    "clothes": "female_casualsuit02",
+    "color": "#eff2f6",
+    "accent": "#294165",
+    "notes": "成年女性、深棕綁髮、白色深藍領工作服"
+  },
+  "reference_face_proportions": {
+    "head_aspect": 1.1606,
+    "eye_spacing": 0.688,
+    "nose_width": 0.2432,
+    "mouth_width": 0.4455,
+    "source_card_sha256": "12df6ae23422a4803afd6c5efb5fad47f9210d4c7c9dba5b507079992019dbbf",
+    "method": "local MediaPipe fictional drawing proportions; artistic fitting controls"
+  },
+  "face_controls": [
+    {
+      "target": "head-scale-vert-decr",
+      "value": 0.23928000000000002
+    },
+    {
+      "target": "head-scale-horiz-incr",
+      "value": 0
+    },
+    {
+      "target": "mouth-scale-horiz-incr",
+      "value": 0.19100000000000006
+    }
+  ],
+  "likeness_status": "reference fitted geometry, surface appearance and 3D hair; multi-view visual acceptance pending",
+  "face_fitting": {
+    "landmarks": 80,
+    "source_card_sha256": "12df6ae23422a4803afd6c5efb5fad47f9210d4c7c9dba5b507079992019dbbf",
+    "method": "local reference-to-anatomical-head landmark warp; artistic 3D fitting, not a biometric identity assertion",
+    "surface": "reference appearance baked to curved anatomical head UV; no portrait plane",
+    "hair": "closed curved hairstyle volume from reference silhouette, skinned to head"
+  }
+}

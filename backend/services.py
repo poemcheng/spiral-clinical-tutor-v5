@@ -21,16 +21,18 @@ def adaptive_plan(store, uid, profession, topic, level):
 
 def patient_reply(case, session, messages, text):
     from .characters import selected
-    from . import encounters
+    from . import encounters,standardized_patient
     actor=selected(session)
     from .interaction_policy import policy,response_stance
     from .knowledge_retrieval import retrieve
-    patient_facts=case['patient'].split('判讀重點')[0]
-    evidence,retrieval_version=retrieve(case,text)
+    model_case,disclosure=standardized_patient.disclosure_view(case,actor,messages,text)
+    patient_facts=model_case['patient']
+    evidence,retrieval_version=retrieve(model_case,text)
     speaker={'COURSE-ICU':'病患家屬','COURSE-STROKE':'太太','COURSE-DEM':'女兒','COURSE-PEDXR':'阿嬤'}.get(case['id'],'病人')
     facts = {'case_id': case['id'], 'title': case['title'], 'patient': patient_facts,
-             'speaker':speaker, 'patient_behavior':case.get('patient_behavior',''), 'patient_script':case.get('patient_script',''), 'profession': session['profession'], 'level': session['level'],
+             'speaker':speaker, 'patient_behavior':case.get('patient_behavior',''), 'patient_script':model_case.get('patient_script',''), 'profession': session['profession'], 'level': session['level'],
              'retrieved_evidence':evidence,'retrieval_version':retrieval_version}
+    facts['disclosure']=disclosure
     facts['actor']={k:actor[k] for k in ('id','name','kind','title','style','tasks')}
     if actor['kind'] in ('patient','caregiver'):
         # Role-card aliases (e.g. Auntie Lin) are not the patient's clinical name.
@@ -113,6 +115,18 @@ def patient_reply(case, session, messages, text):
                 except (ValueError,TypeError,AttributeError):body=''
             if not result.ok or not body or encounters.unsupported_change_claims(body,case):
                 result.ok=False;result.error='角色回覆包含來源未支持的前後變化，未採用該回覆。請重試。';return result,facts
+        leaks=standardized_patient.hidden_leaks(case,disclosure,body)
+        if leaks:
+            retry_system=system+'\n前一候選回覆透露尚未被具體詢問的劇本資訊。請只承接本次問題與已允許的來源內容，不主動列出其他病史。'
+            result=llm.chat([{'role':'system','content':retry_system},*history],max_tokens=500,temperature=.2,operation='v5.6資訊揭露核對',json_mode=encounters.REPLY_SCHEMA)
+            if result.ok:
+                try:
+                    body,conversation=encounters.decode_reply(result.text,user_turns,facts['encounter'].get('state','active'),text)
+                    facts['conversation_state']=conversation
+                except (ValueError,TypeError,AttributeError):body=''
+            if not result.ok or not body or standardized_patient.hidden_leaks(case,disclosure,body) or encounters.unsupported_change_claims(body,case):
+                result.ok=False;result.error='角色回覆超出本輪可揭露的來源資訊，未採用該回覆。請重試。';return result,facts
+        disclosure.update(guard_passed=True,retry_used=bool(leaks))
         facts['source_change_guard']={'unsupported_metrics':unsupported,'retry_used':bool(unsupported),'passed':True}
         used_body=bool(body)
         if stance['applied']:

@@ -1,0 +1,21 @@
+{
+  "reviewed_at": "2026-10-24",
+  "application_version": "5.6.0",
+  "vsp": {
+    "repository": "https://github.com/igembitsky/virtual-standardized-patient",
+    "commit": "9eae9d927505b034d380ae030023de0744a9d516",
+    "code_license": "MIT",
+    "implementation": "independent source-gated disclosure and record lookup; no upstream case import",
+    "upstream_cases_imported": false
+  },
+  "branching_scenario": {
+    "folder": "H5P.BranchingScenario-1.11",
+    "majorVersion": 1,
+    "minorVersion": 11,
+    "commit": "51921dce480830aabad431cf64ee8158b88430cc",
+    "archive_sha256": "515e4bd041128b6a0e52cb6c90d678f16d903f495fd3cf66f575bcea8b1bed97",
+    "source": "https://github.com/h5p/h5p-branching-scenario/tree/51921dce480830aabad431cf64ee8158b88430cc",
+    "license": "MIT"
+  },
+  "assessment_boundary": "browser-reported legal paths are ungraded; teacher clinical approval remains separate"
+}

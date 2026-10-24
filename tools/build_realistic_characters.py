@@ -3,7 +3,7 @@
 Run with Blender --background --factory-startup --python this_file -- [actor-id].
 Sources are installed in runtime/human-build; never edits original role cards.
 """
-import sys,json,hashlib,math,struct
+import sys,json,hashlib,math,struct,os
 from pathlib import Path
 import bpy
 import numpy as np
@@ -25,7 +25,7 @@ from mpfb.services.faceservice import FaceService
 from mpfb.services.locationservice import LocationService
 LocationService._user_data=str(ASSETS)
 
-OUT=ROOT/'data/characters/card-matched-v2';OUT.mkdir(exist_ok=True)
+OUT=Path(os.getenv('CLINICAL_AVATAR_OUTPUT',str(ROOT/'runtime/card-avatar-candidate')));OUT.mkdir(parents=True,exist_ok=True)
 FACE=['jawOpen','eyeBlinkLeft','eyeBlinkRight','mouthSmileLeft','mouthSmileRight','viseme_aa','viseme_O','viseme_PP','viseme_E','viseme_I','viseme_U']
 
 def linear_color(color):
@@ -193,6 +193,9 @@ def build(actor):
     accessories(base,rig,preset,actor)
     rig.scale=(1.1,1.1,1.1)
     rig['clinical_actor_id']=actor['id'];rig['asset_license']='CC0-1.0';rig['visual_type']='skinned-realistic-human'
+    if os.getenv('CLINICAL_FACE_PREP')=='1':
+        from card_face_fit import prepare_render
+        prepare_render(base,rig,actor,ROOT)
     for o in bpy.context.scene.objects:o.select_set(True)
     bpy.context.view_layer.objects.active=rig
     path=OUT/(actor['id']+'.glb')
@@ -206,7 +209,7 @@ def build(actor):
         if mat['alphaMode']=='MASK':mat['alphaCutoff']=.35
     encoded=json.dumps(gltf,separators=(',',':')).encode();encoded+=b' '*((-len(encoded))%4)
     binary=raw[20+json_size:];path.write_bytes(struct.pack('<4sII',b'glTF',2,20+len(encoded)+len(binary))+struct.pack('<I4s',len(encoded),b'JSON')+encoded+binary)
-    record={'actor_id':actor['id'],'file':'card-matched-v2/'+path.name,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+    record={'actor_id':actor['id'],'file':'card-matched-v3/'+path.name,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
         'bytes':path.stat().st_size,'skin':skin,'hair':hair,'clothes':clothing,'license':'CC0-1.0',
         'source':'MakeHuman/MPFB core and CC0 system assets; faceunits01 and visemes02',
         'bones':len(rig.data.bones),'morph_targets':FACE,'geometry':'anatomical skinned mesh; no portrait plane',

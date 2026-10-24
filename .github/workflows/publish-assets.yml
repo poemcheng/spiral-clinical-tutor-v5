@@ -1,33 +1,20 @@
-name: Publish v5 runtime assets
+name: Verify published runtime assets
 on:
   release:
     types: [published]
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 jobs:
-  upload:
-    if: github.event_name == 'workflow_dispatch' || github.event.release.tag_name == 'v5.3.2'
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: '22'
-      - name: Build current version public assets
-        run: |
-          python tools/fetch_release_assets.py --local public-assets.zip
-          npm ci
-          npm run build
-          python tools/prepare_publication.py
-      - name: Attach verified public files to v5.3.2
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          names=$(gh release view v5.3.2 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name')
-          for file in runtime/publication/public-assets.zip runtime/publication/public-assets-manifest.json; do
-            if printf '%s\n' "$names" | grep -Fxq "$(basename "$file")"; then
-              continue
-            fi
-            gh release upload v5.3.2 "$file" --repo "$GITHUB_REPOSITORY"
-          done
+          python-version: '3.13'
+      - run: pip install -r requirements.txt
+      - name: Install checksummed assets already rendered on the local host
+        run: python tools/fetch_release_assets.py
+      - name: Verify complete source-matched lecture coverage
+        run: python tools/verify_lecture_library.py --strict

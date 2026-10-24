@@ -1,0 +1,49 @@
+情境代碼,情境,學員職種,講師,講師職種,聲音,教學範圍
+COURSE-SARC,肌少症全人照護,DT,黃營養師,DT,female,本職類講師導讀
+COURSE-SARC,肌少症全人照護,PT,王物理治療師,PT,male,本職類講師導讀
+COURSE-SARC,肌少症全人照護,RT,周醫事放射師,RT,male,本職類講師導讀
+COURSE-SARC,肌少症全人照護,MD,陳醫師,MD,male,本職類講師導讀
+COURSE-SARC,肌少症全人照護,RN,林護理師,RN,female,本職類講師導讀
+COURSE-SARC,肌少症全人照護,DT、PT、RT、MD、RN,何社工師,SW,female,社工支援導讀：家庭溝通與資源協調，不代替醫事技能教學
+COURSE-STROKE,中風復健合併吞嚥困難,DT,黃營養師,DT,female,本職類講師導讀
+COURSE-STROKE,中風復健合併吞嚥困難,ST,陳醫師,MD,male,跨域案例導讀；本職類技能需由對應專業教師核對
+COURSE-STROKE,中風復健合併吞嚥困難,PT,王物理治療師,PT,male,本職類講師導讀
+COURSE-STROKE,中風復健合併吞嚥困難,RN,林護理師,RN,female,本職類講師導讀
+COURSE-STROKE,中風復健合併吞嚥困難,MD,陳醫師,MD,male,本職類講師導讀
+COURSE-STROKE,中風復健合併吞嚥困難,DT、ST、PT、RN、MD,何社工師,SW,female,社工支援導讀：家庭溝通與資源協調，不代替醫事技能教學
+COURSE-DEM,失智症合併吞嚥困難,ST,陳醫師,MD,male,跨域案例導讀；本職類技能需由對應專業教師核對
+COURSE-DEM,失智症合併吞嚥困難,PT,王物理治療師,PT,male,本職類講師導讀
+COURSE-DEM,失智症合併吞嚥困難,DT,黃營養師,DT,female,本職類講師導讀
+COURSE-DEM,失智症合併吞嚥困難,AUD,陳醫師,MD,male,跨域案例導讀；本職類技能需由對應專業教師核對
+COURSE-DEM,失智症合併吞嚥困難,RN,林護理師,RN,female,本職類講師導讀
+COURSE-DEM,失智症合併吞嚥困難,ST、PT、DT、AUD、RN,何社工師,SW,female,社工支援導讀：家庭溝通與資源協調，不代替醫事技能教學
+COURSE-ICU,重症病人營養照護,DT,黃營養師,DT,female,本職類講師導讀
+COURSE-ICU,重症病人營養照護,RN,林護理師,RN,female,本職類講師導讀
+COURSE-ICU,重症病人營養照護,MD,陳醫師,MD,male,本職類講師導讀
+COURSE-ICU,重症病人營養照護,RPH,李藥師,RPH,male,本職類講師導讀
+COURSE-ICU,重症病人營養照護,DT、RN、MD、RPH,何社工師,SW,female,社工支援導讀：家庭溝通與資源協調，不代替醫事技能教學
+COURSE-DM,第一型糖尿病旅遊飲食焦慮,DT,黃營養師,DT,female,本職類講師導讀
+COURSE-DM,第一型糖尿病旅遊飲食焦慮,RPH,李藥師,RPH,male,本職類講師導讀
+COURSE-DM,第一型糖尿病旅遊飲食焦慮,MD,陳醫師,MD,male,本職類講師導讀
+COURSE-DM,第一型糖尿病旅遊飲食焦慮,RN,林護理師,RN,female,本職類講師導讀
+COURSE-DM,第一型糖尿病旅遊飲食焦慮,DT、RPH、MD、RN,何社工師,SW,female,社工支援導讀：家庭溝通與資源協調，不代替醫事技能教學
+COURSE-ASTHMA,氣喘用藥順從性不佳,MLS,陳醫師,MD,male,跨域案例導讀；本職類技能需由對應專業教師核對
+COURSE-ASTHMA,氣喘用藥順從性不佳,CP,陳醫師,MD,male,跨域案例導讀；本職類技能需由對應專業教師核對
+COURSE-ASTHMA,氣喘用藥順從性不佳,RPH,李藥師,RPH,male,本職類講師導讀
+COURSE-ASTHMA,氣喘用藥順從性不佳,MD,陳醫師,MD,male,本職類講師導讀
+COURSE-ASTHMA,氣喘用藥順從性不佳,RN,林護理師,RN,female,本職類講師導讀
+COURSE-ASTHMA,氣喘用藥順從性不佳,MLS、CP、RPH、MD、RN,何社工師,SW,female,社工支援導讀：家庭溝通與資源協調，不代替醫事技能教學
+COURSE-PREG,懷孕婦女外傷,RSP,陳醫師,MD,male,跨域案例導讀；本職類技能需由對應專業教師核對
+COURSE-PREG,懷孕婦女外傷,OT,張職能治療師,OT,female,本職類講師導讀
+COURSE-PREG,懷孕婦女外傷,RT,周醫事放射師,RT,male,本職類講師導讀
+COURSE-PREG,懷孕婦女外傷,RN,林護理師,RN,female,本職類講師導讀
+COURSE-PREG,懷孕婦女外傷,MD,陳醫師,MD,male,本職類講師導讀
+COURSE-PREG,懷孕婦女外傷,RSP、OT、RT、RN、MD,何社工師,SW,female,社工支援導讀：家庭溝通與資源協調，不代替醫事技能教學
+COURSE-BEDXR,床邊孕婦 X 光檢查,RT,周醫事放射師,RT,male,本職類講師導讀
+COURSE-BEDXR,床邊孕婦 X 光檢查,RN,林護理師,RN,female,本職類講師導讀
+COURSE-BEDXR,床邊孕婦 X 光檢查,MD,陳醫師,MD,male,本職類講師導讀
+COURSE-BEDXR,床邊孕婦 X 光檢查,RT、RN、MD,何社工師,SW,female,社工支援導讀：家庭溝通與資源協調，不代替醫事技能教學
+COURSE-PEDXR,兒童 X 光溝通與風險判斷,RT,周醫事放射師,RT,male,本職類講師導讀
+COURSE-PEDXR,兒童 X 光溝通與風險判斷,RN,林護理師,RN,female,本職類講師導讀
+COURSE-PEDXR,兒童 X 光溝通與風險判斷,MD,陳醫師,MD,male,本職類講師導讀
+COURSE-PEDXR,兒童 X 光溝通與風險判斷,RT、RN、MD,何社工師,SW,female,社工支援導讀：家庭溝通與資源協調，不代替醫事技能教學

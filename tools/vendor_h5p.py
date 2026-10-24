@@ -9,11 +9,12 @@ import urllib.request
 import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 REPOS={'H5P.MultiChoice':'h5p-multi-choice','H5P.Question':'h5p-question','H5P.JoubelUI':'h5p-joubel-ui','FontAwesome':'font-awesome','H5P.Transition':'h5p-transition','H5P.FontIcons':'h5p-font-icons','H5P.Components':'h5p-components','jQuery.ui':'jquery-ui'}
+REPOS.update({'H5P.BranchingScenario':'h5p-branching-scenario','H5P.BranchingQuestion':'h5p-branching-question','H5P.AdvancedText':'h5p-advanced-text'})
 DEST=ROOT/'frontend/vendor/h5p-libraries'
 def fetch(url):
  return urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'ClinicalTutor-source-vendor'}),timeout=60).read()
 def main():
- DEST.mkdir(parents=True,exist_ok=True);pending=['H5P.MultiChoice'];done={}
+ DEST.mkdir(parents=True,exist_ok=True);pending=['H5P.MultiChoice','H5P.BranchingScenario','H5P.BranchingQuestion','H5P.AdvancedText'];done={}
  prior=json.loads((DEST/'provenance.json').read_text()) if (DEST/'provenance.json').exists() else {}
  while pending:
   name=pending.pop()
@@ -35,7 +36,10 @@ def main():
     subprocess.run([cli,'install','--ignore-scripts'],cwd=build,check=True)
     subprocess.run([cli,'run','build'],cwd=build,check=True)
     shutil.copytree(build/'dist',target/'dist',dirs_exist_ok=True)
-   done[name]={'folder':folder,'majorVersion':lib['majorVersion'],'minorVersion':lib['minorVersion'],'commit':commit,'archive_sha256':hashlib.sha256(raw).hexdigest(),'source':f'https://github.com/h5p/{repo}/tree/{commit}','license':lib.get('license')}
+   license_name=lib.get('license')
+   readme=target/'README.md'
+   if not license_name and readme.exists() and '(The MIT License)' in readme.read_text(encoding='utf-8'):license_name='MIT'
+   done[name]={'folder':folder,'majorVersion':lib['majorVersion'],'minorVersion':lib['minorVersion'],'commit':commit,'archive_sha256':hashlib.sha256(raw).hexdigest(),'source':f'https://github.com/h5p/{repo}/tree/{commit}','license':license_name}
  shutil.copytree(ROOT/'node_modules/h5p-standalone/dist',ROOT/'frontend/vendor/h5p',dirs_exist_ok=True)
  license_file=ROOT/'node_modules/h5p-standalone/LICENSE'
  if license_file.exists():shutil.copyfile(license_file,ROOT/'frontend/vendor/h5p/LICENSE')
