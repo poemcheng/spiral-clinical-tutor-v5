@@ -57,11 +57,21 @@ def push_backup(snapshot,cfg):
     target=repo/'current';target.mkdir(exist_ok=True)
     for p in target.iterdir():
         if p.is_file():p.unlink()
+    objects=Path(snapshot)/'objects'
+    if objects.is_dir():
+        destination=repo/'objects';destination.mkdir(exist_ok=True)
+        for p in objects.iterdir():
+            if not re.fullmatch(r'[a-f0-9]{64}\.enc',p.name):raise RuntimeError('Unsafe encrypted object name')
+            dest=destination/p.name
+            if not dest.exists():shutil.copyfile(p,dest)
+            elif hashlib.sha256(dest.read_bytes()).digest()!=hashlib.sha256(p.read_bytes()).digest():raise RuntimeError('Existing encrypted object differs')
     for p in Path(snapshot).iterdir():
+        if p.name=='objects' and p.is_dir():continue
         if not re.fullmatch(r'(index|part-\d{5})\.enc',p.name):raise RuntimeError('Non-encrypted file rejected')
         shutil.copyfile(p,target/p.name)
     (repo/'README.md').write_text('# Private encrypted learning backups\n\nOnly authenticated encrypted chunks are stored here. The recovery key stays on the teaching host.\n',encoding='utf-8')
-    run_git(repo,['add','--','current','README.md'],key)
+    paths=['current','README.md']+(['objects'] if objects.is_dir() else [])
+    run_git(repo,['add','--',*paths],key)
     if run_git(repo,['diff','--cached','--name-only'],key):run_git(repo,['commit','-m','Encrypted learning snapshot '+Path(snapshot).name],key)
     run_git(repo,['push','origin','main'],key)
     return run_git(repo,['rev-parse','HEAD'],key)
@@ -113,7 +123,7 @@ def tunnel_loop():
 
 def backup_loop(stop=None,interval=15):
     cfg=settings();base=Path(cfg.get('backup_directory',str(RUNTIME/'encrypted-learning-backups'))).resolve();base.mkdir(parents=True,exist_ok=True)
-    state={'local_interval_seconds':15,'github_interval_seconds':300,'github_repository':PRIVATE_REPO,'scope':'帳號、學習歷程、對話、教師回饋、自訂教案與個人分析／影片；共用EPA影格與原始教材由既有主機保存'}
+    state={'local_interval_seconds':15,'github_interval_seconds':300,'github_repository':PRIVATE_REPO,'scope':'帳號、學習歷程、對話、教師回饋、自訂教案及骨架分析結果；原始教材與可重建影音快取留在主機'}
     stamp=None;latest=None;last_cloud=0
     state_lock=threading.RLock();cloud_busy=threading.Event()
     def sync_remote(snapshot):

@@ -1,5 +1,5 @@
 """Consistent, authenticated, chunked learning-data snapshots. No recovery key upload."""
-import contextlib,datetime,hashlib,io,json,os,sqlite3,sys,tempfile,uuid,zipfile
+import contextlib,datetime,hashlib,io,json,os,re,sqlite3,sys,tempfile,uuid,zipfile,zlib
 from pathlib import Path,PurePosixPath
 from cryptography.fernet import Fernet
 
@@ -37,45 +37,79 @@ def create_snapshot(runtime,destination,version):
         files={'runtime/clinical_tutor.sqlite3':snapshot}
         for folder in ('pose_analysis','media'):
             for p in (runtime/folder).rglob('*'):
-                if p.is_file() and not p.is_symlink():files['runtime/'+p.relative_to(runtime).as_posix()]=p
+                # Frame JPEGs, render PNGs and generated audio/video are
+                # reproducible caches, not learning records. Preserve dense
+                # analysis results and authored annotations without uploading
+                # tens of thousands of transient rendered frames.
+                if p.is_file() and not p.is_symlink() and p.suffix.lower() in ('.json','.txt','.srt','.vtt'):
+                    files['runtime/'+p.relative_to(runtime).as_posix()]=p
         for name in ('secrets/smtp.key','xapi-installation-id.txt'):
             p=runtime/name
             if p.is_file():files['runtime/'+name]=p
-        manifest={'schema_version':1,'app_version':version,'kind':'private_same_institution_backup','files':{}}
-        archive=Path(tmp)/'backup.zip'
-        with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
-            for name,p in sorted(files.items()):
-                raw=p.read_bytes();manifest['files'][name]={'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()};z.writestr(name,raw)
-            z.writestr('manifest.json',json.dumps(manifest,ensure_ascii=False))
-        destination.mkdir(parents=True)
-        chunks=[]
+        destination.mkdir(parents=True);(destination/'objects').mkdir()
+        cache=runtime/'encrypted-backup-objects';cache.mkdir(exist_ok=True)
+        key_tag=hashlib.sha256((runtime/'secrets/backup-recovery.key').read_bytes()).digest()
+        index={'format':'clinical-learning-encrypted-v2','created':datetime.datetime.now(datetime.timezone.utc).isoformat(),'app_version':version,'files':{}}
+        new_bytes=0
         try:
-            with archive.open('rb') as f:
-                while raw:=f.read(CHUNK):
-                    name=f'part-{len(chunks):05d}.enc';encrypted=cipher.encrypt(raw)
-                    (destination/name).write_bytes(encrypted)
-                    chunks.append({'file':name,'sha256':hashlib.sha256(encrypted).hexdigest()})
-            with archive.open('rb') as archive_file:archive_digest=hashlib.file_digest(archive_file,'sha256').hexdigest()
-            index={'format':'clinical-learning-encrypted-v1','created':datetime.datetime.now(datetime.timezone.utc).isoformat(),'archive_sha256':archive_digest,'parts':chunks}
+            for name,path in sorted(files.items()):
+                digest=hashlib.sha256();size=0;parts=[]
+                with path.open('rb') as source_file:
+                    while raw:=source_file.read(CHUNK):
+                        digest.update(raw);size+=len(raw)
+                        identity=hashlib.sha256(key_tag+raw).hexdigest();cached=cache/(identity+'.enc')
+                        if cached.exists():
+                            encrypted=cached.read_bytes()
+                            if zlib.decompress(cipher.decrypt(encrypted))!=raw:raise ValueError('Encrypted object cache integrity mismatch')
+                        else:
+                            encrypted=cipher.encrypt(zlib.compress(raw,6));temporary=cached.with_suffix('.tmp');temporary.write_bytes(encrypted);temporary.replace(cached);new_bytes+=len(encrypted)
+                        linked=destination/'objects'/cached.name
+                        if not linked.exists():
+                            try:os.link(cached,linked)
+                            except OSError:
+                                import shutil
+                                shutil.copyfile(cached,linked)
+                        parts.append({'object':identity,'sha256':hashlib.sha256(encrypted).hexdigest(),'raw_sha256':hashlib.sha256(raw).hexdigest()})
+                index['files'][name]={'bytes':size,'sha256':digest.hexdigest(),'parts':parts}
             (destination/'index.enc').write_bytes(cipher.encrypt(json.dumps(index).encode()))
             # Read back authenticated bytes before advertising a usable snapshot.
             verify_snapshot(destination,runtime/'secrets/backup-recovery.key')
         except Exception:
             (destination/'INCOMPLETE').touch();raise
-    return {'snapshot':destination.name,'created':index['created'],'files':len(files),'encrypted_bytes':sum(p.stat().st_size for p in destination.iterdir()),'verified':True}
+    return {'snapshot':destination.name,'created':index['created'],'files':len(files),'encrypted_bytes':sum(p.stat().st_size for p in destination.rglob('*.enc')),'new_encrypted_bytes':new_bytes+(destination/'index.enc').stat().st_size,'verified':True}
 
 def verify_snapshot(source,key,archive_target=None):
-    source=Path(source);cipher=Fernet(Path(key).read_bytes());index=json.loads(cipher.decrypt((source/'index.enc').read_bytes()))
-    if index.get('format')!='clinical-learning-encrypted-v1' or not index.get('parts'):raise ValueError('Unknown encrypted backup')
+    source=Path(source)
+    if not (source/'index.enc').is_file() and (source/'current/index.enc').is_file():source=source/'current'
+    cipher=Fernet(Path(key).read_bytes());index=json.loads(cipher.decrypt((source/'index.enc').read_bytes()))
+    if index.get('format') not in ('clinical-learning-encrypted-v1','clinical-learning-encrypted-v2'):raise ValueError('Unknown encrypted backup')
     with tempfile.TemporaryDirectory() as tmp:
         archive=Path(tmp)/'backup.zip';digest=hashlib.sha256();seen=set()
-        with archive.open('wb') as f:
-            for i,part in enumerate(index['parts']):
-                if part['file']!=f'part-{i:05d}.enc' or part['file'] in seen:raise ValueError('Invalid part sequence')
-                seen.add(part['file']);encrypted=(source/part['file']).read_bytes()
-                if hashlib.sha256(encrypted).hexdigest()!=part['sha256']:raise ValueError('Encrypted part checksum mismatch')
-                raw=cipher.decrypt(encrypted);digest.update(raw);f.write(raw)
-        if digest.hexdigest()!=index['archive_sha256']:raise ValueError('Backup archive checksum mismatch')
+        if index['format']=='clinical-learning-encrypted-v1':
+            with archive.open('wb') as f:
+                for i,part in enumerate(index['parts']):
+                    if part['file']!=f'part-{i:05d}.enc' or part['file'] in seen:raise ValueError('Invalid part sequence')
+                    seen.add(part['file']);encrypted=(source/part['file']).read_bytes()
+                    if hashlib.sha256(encrypted).hexdigest()!=part['sha256']:raise ValueError('Encrypted part checksum mismatch')
+                    raw=cipher.decrypt(encrypted);digest.update(raw);f.write(raw)
+            if digest.hexdigest()!=index['archive_sha256']:raise ValueError('Backup archive checksum mismatch')
+        else:
+            objects=source/'objects' if (source/'objects').is_dir() else source.parent/'objects'
+            manifest={'schema_version':1,'app_version':index['app_version'],'kind':'private_same_institution_backup','files':{}}
+            with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
+                for name,meta in index['files'].items():
+                    digest=hashlib.sha256();size=0
+                    with z.open(name,'w',force_zip64=True) as output:
+                        for part in meta['parts']:
+                            if not re.fullmatch('[a-f0-9]{64}',part['object']):raise ValueError('Unsafe object path')
+                            encrypted=(objects/(part['object']+'.enc')).read_bytes()
+                            if hashlib.sha256(encrypted).hexdigest()!=part['sha256']:raise ValueError('Encrypted object checksum mismatch')
+                            decoder=zlib.decompressobj();raw=decoder.decompress(cipher.decrypt(encrypted),CHUNK+1)
+                            if len(raw)>CHUNK or not decoder.eof or hashlib.sha256(raw).hexdigest()!=part['raw_sha256']:raise ValueError('Object content integrity mismatch')
+                            output.write(raw);digest.update(raw);size+=len(raw)
+                    if size!=meta['bytes'] or digest.hexdigest()!=meta['sha256']:raise ValueError('File content integrity mismatch')
+                    manifest['files'][name]={'bytes':size,'sha256':digest.hexdigest()}
+                z.writestr('manifest.json',json.dumps(manifest))
         with zipfile.ZipFile(archive) as z:
             manifest=json.loads(z.read('manifest.json'));files=manifest['files']
             if len(z.namelist())!=len(set(z.namelist())) or set(z.namelist())!=set(files)|{'manifest.json'}:raise ValueError('Unexpected archive members')
