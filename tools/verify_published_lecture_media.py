@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image,ImageDraw,ImageFont
 ROOT=Path(__file__).resolve().parents[1]
 FF=ROOT/'tools/ffmpeg/ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe';PROBE=FF.with_name('ffprobe.exe')
-OUT=ROOT/'runtime/verification-5.6.0';OUT.mkdir(exist_ok=True)
+OUT=ROOT/('runtime/verification-'+json.loads((ROOT/'package.json').read_text(encoding='utf8'))['version']);OUT.mkdir(exist_ok=True)
 def inspect(item):
     row,module=item;p=ROOT/'data/public_lectures'/module['file']
     d=json.loads(subprocess.check_output([str(PROBE),'-v','error','-show_streams','-show_format','-of','json',str(p)]))

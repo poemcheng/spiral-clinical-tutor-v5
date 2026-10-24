@@ -2,10 +2,12 @@
   "contains_learner_data": false,
   "contains_source_documents": false,
   "contains_real_footage": false,
-  "version": "5.6.1",
-  "release": "v5.6.1",
-  "archive_sha256": "a063516814a808278f0dfc708187f78141e74794fd7d539d389d8a3db577b909",
-  "archive_bytes": 273547081,
+  "contains_original_teaching_footage": false,
+  "contains_private_epa_frames": false,
+  "version": "5.6.2",
+  "release": "v5.6.2",
+  "archive_sha256": "296e93bcd1ecafbf9284161ef93231afb761cbb5dff3199470e9002df28f8839",
+  "archive_bytes": 354862952,
   "files": {
     "data/action_lessons/media_catalog.json": {
       "bytes": 3718,
@@ -331,6 +333,22 @@
       "bytes": 763,
       "sha256": "f9456b385787708cef195c83685ad863fb7a1e406c7a508b69ee45f777afe0a8"
     },
+    "data/public_lectures/060c8ee6ccd72237760ae28c/module-0.mp4": {
+      "bytes": 515579,
+      "sha256": "f94732fec3d08cfa05042be803d1cd5ee8873fb7ff3997fe3a9adf1af583a069"
+    },
+    "data/public_lectures/060c8ee6ccd72237760ae28c/module-1.mp4": {
+      "bytes": 538249,
+      "sha256": "cf9425ce7b45e3c277d22e50f1477f107786d8c031f5d182621fc442efea2ec1"
+    },
+    "data/public_lectures/060c8ee6ccd72237760ae28c/module-2.mp4": {
+      "bytes": 432523,
+      "sha256": "8e91bfca112d2984f4591e455aec15b7ac764971fff2c0a1d7a5795c34541c12"
+    },
+    "data/public_lectures/060c8ee6ccd72237760ae28c/script.json": {
+      "bytes": 693,
+      "sha256": "bd1216507fbdd401b473411abc5cd8e0c1f892f63faa3182a4a072a6042cce53"
+    },
     "data/public_lectures/06e4a360cd2f2488a910fa97/module-0.mp4": {
       "bytes": 475216,
       "sha256": "14d2c90088bb29cb3252fbd116ad115f4f686c121a48a7adcfe1916d41badc90"
@@ -346,6 +364,38 @@
     "data/public_lectures/06e4a360cd2f2488a910fa97/script.json": {
       "bytes": 735,
       "sha256": "e538495f1f77fe9937894e37abf9ac8bc739d61eca83ac1cfe21160a3f8f2508"
+    },
+    "data/public_lectures/07c85c9181c7e8013d2e7a37/module-0.mp4": {
+      "bytes": 520584,
+      "sha256": "bea868ac7361bfb77d0e5ead225d56cac50d1f74b818a8280d49b868ec40fa8f"
+    },
+    "data/public_lectures/07c85c9181c7e8013d2e7a37/module-1.mp4": {
+      "bytes": 308682,
+      "sha256": "fd29a8a7610ebd8f9df5d7da81c39632ceb8ac876715380bc8941b7e6b7900bd"
+    },
+    "data/public_lectures/07c85c9181c7e8013d2e7a37/module-2.mp4": {
+      "bytes": 357813,
+      "sha256": "d087b75904298ea9baa4823529e853cc3ae87cbce86fb9862a5f07666c386030"
+    },
+    "data/public_lectures/07c85c9181c7e8013d2e7a37/script.json": {
+      "bytes": 660,
+      "sha256": "425c6bcbdd267484777761fb9a738d8b872c6394e2eb5833f4e60d2c9804bdb4"
+    },
+    "data/public_lectures/0aba36bd380f5e2c5432d704/module-0.mp4": {
+      "bytes": 462040,
+      "sha256": "8da6b2d28d3fd65d987a184fdb3f6258c4b0653c873728c1dee9fc101c7f5ba1"
+    },
+    "data/public_lectures/0aba36bd380f5e2c5432d704/module-1.mp4": {
+      "bytes": 610345,
+      "sha256": "4ec839f5219d63afb0d9f6c06b696b73d876fbb717504026a72d385876982719"
+    },
+    "data/public_lectures/0aba36bd380f5e2c5432d704/module-2.mp4": {
+      "bytes": 405367,
+      "sha256": "b29e4008653645872e0f26507e87748aa5299a5916692fd30b875da71567f9df"
+    },
+    "data/public_lectures/0aba36bd380f5e2c5432d704/script.json": {
+      "bytes": 735,
+      "sha256": "4df2415d302712e5e7640e1f0063ebc45b9cb1daef79d3a7a39394143ca88bd6"
     },
     "data/public_lectures/0b621216bbdb7bbcb9e316ca/module-0.mp4": {
       "bytes": 533910,
@@ -363,6 +413,54 @@
       "bytes": 756,
       "sha256": "3ce327d8bd5ee560cf347488bc368e37eb1cfc5ef1c2c40a63d8dfbb5f327c9b"
     },
+    "data/public_lectures/0b6e130783518c004b604d13/module-0.mp4": {
+      "bytes": 393156,
+      "sha256": "dda176614e0462f078c58537d2660170816b415ca515ebc5f5a40f57d2e48d6b"
+    },
+    "data/public_lectures/0b6e130783518c004b604d13/module-1.mp4": {
+      "bytes": 356424,
+      "sha256": "5f16e52cb37cef2e1e47e1fe5a2a0c7481570a7886a1921de53fdf0282b6369a"
+    },
+    "data/public_lectures/0b6e130783518c004b604d13/module-2.mp4": {
+      "bytes": 348418,
+      "sha256": "557d26092859368c2b8b09abe64c6b0cec2035489ae82e1179cc0d331273e22d"
+    },
+    "data/public_lectures/0b6e130783518c004b604d13/script.json": {
+      "bytes": 651,
+      "sha256": "fad5822be6c953803a5a4559c67720c49f9dd0f7eec13d39d3f9c08f1c9b74b5"
+    },
+    "data/public_lectures/0e36558808778dc054fb411b/module-0.mp4": {
+      "bytes": 414008,
+      "sha256": "a7bc960fc677b2c753973bd1081d00a5b5ad62e36de1fff7d373a411d37c3fc1"
+    },
+    "data/public_lectures/0e36558808778dc054fb411b/module-1.mp4": {
+      "bytes": 361509,
+      "sha256": "55d93d554428e4b7a9a3d36b7ac3ddbbb440f15138d9d6302808284806a6bd64"
+    },
+    "data/public_lectures/0e36558808778dc054fb411b/module-2.mp4": {
+      "bytes": 361220,
+      "sha256": "1fa8ab49245e72426d9d1e4598291ecf02257ed508e6c46e002f616b166921cf"
+    },
+    "data/public_lectures/0e36558808778dc054fb411b/script.json": {
+      "bytes": 651,
+      "sha256": "cdf153552c1d0ec86341919ce3ec2396fbe8b754fd49b2a46899adbaf5f8e8b3"
+    },
+    "data/public_lectures/0eef9afc68cf10e3f08f5bc2/module-0.mp4": {
+      "bytes": 542865,
+      "sha256": "11b6aa96113e225b9d014df844846230fc77461057d1c395600c976592942c87"
+    },
+    "data/public_lectures/0eef9afc68cf10e3f08f5bc2/module-1.mp4": {
+      "bytes": 309287,
+      "sha256": "cc980ad1c28ad983a0d194423528c14613452c612c97317e8b5777df9a1c4bbf"
+    },
+    "data/public_lectures/0eef9afc68cf10e3f08f5bc2/module-2.mp4": {
+      "bytes": 362864,
+      "sha256": "ecb4f128d62aa7116cefe242781631c4e15f5013e2c05509e5335698fc842532"
+    },
+    "data/public_lectures/0eef9afc68cf10e3f08f5bc2/script.json": {
+      "bytes": 672,
+      "sha256": "956bfe347fe1647a0c4e7f4c89a9fdfc436f807e9cada9a27612f48154933e41"
+    },
     "data/public_lectures/0f35a2427b97955cbd699bd4/module-0.mp4": {
       "bytes": 535573,
       "sha256": "40c07f98d69f3160e794944bca3bbdd731c951dbeac04ee7968eac095ea15b4d"
@@ -378,6 +476,22 @@
     "data/public_lectures/0f35a2427b97955cbd699bd4/script.json": {
       "bytes": 760,
       "sha256": "4f8fddc1e8d339536a931223400144e8d75b99b3800426dc527dae6007b98050"
+    },
+    "data/public_lectures/1024b7e7724250319d4d85f6/module-0.mp4": {
+      "bytes": 475309,
+      "sha256": "776b2feb7b42aaa6f5983c3793ad6f384f705122d231f3521549eac5dbff1053"
+    },
+    "data/public_lectures/1024b7e7724250319d4d85f6/module-1.mp4": {
+      "bytes": 512335,
+      "sha256": "da81a6de79e6f9e9fe14106ec263f254dfc5a5643296a564853b47366b8888b9"
+    },
+    "data/public_lectures/1024b7e7724250319d4d85f6/module-2.mp4": {
+      "bytes": 415353,
+      "sha256": "f524ce7cd921e7ecdc0b42dca9ec8eb8dc66999bbec81e568170be9442fea683"
+    },
+    "data/public_lectures/1024b7e7724250319d4d85f6/script.json": {
+      "bytes": 684,
+      "sha256": "3efa802f1fe6be324fb4131513d8e6be55d2378c03676349fca5cc98c59b385b"
     },
     "data/public_lectures/104d84195f0cb9cc224be572/module-0.mp4": {
       "bytes": 437286,
@@ -411,6 +525,166 @@
       "bytes": 774,
       "sha256": "7d3c516c40d22835d0616912d7d64d6bb28542f301ce250a0ae24e4e2eb62f8c"
     },
+    "data/public_lectures/139b16df0d3e851168d8e3a8/module-0.mp4": {
+      "bytes": 464465,
+      "sha256": "44370b1888f37270b88a5ad28b96358c598dc8a996447eeb8bf6126ba28e6b44"
+    },
+    "data/public_lectures/139b16df0d3e851168d8e3a8/module-1.mp4": {
+      "bytes": 492432,
+      "sha256": "206fade112ef83b04272fb94e2bee05351beb26fc12ce309d734da570d989991"
+    },
+    "data/public_lectures/139b16df0d3e851168d8e3a8/module-2.mp4": {
+      "bytes": 390253,
+      "sha256": "d5966a5213fb3bf243b6bad8b2f69adc5791ee6c7ca2ab69706ec2994fca4aa9"
+    },
+    "data/public_lectures/139b16df0d3e851168d8e3a8/script.json": {
+      "bytes": 693,
+      "sha256": "3a8f62af2919187c8610c9d2946333d08461485f30533f6d487115b968923ad8"
+    },
+    "data/public_lectures/146a0fad0ccccdea28261f70/module-0.mp4": {
+      "bytes": 519448,
+      "sha256": "12364bf887e48df711e3f5765c0ae3185485be6da1666d5f3b5b0c04b5ee1539"
+    },
+    "data/public_lectures/146a0fad0ccccdea28261f70/module-1.mp4": {
+      "bytes": 535749,
+      "sha256": "6ed8e3d457997d82ddcac8875108d249e584960546c6c1ce59f43957961e654e"
+    },
+    "data/public_lectures/146a0fad0ccccdea28261f70/module-2.mp4": {
+      "bytes": 431711,
+      "sha256": "c334c2c022aae3bbf36cfb4d2bfaebeedb33c03a6370992e40635bed60e4aed0"
+    },
+    "data/public_lectures/146a0fad0ccccdea28261f70/script.json": {
+      "bytes": 690,
+      "sha256": "98ed2009987c3148eff8e1df8ac7386236ae66b0ba593348c012141c8184b718"
+    },
+    "data/public_lectures/16ce6757871b9abd9f906b93/module-0.mp4": {
+      "bytes": 541246,
+      "sha256": "10a3e8bca86d2cab4b54194f8826186bbd4f8459dc98293d2ec5f48369d6f8a7"
+    },
+    "data/public_lectures/16ce6757871b9abd9f906b93/module-1.mp4": {
+      "bytes": 347547,
+      "sha256": "08074a106cc3878bbf209c7e330d4965b590acdba1c33959d7cca59520784f0f"
+    },
+    "data/public_lectures/16ce6757871b9abd9f906b93/module-2.mp4": {
+      "bytes": 403256,
+      "sha256": "1dd76257cad43a1503b3ad39acfeab5b027b35cbdd5c8038f2d05fe22e020204"
+    },
+    "data/public_lectures/16ce6757871b9abd9f906b93/script.json": {
+      "bytes": 675,
+      "sha256": "990061f97955b0b62cebaf12a5a107c28e0d591e66ea1334eb923c4e6b4fe4dc"
+    },
+    "data/public_lectures/1b4b6c29c679854533a59528/module-0.mp4": {
+      "bytes": 537188,
+      "sha256": "43cbecbc66312a3c6791cff9aa1136357dc01fe7b7c22bc0ce03962bdd24d6e1"
+    },
+    "data/public_lectures/1b4b6c29c679854533a59528/module-1.mp4": {
+      "bytes": 331095,
+      "sha256": "5be3edb18e5d17c7eb8eb24cb69b662972e78dcfdeae225e877bec884188e232"
+    },
+    "data/public_lectures/1b4b6c29c679854533a59528/module-2.mp4": {
+      "bytes": 374415,
+      "sha256": "143f63123af75065e0bb18bd480098a1189a4010aa3a030b62b77115b6c752d1"
+    },
+    "data/public_lectures/1b4b6c29c679854533a59528/script.json": {
+      "bytes": 669,
+      "sha256": "71fdcfac77386cd76bc26a6b655be7975d95ad9d6d8e8b6d8739056063957732"
+    },
+    "data/public_lectures/1c05ace4921d4f53a5663fd8/module-0.mp4": {
+      "bytes": 461452,
+      "sha256": "355d8c19f4f60f2485a145c45f1084266124b028b413a0340cfc4a5cb2d80e10"
+    },
+    "data/public_lectures/1c05ace4921d4f53a5663fd8/module-1.mp4": {
+      "bytes": 363444,
+      "sha256": "9fc97f3bb8f088bb705b3ed258f59b3d3ba93c5c58e4b17eadd9e9c289b70ac4"
+    },
+    "data/public_lectures/1c05ace4921d4f53a5663fd8/module-2.mp4": {
+      "bytes": 366936,
+      "sha256": "2f7b2005ff6830295f2830355a1a4e3465ac1cbabae8c8a04e61a17ef351c243"
+    },
+    "data/public_lectures/1c05ace4921d4f53a5663fd8/script.json": {
+      "bytes": 660,
+      "sha256": "ac549b76197c6d02f132b22270168c6255987f45a55e48c213a4a55577dbc52a"
+    },
+    "data/public_lectures/1d9f8c17fd16e1ea6aa1b1c6/module-0.mp4": {
+      "bytes": 566432,
+      "sha256": "2a727312686bd90d03867940a11a3383b81b4ab8b97cae004f1aa3a258013fa3"
+    },
+    "data/public_lectures/1d9f8c17fd16e1ea6aa1b1c6/module-1.mp4": {
+      "bytes": 348807,
+      "sha256": "90aed528b2c72b796c352c150bfb0a99a7f3110023d0e4e760b0fbe386b31b07"
+    },
+    "data/public_lectures/1d9f8c17fd16e1ea6aa1b1c6/module-2.mp4": {
+      "bytes": 423197,
+      "sha256": "988868587879bb99269aca8703e3fa25d1a9ebf787c641f1c2faa39ca55c1c0b"
+    },
+    "data/public_lectures/1d9f8c17fd16e1ea6aa1b1c6/script.json": {
+      "bytes": 666,
+      "sha256": "7b00d247814814b5de67d6a74574677ca26b6feb1b9ac5738e18e36861513d65"
+    },
+    "data/public_lectures/1db7a96480e2692de3304db2/module-0.mp4": {
+      "bytes": 441324,
+      "sha256": "f03edc5d9e0a374ce356accc4278c7a29b45e0c2cc45d9138f1efcb4a123369f"
+    },
+    "data/public_lectures/1db7a96480e2692de3304db2/module-1.mp4": {
+      "bytes": 406795,
+      "sha256": "78328100354bf24db32d2f8bfcc5091d48ca53e35f900ec2c020f2d1e4371210"
+    },
+    "data/public_lectures/1db7a96480e2692de3304db2/module-2.mp4": {
+      "bytes": 390471,
+      "sha256": "40fc770a795f6e37fdb38c0e491b7b2cd68df8c00ab4325c4bfa956380184234"
+    },
+    "data/public_lectures/1db7a96480e2692de3304db2/script.json": {
+      "bytes": 651,
+      "sha256": "a008ece19e517fb1d1d852ef14639360c6354af513fe715c62c82544c808c9ce"
+    },
+    "data/public_lectures/1e31fd90de182446665ae5d9/module-0.mp4": {
+      "bytes": 517284,
+      "sha256": "610a6dd935188754a2f58c1bf213cd6df661025adbea70c9159893ad97efce2d"
+    },
+    "data/public_lectures/1e31fd90de182446665ae5d9/module-1.mp4": {
+      "bytes": 413847,
+      "sha256": "ff447d61f350ea4dfeab79e54ac8d3f6e26ea38d5c15ca63fc4adff688ffdb98"
+    },
+    "data/public_lectures/1e31fd90de182446665ae5d9/module-2.mp4": {
+      "bytes": 422867,
+      "sha256": "fa916b62ee552144a4f4dac3f7f07453afeee406d6ffb2311b8a8394993b4c3a"
+    },
+    "data/public_lectures/1e31fd90de182446665ae5d9/script.json": {
+      "bytes": 654,
+      "sha256": "6df95e79d667bc990694600317bbb6a75df5df4848aece72f4175c980cf959cc"
+    },
+    "data/public_lectures/220ab0a8868066efcf74fab7/module-0.mp4": {
+      "bytes": 468077,
+      "sha256": "a21671a1bb5ba88bc18064321c1e48d554a0c43bdd63b24d57aaae456c2a9474"
+    },
+    "data/public_lectures/220ab0a8868066efcf74fab7/module-1.mp4": {
+      "bytes": 339927,
+      "sha256": "a8f0d46567c1fe4dd6b10d56b7ad8244ff72d100013fee322267f49a1be7dd38"
+    },
+    "data/public_lectures/220ab0a8868066efcf74fab7/module-2.mp4": {
+      "bytes": 356867,
+      "sha256": "e06732a3dee7ff0b2cdbb0bf32f988df25d6803e70aa1eb36fdddfa138adaa76"
+    },
+    "data/public_lectures/220ab0a8868066efcf74fab7/script.json": {
+      "bytes": 660,
+      "sha256": "dd614d85b7c94b9e4890aa5a502a0b26cab09f1f7863b98fd92c67eceda5f502"
+    },
+    "data/public_lectures/2314cf7c601ebc9a1444a456/module-0.mp4": {
+      "bytes": 491855,
+      "sha256": "ade4e40664b3467bbff20543fa122e7f492e1913d517f814ad19e73097ceff5f"
+    },
+    "data/public_lectures/2314cf7c601ebc9a1444a456/module-1.mp4": {
+      "bytes": 513427,
+      "sha256": "93c1134350465794bfd270aadbb466f0e01c2fddee3f3da7fd741a840efe9512"
+    },
+    "data/public_lectures/2314cf7c601ebc9a1444a456/module-2.mp4": {
+      "bytes": 412126,
+      "sha256": "85d9a53b11921098a6fc4033730c867d08eb16b69548b4f842aebe802e80ca06"
+    },
+    "data/public_lectures/2314cf7c601ebc9a1444a456/script.json": {
+      "bytes": 699,
+      "sha256": "8b76749aefdf7aaeb524985b1f52eaa4e44ae996792df4dff0602ceb2fa80e9b"
+    },
     "data/public_lectures/254bedb288f7aaef50c94efc/module-0.mp4": {
       "bytes": 446348,
       "sha256": "3670eea8affe104e4f939c01960146c2c4fee64b75754849f9018fc05a4a72d8"
@@ -443,6 +717,22 @@
       "bytes": 756,
       "sha256": "c31840518c6bbd1ab2aea14af28c106c12cee5b534ee7fd78cc212ae9792d5ab"
     },
+    "data/public_lectures/260c5f8650363c40fbc16069/module-0.mp4": {
+      "bytes": 368185,
+      "sha256": "1e6563f8d130eaa3efd80ab65407c3308739eab69f71f84baa0687c5bde0fa52"
+    },
+    "data/public_lectures/260c5f8650363c40fbc16069/module-1.mp4": {
+      "bytes": 342611,
+      "sha256": "c6ef3d43d688a0df3ded31781645d959ae109fc8c532217e8eff498b50adeef4"
+    },
+    "data/public_lectures/260c5f8650363c40fbc16069/module-2.mp4": {
+      "bytes": 333033,
+      "sha256": "8cd2b8c1b19c9d20a666e500dad0248acf3c0b22892e4b819fe768542c738cba"
+    },
+    "data/public_lectures/260c5f8650363c40fbc16069/script.json": {
+      "bytes": 657,
+      "sha256": "87be6427c73687b02c63145791e3aae661ec708fd4cd98be9a9a1dc30820a6d8"
+    },
     "data/public_lectures/2891e2688ca6e6f60fb71b0f/module-0.mp4": {
       "bytes": 473277,
       "sha256": "1ca57207e95da9623e94f6c5f95a59af126386594926853645e1c8124ff1244b"
@@ -458,6 +748,70 @@
     "data/public_lectures/2891e2688ca6e6f60fb71b0f/script.json": {
       "bytes": 750,
       "sha256": "5c10b303bd29d637b818d222dc6ce3c6c4ae0bcd3b654d11a89c14deb11dc0e3"
+    },
+    "data/public_lectures/2899ea59f9897c941be571b9/module-0.mp4": {
+      "bytes": 600321,
+      "sha256": "da4c5104229c5e9123d64696ea0cf75a93fe26ed19ed2505bf74deeb7ad03c4f"
+    },
+    "data/public_lectures/2899ea59f9897c941be571b9/module-1.mp4": {
+      "bytes": 533225,
+      "sha256": "fd5651e1f050d33c0fc3e1cdc853ea59b0d2b247aa0e0c19e7b9b2d6a6a179da"
+    },
+    "data/public_lectures/2899ea59f9897c941be571b9/module-2.mp4": {
+      "bytes": 440232,
+      "sha256": "19caff6b338fd113705e455baf6a78f02c9fe96d3b1ac9e29dacc3560bdca214"
+    },
+    "data/public_lectures/2899ea59f9897c941be571b9/script.json": {
+      "bytes": 714,
+      "sha256": "b5772dd1a8d972261bd2d72a062eae0a56b9457577585463eb8792bc54bf35ec"
+    },
+    "data/public_lectures/29e76c8ace3a9fa89fb78d0f/module-0.mp4": {
+      "bytes": 499547,
+      "sha256": "0eaf34e5b3d5ec7226684af4c84f35fd4583f09445816b7dd19324eaa3dd4598"
+    },
+    "data/public_lectures/29e76c8ace3a9fa89fb78d0f/module-1.mp4": {
+      "bytes": 603078,
+      "sha256": "6bcadd7719e84dda7966889f466c41ac7b50cff0f78f8c3e4a5a5f50557e481a"
+    },
+    "data/public_lectures/29e76c8ace3a9fa89fb78d0f/module-2.mp4": {
+      "bytes": 415707,
+      "sha256": "c6b074c74d347edf60a64a5084a7673204a56c1f0cd37d64444773039b27d804"
+    },
+    "data/public_lectures/29e76c8ace3a9fa89fb78d0f/script.json": {
+      "bytes": 727,
+      "sha256": "198489e420c82853848c86cf35eda088945b1692bcc05e94f9b32ba2ed563cf4"
+    },
+    "data/public_lectures/2aba60f4762e6cabc0b2e50f/module-0.mp4": {
+      "bytes": 470230,
+      "sha256": "e887f4b1f820a03def04169acdf10207ad531c55627dc6069baafdbb1d92ad46"
+    },
+    "data/public_lectures/2aba60f4762e6cabc0b2e50f/module-1.mp4": {
+      "bytes": 576807,
+      "sha256": "08e3576eba00ae4f4a0c7e4d88c2a7697b776616de5645acd259d80bc8de0d51"
+    },
+    "data/public_lectures/2aba60f4762e6cabc0b2e50f/module-2.mp4": {
+      "bytes": 396551,
+      "sha256": "ff53294636fad76de36c594fc05731ebf57e47e3ce1667e64ca08c4e7d98105f"
+    },
+    "data/public_lectures/2aba60f4762e6cabc0b2e50f/script.json": {
+      "bytes": 729,
+      "sha256": "ffea3f434e2dab5b952af845e6ecdae0148d02cd3e453900f29d87cf5ee15820"
+    },
+    "data/public_lectures/2f0af7bb729abb5c223b8cfd/module-0.mp4": {
+      "bytes": 487251,
+      "sha256": "d1d080451472c64a1d07a612636e45a66b0c1b35d6b2b90ce3bda35cc3f11980"
+    },
+    "data/public_lectures/2f0af7bb729abb5c223b8cfd/module-1.mp4": {
+      "bytes": 325193,
+      "sha256": "96b4486dd34945f2cfbf1b818985250f9996ee0c2ca45a9a6151d45fd9723944"
+    },
+    "data/public_lectures/2f0af7bb729abb5c223b8cfd/module-2.mp4": {
+      "bytes": 361282,
+      "sha256": "b939ff467014fd175e21829b0c155955ea135be9dc158e44f7acf40e2af6cce0"
+    },
+    "data/public_lectures/2f0af7bb729abb5c223b8cfd/script.json": {
+      "bytes": 651,
+      "sha256": "98caa1ca31bb56b41a6877366c463e2d967167a58ed9a82bb7e0628d10db8ff6"
     },
     "data/public_lectures/32412f314d947d1e64c8a88a/module-0.mp4": {
       "bytes": 528337,
@@ -475,6 +829,22 @@
       "bytes": 768,
       "sha256": "ee48268bf208fe4e84fe4403d7e764c64d9646ce5ced3a79bbe4921c5aa9b4b0"
     },
+    "data/public_lectures/3460c122c5170e8ec3b300be/module-0.mp4": {
+      "bytes": 512816,
+      "sha256": "24897032aa7b7132d10018bc363f6454451677ab66cc298f2ed47e0746c29726"
+    },
+    "data/public_lectures/3460c122c5170e8ec3b300be/module-1.mp4": {
+      "bytes": 530239,
+      "sha256": "e0b23b4f7903db8f696e589e01e3e3b4207a9f2e761ec4370925bbdf3d42c335"
+    },
+    "data/public_lectures/3460c122c5170e8ec3b300be/module-2.mp4": {
+      "bytes": 424355,
+      "sha256": "2f7096b39d36139ee6ea57baf6373aca6ee6f8262d74da9e25b28b265178a006"
+    },
+    "data/public_lectures/3460c122c5170e8ec3b300be/script.json": {
+      "bytes": 690,
+      "sha256": "d1733da4892022c356d4ba56a22787ca2ff8c93ecce34e68d03d3aefef9f4311"
+    },
     "data/public_lectures/35ad80690ca9ee6e7fb96bb0/module-0.mp4": {
       "bytes": 476088,
       "sha256": "8950ba4ab7ffff6212942c05807396b5ef57d651adf1c516b7c496ea84a3f631"
@@ -490,6 +860,38 @@
     "data/public_lectures/35ad80690ca9ee6e7fb96bb0/script.json": {
       "bytes": 774,
       "sha256": "c75acd5c38fe7104137d8109463789b7c2a99981b6f98d012ef28ba412b1f065"
+    },
+    "data/public_lectures/37a5065cafc9b81628dce35a/module-0.mp4": {
+      "bytes": 446889,
+      "sha256": "7837b4b9623c6a3b0155116795b59ffe743a3d205b09abb7a209b8e84116f7bb"
+    },
+    "data/public_lectures/37a5065cafc9b81628dce35a/module-1.mp4": {
+      "bytes": 562774,
+      "sha256": "1fb25e3f20ecb229f74f6f9462f5a25977b8ac4e541f83d306e67b595de12e67"
+    },
+    "data/public_lectures/37a5065cafc9b81628dce35a/module-2.mp4": {
+      "bytes": 383276,
+      "sha256": "db8dce1f5c13b6d2ccdb4decaf095099f4810bc00fb63a9b1883360fa958c446"
+    },
+    "data/public_lectures/37a5065cafc9b81628dce35a/script.json": {
+      "bytes": 723,
+      "sha256": "8cf40479abab2242ced9b86538c4d094aabfe3a6e82716ca04377fef36d773c5"
+    },
+    "data/public_lectures/38bc735dc504041b8594d968/module-0.mp4": {
+      "bytes": 511487,
+      "sha256": "ee8e2c7d570780bf666dc0f8eaaa27553c95c019e5073da9d4103c5649bbb781"
+    },
+    "data/public_lectures/38bc735dc504041b8594d968/module-1.mp4": {
+      "bytes": 372287,
+      "sha256": "83420721d262ec223d8c12306dbff96984274b36c26611b5934216c9a4f12982"
+    },
+    "data/public_lectures/38bc735dc504041b8594d968/module-2.mp4": {
+      "bytes": 420894,
+      "sha256": "cf7a076205311865f6d4bb75f990bba4742f843240630a4d779c4263544aba8c"
+    },
+    "data/public_lectures/38bc735dc504041b8594d968/script.json": {
+      "bytes": 663,
+      "sha256": "295298b39962b814697a5df828b66fe14a06529751ee82c4d6ac80567708a259"
     },
     "data/public_lectures/3fcac5f37aef7a10d2caf7a1/module-0.mp4": {
       "bytes": 486413,
@@ -507,6 +909,22 @@
       "bytes": 762,
       "sha256": "8afe3ef66fa4cb4290eace4de8fed63982500706cf0ef8d6585058c67da2642c"
     },
+    "data/public_lectures/445abddb137d94e1e12ef8c0/module-0.mp4": {
+      "bytes": 516938,
+      "sha256": "e99783b07ea78ce2d770027c63cbc69b020c654340d9d2ea986386de976a3d0f"
+    },
+    "data/public_lectures/445abddb137d94e1e12ef8c0/module-1.mp4": {
+      "bytes": 625172,
+      "sha256": "127c8e6a2d3d8c1282a426ac66d3f9754413829934040f96a42235ceb5150a61"
+    },
+    "data/public_lectures/445abddb137d94e1e12ef8c0/module-2.mp4": {
+      "bytes": 434658,
+      "sha256": "d92f040f3baf5fdf14fea5edf32366321cbe235d985774efe6644cfb7626ec99"
+    },
+    "data/public_lectures/445abddb137d94e1e12ef8c0/script.json": {
+      "bytes": 720,
+      "sha256": "6cbd0696800678a0d2da972179881337241e8c7c6e05ae24b26386d887c608b3"
+    },
     "data/public_lectures/44eb98db9a2fdcaf1569c72b/module-0.mp4": {
       "bytes": 497039,
       "sha256": "574047fc76969cef5dcdc45c77f8005b6e9234e17ce6c703a7364a4e9a26e823"
@@ -522,6 +940,22 @@
     "data/public_lectures/44eb98db9a2fdcaf1569c72b/script.json": {
       "bytes": 732,
       "sha256": "f9c81ffdf616b7c95a2487c0c92f395a4018fbf6aee0c4c43856e586873691af"
+    },
+    "data/public_lectures/46b6521a63cc9a1fd5edbb0d/module-0.mp4": {
+      "bytes": 457343,
+      "sha256": "2796f2f381f9aab9f1015aee262d8edd9ac6594564a50064841c35801f6764aa"
+    },
+    "data/public_lectures/46b6521a63cc9a1fd5edbb0d/module-1.mp4": {
+      "bytes": 361611,
+      "sha256": "daa25a3f99b94958ab7a681356a35f49dd0805074b6061f8883a76f9ad7a12c0"
+    },
+    "data/public_lectures/46b6521a63cc9a1fd5edbb0d/module-2.mp4": {
+      "bytes": 365953,
+      "sha256": "8eb96b492302ad580f78979305c28b2704412021be1f9401e01c244dd96f43da"
+    },
+    "data/public_lectures/46b6521a63cc9a1fd5edbb0d/script.json": {
+      "bytes": 657,
+      "sha256": "3e54fdf6e12ddb092ae68c95f9aa44388b6bf20be914d059d325ebc637847741"
     },
     "data/public_lectures/47c3f45a7cff63ea8e0b56d4/module-0.mp4": {
       "bytes": 536300,
@@ -539,6 +973,54 @@
       "bytes": 782,
       "sha256": "81a622a95f3189865e8f02605e136e67d534db1b944ad6bf3f85640bbb1a5cd0"
     },
+    "data/public_lectures/4819ed74297e1d9a5d0346d5/module-0.mp4": {
+      "bytes": 401323,
+      "sha256": "f8f4d878a78eaa63741018b6164cee7fb7536d564a57e4ecea64f615ac415f3a"
+    },
+    "data/public_lectures/4819ed74297e1d9a5d0346d5/module-1.mp4": {
+      "bytes": 487471,
+      "sha256": "c84fb5da9528e4ea0453326dfe7f09ad953fabc8d73754e0222ba65a7f9243ef"
+    },
+    "data/public_lectures/4819ed74297e1d9a5d0346d5/module-2.mp4": {
+      "bytes": 369012,
+      "sha256": "976a502e0e548c24918f10406a7fe28b61fd8b905f21fd25128a979aea57a3ef"
+    },
+    "data/public_lectures/4819ed74297e1d9a5d0346d5/script.json": {
+      "bytes": 687,
+      "sha256": "87d5a4af2df436cf9f98b631f17799a8d87b71ac6ee84aa243cca8b77f04ad84"
+    },
+    "data/public_lectures/4de6b8398e4a663f5650aa6f/module-0.mp4": {
+      "bytes": 499237,
+      "sha256": "21a5ee5f01fa57626568aaf76b646d75de35bfd866e667a1f2e52258be4fb6ee"
+    },
+    "data/public_lectures/4de6b8398e4a663f5650aa6f/module-1.mp4": {
+      "bytes": 444243,
+      "sha256": "97ea3b82c35873467c9a36166ce86d1e1b1a2543ee90065fd89700a8125965b7"
+    },
+    "data/public_lectures/4de6b8398e4a663f5650aa6f/module-2.mp4": {
+      "bytes": 407520,
+      "sha256": "fe44a22b44f39ccc9c5c9b16e5ec432156985211958991da96c4ff045ba6f9dd"
+    },
+    "data/public_lectures/4de6b8398e4a663f5650aa6f/script.json": {
+      "bytes": 678,
+      "sha256": "31ce5b82375dd55804fbfcd235643cabef89c2959a754e56e5689ecd0a7102c4"
+    },
+    "data/public_lectures/520999771f0a150795743c28/module-0.mp4": {
+      "bytes": 450294,
+      "sha256": "ffa3f52d9ee93b27b941e199fc1a80b911ca6a3cf487267ad37e08fbc0852875"
+    },
+    "data/public_lectures/520999771f0a150795743c28/module-1.mp4": {
+      "bytes": 538982,
+      "sha256": "d2c39966fda9567a9d9c1eea87c96246502d06612082b4ba51394f7f36e5817d"
+    },
+    "data/public_lectures/520999771f0a150795743c28/module-2.mp4": {
+      "bytes": 381894,
+      "sha256": "60e68317a515c6e26b194d9c4d188df241c7b6eca8f4c15a1112610cca2a3646"
+    },
+    "data/public_lectures/520999771f0a150795743c28/script.json": {
+      "bytes": 689,
+      "sha256": "ac32185937e4c92e9115849922bf55c61a31b8280e53a99061920f2b8408999f"
+    },
     "data/public_lectures/539f4568e01f0269f12b2ab7/module-0.mp4": {
       "bytes": 492031,
       "sha256": "a8b55b32baf3beb4029f85450e5034192a253da24ab0f43624b624b83a3a9f2c"
@@ -554,6 +1036,22 @@
     "data/public_lectures/539f4568e01f0269f12b2ab7/script.json": {
       "bytes": 747,
       "sha256": "8df93f14e2ef0ce9e46a896e52635d1ba1fcc8e724404d8f2d65b09772e43d32"
+    },
+    "data/public_lectures/567fb326ddeb5408dc16e974/module-0.mp4": {
+      "bytes": 479264,
+      "sha256": "b70749ee53753704afbec86baaec89b055de9465bdc246190d8bf56fa8dcb2a5"
+    },
+    "data/public_lectures/567fb326ddeb5408dc16e974/module-1.mp4": {
+      "bytes": 534855,
+      "sha256": "941f6803d495fed2a4cbdd22f557030b899fc97a8d8ec7c0408acdbed7b8baa5"
+    },
+    "data/public_lectures/567fb326ddeb5408dc16e974/module-2.mp4": {
+      "bytes": 435597,
+      "sha256": "011f62db8ef310ab955204f2614b410b3c9f9f3766aef9488c547fd640e2d439"
+    },
+    "data/public_lectures/567fb326ddeb5408dc16e974/script.json": {
+      "bytes": 681,
+      "sha256": "c75af74ed9f21f54419fb23846d2710d7c9c299e9c3728b6dd5594ed1ded6f97"
     },
     "data/public_lectures/57276a3a7073a0a90235275e/module-0.mp4": {
       "bytes": 536275,
@@ -571,6 +1069,22 @@
       "bytes": 765,
       "sha256": "4d8500b00a466ce13c894e91e0074dcfa5f6c9dcbc64153f1d5284f8e543d025"
     },
+    "data/public_lectures/57a6d876651f65d8963be7b2/module-0.mp4": {
+      "bytes": 555254,
+      "sha256": "fd63aa3ee56ff299bf353c75edd085a23ff1b73c5f497db6f7b87c50a5d86ae7"
+    },
+    "data/public_lectures/57a6d876651f65d8963be7b2/module-1.mp4": {
+      "bytes": 311980,
+      "sha256": "a63207367d690ef99f62356531d57ef27d63af00c4d0b2e41f15a473d6c7d126"
+    },
+    "data/public_lectures/57a6d876651f65d8963be7b2/module-2.mp4": {
+      "bytes": 393072,
+      "sha256": "1436860fbb60963474add914e365418039fa3a67e871ead04ee6e37d381cd6a6"
+    },
+    "data/public_lectures/57a6d876651f65d8963be7b2/script.json": {
+      "bytes": 678,
+      "sha256": "cfcd8ecfcd03a086f267d65f16f5c710404b1b53b7f156ae9ff37198a32f0e59"
+    },
     "data/public_lectures/5883c60d297090c9b94651ff/module-0.mp4": {
       "bytes": 462082,
       "sha256": "1c54bd02898d609378d36657eab54ea8389ce9113837fa7dd6d9dfe3da77f27c"
@@ -586,6 +1100,38 @@
     "data/public_lectures/5883c60d297090c9b94651ff/script.json": {
       "bytes": 759,
       "sha256": "1769f12aa45ce29b14a956b9ace2505e6085d02c73d32c5ee05117d0d8033d92"
+    },
+    "data/public_lectures/58fbe0b0c64a2e6c5d903a03/module-0.mp4": {
+      "bytes": 461057,
+      "sha256": "9dc6d98ef1e7b0a9c045b160d4ede85655027cd44e57b82015291610f82b0906"
+    },
+    "data/public_lectures/58fbe0b0c64a2e6c5d903a03/module-1.mp4": {
+      "bytes": 366182,
+      "sha256": "25e971f66f4c449225a090a2de9f824c88718df5f699e6624837ec6cc20aa94b"
+    },
+    "data/public_lectures/58fbe0b0c64a2e6c5d903a03/module-2.mp4": {
+      "bytes": 355832,
+      "sha256": "5f3fc7ff7156c0e778d78f3f499f2b61c778a6892c641edf67382d9c297da929"
+    },
+    "data/public_lectures/58fbe0b0c64a2e6c5d903a03/script.json": {
+      "bytes": 660,
+      "sha256": "3afeb5cfc50ea1a89b59c978802dbf3f5a386041f43d12215d4c61bb8aab9f43"
+    },
+    "data/public_lectures/60491b042428b11dd30bda90/module-0.mp4": {
+      "bytes": 499671,
+      "sha256": "1b805efe87bdc5bfe427b4924d3ccfa1eabe2545e7f04a882cdc47126f63d29f"
+    },
+    "data/public_lectures/60491b042428b11dd30bda90/module-1.mp4": {
+      "bytes": 393841,
+      "sha256": "bcc5f09925a35c95f68653d4f8f3d0fff05d1ab0441bfea56e0cbb048a258508"
+    },
+    "data/public_lectures/60491b042428b11dd30bda90/module-2.mp4": {
+      "bytes": 408571,
+      "sha256": "045dc55ccd6107d7718b60c303aaac0c15e1cdf135b3c5dec68e93b0950d0792"
+    },
+    "data/public_lectures/60491b042428b11dd30bda90/script.json": {
+      "bytes": 657,
+      "sha256": "ba9abe9b12fea304ae2cfb8828f60c178766e18246eaf25c20a472c6997d33f8"
     },
     "data/public_lectures/65308ad18b86bea9580b10c9/module-0.mp4": {
       "bytes": 466389,
@@ -603,6 +1149,86 @@
       "bytes": 731,
       "sha256": "02a3cb45726afbef37f79aa289254e3bbe55493a325758b17864a4b4b4c28759"
     },
+    "data/public_lectures/68cf646e62d688eb8928d03d/module-0.mp4": {
+      "bytes": 450948,
+      "sha256": "db34d72f878cad3539c77b479f34432e758bd86b0b03abbcb0fec77e2b6a9bf9"
+    },
+    "data/public_lectures/68cf646e62d688eb8928d03d/module-1.mp4": {
+      "bytes": 502537,
+      "sha256": "83f1531912bf490a6fb7bd0f7a005e69d4636add46011b3a49986a3f48bc2f1c"
+    },
+    "data/public_lectures/68cf646e62d688eb8928d03d/module-2.mp4": {
+      "bytes": 370188,
+      "sha256": "cc7bb60926a21ccd2a4b5041276801d5969857492abea15b3ccebb9cc13fae46"
+    },
+    "data/public_lectures/68cf646e62d688eb8928d03d/script.json": {
+      "bytes": 693,
+      "sha256": "613e8115ff93f1b237e5382a7daef55e7cf45fccd2916314ab6353a1be52d5c2"
+    },
+    "data/public_lectures/6996b111301574425c067fc3/module-0.mp4": {
+      "bytes": 457661,
+      "sha256": "aa5cc3b9104b175cea01356d4ce4423f02206bfde60640dfc815e50d565aafbb"
+    },
+    "data/public_lectures/6996b111301574425c067fc3/module-1.mp4": {
+      "bytes": 358088,
+      "sha256": "93cc84b69e7e89c65a467a34c3cfcee582d76b02572a6e42972e67fea60852e5"
+    },
+    "data/public_lectures/6996b111301574425c067fc3/module-2.mp4": {
+      "bytes": 364488,
+      "sha256": "d207d63f678d0e62795333d5cde30ea23945dfac94b3d11c7f430e8208b16dea"
+    },
+    "data/public_lectures/6996b111301574425c067fc3/script.json": {
+      "bytes": 657,
+      "sha256": "a7d7016eb13dac239742833fb45bd82ac7a45867eef567f2f2a58fd3df34d9c0"
+    },
+    "data/public_lectures/6aa4c2fa037ea5e45df0ac98/module-0.mp4": {
+      "bytes": 491347,
+      "sha256": "8ac1f74518061bcb08408e4763847033fcb1b12e59140241cb9adb82b1c7cddb"
+    },
+    "data/public_lectures/6aa4c2fa037ea5e45df0ac98/module-1.mp4": {
+      "bytes": 521369,
+      "sha256": "08f1251065c0faf907d601693a0b1e85c044c40ba3f08911779aedf8da45a31f"
+    },
+    "data/public_lectures/6aa4c2fa037ea5e45df0ac98/module-2.mp4": {
+      "bytes": 410296,
+      "sha256": "2b524fbadcc0a146a90981d0c8ffe476bf6bcfc0486c964793adbd0afc7b99c3"
+    },
+    "data/public_lectures/6aa4c2fa037ea5e45df0ac98/script.json": {
+      "bytes": 699,
+      "sha256": "3f3cb5d9c6a5eace5a1b42cd647ee77d6542c88fab6c1981ff5ac8481f8bcd72"
+    },
+    "data/public_lectures/6b82d7bda171a5a97bcb5a32/module-0.mp4": {
+      "bytes": 466315,
+      "sha256": "d6748c04ae2c77e020a83c5f77efc11356e283720809bfda6a7cbf547b4bc019"
+    },
+    "data/public_lectures/6b82d7bda171a5a97bcb5a32/module-1.mp4": {
+      "bytes": 345554,
+      "sha256": "979faf544f34d56e5ceb3d6c5736ce835ceb565624f04d66876d7fcad1dd36a7"
+    },
+    "data/public_lectures/6b82d7bda171a5a97bcb5a32/module-2.mp4": {
+      "bytes": 404513,
+      "sha256": "a797d5af762231c9d96622ed5a8b8c6f1f171017c3ae157782d742381d2ce178"
+    },
+    "data/public_lectures/6b82d7bda171a5a97bcb5a32/script.json": {
+      "bytes": 630,
+      "sha256": "d8674158302afd4a2765012be75e9838b701ba62eb411d0f0e7573946d2910ef"
+    },
+    "data/public_lectures/6f197757ee70e7af4919ea85/module-0.mp4": {
+      "bytes": 461226,
+      "sha256": "0c99ec6b5c2ecf3083d3480e5aba9e4f9c30cbc7d0f3d6ef63ca3e5cd9d51f87"
+    },
+    "data/public_lectures/6f197757ee70e7af4919ea85/module-1.mp4": {
+      "bytes": 345426,
+      "sha256": "11a0b8d632fb6df73ae09d0d335ab8bcdbfc38cadfcc8339d29acab824d48e2a"
+    },
+    "data/public_lectures/6f197757ee70e7af4919ea85/module-2.mp4": {
+      "bytes": 355999,
+      "sha256": "b566e5b1b7c94c9f223c397f2d83589deaf18c78666dbe908128640ec13e694f"
+    },
+    "data/public_lectures/6f197757ee70e7af4919ea85/script.json": {
+      "bytes": 654,
+      "sha256": "4144406282abfc65633f0a19cc8c3a78421ad43fdc12e749314ea1636d8d185a"
+    },
     "data/public_lectures/71c5159716902d0091046c1f/module-0.mp4": {
       "bytes": 477180,
       "sha256": "a0ba1c34ed2f6681ac5be76f7a84a88e17f1af9760bd8662eba47a211c426842"
@@ -618,6 +1244,22 @@
     "data/public_lectures/71c5159716902d0091046c1f/script.json": {
       "bytes": 761,
       "sha256": "a57dea9f07015d23b6ad8fdd2c738739648b31d74e3dac21b7a12888e5cb0092"
+    },
+    "data/public_lectures/72f3bb8cfeb3778403983005/module-0.mp4": {
+      "bytes": 459824,
+      "sha256": "f8987a5510576874eb141347bfcb483be4c970b8d44b7745289ab28c84894a39"
+    },
+    "data/public_lectures/72f3bb8cfeb3778403983005/module-1.mp4": {
+      "bytes": 386422,
+      "sha256": "4305f495c3d162e6bcae30845bb56d6d4b2703339d975b70292a977e68f0af20"
+    },
+    "data/public_lectures/72f3bb8cfeb3778403983005/module-2.mp4": {
+      "bytes": 414235,
+      "sha256": "fa22e943c03e5fc072b110a23b2c205b70f5c87f999954167f34b6b02d32e401"
+    },
+    "data/public_lectures/72f3bb8cfeb3778403983005/script.json": {
+      "bytes": 643,
+      "sha256": "bae022d21482b349fbe0b425073d45cb30afb6779b18faedc3e723c2f123ec43"
     },
     "data/public_lectures/73a63749e46c39e212fcebf8/module-0.mp4": {
       "bytes": 529339,
@@ -651,6 +1293,38 @@
       "bytes": 766,
       "sha256": "3f064576adc693656a19ab839bbad4a8d1d901ec71ae023c8b8965765f61730d"
     },
+    "data/public_lectures/76e814e5d96496eedb6f0451/module-0.mp4": {
+      "bytes": 403221,
+      "sha256": "f77952443d80686ec91db71debba0dac6c78759fba14d97c49ebf4362cc0fbea"
+    },
+    "data/public_lectures/76e814e5d96496eedb6f0451/module-1.mp4": {
+      "bytes": 502309,
+      "sha256": "c5713e85701d42a92158d5145bd46ed02b01b66c855be564445d11c6f64cdad4"
+    },
+    "data/public_lectures/76e814e5d96496eedb6f0451/module-2.mp4": {
+      "bytes": 372379,
+      "sha256": "222491704d06c943442defb088c0d2d1ccfc55a8ae0965ceeb62a0ab3fd56de7"
+    },
+    "data/public_lectures/76e814e5d96496eedb6f0451/script.json": {
+      "bytes": 678,
+      "sha256": "9d259314c8f6b7d2bb45d32e826ff2cc5a31bc14b9452acf2d921a24c45258af"
+    },
+    "data/public_lectures/78c92997684b41ad8d586a34/module-0.mp4": {
+      "bytes": 514098,
+      "sha256": "d115c49e59faa948e3d38a668afefe658973bfd019ca7bf76bcb47857b772e45"
+    },
+    "data/public_lectures/78c92997684b41ad8d586a34/module-1.mp4": {
+      "bytes": 431841,
+      "sha256": "e7bc788bad74f769d2eba97f563a87c869946f3bb5934ceb46636e1a33bef7cb"
+    },
+    "data/public_lectures/78c92997684b41ad8d586a34/module-2.mp4": {
+      "bytes": 423827,
+      "sha256": "c2734049400d6bd4a83bf81239e6f85876039251517d73c3814025c2d885c730"
+    },
+    "data/public_lectures/78c92997684b41ad8d586a34/script.json": {
+      "bytes": 659,
+      "sha256": "e9aa9997ccd2761caff87b07c23995be7178615641747f0f3a2b0e4fd3674460"
+    },
     "data/public_lectures/7beafc28bc3f26c7850505b4/module-0.mp4": {
       "bytes": 464495,
       "sha256": "668ea5710b66c4be798e515e5b3a9cd89d9ebf269d4e388d19b7dfff31fd762b"
@@ -682,6 +1356,22 @@
     "data/public_lectures/7c6fc77b4863bdf284cbb062/script.json": {
       "bytes": 735,
       "sha256": "b29d81461d3f621234bf4cd6c04ba4e9dc344933bea01e29cf35e135ae6d94a5"
+    },
+    "data/public_lectures/7dc4244a2fe9c421b9e6f733/module-0.mp4": {
+      "bytes": 518765,
+      "sha256": "32e1041c2d72f19061aa14ba9b6b40667dd2ad56a5f4f38e9b5a4b970a0c7644"
+    },
+    "data/public_lectures/7dc4244a2fe9c421b9e6f733/module-1.mp4": {
+      "bytes": 346715,
+      "sha256": "efff3a945589d825ff3defaa917ac05e1d78249003b0b57b7e5acf52dae083a3"
+    },
+    "data/public_lectures/7dc4244a2fe9c421b9e6f733/module-2.mp4": {
+      "bytes": 412328,
+      "sha256": "ecafaa0afa2df56773bb1e7a89dd36478457024a6c1061137359adfef50289e4"
+    },
+    "data/public_lectures/7dc4244a2fe9c421b9e6f733/script.json": {
+      "bytes": 648,
+      "sha256": "8c7b00ba5c5c8c9461d984e135542efa878a48503306a09bd53f0b0b40d443d2"
     },
     "data/public_lectures/7ea2df70d26ed5faa00cb387/module-0.mp4": {
       "bytes": 500023,
@@ -715,6 +1405,22 @@
       "bytes": 722,
       "sha256": "a466fa897f6a7367640aa8ae0b21dc09a2161f02b1ee4cfa47f151c632fbcf09"
     },
+    "data/public_lectures/82532bfe8439823438bf0a37/module-0.mp4": {
+      "bytes": 477022,
+      "sha256": "40b72477ae53d43fef3db9b4d7d483c44e6545f62285615af3d037c28fd7189c"
+    },
+    "data/public_lectures/82532bfe8439823438bf0a37/module-1.mp4": {
+      "bytes": 424034,
+      "sha256": "de26334648548b56e72ac061ed7f9680425e50701cff0d0c267b71bdccd1edc6"
+    },
+    "data/public_lectures/82532bfe8439823438bf0a37/module-2.mp4": {
+      "bytes": 420479,
+      "sha256": "d40806aa72c4e30311f0b679c396397f63c87bfecae5518d2d59c622a96bcaf3"
+    },
+    "data/public_lectures/82532bfe8439823438bf0a37/script.json": {
+      "bytes": 657,
+      "sha256": "2df340b4ad650faba9cb89298c731d756ee435776871623f32da4ce18a110de7"
+    },
     "data/public_lectures/830f06fb5ff7b9f00179cc4e/module-0.mp4": {
       "bytes": 538462,
       "sha256": "507fa40c85ed479f93768623317e42bce20a3701df18f5c8c6c24ae6c108e5f3"
@@ -747,6 +1453,118 @@
       "bytes": 765,
       "sha256": "842e2a62b2bfcb8533408a9e0b41542ad906beced0951918d67269a7088e1218"
     },
+    "data/public_lectures/8b1295db81bacc220ff6099e/module-0.mp4": {
+      "bytes": 386618,
+      "sha256": "26468f9105753edc656761d0088256f1219ab18defb8a46a521dbb3eece173c3"
+    },
+    "data/public_lectures/8b1295db81bacc220ff6099e/module-1.mp4": {
+      "bytes": 322557,
+      "sha256": "3746a595d1222e445bbd44db8bdc428ac827d6befcdc9d23d3d47358341cd20f"
+    },
+    "data/public_lectures/8b1295db81bacc220ff6099e/module-2.mp4": {
+      "bytes": 340733,
+      "sha256": "b07a38303fe551500c40c2b7da88cc20537fd2de13291f51d32aee0b66333d83"
+    },
+    "data/public_lectures/8b1295db81bacc220ff6099e/script.json": {
+      "bytes": 630,
+      "sha256": "9dd7d964ec2d05b3a93ba88a5d479f8002e4d9040d605c6ca063633a483cfb1a"
+    },
+    "data/public_lectures/8c18cd52b696c4b889f4375a/module-0.mp4": {
+      "bytes": 481952,
+      "sha256": "af905f68d1613320c1d14b2548036f96c4814f57adf57bfc1a7df9baf4c0be9f"
+    },
+    "data/public_lectures/8c18cd52b696c4b889f4375a/module-1.mp4": {
+      "bytes": 317034,
+      "sha256": "eec0aa815bd8af6bda9fc28155f584226b61d253920aa3e7a1a4ad7b27c2394d"
+    },
+    "data/public_lectures/8c18cd52b696c4b889f4375a/module-2.mp4": {
+      "bytes": 383495,
+      "sha256": "2f67b77af405783163bd77c5a98e6139ea732d47121409b554f1b1289d6bff26"
+    },
+    "data/public_lectures/8c18cd52b696c4b889f4375a/script.json": {
+      "bytes": 651,
+      "sha256": "a9e4c2e358cd9d215bb7d4279995142e64be6146e00afb52387e229fe412c4c1"
+    },
+    "data/public_lectures/96621413279fbb76ec039d1f/module-0.mp4": {
+      "bytes": 515395,
+      "sha256": "fb62f7504c74f02dfb56fd1c311feb8a393d95418f81766ce23838e3d9dfd98b"
+    },
+    "data/public_lectures/96621413279fbb76ec039d1f/module-1.mp4": {
+      "bytes": 603564,
+      "sha256": "50b24d3ab2b5acbf397df6c2ef47c7992f2b27c29c5bff11ca5e0cddb3e46ca9"
+    },
+    "data/public_lectures/96621413279fbb76ec039d1f/module-2.mp4": {
+      "bytes": 436921,
+      "sha256": "3996c2cf54c7ebfc92b0409b877ba7961c998f3c1be34879f1005dc56af3f65e"
+    },
+    "data/public_lectures/96621413279fbb76ec039d1f/script.json": {
+      "bytes": 686,
+      "sha256": "42f439b46a62a5f6e9161090e3883b789f4aeb11dbe19ac9b6391fdaaced45d1"
+    },
+    "data/public_lectures/966df2514f8ef1caf99baaf0/module-0.mp4": {
+      "bytes": 484064,
+      "sha256": "82759e65bc42d8572a0b5c3a2f1f4f06644c523d855d72e27d63ac989b55052f"
+    },
+    "data/public_lectures/966df2514f8ef1caf99baaf0/module-1.mp4": {
+      "bytes": 338784,
+      "sha256": "40e5a25fef4b0cb4c37e425b12f040ef879d8803445cacf1537f6bf26f28b6e3"
+    },
+    "data/public_lectures/966df2514f8ef1caf99baaf0/module-2.mp4": {
+      "bytes": 357549,
+      "sha256": "2940dd0fd77253380e8e9d6a3cde8313ddffe79fa985f3bbb35edf3ba0790fe7"
+    },
+    "data/public_lectures/966df2514f8ef1caf99baaf0/script.json": {
+      "bytes": 660,
+      "sha256": "1ed4ccb20efe84205438aa2e7ac44c8f7c416f0a10360aa4b29155f048785896"
+    },
+    "data/public_lectures/a58ab354d677d2f97bdf5de3/module-0.mp4": {
+      "bytes": 472414,
+      "sha256": "c7fca3d19e3baaea8e0a4660025d4438a82354c96728888551dfa551f35cd84a"
+    },
+    "data/public_lectures/a58ab354d677d2f97bdf5de3/module-1.mp4": {
+      "bytes": 336031,
+      "sha256": "455b93929804ab0befbcc962a8183903345b3b9f995d49a9a0961dc773f6ade5"
+    },
+    "data/public_lectures/a58ab354d677d2f97bdf5de3/module-2.mp4": {
+      "bytes": 352871,
+      "sha256": "c605c01c2c23e444065576b9327d523f068199caaa9cd9da41271a444349139f"
+    },
+    "data/public_lectures/a58ab354d677d2f97bdf5de3/script.json": {
+      "bytes": 657,
+      "sha256": "2fee788a781fd4da8240a47104f3260e1a8f00914d262d7dd2a25419056b1fe4"
+    },
+    "data/public_lectures/b01abc0acc37f14bea7756dc/module-0.mp4": {
+      "bytes": 461362,
+      "sha256": "67d75f568b51bc145287cdcb1a98e45e220883de06890e84ac30c35ff59902d8"
+    },
+    "data/public_lectures/b01abc0acc37f14bea7756dc/module-1.mp4": {
+      "bytes": 475498,
+      "sha256": "7a8603ea4b841605657145a96b095ee2774ef76f6859f04763f3bcfcb13d5c4c"
+    },
+    "data/public_lectures/b01abc0acc37f14bea7756dc/module-2.mp4": {
+      "bytes": 379184,
+      "sha256": "41b67bb49d72f2bf99a6e4f6ffcae68496a9171258313bde5d1a016ae05e8d2b"
+    },
+    "data/public_lectures/b01abc0acc37f14bea7756dc/script.json": {
+      "bytes": 693,
+      "sha256": "d7a4fc36fbb7574f660deae510c314b611bbf144ae66465e040ef72ebfa6578f"
+    },
+    "data/public_lectures/b06f9d845654915f18f70d74/module-0.mp4": {
+      "bytes": 447996,
+      "sha256": "d2130013a4d54cb7aba7f8c6a89cc299ac8ee93b2af2c647cfc86afc55c03024"
+    },
+    "data/public_lectures/b06f9d845654915f18f70d74/module-1.mp4": {
+      "bytes": 363065,
+      "sha256": "8b44d17ef2663b049b9b22edfa4d62c7cdf0e9ac2e01111532e468c646e03f02"
+    },
+    "data/public_lectures/b06f9d845654915f18f70d74/module-2.mp4": {
+      "bytes": 359110,
+      "sha256": "3112d541735c5a6038203169b5b3893e81e0476de769cf9a9f0230bdf122ac5f"
+    },
+    "data/public_lectures/b06f9d845654915f18f70d74/script.json": {
+      "bytes": 666,
+      "sha256": "9794c8a016ead56693b5e2348ddf0c0baa92b5abe9e29630c882f1ef33174916"
+    },
     "data/public_lectures/b0c50c7d08d512cab4ca80be/module-0.mp4": {
       "bytes": 491994,
       "sha256": "f37aae3515b77518bcdaa18283cfb0486a3698da0b9c367af027ed11904b2c04"
@@ -762,6 +1580,38 @@
     "data/public_lectures/b0c50c7d08d512cab4ca80be/script.json": {
       "bytes": 768,
       "sha256": "0ae744e25ce8e22a52c7c1e2ae66abeebd4271d7308232cc587936cd4dd3e9f1"
+    },
+    "data/public_lectures/b0ff6e74ce452adfe6de6145/module-0.mp4": {
+      "bytes": 494069,
+      "sha256": "87c003ebdf30b24b948b3c550f303d0f9a1b9d453c3bc0629f963d845653a095"
+    },
+    "data/public_lectures/b0ff6e74ce452adfe6de6145/module-1.mp4": {
+      "bytes": 623342,
+      "sha256": "2469786be74a6e40053bd688d73348a0b88bf74b750a6d96617d80bb73950b7e"
+    },
+    "data/public_lectures/b0ff6e74ce452adfe6de6145/module-2.mp4": {
+      "bytes": 421588,
+      "sha256": "130c46c1033207a38fbfcaf6acbfdb7d8fb7cd46ec27b766614db06d7ade327f"
+    },
+    "data/public_lectures/b0ff6e74ce452adfe6de6145/script.json": {
+      "bytes": 738,
+      "sha256": "cfc71f7874299c2e013ddad52b04d057055d9b7db94509157b59f902b3a71d79"
+    },
+    "data/public_lectures/b1160429107c8175dc5fe893/module-0.mp4": {
+      "bytes": 516476,
+      "sha256": "dba58567b8ef6f12d8f75fddb457bca348f65cc572a12c3e4b08ada7475b1ecb"
+    },
+    "data/public_lectures/b1160429107c8175dc5fe893/module-1.mp4": {
+      "bytes": 431242,
+      "sha256": "88bcb4f400222292a8b20ffa2a92a1759fe5918d60125ac1e7c0e5dc491acfe0"
+    },
+    "data/public_lectures/b1160429107c8175dc5fe893/module-2.mp4": {
+      "bytes": 421958,
+      "sha256": "10cc3e5ba46d31cb1005d625e8850a6d65fe2eb924a4788eb3469ad69b7a982b"
+    },
+    "data/public_lectures/b1160429107c8175dc5fe893/script.json": {
+      "bytes": 669,
+      "sha256": "3d193eac36422c8e56af0b125929dff9848a7b09c342eacc69f4ba4a67bfb707"
     },
     "data/public_lectures/b32917549d0d136f3ae27567/module-0.mp4": {
       "bytes": 467419,
@@ -779,6 +1629,38 @@
       "bytes": 747,
       "sha256": "395c37102ab0517f359c89a49165f1e9043ccf13fe325d8e28fbb57ff35efbd1"
     },
+    "data/public_lectures/bc8c2299a3cdbbd33694e2e1/module-0.mp4": {
+      "bytes": 439527,
+      "sha256": "42143ec2dd8c2c87586f471b6be33db8f7abdf8bb11bbdeebee1728b7160fc7d"
+    },
+    "data/public_lectures/bc8c2299a3cdbbd33694e2e1/module-1.mp4": {
+      "bytes": 393084,
+      "sha256": "2f36c04eda24c863b12e6f9586ef0227bf5e6604b5976c51e0304cb17c9fe21d"
+    },
+    "data/public_lectures/bc8c2299a3cdbbd33694e2e1/module-2.mp4": {
+      "bytes": 382551,
+      "sha256": "dc50562cb1afc80761f51f4defc6ba473e3558490183dd11f70b8ffa9d762571"
+    },
+    "data/public_lectures/bc8c2299a3cdbbd33694e2e1/script.json": {
+      "bytes": 657,
+      "sha256": "41b560f6fb4a1daf6223d67de3742225064b34d744a310fda85d04498245a03a"
+    },
+    "data/public_lectures/bd06a7e24e6c59e40732cccb/module-0.mp4": {
+      "bytes": 463168,
+      "sha256": "668532095b013e3b6793d8191d8a101f85715ea9c5821784567a3636497c3cb0"
+    },
+    "data/public_lectures/bd06a7e24e6c59e40732cccb/module-1.mp4": {
+      "bytes": 516407,
+      "sha256": "ebc2a6180d7ef5dcd597c63d55c91c00b6cbc30bb784d055bd25dc2037cf8c17"
+    },
+    "data/public_lectures/bd06a7e24e6c59e40732cccb/module-2.mp4": {
+      "bytes": 385713,
+      "sha256": "af9816af48f78fb12b8e7f91b7931eb40195095f7a54201908cdf1734fe91ce7"
+    },
+    "data/public_lectures/bd06a7e24e6c59e40732cccb/script.json": {
+      "bytes": 702,
+      "sha256": "e80d5a876f97fcb1051003a2f18f8a605668d0843bb95bfba592a60342e5bb2f"
+    },
     "data/public_lectures/c12f5bc8263c5d4bad58d472/module-0.mp4": {
       "bytes": 447051,
       "sha256": "01c5d7acea8f4f72ba09756d649229a95cbaf1bcc54333b0e90f7b15eb9b4334"
@@ -794,6 +1676,22 @@
     "data/public_lectures/c12f5bc8263c5d4bad58d472/script.json": {
       "bytes": 750,
       "sha256": "be0f3f8b2ba38efd612a19fa0495343ffdcf357873120d0bb320a6d999b53971"
+    },
+    "data/public_lectures/c2231a81ed0c871a0a41ecdc/module-0.mp4": {
+      "bytes": 461849,
+      "sha256": "e24776db75170c44b9976cb32dca5a1b6fc10ac9e6663343d10a21c69a54dd21"
+    },
+    "data/public_lectures/c2231a81ed0c871a0a41ecdc/module-1.mp4": {
+      "bytes": 493103,
+      "sha256": "d19533dd17aab38f2c6b49d8c93a310aa62d4269c4ed7e097f95ba8c73793b87"
+    },
+    "data/public_lectures/c2231a81ed0c871a0a41ecdc/module-2.mp4": {
+      "bytes": 389209,
+      "sha256": "e0c1b9722431db5dd231441e192ecbf2085734b76efef2bb490deedcff523cc7"
+    },
+    "data/public_lectures/c2231a81ed0c871a0a41ecdc/script.json": {
+      "bytes": 693,
+      "sha256": "397bfc46061b461f053bdface464eeaa2e91e2974a42d66b7c3948802998169c"
     },
     "data/public_lectures/c6f196a432d24a303f8f47ed/module-0.mp4": {
       "bytes": 515244,
@@ -828,8 +1726,24 @@
       "sha256": "9e425ea349bd9524b65ea091ed5c889789f80c6ef20b93a7f5cdb4b44093f715"
     },
     "data/public_lectures/catalog.json": {
-      "bytes": 176085,
-      "sha256": "866d843f3069146095398a2fefa7b1b5ddc065d877c69c178ec8b38ef6df9fb8"
+      "bytes": 401343,
+      "sha256": "9d80a6a27c592bea6c880914029a63ed95cf3150e44c3bf92bb4f2c6bdc4a63a"
+    },
+    "data/public_lectures/ce427ba3b4760e62a79332ce/module-0.mp4": {
+      "bytes": 500382,
+      "sha256": "a4fabed0b7d307d2fe083bf140dcf81710a4312c38e7563115b17e9808534a80"
+    },
+    "data/public_lectures/ce427ba3b4760e62a79332ce/module-1.mp4": {
+      "bytes": 528979,
+      "sha256": "cf53a78e5ee952ad4d91600b66d16cc465aa208e72f1f9ae5f8278bff9a2174a"
+    },
+    "data/public_lectures/ce427ba3b4760e62a79332ce/module-2.mp4": {
+      "bytes": 431860,
+      "sha256": "f9276206730c413ec3752a4fe2bd848b9e469794a884416560bc7f946dd88f95"
+    },
+    "data/public_lectures/ce427ba3b4760e62a79332ce/script.json": {
+      "bytes": 684,
+      "sha256": "94c6eaa9f5efa0debb79374bde9580a2461b3ba76651a04f34d027ae5a368b5c"
     },
     "data/public_lectures/d0859bb955df6f8cf4921748/module-0.mp4": {
       "bytes": 463636,
@@ -846,6 +1760,38 @@
     "data/public_lectures/d0859bb955df6f8cf4921748/script.json": {
       "bytes": 735,
       "sha256": "e69f9c9a0f570232b9bd33fedd438efe37af3ecb90f10546ded9da2dd9e40ea8"
+    },
+    "data/public_lectures/d10978e4c8a1c535d3210b7c/module-0.mp4": {
+      "bytes": 492871,
+      "sha256": "143fdc97df6f730e1568046b7b7e4e69feca79a02a6ba903d5a78bc35046defa"
+    },
+    "data/public_lectures/d10978e4c8a1c535d3210b7c/module-1.mp4": {
+      "bytes": 350471,
+      "sha256": "996c25f2041abc7392f71a1d6d179cf52fec17e1c35eafbad67ca2f9e65f0906"
+    },
+    "data/public_lectures/d10978e4c8a1c535d3210b7c/module-2.mp4": {
+      "bytes": 404396,
+      "sha256": "d4556d7610c4cf62d2396b08b6ac816141c33e3f3984995f0dcb6dd0f401cc6f"
+    },
+    "data/public_lectures/d10978e4c8a1c535d3210b7c/script.json": {
+      "bytes": 654,
+      "sha256": "8e6013e6cf880a40e202033dadf00f6e7049318b7a3336f7dd422181d6c58992"
+    },
+    "data/public_lectures/d2040ee796ebb7db08241e97/module-0.mp4": {
+      "bytes": 561649,
+      "sha256": "1f39eac7dcacdeaaf8e8abf0ffa9e1c5e1157d3bf7aea9b205775571ed8ca552"
+    },
+    "data/public_lectures/d2040ee796ebb7db08241e97/module-1.mp4": {
+      "bytes": 373521,
+      "sha256": "29caab5f0fb14e1efa71f20a4f3d97c08ea1a117383d6087af01d99a2c5762b2"
+    },
+    "data/public_lectures/d2040ee796ebb7db08241e97/module-2.mp4": {
+      "bytes": 432115,
+      "sha256": "a66c57c7bec2a38966ebf3d5a50c6ec2530612de3f7798c989b4e55c7e468713"
+    },
+    "data/public_lectures/d2040ee796ebb7db08241e97/script.json": {
+      "bytes": 666,
+      "sha256": "a5f656d8fcf6f4983cbcb7f681930d3e59c54c26dd9ccec158afc11cbd18ddc5"
     },
     "data/public_lectures/d3f64da05f7192d7a2bddc6d/module-0.mp4": {
       "bytes": 508018,
@@ -878,6 +1824,38 @@
     "data/public_lectures/d6ca8ecd58c10c75070f0634/script.json": {
       "bytes": 747,
       "sha256": "02f61a286e8681768e9ac17743c9818019b85ee79a6483bc71874c56b24fb728"
+    },
+    "data/public_lectures/db7eec5dcf0316bd9da6985e/module-0.mp4": {
+      "bytes": 475798,
+      "sha256": "875ffe728695549b4c9343b3378228ca911276ce9d7ec77ab12211fedd3810b4"
+    },
+    "data/public_lectures/db7eec5dcf0316bd9da6985e/module-1.mp4": {
+      "bytes": 410674,
+      "sha256": "a5cfb8373f851b0eb347ee5b75abc0fed643501a77dd64aea6967e3f36175bd5"
+    },
+    "data/public_lectures/db7eec5dcf0316bd9da6985e/module-2.mp4": {
+      "bytes": 388646,
+      "sha256": "6047db1d9fed5f942ed6c57a66cb8d5c7c6076be467cdf0973507bc576964b00"
+    },
+    "data/public_lectures/db7eec5dcf0316bd9da6985e/script.json": {
+      "bytes": 652,
+      "sha256": "ee4f789668b161a027875d6d630de677727aff18e7216b4c4d6c99728c1e8864"
+    },
+    "data/public_lectures/dd1060db14d9b7d3a3d0ffca/module-0.mp4": {
+      "bytes": 498153,
+      "sha256": "7342db90b02dc1f840bf7de57ab46f177a0ee2961f254348fd70343b43050509"
+    },
+    "data/public_lectures/dd1060db14d9b7d3a3d0ffca/module-1.mp4": {
+      "bytes": 404440,
+      "sha256": "20568f5402d152042bbff472209cc747bfc61cc678857af71ae9cc88070d7e82"
+    },
+    "data/public_lectures/dd1060db14d9b7d3a3d0ffca/module-2.mp4": {
+      "bytes": 401343,
+      "sha256": "c489304c88dcbc70f85de31cb1e1f8c15a16741fd7f42e1d00841a1ab84681cd"
+    },
+    "data/public_lectures/dd1060db14d9b7d3a3d0ffca/script.json": {
+      "bytes": 669,
+      "sha256": "97e83933169ce58c39be10d34f6f475f951e6420f16cf54e1418e54d6fc6b37e"
     },
     "data/public_lectures/df4f00bb5f86c3795bb92d14/module-0.mp4": {
       "bytes": 466989,
@@ -959,6 +1937,22 @@
       "bytes": 741,
       "sha256": "e68fe3bf94c12e5dc525fe6ad19b5395585a679e0089bbdcaf5353e616b77846"
     },
+    "data/public_lectures/eb3b7143dacc387d6a4dde76/module-0.mp4": {
+      "bytes": 480545,
+      "sha256": "ccb489a020840a6ac3e5d612258e0264f0cca59ee9e0d1166e2a5c90ce2dff40"
+    },
+    "data/public_lectures/eb3b7143dacc387d6a4dde76/module-1.mp4": {
+      "bytes": 564312,
+      "sha256": "d78c86e23de2f68f42ee62c48c4f88af945261ebbe7f829bc33db5ffbbeabeb4"
+    },
+    "data/public_lectures/eb3b7143dacc387d6a4dde76/module-2.mp4": {
+      "bytes": 398649,
+      "sha256": "95d9c8d82bf0c994854bffaa8c64b481521c7aa63e86eafe83d635755755cca6"
+    },
+    "data/public_lectures/eb3b7143dacc387d6a4dde76/script.json": {
+      "bytes": 695,
+      "sha256": "07f2fbd81641476eb0568efaaeccb114fa11675a7351ee5351a99cc0cafa3624"
+    },
     "data/public_lectures/eb765bd344d43526367ea343/module-0.mp4": {
       "bytes": 538123,
       "sha256": "8130a9833a06c22970350e62c7b4afa1d3d891ef97160d7f04a58c6cef6f3d4d"
@@ -990,6 +1984,22 @@
     "data/public_lectures/ed21b38ea48f18ac378848e8/script.json": {
       "bytes": 750,
       "sha256": "db03411943f769f6274c29c35d311f1fd05ca401862fe6bd6d014832975acf5d"
+    },
+    "data/public_lectures/f30fb570b2201d28a7be8e9a/module-0.mp4": {
+      "bytes": 521642,
+      "sha256": "c0540ba028dffdc57b9058ef206530e938632a9e82673978b8c9a106ca285550"
+    },
+    "data/public_lectures/f30fb570b2201d28a7be8e9a/module-1.mp4": {
+      "bytes": 539069,
+      "sha256": "5e8551b388fc4c6082e07b98afd77d7b3e1e72a4174d07304168e57f851fd03a"
+    },
+    "data/public_lectures/f30fb570b2201d28a7be8e9a/module-2.mp4": {
+      "bytes": 430316,
+      "sha256": "a3e4827c26bf57b0d897ad7db69c0efb7700b3e31b3b488119988236bc2843eb"
+    },
+    "data/public_lectures/f30fb570b2201d28a7be8e9a/script.json": {
+      "bytes": 690,
+      "sha256": "406450433ef0259c01bec7da71bb317732c3e491aa9156f54e8a1b7f7e77003c"
     },
     "data/public_lectures/f69ad4d9ead77a908c38c53e/module-0.mp4": {
       "bytes": 488601,
@@ -1054,6 +2064,22 @@
     "data/public_lectures/fbba767113ed71d05e0f21d1/script.json": {
       "bytes": 728,
       "sha256": "4fef79623858589c929f99cf7ec048530214a73d770e561d1e45e1a7712bdcde"
+    },
+    "data/public_lectures/fd05bcd5ae4e6a1507a213bb/module-0.mp4": {
+      "bytes": 498388,
+      "sha256": "4c605c5ba6d53d70514415911eed936907d5788b35220b49778bd93de808941d"
+    },
+    "data/public_lectures/fd05bcd5ae4e6a1507a213bb/module-1.mp4": {
+      "bytes": 408626,
+      "sha256": "c7097b08302046525387f23c7daa917ec98ae512a9ebd92e85c3f60b5dc40468"
+    },
+    "data/public_lectures/fd05bcd5ae4e6a1507a213bb/module-2.mp4": {
+      "bytes": 399416,
+      "sha256": "987ed5916b86e8f488c04a9a278b986353b98dc9926bc73846536d2a0065ccef"
+    },
+    "data/public_lectures/fd05bcd5ae4e6a1507a213bb/script.json": {
+      "bytes": 668,
+      "sha256": "bef6260bb9d9bbdeac71d44ca4973ba0a473929c8613f3697f837ca6363b031f"
     },
     "data/public_lectures/fe41803b05638571188d9444/module-0.mp4": {
       "bytes": 475375,
@@ -3435,7 +4461,5 @@
       "bytes": 487258,
       "sha256": "9a95a37bfd6f2429b6cbf7b17b1b5e3cb39ff88e5890ebb6e115a13447179340"
     }
-  },
-  "contains_original_teaching_footage": false,
-  "contains_private_epa_frames": false
+  }
 }

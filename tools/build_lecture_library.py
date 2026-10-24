@@ -33,6 +33,34 @@ def plans():
         result.append({'case':case,'profession':course['professions'][0],'actor':characters.get_actor('he-sw'),'audiences':course['professions'],
             'sections':[('情境與家屬視角',BRIEFS[case['id']]),('支援角色與專業界線','本片是跨專業溝通補充導讀。先了解病人與家屬的疑慮、意願及可用支持；臨床判斷由相應醫事專業負責。'),('交接與練習目的','說清楚誰需要協助、已知資料和待核對事項，再確認接收者與下一步。資源連結需依實際院內流程。')],
             'lecturer_scope':'社工支援導讀：家庭溝通與資源協調，不代替醫事技能教學'})
+    # Legacy lessons remain selectable. They need their own source-bound videos;
+    # a same-topic COURSE video must never supply a different patient's facts.
+    for original in registry.cases:
+        if original['id'] in curriculum.COURSES or original.get('teacher_authored'):continue
+        for profession in original['professions']:
+            case=curriculum.adapt_case(original,profession,1,{})
+            actor=characters.get_actor(lecture_library.recommended(profession))
+            if case['id'].startswith('SARC-'):
+                context='本教案練習肌少症照護的資料核對與團隊合作。先讀病人背景，區分已知與待確認的資訊。'
+            else:
+                context='本教案是'+case['title']+'。先讀病人背景，再確認本職類需處理的問題。'
+            terms={'PT':['功能','肌力','運動','復健','坐站'],'DT':['飲食','營養','熱量','蛋白','醣'],
+                   'RN':['照護','衛教','安全','辨識','換藥'],'MD':['診斷','評估','整合','照護'],
+                   'RT':['DXA','影像','X光','輻射','防護','擺位'],'ST':['吞嚥','舌壓','質地'],'AUD':['耳','眩暈','聽'],
+                   'RPH':['用藥','胰島','低血糖','吸入'],'RSP':['氧氣','呼吸'],'OT':['輔具','副木','生活'],
+                   'MLS':['採血','檢驗'],'CP':['心理','認知','同理']}
+            task=next((g for g in case.get('goals',[]) if any(t in g for t in terms.get(profession,[]))),
+                      '以本職資料說明依據，釐清安全風險與跨專業分工')
+            if case['id']=='SARC-DT-SBAR-001':
+                task={'PT':'整理活動能力、運動耐受度與疲勞觀察，與營養師核對補充資料及共同追蹤方式',
+                      'DT':'整理飲食與營養資料，向物理治療師確認運動後的疲勞、補充需求及共同追蹤方式',
+                      'RN':'整理日常照護與安全觀察，協助營養與物理治療團隊確認資料與追蹤分工',
+                      'MD':'整合營養與物理治療回報，辨識資料缺口並確認各職類的評估與追蹤責任'}[profession]
+            sections=[('情境與觀察目標',context),
+                (lecture_library.LABELS[profession]+'學習任務','本輪練習：'+task+'。資料不足先核對；實際技能由教師觀察。'),
+                ('交接與學習確認','以SBAR提出具體請求，確認接收者、回報方式與下一步；影片不代表正式能力核定。')]
+            result.append({'case':case,'profession':profession,'actor':actor,'sections':sections,
+                'lecturer_scope':'本職類講師導讀' if actor['profession']==profession else '跨域案例導讀；本職類技能需由對應專業教師核對'})
     return result
 
 def persist(catalog):
@@ -47,7 +75,9 @@ def prepare(plan):
     row={'profession':plan['profession'],'level':1,'payload':{'actors':{'lecturer':actor}}}
     project,manifest=virtual_video.build_project(case,row,0,lecture_sections=plan['sections'])
     # Shared lectures accompany all levels; never label them as a personal Level 1 result.
-    p=project/'index.html';text=p.read_text(encoding='utf8').replace(' / Level 1',' / Level 1–5 共用導讀');p.write_text(text,encoding='utf8')
+    p=project/'index.html';text=p.read_text(encoding='utf8').replace(' / Level 1',' / Level 1–5 共用導讀')
+    if case.get('source_file','').startswith('平台生成'):text=text.replace('來源：上傳教案','來源：平台既有教案')
+    p.write_text(text,encoding='utf8')
     record={'id':key,'case_id':case['id'],'audiences':audiences,'actor_id':actor['id'],'actor_name':actor['name'],'actor_gender':actor['gender'],
         'actor_model_sha256':actor['realistic_model_sha256'],'title':case['title'],'source_fingerprint':lecture_library.source_fingerprint(case),
         'source_file':case['source_file'],'source_pages':case.get('source_pages',[]),'source_sha256':case.get('source_sha256'),
@@ -83,9 +113,28 @@ def export(plan,project,manifest,record):
     return record
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--prepare-only',action='store_true');parser.add_argument('--limit',type=int);parser.add_argument('--workers',type=int,default=2);args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--prepare-only',action='store_true');parser.add_argument('--limit',type=int);parser.add_argument('--workers',type=int,default=2);parser.add_argument('--legacy-only',action='store_true');parser.add_argument('--jobs',type=int,default=1);args=parser.parse_args()
     all_plans=plans();catalog=lecture_library.catalog();catalog.update(version=lecture_library.VERSION,expected_profession_tasks=39,expected_support_lectures=9,contains_learner_data=False)
+    if args.legacy_only:
+        all_plans=[p for p in all_plans if p['case']['id'] not in curriculum.COURSES]
+        all_plans.sort(key=lambda p:(p['case']['id']!='SARC-DT-SBAR-001',p['profession']!='PT',p['case']['id'],p['profession']))
+    catalog.update(version='published-lectures-5.6.2',expected_profession_tasks=len({(p['case']['id'],p['profession']) for p in plans() if p['actor']['id']!='he-sw'}))
     selected=all_plans[:args.limit] if args.limit else all_plans
+    if args.jobs>1 and not args.prepare_only:
+        from concurrent.futures import ThreadPoolExecutor,as_completed
+        def build_one(plan):
+            project,manifest,record=prepare(plan)
+            old=next((e for e in catalog['lectures'] if e['id']==record['id']),None)
+            if old and all((lecture_library.DIRECTORY/m['file']).is_file() for m in old['modules']):return old,False
+            render(project,manifest,args.workers);return export(plan,project,manifest,record),True
+        with ThreadPoolExecutor(max_workers=max(1,min(args.jobs,3))) as pool:
+            futures=[pool.submit(build_one,p) for p in selected]
+            for index,future in enumerate(as_completed(futures),1):
+                record,changed=future.result()
+                if changed:
+                    catalog['lectures']=[e for e in catalog['lectures'] if not (e['case_id']==record['case_id'] and e['audiences']==record['audiences'] and e['actor_id']==record['actor_id'])]+[record];persist(catalog)
+                print('completed',index,'/',len(selected),record['case_id'],record['actor_id'],flush=True)
+        return
     for index,plan in enumerate(selected):
         project,manifest,record=prepare(plan)
         if args.prepare_only:print(json.dumps({'project':str(project),'lecture':record['id'],'case':record['case_id'],'actor':record['actor_id'],'duration':manifest['duration']},ensure_ascii=True),flush=True);continue

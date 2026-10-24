@@ -1,7 +1,7 @@
 {
   "name": "clinical-tutor-v5",
   "private": true,
-  "version": "5.6.1",
+  "version": "5.6.2",
   "scripts": {
     "build": "esbuild frontend/src/avatar.js --bundle --format=esm --minify --outfile=frontend/vendor/avatar.bundle.js && esbuild frontend/src/lecturer.js --bundle --format=iife --minify --outfile=frontend/vendor/lecturer.bundle.js && esbuild frontend/src/panorama.js --bundle --format=esm --minify --outfile=frontend/vendor/panorama.bundle.js",
     "test:ui": "node --test tests/frontend/*.test.mjs"

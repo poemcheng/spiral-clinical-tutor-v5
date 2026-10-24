@@ -2,8 +2,8 @@
 from pathlib import Path,PurePosixPath
 import argparse,hashlib,json,tempfile,urllib.request,urllib.error,zipfile,shutil
 ROOT=Path(__file__).resolve().parents[1]
-BASE='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.6.1/'
-FALLBACK='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.6.0/'
+BASE='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.6.2/'
+FALLBACK='https://github.com/poemcheng/spiral-clinical-tutor-v5/releases/download/v5.6.1/'
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--local',type=Path);args=parser.parse_args()
     base=BASE
@@ -16,7 +16,7 @@ def main():
             if error.code!=404:raise
             base=FALLBACK
             manifest=json.load(urllib.request.urlopen(base+'public-assets-manifest.json',timeout=60))
-            print('v5.6.1 assets not published yet; using verified v5.6.0 bootstrap assets.')
+            print('v5.6.2 assets not published yet; using verified v5.6.1 bootstrap assets.')
     with tempfile.TemporaryDirectory() as tmp:
         archive=Path(tmp)/'assets.zip'
         if args.local:shutil.copyfile(args.local,archive)

@@ -18,6 +18,40 @@ class ManagementTests(unittest.TestCase):
         self.db.create_user('manager','654321','admin','Synthetic admin');c=TestClient(server.app);c.post('/api/auth/login',json={'username':'manager','password':'654321'});self.addCleanup(c.close);return c
     def completed(self):
         sid,_=self.submit(self.enter());self.complete(sid);return sid
+    def test_microsoft365_settings_are_private_and_require_administrator(self):
+        admin=self.admin();body={'tenant_id':'11111111-1111-4111-8111-111111111111','client_id':'22222222-2222-4222-8222-222222222222','sender':'training@school.example','client_secret':'synthetic-application-secret'}
+        self.assertEqual(self.alice.put('/api/admin/settings/microsoft365',json=body).status_code,403)
+        with patch.object(workspace_settings,'RUNTIME',Path(self.tmp.name)):
+            response=admin.put('/api/admin/settings/microsoft365',json=body);self.assertEqual(response.status_code,200,response.text)
+            self.assertTrue(response.json()['ready']);self.assertNotIn(body['client_secret'],response.text)
+            self.assertNotIn('secret_encrypted',response.text);self.assertEqual(admin.get('/api/admin/settings').json()['mail_provider'],'microsoft365')
+            stored=self.db.one("SELECT value FROM app_settings WHERE key='microsoft365_mail'")['value'];self.assertNotIn(body['client_secret'],stored)
+            self.assertEqual(admin.put('/api/admin/settings/microsoft365',json={**body,'tenant_id':'invalid'}).status_code,400)
+    def test_microsoft365_pdf_uses_application_authentication_and_real_attachment(self):
+        import httpx,base64
+        from backend import microsoft365_mail
+        admin=self.admin();sid=self.completed()
+        body={'tenant_id':'11111111-1111-4111-8111-111111111111','client_id':'22222222-2222-4222-8222-222222222222','sender':'training@school.example','client_secret':'synthetic-application-secret'}
+        with patch.object(workspace_settings,'RUNTIME',Path(self.tmp.name)):
+            admin.put('/api/admin/settings/microsoft365',json=body)
+            with patch.object(microsoft365_mail.httpx,'post',side_effect=[httpx.Response(200,json={'access_token':'synthetic-token'}),httpx.Response(202)]) as post:
+                response=self.alice.post(f'/api/sessions/{sid}/report/email',json={'email':'learner@example.invalid','consent':True})
+                self.assertEqual(response.status_code,200,response.text);self.assertEqual(response.json()['provider'],'microsoft365')
+                self.assertEqual(post.call_count,2);message=post.call_args.kwargs['json']['message']
+                self.assertEqual(message['toRecipients'][0]['emailAddress']['address'],'learner@example.invalid')
+                self.assertTrue(base64.b64decode(message['attachments'][0]['contentBytes']).startswith(b'%PDF-'))
+                self.assertEqual(post.call_args.kwargs['headers']['Authorization'],'Bearer synthetic-token')
+    def test_microsoft365_missing_or_refused_authorization_never_claims_delivery(self):
+        import httpx
+        from backend import microsoft365_mail
+        admin=self.admin();sid=self.completed();admin.put('/api/admin/settings/mail-provider',json={'provider':'microsoft365'})
+        with patch.object(microsoft365_mail.httpx,'post') as post:
+            response=self.alice.post(f'/api/sessions/{sid}/report/email',json={'email':'learner@example.invalid','consent':True})
+            self.assertEqual(response.status_code,503);post.assert_not_called()
+        with patch.object(workspace_settings,'RUNTIME',Path(self.tmp.name)):
+            admin.put('/api/admin/settings/microsoft365',json={'tenant_id':'11111111-1111-4111-8111-111111111111','client_id':'22222222-2222-4222-8222-222222222222','sender':'training@school.example','client_secret':'synthetic-secret'})
+            with patch.object(microsoft365_mail.httpx,'post',return_value=httpx.Response(401)) as post:
+                response=self.alice.post(f'/api/sessions/{sid}/report/email',json={'email':'learner@example.invalid','consent':True});self.assertEqual(response.status_code,502);self.assertEqual(post.call_count,1)
     def test_default_six_character_limit_and_admin_change_do_not_rewrite_hashes(self):
         admin=self.admin();self.assertEqual(admin.get('/api/admin/settings').json()['password_policy']['maximum'],6)
         body={'username':'sixchar','password':'482619','display_name':'Synthetic','role':'student'}

@@ -8,7 +8,8 @@ from backend.services import registry
 def verify(strict=False,enrich=False):
     data=lecture_library.catalog();coverage=set();actors=set();files=0
     for entry in data['lectures']:
-        case=registry.case(entry['case_id']);actor=characters.get_actor(entry['actor_id'])
+        case=curriculum.adapt_case(registry.case(entry['case_id']),entry['audiences'][0],1,{})
+        actor=characters.get_actor(entry['actor_id'])
         assert entry['source_fingerprint']==lecture_library.source_fingerprint(case),'Stale teaching source'
         assert entry['actor_model_sha256']==actor['realistic_model_sha256'],'Stale actor appearance'
         assert entry['actor_gender']==actor['gender']
@@ -30,13 +31,13 @@ def verify(strict=False,enrich=False):
                 voices.append({k:voice[k] for k in ('gender','name','engine','locale','fingerprint')})
             entry['voice_identities']=voices
         for voice in entry.get('voice_identities',[]):assert voice['gender']==actor['gender'] and voice['locale'].lower().startswith('zh')
-    expected={(c['id'],p) for c in curriculum.COURSES.values() for p in c['professions']}
+    expected={(c['id'],p) for c in registry.cases if not c.get('teacher_authored') for p in c['professions']}
     if strict:
         assert coverage==expected,('Missing course-profession coverage',sorted(expected-coverage))
-        assert len(data['lectures'])==48 and len(actors)==8
+        assert len(data['lectures'])>=len(expected) and len(actors)==8
         assert all(len(e.get('voice_identities',[]))==3 for e in data['lectures']),'Local voice identities must be recorded before publication'
     if enrich:(lecture_library.DIRECTORY/'catalog.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf8')
-    return {'passed':True,'lectures':len(data['lectures']),'modules':files,'professions':len({p for _,p in coverage}),'course_profession_tasks':len(coverage),'lecturers':len(actors),'missing_tasks':sorted(expected-coverage),'contains_learner_data':False}
+    return {'passed':True,'lectures':len(data['lectures']),'modules':files,'cases':len({c for c,_ in coverage}),'professions':len({p for _,p in coverage}),'course_profession_tasks':len(coverage),'lecturers':len(actors),'missing_tasks':sorted(expected-coverage),'contains_learner_data':False}
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--strict',action='store_true');p.add_argument('--enrich-voices',action='store_true');a=p.parse_args()

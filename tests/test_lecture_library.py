@@ -47,11 +47,45 @@ class LectureLibraryTests(unittest.TestCase):
             response=self.client.post(f'/api/sessions/{sid}/video',json={'module':0},headers={'Host':'localhost'})
             self.assertEqual(response.status_code,200,response.text);thread.return_value.start.assert_called_once()
 
-    def test_publication_plan_covers_all_39_tasks_and_does_not_require_personal_scores(self):
+    def test_publication_plan_covers_selectable_legacy_and_course_lessons_without_personal_scores(self):
         from tools.build_lecture_library import plans
         p=plans();actual={(x['case']['id'],x['profession']) for x in p if x['actor']['id']!='he-sw'}
-        self.assertEqual(len(actual),39);self.assertEqual(len({x['actor']['id'] for x in p}),8)
+        expected={(c['id'],profession) for c in server.registry.cases if not c.get('teacher_authored') for profession in c['professions']}
+        self.assertEqual(actual,expected);self.assertEqual(len({x['actor']['id'] for x in p}),8)
+        legacy=next(x for x in p if x['case']['id']=='SARC-DT-SBAR-001' and x['profession']=='PT')
+        adapted=server.curriculum.adapt_case(server.registry.case('SARC-DT-SBAR-001'),'PT',5,{})
+        self.assertEqual(lecture_library.source_fingerprint(legacy['case']),lecture_library.source_fingerprint(adapted))
+        self.assertEqual(legacy['actor']['id'],'wang-pt')
         self.assertTrue(all(len(x['sections'])==3 for x in p))
         case=server.registry.case('COURSE-SARC');before=lecture_library.source_fingerprint(case)
         altered={**case,'variant':{'level':5,'weak_dimensions':['COM']},'goals':['personal draft']}
         self.assertEqual(before,lecture_library.source_fingerprint(altered))
+
+    def test_unpublished_case_is_distinguished_from_an_uninstalled_library(self):
+        sid,root,entry=self.prepare()
+        entry['case_id']='unrelated-case';(root/'catalog.json').write_text(json.dumps({'lectures':[entry]}))
+        with patch.object(lecture_library,'DIRECTORY',root):
+            result=self.client.get(f'/api/sessions/{sid}/lecture-library').json()
+            self.assertEqual(result['status'],'not_published');self.assertNotIn('尚未安裝',result['message'])
+
+    def test_missing_or_corrupt_files_are_not_advertised_as_playable(self):
+        sid,root,entry=self.prepare()
+        with patch.object(lecture_library,'DIRECTORY',root):
+            (root/'fixture.mp4').unlink()
+            result=self.client.get(f'/api/sessions/{sid}/lecture-library').json()
+            self.assertEqual(result['status'],'media_missing');self.assertEqual(result['available_actors'],[])
+            (root/'fixture.mp4').write_bytes(b'fedcba9876543210')
+            self.assertEqual(self.client.get(f'/api/sessions/{sid}/lecture-library').json()['status'],'media_missing')
+
+    def test_unavailable_lecturer_falls_back_within_the_exact_case_and_source_only(self):
+        sid,root,entry=self.prepare()
+        with self.db.tx() as c:
+            payload=json.loads(self.db.one('SELECT data FROM sessions WHERE id=?',(sid,))['data'])
+            payload.setdefault('actors',{})['lecturer']=characters.get_actor('he-sw');self.db.save(c,sid,payload)
+        with patch.object(lecture_library,'DIRECTORY',root):
+            result=self.client.get(f'/api/sessions/{sid}/lecture-library').json()
+            self.assertTrue(result['used_fallback']);self.assertEqual(result['selected_actor'],'he-sw')
+            self.assertEqual(result['effective_actor']['id'],entry['actor_id']);self.assertIn('原選講師',result['selection_note'])
+            self.assertEqual(self.client.get(result['lectures'][0]['modules'][0]['url']).status_code,200)
+            after=json.loads(self.db.one('SELECT data FROM sessions WHERE id=?',(sid,))['data'])
+            self.assertEqual(after['actors']['lecturer']['id'],'he-sw')

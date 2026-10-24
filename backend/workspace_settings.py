@@ -57,7 +57,18 @@ class SMTPBody(BaseModel):
 
 def install(app,store,current_user,administrator):
     @app.get('/api/admin/settings')
-    def settings(user=Depends(administrator)):return {'password_policy':password_policy(store),'smtp':smtp_config(store)}
+    def settings(user=Depends(administrator)):
+        from .microsoft365_mail import config
+        return {'password_policy':password_policy(store),'smtp':smtp_config(store),'mail_provider':get(store,'mail_provider','smtp'),'microsoft365':config(store)}
+    from .microsoft365_mail import Microsoft365Body,configure
+    @app.put('/api/admin/settings/microsoft365')
+    def configure_microsoft365(body:Microsoft365Body,user=Depends(administrator)):return configure(store,body)
+    class ProviderBody(BaseModel):
+        provider:str
+    @app.put('/api/admin/settings/mail-provider')
+    def provider(body:ProviderBody,user=Depends(administrator)):
+        if body.provider not in ('smtp','microsoft365'):raise HTTPException(400,'未知寄件服務。')
+        put(store,'mail_provider',body.provider);return {'provider':body.provider}
     @app.patch('/api/admin/settings/password-policy')
     def update_policy(body:PasswordPolicy,user=Depends(administrator)):
         if body.minimum>body.maximum:raise HTTPException(400,'最小長度不可大於最大長度。')
@@ -81,12 +92,16 @@ def install(app,store,current_user,administrator):
         old=get(store,'smtp',{});data=body.model_dump(exclude={'password'})
         data['password_encrypted']=cipher().encrypt(body.password.encode()).decode() if body.password else old.get('password_encrypted','')
         put(store,'smtp',data)
+        put(store,'mail_provider','smtp')
         return smtp_config(store)
 
 def valid_email(address):return bool(re.fullmatch(r'[^\s@<>\r\n]+@[^\s@<>\r\n]+\.[^\s@<>\r\n]+',address)) and len(address)<=254
 
 def send_pdf(store,address,pdf,filename,subject):
     if not valid_email(address):raise HTTPException(400,'請輸入有效電子信箱。')
+    if get(store,'mail_provider','smtp')=='microsoft365':
+        from .microsoft365_mail import send_pdf as microsoft_send
+        return microsoft_send(store,address,pdf,filename,subject)
     config=smtp_config(store,True)
     if not config['ready']:raise HTTPException(503,'寄件服務尚未設定；請管理員先完成SMTP設定。PDF仍可直接預覽及下載。')
     from email.message import EmailMessage

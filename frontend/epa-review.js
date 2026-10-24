@@ -1,5 +1,5 @@
-import {epaLibraryPanel,mountEPA} from './epa-panel.js?v=5.6.1-r2';
-const q=new URLSearchParams(location.search),sid=q.get('session'),clip=q.get('clip'),frame=Number(q.get('frame')||0),root=document.querySelector('#epa-review');let dispose;
+import {epaLibraryPanel,mountEPA} from './epa-panel.js?v=5.6.2-r2';
+const q=new URLSearchParams(location.search),sid=q.get('session'),clip=q.get('clip'),frame=q.has('frame')?Number(q.get('frame')):undefined,root=document.querySelector('#epa-review');let dispose;
 try{
  if(!/^\d+$/.test(sid||''))throw Error('無效訓練連結');
  const r=await fetch(`/api/sessions/${sid}/epa-lessons`),d=await r.json();if(!r.ok)throw Error(d.detail||'讀取失敗');
