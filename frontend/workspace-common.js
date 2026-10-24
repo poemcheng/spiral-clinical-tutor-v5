@@ -1,5 +1,5 @@
 export const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export async function api(path,method='GET',body){const r=await fetch(path,{method,headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});let d;try{d=await r.json();}catch{throw Error('服務未回傳可讀資料');}if(!r.ok)throw Error(typeof d.detail==='string'?d.detail:'資料不符，請檢查欄位後重試');return d;}
-export function page(title,subtitle,content){document.querySelector('#workspace').innerHTML=`<header class="workspace-top"><a href="/static/index.html">迴旋梯智鏈</a><span>v5.6.1</span><a href="/static/index.html">回平台工作台</a></header><h1>${esc(title)}</h1><p class="muted">${esc(subtitle)}</p>${content}`;}
+export function page(title,subtitle,content){document.querySelector('#workspace').innerHTML=`<header class="workspace-top"><a href="/static/index.html">迴旋梯智鏈</a><span>臨床學習平台</span><a href="/static/index.html">回平台工作台</a></header><h1>${esc(title)}</h1><p class="muted">${esc(subtitle)}</p>${content}`;}
 export async function requireRole(role){const u=await api('/api/me');if(role&&u.role!==role)throw Error('此頁限'+(role==='teacher'?'教師':'管理員')+'使用');return u;}
 export const status=(text,bad=false)=>{const el=document.querySelector('#workspace-status');if(el){el.textContent=text;el.className=bad?'error':'note';}};
