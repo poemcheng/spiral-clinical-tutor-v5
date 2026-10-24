@@ -1,6 +1,6 @@
-import {listeningTurn} from '/static/voice-diagnostic-state.js?v=5.6.0';
-import {createVoiceInput} from '/static/voice.js?v=5.6.0';
-import {createAvatar} from '/static/vendor/avatar.bundle.js?v=5.6.0';
+import {listeningTurn} from '/static/voice-diagnostic-state.js?v=5.6.1-r2';
+import {createVoiceInput} from '/static/voice.js?v=5.6.1-r2';
+import {createAvatar} from '/static/vendor/avatar.bundle.js?v=5.6.1-r2';
 const $=s=>document.querySelector(s),sid=Number(new URLSearchParams(location.search).get('session'));
 let avatar,controller,context,destination,source,frame,watchdog,active=false,report;
 const physical=()=>$('#input-source').value==='physical';

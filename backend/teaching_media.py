@@ -5,7 +5,7 @@ from .legacy.config import VIDEO_LIBRARY_DIR
 
 def manifest():
     clips=[]
-    for name in ('data/video360/catalog.json','data/action_lessons/media_catalog.json'):
+    for name in ('data/video360/catalog.json','data/action_lessons/media_catalog.json','runtime/epa_library/additional_media.json'):
         p=ROOT/name
         if p.is_file():clips.extend(json.loads(p.read_text(encoding='utf-8'))['clips'])
     return {'clips':clips}

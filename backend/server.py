@@ -109,7 +109,7 @@ def owned_session(sid, user, require_checkin=True):
     row = store.one('SELECT * FROM sessions WHERE id=?', (sid,))
     if not row or (user['role'] != 'teacher' and row['user_id'] != user['id']):
         raise HTTPException(404, '找不到可存取的訓練。')
-    if user['role'] == 'student' and require_checkin:
+    if user['role'] == 'student' and require_checkin and row['status']=='active':
         latest = store.one('''SELECT completed FROM attempts WHERE login_id=? AND profession=? AND topic=?
                               ORDER BY id DESC LIMIT 1''', (user['login_id'], row['profession'], row['topic']))
         if not latest or not latest['completed']:
@@ -202,14 +202,16 @@ def me(user=Depends(current_user)):
 
 @app.get('/api/catalog')
 def catalog(user=Depends(current_user)):
-    return {'version': VERSION, 'combinations': profession_catalog(registry), 'courses':curriculum.public_courses(),
+    from .teacher_studio import sync_registry
+    custom=sync_registry(store,registry)
+    return {'version': VERSION, 'combinations': profession_catalog(registry), 'courses':curriculum.public_courses()+custom,
             'learning_policy':progression.POLICY,
             'question_status': '12 職種 × 5 Levels 分層自評草稿，待職類教師核定。'}
 
 
 class AccountBody(BaseModel):
     username: str = Field(min_length=1, max_length=80)
-    password: str = Field(min_length=10, max_length=256)
+    password: str = Field(min_length=4, max_length=128)
     display_name: str = Field(min_length=1, max_length=80)
     role: str
 
@@ -218,7 +220,7 @@ class AccountUpdateBody(BaseModel):
     display_name: str = Field(min_length=1, max_length=80)
     role: str
     enabled: bool
-    password: str | None = Field(default=None, min_length=10, max_length=256)
+    password: str | None = Field(default=None, min_length=4, max_length=128)
 
 
 @app.get('/api/admin/users')
@@ -228,6 +230,8 @@ def admin_users(user=Depends(administrator)):
 
 @app.post('/api/admin/users', status_code=201)
 def admin_create_user(body: AccountBody, user=Depends(administrator)):
+    from .workspace_settings import validate_password
+    validate_password(store,body.password)
     if body.role not in ('student', 'teacher') or not body.username.strip() or not body.display_name.strip():
         raise HTTPException(400, '請設定學員或教師角色，並填寫帳號及姓名。')
     try:
@@ -242,6 +246,8 @@ def admin_create_user(body: AccountBody, user=Depends(administrator)):
 
 @app.patch('/api/admin/users/{uid}')
 def admin_update_user(uid: int, body: AccountUpdateBody, user=Depends(administrator)):
+    from .workspace_settings import validate_password
+    if body.password:validate_password(store,body.password)
     if body.role not in ('student', 'teacher') or not body.display_name.strip():
         raise HTTPException(400, '請設定學員或教師角色及姓名。')
     with store.tx() as c:
@@ -545,7 +551,7 @@ def source_material(kind:str,user=Depends(current_user)):
     if kind=='questions' and user['role'] not in ('teacher','admin'):raise HTTPException(403,'完整題庫與答案限教師及管理員。')
     path=ROOT/'data/sources'/names[kind]
     if not path.is_file():raise HTTPException(404,'公開程式碼包未含原始教材，請由教材管理者另行安裝。')
-    return FileResponse(path,filename=names[kind])
+    return FileResponse(path,media_type='application/pdf' if path.suffix=='.pdf' else None,headers={'Content-Disposition':'inline'})
 
 
 def video_worker(sid,case,row,module):
@@ -1190,7 +1196,7 @@ def service_status(user=Depends(current_user)):
             'livekit_configured':voice_bridge.ready(),
             'livekit_agent_configured':voice_agents.available() and voice_bridge.ready(),'livekit_audio_bridge':True,'speech_input':speech_input.status(),'voice_transport':'authenticated-http-audio; optional-livekit-agents',
             'h5p_available':(ROOT/'frontend/vendor/h5p/main.bundle.js').is_file(),
-            'knowledge_mode':'本地案例快照與來源約束檢索；尚未建置醫療知識圖譜',
+            'knowledge_mode':'本地案例快照與教師端Graphify來源關聯查找；教案、對話與明確詞彙關聯，不自動核定臨床結論',
             'video_mode':'three.js 診間場景／擬真人像與語音驅動表情；四部VR360教材，待教師審核'}
 
 
@@ -1455,5 +1461,20 @@ def home(request: Request):
 
 @app.get('/health')
 def health():return {'status':'ok','product':'clinical-tutor','version':VERSION,'login_entry':'/login'}
+
+class ActiveStore:
+    # Tests and alternate runtimes replace the active store; never capture an old database.
+    def __getattr__(self,name):return getattr(store,name)
+
+from . import workspace_settings,training_reports,teacher_studio,material_reader
+workspace_settings.install(app,ActiveStore(),current_user,administrator)
+training_reports.install(app,ActiveStore(),owned_session,current_user)
+teacher_studio.install(app,ActiveStore(),registry,teacher)
+material_reader.install(app,current_user)
+
+@app.get('/api/sessions/{sid}/lesson/read')
+def inline_session_lesson(sid:int,user=Depends(current_user)):
+    row=owned_session(sid,user);case=case_for(row)
+    return {k:case.get(k) for k in ('id','title','summary','patient','goals','pre_knowledge','source_file','source_pages','review_status','variant')}
 
 app.mount('/static',StaticFiles(directory=ROOT/'frontend'),name='static')

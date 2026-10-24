@@ -79,6 +79,9 @@ class Store:
           id INTEGER PRIMARY KEY, user_id INTEGER REFERENCES users(id),
           session_id INTEGER REFERENCES sessions(id), kind TEXT NOT NULL, data TEXT NOT NULL, created REAL NOT NULL);
         CREATE TABLE IF NOT EXISTS schema_version (version INTEGER PRIMARY KEY);
+        CREATE TABLE IF NOT EXISTS app_settings (key TEXT PRIMARY KEY,value TEXT NOT NULL);
+        CREATE TABLE IF NOT EXISTS teacher_lessons (id TEXT PRIMARY KEY,owner_id INTEGER NOT NULL REFERENCES users(id),revision INTEGER NOT NULL,status TEXT NOT NULL,data TEXT NOT NULL,updated REAL NOT NULL);
+        CREATE TABLE IF NOT EXISTS teacher_lesson_revisions (lesson_id TEXT NOT NULL,revision INTEGER NOT NULL,author_id INTEGER NOT NULL REFERENCES users(id),data TEXT NOT NULL,created REAL NOT NULL,PRIMARY KEY(lesson_id,revision));
         INSERT OR IGNORE INTO schema_version VALUES (1);
         ''')
         self.conn.commit()
@@ -140,9 +143,8 @@ class Store:
                   (encode(data), time.time(), *fields.values(), sid))
 
     def create_user(self, username, password, role, display_name=''):
-        minimum = 4 if role == 'admin' else 10
-        if role not in ('student', 'teacher', 'admin') or len(password) < minimum or not username.strip():
-            raise ValueError('帳號不可空白；學員及教師密碼至少 10 字元。')
+        if role not in ('student', 'teacher', 'admin') or not 4 <= len(password) <= 256 or not username.strip():
+            raise ValueError('帳號不可空白；密碼須為4至256字元。介面另依管理員設定的長度限制。')
         with self.tx() as c:
             return c.execute('INSERT INTO users(username,password_hash,display_name,role) VALUES (?,?,?,?)',
                              (username.strip(), password_hash(password), display_name or username, role)).lastrowid
@@ -153,12 +155,19 @@ class Store:
 
     def bootstrap_admin(self):
         """User-requested first-install administrator. Never reset an existing password."""
+        administrator=self.one("SELECT id FROM users WHERE role='admin' AND enabled=1 ORDER BY id LIMIT 1")
+        if administrator:return administrator['id']
         existing = self.one('SELECT id,role FROM users WHERE username=?', ('user',))
         if existing:
             if existing['role'] != 'admin':
                 raise ValueError('user 已存在且不是管理員，請先處理帳號衝突。')
             return existing['id']
-        password=os.getenv('BOOTSTRAP_ADMIN_PASSWORD','1234')
-        if os.getenv('DEPLOYMENT_MODE')=='public' and (len(password)<12 or password=='1234'):
-            raise ValueError('公開部署請設定至少12字元的 BOOTSTRAP_ADMIN_PASSWORD。')
+        password=os.getenv('BOOTSTRAP_ADMIN_PASSWORD')
+        if os.getenv('DEPLOYMENT_MODE')=='public' and (not password or len(password)<12):
+            raise ValueError('公開後端首次安裝請明確設定至少12字元的BOOTSTRAP_ADMIN_PASSWORD；同網路主機依管理員密碼政策。')
+        if not password:
+            password=''.join(secrets.choice('0123456789') for _ in range(6))
+            from .config import RUNTIME
+            target=RUNTIME/('初始管理員帳號_'+secrets.token_hex(4)+'.txt')
+            with target.open('x',encoding='utf8') as f:f.write('帳號：user\n密碼：'+password+'\n僅供本機管理者保管，請勿公開。\n')
         return self.create_user('user', password, 'admin', '系統管理員')

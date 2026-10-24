@@ -1,5 +1,5 @@
 {
-  "version": "v5-two-axes-cumulative-lessons-20261023",
+  "version": "v5-two-axes-level4-epa-20261024",
   "status": "平台試行學習分流規則，非臨床資格認證",
   "self_score_formula": "各職種核心指標自評分數 × 20 後等權平均（滿分100）",
   "level_bands": [
@@ -48,12 +48,12 @@
     },
     {
       "level": 4,
-      "title": "環景場域教案",
+      "title": "環景場域與EPA影格解析教案",
       "kind": "source_limits"
     },
     {
       "level": 5,
-      "title": "逐格動作分析與解釋教案",
+      "title": "進階逐格判讀與教師回饋教案",
       "kind": "reflection"
     }
   ],

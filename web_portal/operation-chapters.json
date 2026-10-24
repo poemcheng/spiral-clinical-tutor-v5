@@ -1,342 +1,352 @@
 [
   {
-    "title": "登入與六階段學習",
+    "title": "登入與六階段旅程",
     "start": 0,
-    "duration": 14.233333
+    "duration": 11.8
   },
   {
-    "title": "選擇專業職種",
-    "start": 14.233333,
-    "duration": 10.166667
-  },
-  {
-    "title": "情境與適用職種",
-    "start": 24.4,
-    "duration": 7.166667
-  },
-  {
-    "title": "本職類核心能力自評",
-    "start": 31.566667,
-    "duration": 10.766667
-  },
-  {
-    "title": "提交示範自評與前測",
-    "start": 42.333333,
-    "duration": 9.633333
-  },
-  {
-    "title": "自評雷達圖與獨立學習等級",
-    "start": 51.966667,
-    "duration": 8.566667
-  },
-  {
-    "title": "固定案例來源與任務",
-    "start": 60.533333,
-    "duration": 10.8
-  },
-  {
-    "title": "五級教材逐步累積",
-    "start": 71.333333,
-    "duration": 11.166667
-  },
-  {
-    "title": "Level2團隊知識與分工",
-    "start": 82.5,
-    "duration": 8.166667
-  },
-  {
-    "title": "已發布講師影片含聲播放",
-    "start": 90.666667,
+    "title": "選擇職種",
+    "start": 11.8,
     "duration": 12.033333
   },
   {
-    "title": "講師文字稿與教學目的",
-    "start": 102.7,
-    "duration": 9.866667
+    "title": "選擇教案情境",
+    "start": 23.833333,
+    "duration": 11.1
   },
   {
-    "title": "一般影片選區與分析目的",
-    "start": 112.566667,
-    "duration": 11.233333
+    "title": "核心能力自評",
+    "start": 34.933333,
+    "duration": 11.933333
   },
   {
-    "title": "每張影格解碼與骨架分析",
-    "start": 123.8,
-    "duration": 8.333333
+    "title": "完成示範作答",
+    "start": 46.866667,
+    "duration": 11.866667
   },
   {
-    "title": "骨架與動作分析結果",
-    "start": 132.133333,
-    "duration": 9.666667
+    "title": "兩種等級與前測",
+    "start": 58.733333,
+    "duration": 13.7
   },
   {
-    "title": "骨架與教案步驟對照",
-    "start": 141.8,
-    "duration": 7.566667
+    "title": "固定教案與任務",
+    "start": 72.433333,
+    "duration": 10.6
   },
   {
-    "title": "可見關節與意圖候選",
-    "start": 149.366667,
-    "duration": 9.5
+    "title": "逐級學習資源",
+    "start": 83.033333,
+    "duration": 13.533333
   },
   {
-    "title": "同一影格原圖核對",
-    "start": 158.866667,
-    "duration": 6.6
+    "title": "一般影片完整逐格解析",
+    "start": 96.566667,
+    "duration": 13.1
   },
   {
-    "title": "學員說明動作目的與判讀限制",
-    "start": 165.466667,
-    "duration": 8.633333
+    "title": "定位每張影格",
+    "start": 109.666667,
+    "duration": 11.5
   },
   {
-    "title": "保存影格與來源版本",
-    "start": 174.1,
-    "duration": 8.7
-  },
-  {
-    "title": "保存Level2團隊學習判讀",
-    "start": 182.8,
-    "duration": 8.333333
-  },
-  {
-    "title": "環景影片與場域視角",
-    "start": 191.133333,
-    "duration": 8.833333
-  },
-  {
-    "title": "完成教材學習與反思",
-    "start": 199.966667,
-    "duration": 9.2
-  },
-  {
-    "title": "指定職種與立體互動對象",
-    "start": 209.166667,
-    "duration": 9.166667
-  },
-  {
-    "title": "分支情境練習開始",
-    "start": 218.333333,
-    "duration": 6.566667
-  },
-  {
-    "title": "分支題目與選項",
-    "start": 224.9,
-    "duration": 5.966667
-  },
-  {
-    "title": "選錯後的教學回饋",
-    "start": 230.866667,
-    "duration": 7.033333
-  },
-  {
-    "title": "補強後回到原題",
-    "start": 237.9,
-    "duration": 6.1
-  },
-  {
-    "title": "安全關鍵分支選擇",
-    "start": 244.0,
-    "duration": 7.566667
-  },
-  {
-    "title": "安全錯誤的具體補強",
-    "start": 251.566667,
-    "duration": 6.6
-  },
-  {
-    "title": "安全補強結局與歷程保存",
-    "start": 258.166667,
-    "duration": 7.7
-  },
-  {
-    "title": "重新練習保留前輪歷程",
-    "start": 265.866667,
-    "duration": 6.5
-  },
-  {
-    "title": "連續語音與自動驗證入口",
-    "start": 272.366667,
-    "duration": 11.0
-  },
-  {
-    "title": "連續語音兩輪實測",
-    "start": 283.366667,
-    "duration": 133.666667
-  },
-  {
-    "title": "兩輪語音通過與自動接續證據",
-    "start": 417.033333,
-    "duration": 13.0
-  },
-  {
-    "title": "重練後的正確回應",
-    "start": 430.033333,
-    "duration": 6.6
-  },
-  {
-    "title": "核對教案版本與診斷資料",
-    "start": 436.633333,
-    "duration": 7.766667
-  },
-  {
-    "title": "營養選擇與個案化回饋",
-    "start": 444.4,
-    "duration": 6.6
-  },
-  {
-    "title": "安全與活動協作回饋",
-    "start": 451.0,
-    "duration": 6.233333
-  },
-  {
-    "title": "完成分支與保留重練紀錄",
-    "start": 457.233333,
+    "title": "切換前後影格",
+    "start": 121.166667,
     "duration": 10.3
   },
   {
-    "title": "向物理治療師開始會談",
-    "start": 467.533333,
-    "duration": 9.0
+    "title": "比對原始畫面",
+    "start": 131.466667,
+    "duration": 11.066667
   },
   {
-    "title": "承接缺口與確認追蹤分工",
-    "start": 476.533333,
-    "duration": 7.566667
+    "title": "寫下EPA觀察",
+    "start": 142.533333,
+    "duration": 11.9
   },
   {
-    "title": "查閱來源紀錄不等於完成檢查",
-    "start": 484.1,
-    "duration": 7.5
+    "title": "保存原始觀察",
+    "start": 154.433333,
+    "duration": 11.966667
   },
   {
-    "title": "關鍵決策原地保存與回饋",
-    "start": 491.6,
-    "duration": 6.633333
+    "title": "EPA床邊照護代表格",
+    "start": 166.4,
+    "duration": 10.2
   },
   {
-    "title": "關鍵決策原地保存與回饋",
-    "start": 498.233333,
-    "duration": 8.066667
+    "title": "動作與對話功能",
+    "start": 176.6,
+    "duration": 14.566667
   },
   {
-    "title": "關鍵決策原地保存與回饋",
-    "start": 506.3,
-    "duration": 6.633333
+    "title": "固定視角環景分析",
+    "start": 191.166667,
+    "duration": 12.566667
   },
   {
-    "title": "關鍵決策原地保存與回饋",
-    "start": 512.933333,
-    "duration": 5.0
+    "title": "教材直接在線上閱讀",
+    "start": 203.733333,
+    "duration": 10.566667
   },
   {
-    "title": "場景操作與證據界線",
-    "start": 517.933333,
-    "duration": 8.166667
+    "title": "搜尋教案內容",
+    "start": 214.3,
+    "duration": 8.6
   },
   {
-    "title": "SBAR交接與具體分工",
-    "start": 526.1,
-    "duration": 8.733333
+    "title": "反思與學習確認",
+    "start": 222.9,
+    "duration": 10.666667
   },
   {
-    "title": "即時測驗與教案版本",
-    "start": 534.833333,
-    "duration": 6.466667
+    "title": "角色與難度對應",
+    "start": 233.566667,
+    "duration": 13.5
   },
   {
-    "title": "學員成果與證據分層",
-    "start": 541.3,
-    "duration": 10.8
+    "title": "分支情境練習",
+    "start": 247.066667,
+    "duration": 10.9
   },
   {
-    "title": "教師登入與工作台",
-    "start": 552.1,
-    "duration": 6.533333
+    "title": "回應病人疑慮",
+    "start": 257.966667,
+    "duration": 12.0
   },
   {
-    "title": "教師檢視原始學習證據",
-    "start": 558.633333,
-    "duration": 8.166667
+    "title": "分支補強回饋",
+    "start": 269.966667,
+    "duration": 11.0
   },
   {
-    "title": "教師逐字紀錄核對第一輪回覆",
-    "start": 566.8,
-    "duration": 17.733333
+    "title": "重練後的不同路徑",
+    "start": 280.966667,
+    "duration": 10.6
   },
   {
-    "title": "教師逐字紀錄核對第二輪回覆",
-    "start": 584.533333,
-    "duration": 14.7
+    "title": "安全補強結局",
+    "start": 291.566667,
+    "duration": 10.0
   },
   {
-    "title": "教師針對安全分支給回饋",
-    "start": 599.233333,
-    "duration": 6.466667
+    "title": "保留分支學習歷程",
+    "start": 301.566667,
+    "duration": 11.566667
   },
   {
-    "title": "教師前後影格與骨架覆核",
-    "start": 605.7,
-    "duration": 6.8
+    "title": "連續語音測試方式",
+    "start": 313.133333,
+    "duration": 16.033333
   },
   {
-    "title": "教師逐格比較",
-    "start": 612.5,
-    "duration": 6.9
+    "title": "兩輪連續語音實測",
+    "start": 329.166667,
+    "duration": 85.033333
   },
   {
-    "title": "原圖與模型估計分開檢查",
-    "start": 619.4,
-    "duration": 6.566667
+    "title": "語音實測結果",
+    "start": 414.2,
+    "duration": 13.433333
   },
   {
-    "title": "教師播放原片核對現場語音",
-    "start": 625.966667,
-    "duration": 8.333333
+    "title": "跨職種情境對話",
+    "start": 427.633333,
+    "duration": 12.133333
   },
   {
-    "title": "教師逐格具體回饋",
-    "start": 634.3,
-    "duration": 8.2
+    "title": "角色依情境回覆",
+    "start": 439.766667,
+    "duration": 11.2
   },
   {
-    "title": "教師正式回饋與補作",
-    "start": 642.5,
-    "duration": 9.6
+    "title": "持續溝通與分工",
+    "start": 450.966667,
+    "duration": 10.833333
   },
   {
-    "title": "教師回饋已保存",
-    "start": 652.1,
-    "duration": 7.466667
+    "title": "關鍵決策與來源",
+    "start": 461.8,
+    "duration": 12.233333
+  },
+  {
+    "title": "場景操作紀錄",
+    "start": 474.033333,
+    "duration": 9.766667
+  },
+  {
+    "title": "SBAR跨專業交接",
+    "start": 483.8,
+    "duration": 12.3
+  },
+  {
+    "title": "訓練後測",
+    "start": 496.1,
+    "duration": 11.4
+  },
+  {
+    "title": "成果分數與待評項目",
+    "start": 507.5,
+    "duration": 14.033333
+  },
+  {
+    "title": "教師登入",
+    "start": 521.533333,
+    "duration": 9.266667
+  },
+  {
+    "title": "教學監控總覽",
+    "start": 530.8,
+    "duration": 10.4
+  },
+  {
+    "title": "教師查看訓練對話",
+    "start": 541.2,
+    "duration": 11.533333
+  },
+  {
+    "title": "教師核對同一張EPA影格",
+    "start": 552.733333,
+    "duration": 11.6
+  },
+  {
+    "title": "同格證據覆核",
+    "start": 564.333333,
+    "duration": 10.0
+  },
+  {
+    "title": "比較連續動作",
+    "start": 574.333333,
+    "duration": 11.466667
+  },
+  {
+    "title": "教師填寫具體回饋",
+    "start": 585.8,
+    "duration": 10.5
+  },
+  {
+    "title": "保存EPA教師回饋",
+    "start": 596.3,
+    "duration": 10.833333
+  },
+  {
+    "title": "保存分支專屬建議",
+    "start": 607.133333,
+    "duration": 9.633333
+  },
+  {
+    "title": "整體教師覆核",
+    "start": 616.766667,
+    "duration": 11.9
+  },
+  {
+    "title": "保存正式回饋與歷史",
+    "start": 628.666667,
+    "duration": 11.133333
+  },
+  {
+    "title": "Graphify來源關聯查找",
+    "start": 639.8,
+    "duration": 10.933333
+  },
+  {
+    "title": "圖譜與來源摘要",
+    "start": 650.733333,
+    "duration": 13.933333
+  },
+  {
+    "title": "教師編寫新教案",
+    "start": 664.666667,
+    "duration": 11.633333
+  },
+  {
+    "title": "調整職種任務與來源",
+    "start": 676.3,
+    "duration": 10.966667
+  },
+  {
+    "title": "保存教師草稿",
+    "start": 687.266667,
+    "duration": 11.4
+  },
+  {
+    "title": "發布教案新版本",
+    "start": 698.666667,
+    "duration": 11.8
   },
   {
     "title": "學員重新登入",
-    "start": 659.566667,
-    "duration": 8.433333
+    "start": 710.466667,
+    "duration": 12.0
   },
   {
-    "title": "回看前完成本次自評",
-    "start": 668.0,
-    "duration": 6.5
+    "title": "學員學習歷程",
+    "start": 722.466667,
+    "duration": 14.233333
   },
   {
-    "title": "學習歷程選擇已完成第一輪",
-    "start": 674.5,
-    "duration": 7.566667
+    "title": "學員查看整體回饋",
+    "start": 736.7,
+    "duration": 12.633333
   },
   {
-    "title": "學員查看教師正式回饋",
-    "start": 682.066667,
-    "duration": 6.966667
+    "title": "學員查看EPA回饋",
+    "start": 749.333333,
+    "duration": 10.833333
   },
   {
-    "title": "學員查看分支專屬回饋",
-    "start": 689.033333,
-    "duration": 6.533333
+    "title": "完整訓練PDF報告",
+    "start": 760.166667,
+    "duration": 16.2
   },
   {
-    "title": "學員查看逐格回饋與原始觀察",
-    "start": 695.566667,
-    "duration": 8.6
+    "title": "報告寄件介面",
+    "start": 776.366667,
+    "duration": 12.2
+  },
+  {
+    "title": "寄件狀態據實顯示",
+    "start": 788.566667,
+    "duration": 13.9
+  },
+  {
+    "title": "手機尺寸報告預覽",
+    "start": 802.466667,
+    "duration": 13.433333
+  },
+  {
+    "title": "手機尺寸登入",
+    "start": 815.9,
+    "duration": 11.333333
+  },
+  {
+    "title": "手機登入成功",
+    "start": 827.233333,
+    "duration": 11.533333
+  },
+  {
+    "title": "手機逐格檢視",
+    "start": 838.766667,
+    "duration": 10.566667
+  },
+  {
+    "title": "管理員帳號管理",
+    "start": 849.333333,
+    "duration": 12.366667
+  },
+  {
+    "title": "管理員密碼長度設定",
+    "start": 861.7,
+    "duration": 12.166667
+  },
+  {
+    "title": "保存長度政策",
+    "start": 873.866667,
+    "duration": 9.333333
+  },
+  {
+    "title": "SMTP寄件設定",
+    "start": 883.2,
+    "duration": 14.766667
   }
 ]

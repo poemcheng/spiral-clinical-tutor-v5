@@ -20,7 +20,7 @@ def create_backup(destination):
     with tempfile.TemporaryDirectory() as tmp:
         db=Store();snapshot=Path(tmp)/'clinical_tutor.sqlite3';db.backup(snapshot);db.conn.close()
         files={'runtime/clinical_tutor.sqlite3':snapshot}
-        for folder,prefix in [(ROOT/'data','data'),(RUNTIME/'media','runtime/media'),(RUNTIME/'speech','runtime/speech'),(RUNTIME/'virtual_lessons','runtime/virtual_lessons')]:
+        for folder,prefix in [(ROOT/'data','data'),(RUNTIME/'media','runtime/media'),(RUNTIME/'speech','runtime/speech'),(RUNTIME/'virtual_lessons','runtime/virtual_lessons'),(RUNTIME/'secrets','runtime/secrets')]:
             if folder.exists():
                 for p in folder.rglob('*'):
                     if p.is_file() and '__pycache__' not in p.parts:

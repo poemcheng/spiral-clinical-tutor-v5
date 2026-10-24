@@ -128,6 +128,8 @@ def information_for(case,plan):
       'background':[case.get('variant',{}).get('role_task') or '；'.join(case.get('goals',[])[:2]),'對照本職類核心指標閱讀已知資料，並指出資料缺口。'],
       'interview':['辨識各職類負責的評估與交接界線；放射、功能與營養評估不可互換。','以SBAR說明已知事實、限制、協助需求與追蹤，確認接收者。'],
       'handoff':['在一般影片播放器閱讀本主題教案，依步驟索引觀看動作、目的與前後脈絡。','保存各級教案的學習判讀；影片不會改寫本輪病歷。'],
-      'source_limits':['在上方360影片播放器拖曳或使用方向鍵切換視角，辨識成員位置及交接方向。','四支影片的球面投影及格式已核對，情境與職類對應仍待教師核定。'],
-      'reflection':['一般及環景影片皆可逐張解碼，切換原圖與骨架，核對動作片段、教案步驟目的與解說。','保存骨架證據、步驟解說及學員判讀，教師逐項回饋；意圖須核對前後畫面與語音。','累積使用代表教材解鎖程度，不代表取得指導資格；教學及正式評量仍由教師核定。']}
-    return [{**item,**({'content':text[item['kind']]} if item['unlocked'] else {})} for item in items]
+      'source_limits':['一般及固定視角360影片的EPA逐格解析在Level 4開放，核對原圖、骨架、肢段、對話功能與教學目的。','保存影格觀察給教師；360解析只涵蓋標示視角，情境、職類及教學註記仍待教師核定。'],
+      'reflection':['進一步比較多張影格、不同視角及替代解釋，獨立提出動作與互動判讀。','依教師回饋修正判讀並說明證據及資料缺口；意圖須核對前後畫面與語音。','累積使用代表教材解鎖程度，不代表取得指導資格；教學及正式評量仍由教師核定。']}
+    titles={i['kind']:i['title'] for i in POLICY['information']}
+    # Present the current resource names without rewriting historical plans or scores.
+    return [{**item,'title':titles.get(item['kind'],item['title']),**({'content':text[item['kind']]} if item['unlocked'] else {})} for item in items]

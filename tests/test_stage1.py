@@ -18,13 +18,13 @@ class StageOneTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.original = server.store
         self.db = server.store = Store(Path(self.temp.name)/'stage1.sqlite3')
-        self.db.bootstrap_admin()
+        self.db.create_user('user','654321','admin')
         self.admin, self.learner, self.teacher = [TestClient(server.app) for _ in range(3)]
-        self.assertEqual(self.admin.post('/api/auth/login', json={'username':'user','password':'1234'}).json()['role'], 'admin')
+        self.assertEqual(self.admin.post('/api/auth/login', json={'username':'user','password':'654321'}).json()['role'], 'admin')
         for username, role, client in [('test-student','student',self.learner),('test-teacher','teacher',self.teacher)]:
-            r=self.admin.post('/api/admin/users',json={'username':username,'password':'Stage1-test-2026!', 'role':role,'display_name':username})
+            r=self.admin.post('/api/admin/users',json={'username':username,'password':'135790', 'role':role,'display_name':username})
             self.assertEqual(r.status_code,201,r.text)
-            self.assertEqual(client.post('/api/auth/login',json={'username':username,'password':'Stage1-test-2026!'}).json()['role'],role)
+            self.assertEqual(client.post('/api/auth/login',json={'username':username,'password':'135790'}).json()['role'],role)
 
     def tearDown(self):
         for client in (self.admin,self.learner,self.teacher):client.close()
@@ -42,30 +42,30 @@ class StageOneTests(unittest.TestCase):
     def test_admin_accounts_roles_duplicate_and_no_password_disclosure(self):
         for client in (self.learner,self.teacher):
             self.assertEqual(client.get('/api/admin/users').status_code,403)
-            self.assertEqual(client.post('/api/admin/users',json={'username':'illegal','password':'Stage1-test-2026!','display_name':'非法','role':'teacher'}).status_code,403)
+            self.assertEqual(client.post('/api/admin/users',json={'username':'illegal','password':'135790','display_name':'非法','role':'teacher'}).status_code,403)
         self.assertEqual(self.admin.post('/api/entry',json={'profession':'DT'}).status_code,403)
         self.assertEqual(self.teacher.post('/api/entry',json={'profession':'DT'}).status_code,403)
-        self.assertEqual(self.admin.post('/api/admin/users',json={'username':'test-student','password':'Stage1-test-2026!','display_name':'重複','role':'student'}).status_code,409)
-        self.assertEqual(self.admin.post('/api/admin/users',json={'username':'new-admin','password':'Stage1-test-2026!','display_name':'管理員','role':'admin'}).status_code,400)
+        self.assertEqual(self.admin.post('/api/admin/users',json={'username':'test-student','password':'135790','display_name':'重複','role':'student'}).status_code,409)
+        self.assertEqual(self.admin.post('/api/admin/users',json={'username':'new-admin','password':'135790','display_name':'管理員','role':'admin'}).status_code,400)
         self.assertNotIn('password',self.admin.get('/api/admin/users').text)
-        self.assertTrue(verify_password('1234',self.db.one("SELECT password_hash FROM users WHERE username='user'")['password_hash']))
+        self.assertTrue(verify_password('654321',self.db.one("SELECT password_hash FROM users WHERE username='user'")['password_hash']))
         self.db.bootstrap_admin()
         self.assertEqual(self.db.one("SELECT count(*) n FROM users WHERE role='admin'")['n'],1)
 
     def test_password_reset_disable_enable_preserve_records(self):
         e=self.enter('OT')
         uid=self.db.one("SELECT id FROM users WHERE username='test-student'")['id']
-        update={'display_name':'測試學員','role':'student','enabled':True,'password':'New-test-2026!'}
+        update={'display_name':'測試學員','role':'student','enabled':True,'password':'246801'}
         self.assertEqual(self.admin.patch(f'/api/admin/users/{uid}',json=update).status_code,200)
         self.assertEqual(self.learner.get('/api/me').status_code,401)
-        self.assertEqual(self.learner.post('/api/auth/login',json={'username':'test-student','password':'Stage1-test-2026!'}).status_code,401)
-        self.assertEqual(self.learner.post('/api/auth/login',json={'username':'test-student','password':'New-test-2026!'}).status_code,200)
+        self.assertEqual(self.learner.post('/api/auth/login',json={'username':'test-student','password':'135790'}).status_code,401)
+        self.assertEqual(self.learner.post('/api/auth/login',json={'username':'test-student','password':'246801'}).status_code,200)
         update.pop('password');update['enabled']=False
         self.admin.patch(f'/api/admin/users/{uid}',json=update)
         self.assertEqual(self.learner.get('/api/me').status_code,401)
-        self.assertEqual(self.learner.post('/api/auth/login',json={'username':'test-student','password':'New-test-2026!'}).status_code,401)
+        self.assertEqual(self.learner.post('/api/auth/login',json={'username':'test-student','password':'246801'}).status_code,401)
         update['enabled']=True;self.admin.patch(f'/api/admin/users/{uid}',json=update)
-        self.assertEqual(self.learner.post('/api/auth/login',json={'username':'test-student','password':'New-test-2026!'}).status_code,200)
+        self.assertEqual(self.learner.post('/api/auth/login',json={'username':'test-student','password':'246801'}).status_code,200)
         self.assertEqual(self.db.one('SELECT id FROM attempts')['id'],e['attempt_id'])
         events=self.db.all("SELECT data FROM events WHERE kind LIKE 'admin_account_%'")
         self.assertTrue(events)
@@ -141,14 +141,14 @@ class StageOneTests(unittest.TestCase):
         self.assertTrue(teacher['completed']);self.assertEqual(teacher['answers'],body)
         self.assertEqual(len(self.teacher.get('/api/teacher/overview').json()['assessments']),1)
         self.assertEqual(len(self.learner.get('/api/history').json()['assessments']),1)
-        self.learner.post('/api/auth/logout');self.learner.post('/api/auth/login',json={'username':'test-student','password':'Stage1-test-2026!'})
+        self.learner.post('/api/auth/logout');self.learner.post('/api/auth/login',json={'username':'test-student','password':'135790'})
         next_entry=self.enter('MLS')
         self.assertTrue(next_entry['assessment_required'])
         self.assertFalse({q['item_id'] for q in e['snapshot']['items']} & {q['item_id'] for q in next_entry['snapshot']['items']})
         other=TestClient(server.app)
         try:
-            self.admin.post('/api/admin/users',json={'username':'other','password':'Stage1-test-2026!','display_name':'他人','role':'student'})
-            other.post('/api/auth/login',json={'username':'other','password':'Stage1-test-2026!'})
+            self.admin.post('/api/admin/users',json={'username':'other','password':'135790','display_name':'他人','role':'student'})
+            other.post('/api/auth/login',json={'username':'other','password':'135790'})
             self.assertEqual(other.get(f"/api/assessments/{e['attempt_id']}").status_code,404)
         finally:other.close()
 

@@ -71,7 +71,7 @@ class V5Tests(unittest.TestCase):
             video=self.client.get(url,headers={'Range':'bytes=0-31'})
             self.assertEqual(video.status_code,206)
             self.assertEqual(video.content,(media/'fixture.mp4').read_bytes()[:32])
-            if level==4:self.assertEqual(self.client.post(f'/api/sessions/{sid}/frame-notes',json=body).status_code,403)
+            if level==4:self.assertEqual(self.client.post(f'/api/sessions/{sid}/frame-notes',json=body).status_code,200)
         response=self.client.post(f'/api/sessions/{sid}/frame-notes',json=body)
         self.assertEqual(response.status_code,200,response.text)
         self.assertEqual(response.json()['frame'],30)

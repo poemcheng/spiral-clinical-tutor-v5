@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 from typing import Literal
 from .config import ROOT,RUNTIME
-from . import pose_analysis,teaching_media,learning_curriculum
+from . import pose_analysis,teaching_media,learning_curriculum,epa_library
 from .competencies import profile
 from . import characters,team_knowledge
 
@@ -32,10 +32,11 @@ def resources(row,case):
       'media':[c for c in clips if 'url' in c],
       'lesson_levels':learning_curriculum.levels(case,row['profession'],level,clips),
       'lesson_notes':row['payload'].get('learning_notes',[]),
-      'frame_notes':row['payload'].get('frame_notes',[]) if level>=5 else [],
-      'frame_reviews':row['payload'].get('frame_note_reviews',[]) if level>=5 else [],
-      'pose_service':pose_analysis.availability() if level>=5 else None,
-      'pose_jobs':row['payload'].get('pose_jobs',[]) if level>=5 else [],
+      'frame_notes':row['payload'].get('frame_notes',[]) if level>=4 else [],
+      'frame_reviews':row['payload'].get('frame_note_reviews',[]) if level>=4 else [],
+      'pose_service':pose_analysis.availability() if level>=4 else None,
+      'pose_jobs':row['payload'].get('pose_jobs',[]) if level>=4 else [],
+      'epa_library':epa_library.available(row,case),
       'review_note':'360影片已核對球面投影與媒體格式；個別情境、職類視角及臨床解析仍待教師核定，不自動當作本輪病歷。'}
 
 class FrameNote(BaseModel):
@@ -47,6 +48,7 @@ class FrameNote(BaseModel):
     observation:str=Field(min_length=5,max_length=2000)
     analysis_id:str=Field(default='',pattern=r'^(?:[a-f0-9]{32})?$')
     analysis_frame:int|None=Field(default=None,ge=0)
+    epa_analysis_id:str=Field(default='',pattern=r'^(?:[a-f0-9]{32})?$')
 
 
 class PoseRequest(BaseModel):
@@ -73,6 +75,7 @@ def note_fingerprint(note):
     return hashlib.sha256(json.dumps(note,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
 
 def install_routes(app,owned_session,current_user,store_provider):
+    epa_library.install_routes(app,owned_session,current_user)
     def require(row,level):
         if earned(row)<level:raise HTTPException(403,f'本輪教材需累積學習 Level {level}；自評Level不會解鎖此教材。')
 
@@ -101,7 +104,7 @@ def install_routes(app,owned_session,current_user,store_provider):
     @app.post('/api/sessions/{sid}/pose-analysis')
     def start_pose(sid:int,body:PoseRequest,user=Depends(current_user)):
         if user['role']!='student':raise HTTPException(403,'由學員選擇分析視角及區間。')
-        row=owned_session(sid,user);require(row,5)
+        row=owned_session(sid,user);require(row,4)
         if row['status']!='active' or row['step']<3:raise HTTPException(409,'請在進行中的情境學習或角色互動分析影片。')
         clip=next((x for x in manifest()['clips'] if x['id']==body.clip_id),None)
         if not clip or not teaching_media.applies(clip,row) or not teaching_media.path_for(clip).is_file():raise HTTPException(404,'此情境影片尚未安裝或不適用。')
@@ -139,17 +142,17 @@ def install_routes(app,owned_session,current_user,store_provider):
 
     @app.get('/api/sessions/{sid}/pose-analysis/{job_id}')
     def pose_status(sid:int,job_id:str,user=Depends(current_user)):
-        row=owned_session(sid,user);require(row,5)
+        row=owned_session(sid,user);require(row,4)
         return job_for(row,job_id)
 
     @app.get('/api/sessions/{sid}/pose-analysis/{job_id}/result')
     def pose_result(sid:int,job_id:str,user=Depends(current_user)):
-        row=owned_session(sid,user);require(row,5)
+        row=owned_session(sid,user);require(row,4)
         return result_for(row,job_id)
 
     @app.get('/api/sessions/{sid}/pose-analysis/{job_id}/frames/{frame}')
     def pose_frame(sid:int,job_id:str,frame:int,overlay:bool=True,user=Depends(current_user)):
-        row=owned_session(sid,user);require(row,5);job=job_for(row,job_id)
+        row=owned_session(sid,user);require(row,4);job=job_for(row,job_id)
         if job['status']!='completed' or frame<0:raise HTTPException(404,'此影格尚未完成。')
         path=RUNTIME/'pose_analysis'/job['id']/f"{'' if overlay else 'raw-'}frame-{frame}.jpg"
         if not path.is_file():raise HTTPException(404,'找不到分析影格。')
@@ -171,11 +174,12 @@ def install_routes(app,owned_session,current_user,store_provider):
         if user['role']!='student':raise HTTPException(403,'此紀錄由學員建立。')
         store=store_provider()
         with store.tx() as c:
-            row=owned_session(sid,user);require(row,5)
+            row=owned_session(sid,user);require(row,4)
             if row['status']!='active':raise HTTPException(409,'已完成的訓練證據不能改寫。')
             clip=next((x for x in manifest()['clips'] if x['id']==body.clip_id),None)
             if not clip or not teaching_media.applies(clip,row) or not math.isfinite(body.seconds) or body.seconds>clip['duration']:raise HTTPException(400,'影格時間、影片或主題不符。')
             if len(body.observation.strip())<5:raise HTTPException(400,'請填寫實際觀察內容。')
+            if body.analysis_id and body.epa_analysis_id:raise HTTPException(400,'請選擇一種影格證據來源。')
             data={**body.model_dump(),'frame':round(body.seconds*clip['fps']),'created':time.time(),'kind':'learner_observation','review_status':'學員觀察，待教師覆核',
                   'media_snapshot':{k:clip[k] for k in ('id','title','fps','fps_rational','projection','source_sha256','proxy_sha256') if k in clip}}
             data['teaching_step']=teaching_media.step_at(clip,body.seconds)
@@ -189,6 +193,14 @@ def install_routes(app,owned_session,current_user,store_provider):
                    'model':analysis['model'],'model_sha256':analysis['model_sha256'],'view':analysis['view'],'frame':frame,'limitation':analysis['limitation'],
                    'teaching_step':next((s for s in analysis.get('teaching_steps',[]) if s['id']==frame.get('teaching_step_id')),None)}
                 data['kind']='pose_supported_learner_observation'
+            if body.epa_analysis_id:
+                media,item,index,folder=epa_library.analysis(body.clip_id)
+                if body.epa_analysis_id!=item['id'] or body.analysis_frame is None:raise HTTPException(400,'EPA分析版本或影格不符。')
+                frame=epa_library.frame(body.clip_id,body.analysis_frame);view=item['view']
+                if round(body.seconds*clip['fps'])!=frame['frame'] or abs(body.yaw-view['yaw'])>.01 or abs(body.pitch-view['pitch'])>.01 or abs(body.fov-view.get('fov',70))>.01:raise HTTPException(400,'EPA影格、時間或視角不符；請重新選取。')
+                data.update(seconds=frame['seconds'],frame=frame['frame'],yaw=view['yaw'],pitch=view['pitch'],fov=view.get('fov',70))
+                data['analysis_snapshot']={'id':item['id'],'session_id':sid,'origin':'epa_library','clip_id':body.clip_id,'version':epa_library.VERSION,'result_sha256':index['result_sha256'],'model':index['model'],'model_sha256':item['model_sha256'],'view':view,'frame':frame,'limitation':index['limitation'],'teaching_step':teaching_media.step_at(clip,frame['seconds']),'epa_annotation':frame.get('annotation'),'epa_reference_keyframe':frame.get('reference_keyframe'),'annotation_sha256':frame['annotation_sha256']}
+                data['kind']='epa_annotated_learner_observation'
             row['payload'].setdefault('frame_notes',[]).append(data)
             store.save(c,sid,row['payload']);store.event(c,user['id'],sid,'pose_supported_observation' if body.analysis_id else 'frame_observation',data)
         return data
