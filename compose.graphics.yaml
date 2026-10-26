@@ -1,0 +1,16 @@
+services:
+  graphics:
+    build:
+      context: .
+      dockerfile: Dockerfile.graphics
+    ports:
+      - "127.0.0.1:8715:8715"
+    environment:
+      DEPLOYMENT_MODE: public
+      GRAPHICS_ADMIN_PASSWORD: ${GRAPHICS_ADMIN_PASSWORD:?Set at least 12 characters for initial admin}
+      COOKIE_SECURE: ${COOKIE_SECURE:-0}
+    volumes:
+      - graphics-runtime:/app/runtime/graphics
+    restart: unless-stopped
+volumes:
+  graphics-runtime:

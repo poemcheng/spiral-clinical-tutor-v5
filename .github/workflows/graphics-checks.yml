@@ -1,0 +1,32 @@
+name: Graphics teaching-practice checks
+on:
+  push:
+    branches: ['codex/graphics-teaching-practice']
+  pull_request:
+    paths:
+      - 'backend/graphics_*.py'
+      - 'frontend/graphics/**'
+      - 'tests/test_graphics.py'
+      - 'tests/graphics-ui/**'
+      - 'tools/check_graphics_ui.py'
+      - 'requirements-graphics.txt'
+      - '.github/workflows/graphics-checks.yml'
+  workflow_dispatch:
+jobs:
+  graphics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: pip install -r requirements-graphics.txt
+      - run: python -m compileall -q backend/graphics_curriculum.py backend/graphics_server.py tools/check_graphics_ui.py
+      - run: python -m unittest discover -s tests -p test_graphics.py -v
+      - run: node --check frontend/graphics/app.js
+      - run: node --test tests/frontend/*.test.mjs
+      - run: npm --prefix tests/graphics-ui ci --no-audit --no-fund
+      - run: python tools/check_graphics_ui.py
