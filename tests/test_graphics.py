@@ -39,7 +39,7 @@ class GraphicsAcceptance(unittest.TestCase):
 
     def advance(self, work, **overrides):
         step = work['step']
-        values = {f[0]: '具體測試紀錄：基準約束、尺寸變更與驗證結果' for f in FIELDS[step]}
+        values = {f[0]: '具體測試紀錄：基準約束、尺寸變更與驗證結果' for f in work['fields']}
         if step == 1:
             values.update(self={d['id']: 3 for d in DIMENSIONS}, answer=1)
         if step == 4:
@@ -90,6 +90,8 @@ class GraphicsAcceptance(unittest.TestCase):
     def test_no_keys_in_catalog_or_public_snapshot(self):
         result = self.student.get('/api/catalog').json()
         self.assertNotIn('pre', result['tasks'][0])
+        self.assertNotIn('prompts', result['tasks'][0])
+        self.assertNotIn('question_preview', result['tasks'][0])
         work = self.start()
         self.assertNotIn('answer', work['question'])
         self.assertNotIn('transfer', work['task'])
@@ -113,7 +115,7 @@ class GraphicsAcceptance(unittest.TestCase):
     def test_revision_conflict_and_required_fields(self):
         work = self.start()
         url = f"/api/trainings/{work['id']}/work"
-        draft = {'revision': 0, 'values': {'baseline_reason': '先保存草稿'}}
+        draft = {'revision': 0, 'values': {work['fields'][0][0]: '先保存草稿'}}
         self.assertEqual(self.student.post(url, json=draft).status_code, 200)
         self.assertEqual(self.student.post(url, json=draft).status_code, 409)
         self.assertEqual(self.student.post(url, json={'revision': 1, 'advance': True, 'values': {}}).status_code, 400)
@@ -137,6 +139,8 @@ class GraphicsAcceptance(unittest.TestCase):
         self.assertEqual(len(peers), 1)
         self.assertNotIn('self', peers[0]['work'])
         self.assertNotIn('reviews', peers[0])
+        expected_labels = {p['id']: p['prompt'] for p in work['task']['prompts']['3']}
+        self.assertEqual(peers[0]['field_labels'], expected_labels)
         self.assertEqual(self.clients['peer'].get(f"/api/artifacts/{file['id']}").status_code, 200)
         self.assertEqual(self.clients['outsider'].get(f'/api/teams/{self.team}/work').status_code, 404)
         self.student.post(f"/api/trainings/{work['id']}/share", json={'shared': False})
@@ -165,7 +169,7 @@ class GraphicsAcceptance(unittest.TestCase):
 
     def test_evidence_required_and_submitted_work_frozen(self):
         work = self.to_step(3)
-        values = {f[0]: '說明' for f in FIELDS[3]}
+        values = {f[0]: '說明' for f in work['fields']}
         self.assertEqual(self.student.post(f"/api/trainings/{work['id']}/work", json={'revision': work['revision'], 'advance': True, 'values': values}).status_code, 400)
         self.upload(work)
         while work['status'] == 'active':
@@ -229,6 +233,71 @@ class GraphicsAcceptance(unittest.TestCase):
         self.assertEqual(self.student.get('/static/app.js').status_code, 200)
         self.assertEqual(self.student.get('/static/style.css').status_code, 200)
         self.assertEqual(self.store.all('SELECT * FROM sessions'), [])
+
+    def test_catia_questions_are_required_and_saved_for_all_three_tasks(self):
+        for task in TASKS:
+            with self.subTest(task=task['id']):
+                work = self.start(task['id'], team=False)
+                self.assertEqual(set(work['task']['prompts']), {'1'})
+                while work['status'] == 'active':
+                    self.assertEqual(set(work['task']['prompts']), {str(step) for step in range(1, work['step'] + 1)})
+                    question_ids = [p['id'] for p in work['task']['prompts'][str(work['step'])]]
+                    self.assertEqual(len(question_ids), 2)
+                    self.assertTrue(set(question_ids).issubset({f[0] for f in work['fields']}))
+                    incomplete = {f[0]: '模型證據與具體數值' for f in work['fields']}
+                    if work['step'] == 1:
+                        incomplete.update(self={d['id']: 3 for d in DIMENSIONS}, answer=1)
+                    if work['step'] == 5:
+                        incomplete['answer'] = 1
+                    if work['step'] == 4:
+                        incomplete['ai_use'] = 'not_used'
+                    incomplete.pop(question_ids[0])
+                    result = self.student.post(f"/api/trainings/{work['id']}/work", json={
+                        'revision': work['revision'], 'advance': True, 'values': incomplete})
+                    self.assertEqual(result.status_code, 400)
+                    previous_step = work['step']
+                    if previous_step == 3:
+                        self.upload(work)
+                    work = self.advance(work)
+                    saved = self.student.get(f"/api/trainings/{work['id']}").json()
+                    for question_id in question_ids:
+                        self.assertEqual(saved['data'][str(previous_step)][question_id],
+                                         '具體測試紀錄：基準約束、尺寸變更與驗證結果')
+                self.assertNotIn('answer', work['task']['prompts']['5'][0])
+
+    def test_existing_snapshot_keeps_original_questions_after_curriculum_update(self):
+        work = self.start()
+        stored = self.store.one('SELECT snapshot FROM graphics_trainings WHERE id=?', (work['id'],))
+        spec = json.loads(stored['snapshot'])
+        spec['task'].pop('prompts', None)
+        spec['version'] = 'graphics-1.0.0'
+        with self.store.tx() as c:
+            c.execute('UPDATE graphics_trainings SET snapshot=? WHERE id=?', (json.dumps(spec), work['id']))
+        legacy = self.student.get(f"/api/trainings/{work['id']}").json()
+        self.assertEqual(legacy['fields'], [list(f) for f in FIELDS[1]])
+        advanced = self.advance(legacy, baseline_reason='舊版自評仍能續答')
+        self.assertEqual(advanced['fields'], [list(f) for f in FIELDS[2]])
+        self.assertEqual(advanced['spec_version'], 'graphics-1.0.0')
+        self.assertIn('prompts', self.start()['task'])
+
+    def test_catdrawing_evidence_upload_download_and_access(self):
+        work = self.to_step(3)
+        content = b'CATDrawing isolated test fixture; not an actual CAD file'
+        result = self.student.post(f"/api/trainings/{work['id']}/artifacts?filename=fixture.CATDrawing", content=content)
+        self.assertEqual(result.status_code, 200)
+        artifact_id = result.json()['id']
+        self.assertEqual(self.student.get(f'/api/artifacts/{artifact_id}').content, content)
+        self.assertEqual(self.clients['outsider'].get(f'/api/artifacts/{artifact_id}').status_code, 404)
+
+    def test_educator_can_preview_questions_without_correct_answer_keys(self):
+        for actor in (self.teacher, self.admin):
+            tasks = actor.get('/api/catalog').json()['tasks']
+            for task in tasks:
+                self.assertEqual(len(task['question_preview']), 6)
+                self.assertEqual(sum(len(step['questions']) for step in task['question_preview']), 12)
+                for step in task['question_preview']:
+                    if 'quiz' in step:
+                        self.assertNotIn('answer', step['quiz'])
 
 
 if __name__ == '__main__':

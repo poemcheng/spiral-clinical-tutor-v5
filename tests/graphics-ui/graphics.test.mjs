@@ -34,24 +34,27 @@ test('student completes real six-stage API flow through DOM handlers and reads t
   try{
     assert.equal(s.w.document.querySelectorAll('.task').length,3);
     s.click('[data-action="choose"]');await until(()=>s.q('#start-form'));
-    s.fill('#start-team','1');s.submit('#start-form');await until(()=>s.q('#baseline_reason'));
-    s.fill('#baseline_reason','測試：希望理解尺寸依存');s.q('input[name="answer"][value="1"]').checked=true;
-    s.submit('#work-form');await until(()=>s.q('#function'));
-    for(const id of ['function','geometry','plan'])s.fill('#'+id,id==='function'?'<img src=x onerror=alert(1)>測試文字':'基準、對稱與約束的具體說明');
+    const atStep=n=>s.q('.step.active')?.textContent.startsWith(n+'.');
+    const fillResponses=text=>{for(const e of s.w.document.querySelectorAll('#work-form textarea'))s.fill('#'+e.id,text);};
+    s.fill('#start-team','1');s.submit('#start-form');await until(()=>atStep(1));
+    assert.equal(s.w.document.querySelectorAll('#work-form textarea').length,2);
+    fillResponses('測試：希望理解尺寸依存');s.q('input[name="answer"][value="1"]').checked=true;
+    s.submit('#work-form');await until(()=>atStep(2));
+    fillResponses('<img src=x onerror=alert(1)>基準、對稱與約束的具體說明');
     s.fill('#hint-question','尺寸變更後孔位為什麼偏移？');s.submit('#hint-form');await until(()=>s.q('#hint-answer small'));
     assert.match(s.q('#hint-answer').textContent,/規則式/);
-    s.submit('#work-form');await until(()=>s.q('#actual_steps'));
-    for(const e of s.w.document.querySelectorAll('#work-form textarea'))s.fill('#'+e.id,'先預測尺寸與基準關係，再於CATIA操作檢核。');
+    s.submit('#work-form');await until(()=>atStep(3));
+    fillResponses('先預測尺寸與基準關係，再於CATIA操作檢核。');
     const upload=s.q('#artifact');Object.defineProperty(upload,'files',{configurable:true,value:[new s.w.File(['ISO-10303-21; test fixture'],'ui-model.step')]});
     s.click('[data-action="upload"]');await until(()=>s.q('.evidence-list a'));
-    assert.equal(s.q('#actual_steps').value,'先預測尺寸與基準關係，再於CATIA操作檢核。');
-    s.submit('#work-form');await until(()=>s.q('#peer_strategy'));
-    for(const e of s.w.document.querySelectorAll('#work-form textarea'))s.fill('#'+e.id,'本次同儕互換與AI未使用之測試紀錄');
-    s.fill('#ai_use','not_used');s.submit('#work-form');await until(()=>s.q('#transfer_reason'));
+    assert.equal(s.q('#work-form textarea').value,'先預測尺寸與基準關係，再於CATIA操作檢核。');
+    s.submit('#work-form');await until(()=>atStep(4));
+    fillResponses('本次同儕互換與AI未使用之測試紀錄');
+    s.fill('#ai_use','not_used');s.submit('#work-form');await until(()=>atStep(5));
     assert.equal(s.q('#hint-form'),null);
-    s.fill('#transfer_reason','以新零件基準與約束依存驗證，不只看外觀');s.q('input[name="answer"][value="1"]').checked=true;
-    s.submit('#work-form');await until(()=>s.q('#skill_reflection'));
-    for(const e of s.w.document.querySelectorAll('#work-form textarea'))s.fill('#'+e.id,'測試反思：先預測、後操作，用尺寸變更證據解釋。');
+    fillResponses('以新零件基準與約束依存驗證，不只看外觀');s.q('input[name="answer"][value="1"]').checked=true;
+    s.submit('#work-form');await until(()=>atStep(6));
+    fillResponses('測試反思：先預測、後操作，用尺寸變更證據解釋。');
     s.submit('#work-form');await until(()=>!s.q('#work-form'));
     assert.equal(s.q('img'),null,'submitted user text must not become HTML');
     const rows=await (await s.request('/api/trainings')).json();const tid=rows[0].id;
@@ -83,4 +86,52 @@ test('teacher authoring form publishes a new task with hidden answer keys',async
     assert.ok(task);assert.equal(task.pre,undefined);assert.equal(task.transfer,undefined);
     assert.deepEqual(t.errors,[]);
   }finally{t.dom.window.close();}
+});
+
+test('all three CATIA tasks expose concrete specifications and preserve numbered response drafts',async()=>{
+  const s=await workspace('ui-peer');
+  try{
+    const catalog=await(await s.request('/api/catalog')).json();
+    const tasks=catalog.tasks.filter(task=>Array.isArray(task.parameters)&&task.parameters.length);
+    assert.equal(tasks.length,3,'the three built-in CATIA tasks have explicit dimensional specifications');
+    for(const task of tasks){
+      s.click(`[data-action="choose"][data-task="${task.id}"]`);
+      await until(()=>s.q('#start-form'));
+      assert.equal(s.q('.spec-table tbody').rows.length,task.parameters.length);
+      for(const name of task.workbenches)assert.ok(s.q('.task-spec').textContent.includes(name));
+      for(const deliverable of task.deliverables)assert.ok(s.q('.task-spec').textContent.includes(deliverable));
+      s.submit('#start-form');
+      await until(()=>s.q('.step.active')?.textContent.startsWith('1.'));
+      const tid=s.q('.page-head .kicker').textContent.match(/TRAINING (\d+)/)?.[1];
+      assert.ok(tid,'training id is visible in the workspace');
+      const work=await(await s.request(`/api/trainings/${tid}`)).json();
+      assert.equal(work.task_id,task.id);
+      assert.equal(work.step,1);
+      const fields=[...s.w.document.querySelectorAll('#work-form textarea')];
+      assert.equal(fields.length,2,'each opening step asks two concrete written questions');
+      const expected={};
+      for(const [index,field] of fields.entries()){
+        const definition=work.fields.find(([id])=>id===field.id);
+        assert.ok(definition,'the response control belongs to the active snapshot');
+        assert.ok(field.labels[0].textContent.includes(definition[1]));
+        assert.ok(field.labels[0].textContent.includes(`題目 ${index+1}`));
+        assert.ok(field.placeholder.trim().length>0,'a concrete response hint is visible');
+        assert.equal(field.placeholder,work.response_hints[field.id]);
+        assert.equal(s.q('#'+field.getAttribute('aria-describedby')).textContent,field.placeholder);
+        expected[field.id]=`${task.title}：第${index+1}題，先依尺寸、基準與CATIA操作提出具體預測。`;
+        s.fill('#'+field.id,expected[field.id]);
+      }
+      s.click('[data-action="save"]');
+      await until(()=>s.q('#save-state')?.textContent.includes(`版本 ${work.revision+1} ·`));
+      const saved=await(await s.request(`/api/trainings/${tid}`)).json();
+      assert.equal(saved.step,1,'saving a draft does not advance the assessment');
+      for(const [id,value] of Object.entries(expected)){
+        assert.equal(saved.data['1'][id],value,'the API persisted the submitted draft');
+        assert.equal(s.q('#'+id).value,value,'the saved draft remains in the response control');
+      }
+      s.click('[data-action="home"]');
+      await until(()=>s.q('.grid .task'));
+    }
+    assert.deepEqual(s.errors,[]);
+  }finally{s.dom.window.close();}
 });

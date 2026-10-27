@@ -98,6 +98,17 @@ class LessonBody(BaseModel):
     task: LessonTask
 
 
+def response_fields(task, step):
+    """Use the questions frozen in each training, including legacy task formats."""
+    prompts = task.get('prompts', {}).get(str(step))
+    if not prompts:
+        return list(curriculum.FIELDS[step])
+    fields = [(p['id'], p['prompt'], 'textarea') for p in prompts]
+    if step == 4:
+        fields.extend(f for f in curriculum.FIELDS[4] if f[0].startswith('ai_'))
+    return fields
+
+
 def create_app(db_path=None, bootstrap=True):
     home = Path(os.getenv('GRAPHICS_HOME', str(ROOT / 'runtime' / 'graphics'))).resolve()
     if db_path:
@@ -225,9 +236,14 @@ def create_app(db_path=None, bootstrap=True):
         question = None
         if question_key:
             question = {k: v for k, v in spec['task'][question_key].items() if k != 'answer'}
-        return {**summary(row), 'data': data, 'task': curriculum.public_task(spec['task']),
+        task_content = curriculum.public_task(spec['task'])
+        if 'prompts' in spec['task']:
+            task_content['prompts'] = {step: prompts for step, prompts in spec['task']['prompts'].items()
+                                       if int(step) <= row['step']}
+        return {**summary(row), 'data': data, 'task': task_content,
                 'spec_hash': spec['hash'], 'spec_version': spec['version'], 'rubric': spec['rubric'],
-                'fields': curriculum.FIELDS[row['step']], 'question': question,
+                'fields': response_fields(spec['task'], row['step']), 'question': question,
+                'response_hints': {p['id']: p.get('placeholder', '') for p in spec['task'].get('prompts', {}).get(str(row['step']), [])},
                 'artifacts': store.all('SELECT id,name,size,sha256 FROM graphics_artifacts WHERE training_id=?', (row['id'],)),
                 'hints': store.all('SELECT question,answer,level,source,created FROM graphics_hints WHERE training_id=? ORDER BY id', (row['id'],)),
                 'reviews': [{**r, 'data': json.loads(r['data'])} for r in store.all('SELECT * FROM graphics_reviews WHERE training_id=? ORDER BY id', (row['id'],))]}
@@ -300,6 +316,17 @@ def create_app(db_path=None, bootstrap=True):
         data = curriculum.catalog()
         lessons = store.all('SELECT id FROM graphics_lessons WHERE published_revision>0 ORDER BY updated DESC')
         data['tasks'] += [curriculum.public_task(task_snapshot(r['id'])['task']) for r in lessons]
+        if actor['role'] in ('teacher', 'admin'):
+            for task in data['tasks']:
+                spec = task_snapshot(task['id'])['task']
+                task['question_preview'] = []
+                for step in range(1, 7):
+                    preview = {'step': step, 'title': curriculum.STEPS[step - 1],
+                               'questions': spec.get('prompts', {}).get(str(step), [])}
+                    if step in (1, 5):
+                        quiz = spec['pre' if step == 1 else 'transfer']
+                        preview['quiz'] = {k: v for k, v in quiz.items() if k != 'answer'}
+                    task['question_preview'].append(preview)
         return data
 
     @app.get('/api/lessons')
@@ -389,6 +416,7 @@ def create_app(db_path=None, bootstrap=True):
                             WHERE team_id=? AND shared=1 ORDER BY t.id DESC''', (team_id,))
         return [{'id': r['id'], 'author': r['display_name'], 'task_id': r['task_id'], 'role': r['role'],
                  'work': json.loads(r['data']).get('3', {}),
+                 'field_labels': {key: label for key, label, _ in response_fields(json.loads(r['snapshot'])['task'], 3)},
                  'artifacts': store.all('SELECT id,name,size,sha256 FROM graphics_artifacts WHERE training_id=?', (r['id'],))} for r in rows]
 
     @app.get('/api/trainings')
@@ -430,7 +458,7 @@ def create_app(db_path=None, bootstrap=True):
             if row['revision'] != body.revision:
                 raise HTTPException(409, '已有新版本，請重新載入後再編輯')
             step = row['step']
-            allowed = {f[0] for f in curriculum.FIELDS[step]}
+            allowed = {f[0] for f in response_fields(row['spec']['task'], step)}
             if step == 1:
                 allowed |= {'self', 'answer'}
             if step == 5:
@@ -484,8 +512,8 @@ def create_app(db_path=None, bootstrap=True):
             raise HTTPException(409, '實作及互換測試階段可上傳證據')
         name = Path(filename.replace('\\', '/')).name[:120]
         suffix = Path(name).suffix.lower()
-        if suffix not in ('.png', '.jpg', '.jpeg', '.pdf', '.step', '.stp', '.catpart', '.catproduct', '.stl', '.obj', '.txt'):
-            raise HTTPException(400, '支援圖片、PDF、STEP/STL/OBJ、CATIA模型及純文字')
+        if suffix not in ('.png', '.jpg', '.jpeg', '.pdf', '.step', '.stp', '.catpart', '.catproduct', '.catdrawing', '.stl', '.obj', '.txt'):
+            raise HTTPException(400, '支援圖片、PDF、STEP/STL/OBJ、CATPart/CATProduct/CATDrawing及純文字')
         chunks, size = [], 0
         async for chunk in request.stream():
             size += len(chunk)
