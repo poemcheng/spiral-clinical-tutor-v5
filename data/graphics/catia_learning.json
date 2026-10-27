@@ -1,0 +1,279 @@
+{
+  "version": "catia-learning-1.0.0",
+  "title": "CATIA V5 知識與操作實作",
+  "description": "先讀懂基準與設計意圖，再到自己的 CATIA V5 操作、量測與留下證據。九課依序連接 L 型支架、U 型導軌滑塊、雙定位銷治具與工程圖。工作台與指令名稱可能因語系、版本及授權不同；本文以功能名稱引導，網站本身不執行 CATIA。所有尺寸為本課自編教學規格。",
+  "lessons": [
+    {
+      "id": "bracket-sketch",
+      "stage_id": "part-bracket",
+      "title": "01｜建立座標觀念與完全約束草圖",
+      "duration_minutes": 45,
+      "objectives": ["依題目選擇 XY 面與長度中心基準", "分辨大小尺寸與位置約束", "完成可供 Pad 使用的閉合草圖"],
+      "knowledge": [
+        {"title": "先定義位置，再判讀形狀", "body": "本題 X 沿底座長度、Y 沿深度、Z 向上，原點在底座前邊的長度中點。因此底座在 XY 面的範圍是 X=−40～40、Y=0～50，並非以原點為矩形的左下角。YZ 面代表 X=0，適合作為左右對稱基準。"},
+        {"title": "80×50 不代表已定位", "body": "長度與深度只控制矩形大小。若矩形還能整體平移，必須補上相對原點、軸線或對稱基準的位置關係。完全約束是幾何自由度符合設計，而不是把每一條線都用 Fix 鎖住。"},
+        {"title": "閉合輪廓與更新證據", "body": "本練習的 Pad 需要有效閉合輪廓。兩個端點看起來重疊，不一定具有重合關係。請用草圖約束／分析狀態確認封閉、剩餘自由度及是否存在重複約束；畫面顏色可能受顯示設定影響，不應作為唯一證據。"}
+      ],
+      "steps": [
+        {"title": "建立練習檔與單位", "action": "新建 Part，儲存為 Bracket.CATPart。確認尺寸單位為 mm，找到 XY、YZ、XZ 三個原始基準面，將本課的 X、Y、Z 方向寫進筆記。", "checkpoint": "你能指出 Z 為拉伸向上方向、YZ 面是左右對稱面；不是只記住螢幕左右。", "evidence": "01_axes.png：顯示原始基準面、座標方向與檔名。"},
+        {"title": "在 XY 面建立矩形", "action": "選取 XY 面進入 Sketcher（草圖），畫一個閉合矩形。讓前邊位於 Y=0；先不以滑鼠猜測最終尺寸。", "checkpoint": "矩形四邊連接成閉合輪廓，前邊與 X 軸／Y=0 的關係可說明。", "evidence": "02_profile.png：保留輪廓、原點及軸線。"},
+        {"title": "加入大小與定位關係", "action": "用 Constraint（約束）標註 X 方向長度80、Y 方向深度50。使長度中點位於 X=0，例如用左右對稱或等效的中心定位關係；避免同時加入互相重複的尺寸。", "checkpoint": "左邊 X=−40、右邊 X=40，前邊 Y=0、後邊 Y=50。", "evidence": "03_constraints.png：可讀到80、50及中心／前邊定位的約束。"},
+        {"title": "檢查剩餘自由度", "action": "檢查草圖約束／分析狀態，再嘗試移動矩形。若整體仍能移動，指出缺少的是位置或方向關係；若出現過度約束，找出重複控制同一關係的項目。", "checkpoint": "草圖沒有非預期移動，也沒有未解決的矛盾約束；能說出每個定位約束的作用。", "evidence": "04_sketch_status.png與一句說明：剩餘自由度、曾修正的約束名稱。"},
+        {"title": "離開草圖並保存", "action": "離開 Sketcher，確認特徵樹保留此草圖。將它命名為 Sketch_Base，儲存檔案；在學習筆記回答為何不能僅以外觀判定正確。", "checkpoint": "重新開啟草圖仍可讀到原尺寸與基準關係，檔案成功保存。", "evidence": "Bracket.CATPart及05_sketch_tree.png。"}
+      ],
+      "pitfalls": [
+        {"symptom": "尺寸已是80與50，整個矩形仍能移動。", "cause": "大小受控，但矩形與原點／基準的相對位置未定義。", "fix": "保留大小尺寸，補上前邊 Y=0 與長度中心 X=0 的定位關係，再檢查自由度。"},
+        {"symptom": "Pad 預覽失敗，或草圖出現矛盾約束。", "cause": "端點未真正重合、輪廓重複，或使用多組尺寸控制相同關係。", "fix": "回到草圖檢查端點與重複元素；逐一確認約束的用途，只移除已識別的重複項，不任意刪除全部尺寸。"}
+      ],
+      "quiz": [
+        {"id": "bracket-sketch-q1", "question": "本題底座在 X 方向長80且關於 YZ 面對稱，左右邊的 X 應為何？", "options": ["0與80", "−40與40", "−80與80", "20與60"], "answer": 1, "explanation": "YZ 面為 X=0。左右對稱且總長80，所以兩邊分別是−40與40。"},
+        {"id": "bracket-sketch-q2", "question": "矩形長深已標尺寸，仍可整體平移，應先補什麼？", "options": ["相對原點或基準的定位關係", "更厚的 Pad", "零件材料", "工程圖比例"], "answer": 0, "explanation": "平移顯示位置尚未受控；改變實體厚度或圖面比例無法補足草圖定位。"}
+      ],
+      "sources": [{"title": "Dassault Systèmes｜CATIA Part Design 2：草圖與特徵建模概念", "url": "https://3dswym.3dexperience.3ds.com/wiki/catia-user-community/catia-part-design-2-pdg_wUklCUysT4GXL-WVU4ZrWQ"}]
+    },
+    {
+      "id": "bracket-features",
+      "stage_id": "part-bracket",
+      "title": "02｜用 Pad、Hole、Mirror 完成 L 型支架",
+      "duration_minutes": 60,
+      "objectives": ["以兩個 Pad 建立連通的底座與立板", "依全域座標與方向建立三個通孔", "辨識孔特徵與鏡射基準之間的依存"],
+      "knowledge": [
+        {"title": "高度必須有起算面", "body": "底座厚8，立板從底座頂面 Z=8 再向上40，因此立板頂面 Z=48。『立板高度40』是第二個 Pad 的長度，『總高48』是從全域底面起算的量測結果。"},
+        {"title": "孔中心與孔方向是兩個條件", "body": "底座兩孔的 XY 中心為 (−20,20) 與 (20,20)，沿 Z 穿透8厚底座；立板孔則以 X=0、Z=28 定位，從 Y=42 朝+Y 穿過8厚立板。只看到圓形輪廓不足以證明穿孔方向與深度正確。"},
+        {"title": "鏡射表達對稱意圖", "body": "先建立 X=20、Y=20 的底座孔，再關於 YZ 面 Mirror（鏡射），可使另一孔隨第一孔與共同基準更新。本課以單一連通實體為目標，第二個 Pad 必須接上底座。"}
+      ],
+      "steps": [
+        {"title": "拉伸底座", "action": "選 Sketch_Base，以 Pad（凸台）向+Z 拉伸8 mm，命名 Pad_Base。量測底面與頂面的 Z 位置，必要時調整拉伸方向。", "checkpoint": "底座範圍 X=−40～40、Y=0～50、Z=0～8。", "evidence": "06_base_pad.png：Pad 長度8與向上預覽。"},
+        {"title": "建立立板", "action": "在底座 Z=8 頂面建立草圖，畫範圍 X=−40～40、Y=42～50 的矩形；確認與底座接合，再向+Z Pad 40，命名 Pad_Wall。", "checkpoint": "立板厚8、長80，頂面 Z=48；底座與立板形成單一連通實體。", "evidence": "07_wall.png：立板草圖尺寸與側視高度。"},
+        {"title": "建立第一個底座通孔", "action": "選底座頂面，用 Hole（孔）建立Ø8孔。編輯定位草圖／位置關係，使中心 X=20、Y=20；使用合適的貫穿終止方式並確認切除方向朝−Z。", "checkpoint": "孔穿過底座厚度，未誤向上切除空間，也未以畫面位置代替尺寸。", "evidence": "08_base_hole.png：孔徑、定位尺寸及穿透結果。"},
+        {"title": "鏡射底座孔", "action": "選剛建立的孔特徵，以 Mirror 關於原始 YZ 面鏡射；更新後量測兩孔中心與孔距。不要以立板前面作為左右鏡射平面。", "checkpoint": "兩孔 X=−20與20、Y皆20，中心距40。", "evidence": "09_mirror.png：鏡射特徵、基準面與兩孔尺寸。"},
+        {"title": "建立立板孔並總檢查", "action": "在立板前面 Y=42 建立Ø10通孔，定位 X=0、Z=28，切除方向朝+Y。Update（更新）後檢查三孔、特徵樹與連通實體，儲存 Bracket.CATPart。", "checkpoint": "立板孔穿透 Y=42～50；總高48，底座孔與立板孔沒有混用定位平面。", "evidence": "10_bracket_final.png、11_feature_tree.png及原始 CATPart。"}
+      ],
+      "pitfalls": [
+        {"symptom": "立板總高變成40，或頂面不是 Z=48。", "cause": "把總高與從底座頂面起算的 Pad 長度混用，或草圖選錯支撐面。", "fix": "查立板草圖支撐面是否為 Z=8，將第二個 Pad 長度設為40，再從底面量總高。"},
+        {"symptom": "立板孔出現在錯誤面，或孔沒有穿透。", "cause": "使用 XY 面定位立板孔，或切除方向朝外。", "fix": "選 Y=42 的前面，以 X、Z定位，確認沿+Y切除並檢查背面開口。"}
+      ],
+      "quiz": [
+        {"id": "bracket-features-q1", "question": "底座厚8，立板在底座頂面再 Pad 40，本模型總高多少？", "options": ["32 mm", "40 mm", "48 mm", "80 mm"], "answer": 2, "explanation": "立板從 Z=8 開始再向上40，因此頂面 Z=48。"},
+        {"id": "bracket-features-q2", "question": "要把底座孔 (20,20) 變成 (−20,20)，應關於哪個原始面鏡射？", "options": ["XY 面", "YZ 面", "XZ 面", "Y=42 的立板前面"], "answer": 1, "explanation": "YZ 面是 X=0，鏡射後只改變 X 的正負，Y 保持20。"}
+      ],
+      "sources": [{"title": "Dassault Systèmes｜CATIA Part Design 2：關聯特徵與修改管理", "url": "https://3dswym.3dexperience.3ds.com/wiki/catia-user-community/catia-part-design-2-pdg_wUklCUysT4GXL-WVU4ZrWQ"}]
+    },
+    {
+      "id": "bracket-change",
+      "stage_id": "part-bracket",
+      "title": "03｜以長度變更檢驗設計意圖",
+      "duration_minutes": 45,
+      "objectives": ["在修改前提出可量測預測", "協調底座與立板共同長度", "比較中心基準與距端面定位的影響"],
+      "knowledge": [
+        {"title": "參數不是只有一個數字", "body": "共同長度 L 若同時控制底座與立板，兩者應一起更新。可使用命名參數與公式，也可先以逐項變更表練習；若採手動同步，必須明確記錄這不是自動連動。"},
+        {"title": "量測結果用來檢驗依存", "body": "底座孔保留 X=±20、孔距40。L=80時最近端面 X=±40，所以各孔中心距最近端面20；L=100時端面改為±50，各孔中心距最近端面30。這是中心對稱且孔距固定的結果。"},
+        {"title": "保存原版才能比較", "body": "Update 成功只表示目前模型可求解。還須確認指定尺寸與功能關係成立。原版與變更版要分開保留，並讓接手者能辨識哪個檔案對應哪一份量測表。"}
+      ],
+      "steps": [
+        {"title": "建立變更前量測表", "action": "開啟 L80 原版，記錄底座長80、立板長80、兩孔 X=±20、孔距40及孔中心距最近端面20。截圖時讓數值與特徵名稱可讀。", "checkpoint": "量測表有單位、基準、原值與證據檔名，不只寫『正確』。", "evidence": "12_L80_measurements.png與變更表原值欄。"},
+        {"title": "先寫預測並另存副本", "action": "先回答 L100 時哪些值應改、哪些值應維持，再另存 Bracket_L100.CATPart。確認原 Bracket.CATPart 仍存在，避免覆寫唯一原版。", "checkpoint": "預測包含端面±50、孔中心±20、孔距40、最近端邊距30與立板長100。", "evidence": "修改前筆記與兩個版本的檔名清單。"},
+        {"title": "設定共同長度的更新方式", "action": "若使用參數／公式，讓底座與立板長度都引用 L，並確認左右仍以 YZ 面對稱；若先手動練習，就在變更表列出必須修改的兩個草圖尺寸。將 L 或兩項尺寸由80改100。", "checkpoint": "你能指出哪個尺寸是驅動值、哪個是依存值，或明確標示手動同步項目。", "evidence": "13_length_dependency.png：參數／公式或逐項變更表。"},
+        {"title": "更新並對照預測", "action": "執行 Update，重新量測孔中心、孔距、兩側邊距與立板長度。若數值不符，檢查具名草圖或鏡射參照，修正後再次量測；不要拖曳孔補外觀。", "checkpoint": "L100實測結果符合預測；若有失敗，保留原因與修正證據。", "evidence": "14_L100_measurements.png及預測／實測對照表。"},
+        {"title": "請他人重現", "action": "請同儕只閱讀你的步驟重開兩版並核對一項尺寸；個人練習可關檔重開自測。填寫操作者、檔名、修改項、結果與下一輪要改的策略。", "checkpoint": "另一人能找到正確特徵與版本；沒有合作時明確寫個人重開測試。", "evidence": "交接紀錄及 Bracket.CATPart、Bracket_L100.CATPart。"}
+      ],
+      "pitfalls": [
+        {"symptom": "底座加長，但立板仍是80。", "cause": "兩個草圖長度沒有共同依存，或手動修改漏了一項。", "fix": "查 Pad_Wall 的草圖尺寸與參數引用；補上共同長度依存，或依逐項變更表同步並重新量測。"},
+        {"symptom": "孔距正確，但加長後兩孔不再關於中心對稱。", "cause": "孔以端面距離定位，或鏡射面並非中心 YZ 面。", "fix": "核對孔中心的全域 X 與鏡射參照，依題目改為中心對稱策略後重跑長度測試。"}
+      ],
+      "quiz": [
+        {"id": "bracket-change-q1", "question": "L=100、兩孔中心維持 X=±20時，各孔中心到最近端面的距離是多少？", "options": ["20 mm", "30 mm", "40 mm", "50 mm"], "answer": 1, "explanation": "端面在 X=±50，最近端邊距為50−20=30 mm。"},
+        {"id": "bracket-change-q2", "question": "哪種證據最能支持『L80改L100後設計意圖仍成立』？", "options": ["只看等角外觀", "模型檔名含final", "前後基準、孔距、邊距與立板長度的量測及更新紀錄", "把所有孔Fix住"], "answer": 2, "explanation": "要同時檢查維持項與變更項，才能把更新結果連回原先設計要求。"}
+      ],
+      "sources": [{"title": "Dassault Systèmes｜CATIA Part Design 2：參數與變更依存", "url": "https://3dswym.3dexperience.3ds.com/wiki/catia-user-community/catia-part-design-2-pdg_wUklCUysT4GXL-WVU4ZrWQ"}]
+    },
+    {
+      "id": "slider-files",
+      "stage_id": "assembly-slider",
+      "title": "04｜建立導軌、滑塊與組合檔案",
+      "duration_minutes": 60,
+      "objectives": ["建立符合題目尺寸的兩種 CATPart", "區分零件座標與組合中的位置", "建立可重開的 CATProduct 相依檔結構"],
+      "knowledge": [
+        {"title": "CATPart 與 CATProduct 的責任不同", "body": "CATPart 保存零件特徵與幾何；CATProduct 組織元件、位置與組合關係。交付 CATProduct 時仍要檢查所有引用的零件是否可找到，不能假定組合檔包含全部相依檔。"},
+        {"title": "局部座標不等於組合位置", "body": "可把 Slider.CATPart 建成局部 X=0～30、Y=±11.8、Z=0～10，再在組合中保持同軸方向，將它放到 X=40～70、Z=6.2～16.2。移動元件不代表要修改零件的長度或厚度。"},
+        {"title": "U 型槽必須由尺寸定義", "body": "導軌底板120×40×6；兩側壁內側位於 Y=±12、外側±20，壁厚各8，並從 Z=6升到22。槽內寬24，需與滑塊寬23.6分開記錄。"}
+      ],
+      "steps": [
+        {"title": "建立版本資料夾", "action": "建立 Slider_Lesson/Original 資料夾，準備 Rail.CATPart、Slider.CATPart與SliderAssembly.CATProduct檔名。先寫出一個產品引用兩個零件的文字組合樹。", "checkpoint": "每個檔案用途清楚，沒有用相同檔名混放原版與變更版。", "evidence": "15_file_plan.txt：組合樹、資料夾與修改者。"},
+        {"title": "建立導軌底板", "action": "新建 Rail.CATPart，在 XY 面畫範圍 X=0～120、Y=−20～20 的矩形，向+Z Pad 6。確認底面 Z=0、頂面 Z=6。", "checkpoint": "底板尺寸120×40×6，中心面是 Y=0 的 XZ 面。", "evidence": "16_rail_base.png：基準與長寬厚尺寸。"},
+        {"title": "建立左右壁", "action": "在 Z=6 頂面畫左右兩個矩形，X皆0～120，左壁Y=−20～−12、右壁Y=12～20，向+Z Pad 16。可在同一草圖建立兩輪廓或分開特徵，但均須接上底板。", "checkpoint": "兩壁最高Z=22；槽內寬24、壁厚各8，導軌為連通實體。", "evidence": "17_rail_section.png：截面可讀到24、8、16。"},
+        {"title": "建立滑塊", "action": "新建 Slider.CATPart，在 XY 面建局部 X=0～30、Y=−11.8～11.8 的矩形，向+Z Pad 10。保存底面與中央 XZ 面的可選取參照。", "checkpoint": "滑塊本體為30×23.6×10；局部底面Z=0，與組合底面Z=6.2不同。", "evidence": "18_slider_part.png：長、寬、厚與局部座標。"},
+        {"title": "插入組合並檢查連結", "action": "新建 SliderAssembly.CATProduct，插入 Rail與Slider。使 Rail 與組合座標一致；滑塊先放到原位 X=40～70、Y=±11.8、Z=6.2～16.2，下一課再用約束維持。保存所有檔案，關閉後重開組合。", "checkpoint": "組合樹包含兩個元件，沒有遺失連結；初始位置正確不等於約束已完成。", "evidence": "19_assembly_tree.png及三份原始檔。"}
+      ],
+      "pitfalls": [
+        {"symptom": "換資料夾後只剩組合樹，零件找不到。", "cause": "只複製 CATProduct，沒有整理引用的 CATPart或保存路徑。", "fix": "用 Save Management（儲存管理）或等效方式確認每個引用位置，將組合與兩零件一起保存，再從交付位置重開。"},
+        {"symptom": "滑塊在錯誤高度，卻以改厚度來補正。", "cause": "把元件在組合中的位置與零件局部幾何混在一起。", "fix": "先確認 Slider 局部厚10，再調整組合位置與下一課的底面偏移，使組合底面位於Z=6.2。"}
+      ],
+      "quiz": [
+        {"id": "slider-files-q1", "question": "交付 SliderAssembly.CATProduct 時，還應一併檢查哪些檔案？", "options": ["只有PDF", "Rail.CATPart與Slider.CATPart及其連結", "任何同名截圖", "不需其他檔案"], "answer": 1, "explanation": "CATProduct引用零件，交付前應在目標資料夾實際重開確認兩個CATPart可被找到。"},
+        {"id": "slider-files-q2", "question": "Slider局部底面Z=0，放入本題組合後底面應位於哪裡？", "options": ["Z=0", "Z=6", "Z=6.2", "Z=22"], "answer": 2, "explanation": "導軌底板頂面Z=6，加上0.2名義底部間隙，滑塊底面為Z=6.2。"}
+      ],
+      "sources": [{"title": "Dassault Systèmes｜CATIA Assembly Design 2：組合與零件引用", "url": "https://3dswym.3dexperience.3ds.com/wiki/catia-user-community/catia-assembly-design-2-asd_Lx2jW-oPR9qcb3gZNgrKhw"}]
+    },
+    {
+      "id": "slider-constraints",
+      "stage_id": "assembly-slider",
+      "title": "05｜用最少必要約束保留單軸運動",
+      "duration_minutes": 50,
+      "objectives": ["辨認三平移與三旋轉自由度", "選取合適的底面與中心面約束", "用求解狀態與三位置量測確認剩餘運動"],
+      "knowledge": [
+        {"title": "先說明要保留什麼", "body": "相對固定座標的自由剛體通常有Tx、Ty、Tz與Rx、Ry、Rz。本任務要保留滑塊沿X平移，其他方向不應任意漂移或旋轉；因此不能把滑塊也Fix。"},
+        {"title": "面約束要搭配方向與尺寸", "body": "底面與底板頂面之間的Offset（偏移）0.2用來維持底部間隔；兩個中央XZ面Coincidence（重合）使滑塊橫向置中。需選正方向，並檢查兩項面關係的聯合作用，不能只靠約束數量宣稱自由度正確。"},
+        {"title": "自由度與可用行程不同", "body": "剩下X平移不代表任意X都能安全使用。本題另指定左端X=10、40、80三個位置，均須核對滑塊仍位於導軌範圍、間隙符合題目；沒有建立端部止擋或運動接觸模型。"}
+      ],
+      "steps": [
+        {"title": "固定導軌作為基準", "action": "開啟原版組合，在Assembly Design對Rail使用Fix（固定）。先列出滑塊的六個初始自由度，寫明最後只要保留Tx。", "checkpoint": "Fix作用於Rail而非Slider，導軌在組合座標中維持原位。", "evidence": "20_fixed_rail.png與預期自由度清單。"},
+        {"title": "設定底面間隔", "action": "選滑塊底面與導軌底板頂面，建立Offset 0.2 mm。檢查面方向，使滑塊在導軌上方而非底板內部或下方，更新組合。", "checkpoint": "滑塊底面Z=6.2，底板頂面Z=6，間隔為0.2。", "evidence": "21_bottom_offset.png：參照面、偏移值與側視。"},
+        {"title": "以中心面橫向定位", "action": "選Rail與Slider的中央XZ面建立Coincidence，確認滑塊保持朝上且Y=0置中。不要再加入X位置尺寸或Fix滑塊，先檢查求解狀態與重複關係。", "checkpoint": "左右間隙理論上相等；約束網路沒有未處理的矛盾或冗餘警示。", "evidence": "22_center_constraint.png：中心面與具名約束樹。"},
+        {"title": "核對剩餘自由度", "action": "使用可用的自由度／約束分析與遵守約束的元件操作，分別檢查X、Y、Z平移及旋轉。記錄各方向是否允許，不以自由拖曳模式代替求解檢核。", "checkpoint": "滑塊只保留X平移；若仍能旋轉或被完全固定，能指出需修改的約束。", "evidence": "23_remaining_dof.png或具體列出六方向結果的紀錄。"},
+        {"title": "完成三位置檢查", "action": "在不新增永久X約束的前提下，依序把滑塊左端放到X=10、40、80。每個位置更新後量左右與底部間隙；保存原版並記錄檢查方法。", "checkpoint": "滑塊右端分別40、70、110，皆在0～120導軌內；三處名義間隙符合題目。", "evidence": "24_X10.png、25_X40.png、26_X80.png及三位置量測表。"}
+      ],
+      "pitfalls": [
+        {"symptom": "滑塊完全無法沿X移動。", "cause": "滑塊被Fix，或額外加入控制X位置的約束。", "fix": "查具名約束，找出消除Tx的那一項；在副本停用或修正該項，再重查其餘自由度。"},
+        {"symptom": "畫面能拖動，但不確定是否只剩Tx。", "cause": "操作模式可能未遵守約束，或尚有其他未受控自由度。", "fix": "查看求解／自由度狀態，逐一測試六方向並保存結果，拖動畫面只作輔助證據。"}
+      ],
+      "quiz": [
+        {"id": "slider-constraints-q1", "question": "本任務最後應保留滑塊哪一種運動？", "options": ["沿X平移", "繞X旋轉", "沿Z平移", "所有六方向"], "answer": 0, "explanation": "功能要求是沿導軌X方向滑動，因此應保留Tx，而不是任意移動。"},
+        {"id": "slider-constraints-q2", "question": "新增Fix滑塊後，最直接改變了什麼？", "options": ["槽內寬自動增加", "原本需要的X平移也被消除", "滑塊材料變硬", "所有干涉自動消失"], "answer": 1, "explanation": "Fix會限制元件位置與姿態，會把任務需要的Tx一併消除；幾何尺寸與干涉不會因此修正。"}
+      ],
+      "sources": [{"title": "Dassault Systèmes｜CATIA Assembly Design 2：組合約束與一致性分析", "url": "https://3dswym.3dexperience.3ds.com/wiki/catia-user-community/catia-assembly-design-2-asd_Lx2jW-oPR9qcb3gZNgrKhw"}]
+    },
+    {
+      "id": "slider-interference",
+      "stage_id": "assembly-slider",
+      "title": "06｜計算間隙、診斷干涉與替換零件",
+      "duration_minutes": 50,
+      "objectives": ["使用正負尺寸差判別間隙與重疊", "比較變更前後的配合結果", "區分幾何檢查與真實機械性能"],
+      "knowledge": [
+        {"title": "置中配合的單側計算", "body": "置中的平行滑塊，單側名義間隙=(槽寬−滑塊寬)/2。原版是(24−23.6)/2=0.2 mm；若結果為負，表示該截面有幾何重疊，不能把負值稱為正常空隙。"},
+        {"title": "求解成功不等於沒有干涉", "body": "約束求解可正常，但兩個零件的實體仍可能互相穿入。若授權提供Clash／Clearance分析，可使用並記錄設定；沒有該功能時，以剖視、面距量測與尺寸計算檢查，明確註記方法。"},
+        {"title": "名義間隙不是製造公差", "body": "本模型只比較理想幾何，不包含製造偏差、表面粗糙度、摩擦、重力或防脫設計。即使恢復0.2 mm名義間隙，也不能據此宣稱真實滑動順暢或承載安全。"}
+      ],
+      "steps": [
+        {"title": "保留原版並寫預測", "action": "用儲存管理或等效方式建立Change資料夾，保存完整組合副本。先計算滑塊23.6改25.6、槽仍24時的單側尺寸差，並記錄正負符號代表什麼。", "checkpoint": "原版與Change副本的零件路徑已區分，預測是每側重疊0.8 mm。", "evidence": "27_change_plan.txt：路徑與變更前預測。"},
+        {"title": "只加寬滑塊", "action": "在副本將Slider寬度由23.6改25.6，保持橫向中心不變。更新零件與組合；此時先不要改導軌，記錄約束狀態與截面。", "checkpoint": "中心面仍重合，但滑塊邊界Y=±12.8，超過槽內側Y=±12。", "evidence": "28_width25_6.png：寬度、中心與兩側重疊位置。"},
+        {"title": "以可用工具確認干涉", "action": "使用Clash／Clearance或可用剖視與面距量測，在一個中間位置確認重疊。記錄檢查的兩個零件、位置、方法及結果，不只填『失敗』。", "checkpoint": "能把0.8單側重疊與具體截面或分析結果對應；若僅做尺寸推算，明示沒有執行求交分析。", "evidence": "29_interference.png及工具／計算方法說明。"},
+        {"title": "修改導軌槽寬", "action": "將槽內側改為Y=±13，使槽寬26；壁厚維持8，所以外側到Y=±21、外寬42。同步調整需要的底板／壁面草圖，更新後重新確認底部仍為0.2。", "checkpoint": "(26−25.6)/2=0.2；左右壁厚仍8，沒有只改外形卻忘記內槽。", "evidence": "30_slot26.png：槽寬26、外寬42與單側間隙。"},
+        {"title": "替換與交接驗收", "action": "請同儕重開Change組合，核對引用的加寬零件、約束及X=10、40、80三位置。建立原版／加寬失配／修訂槽寬三欄比較表，個人練習則記錄自我重開。", "checkpoint": "尺寸、版本、剩餘自由度與檔案連結都經檢查；能說明尚未驗證的機械性能。", "evidence": "31_fit_comparison.txt、三位置截圖及Change完整檔案組。"}
+      ],
+      "pitfalls": [
+        {"symptom": "約束全部正常，學生因此判定沒有干涉。", "cause": "將位置關係求解與實體幾何檢查當成同一件事。", "fix": "另做截面／量測／干涉分析，把尺寸差與實體位置列為獨立驗收項。"},
+        {"symptom": "改成槽寬26後，側壁變薄或底板太窄。", "cause": "只移動內側面，沒有維持壁厚8與外寬42的幾何關係。", "fix": "回查兩壁的內外側座標及底板外寬，按±13、±21重新核對。"}
+      ],
+      "quiz": [
+        {"id": "slider-interference-q1", "question": "槽寬24、置中滑塊寬25.6，單側幾何關係為何？", "options": ["空隙0.8 mm", "重疊0.8 mm", "空隙1.6 mm", "剛好接觸"], "answer": 1, "explanation": "(24−25.6)/2=−0.8 mm，負值表示每側重疊0.8。"},
+        {"id": "slider-interference-q2", "question": "滑塊25.6、要求單側名義間隙0.2，槽內寬應是多少？", "options": ["25.8 mm", "26 mm", "24 mm", "27.6 mm"], "answer": 1, "explanation": "兩側各0.2，因此槽寬=25.6+2×0.2=26 mm。"}
+      ],
+      "sources": [{"title": "Dassault Systèmes｜CATIA Assembly Design 2：碰撞、距離與間隙分析", "url": "https://3dswym.3dexperience.3ds.com/wiki/catia-user-community/catia-assembly-design-2-asd_Lx2jW-oPR9qcb3gZNgrKhw"}]
+    },
+    {
+      "id": "fixture-parameters",
+      "stage_id": "project-modular",
+      "title": "07｜以共同孔距建立雙定位銷治具",
+      "duration_minutes": 70,
+      "objectives": ["建立三種零件與四個組合元件", "計算直徑間隙及徑向間隙", "以共同孔距列出跨零件依存"],
+      "knowledge": [
+        {"title": "共同P控制哪些項目", "body": "P=80表示孔中心X=±40。Base底板120×70×10；Coupon試片長=P+20=100、寬30、厚10。Base與Coupon孔位、兩個Pin元件位置皆須對應P；Pin本身仍是Ø5.8×30。"},
+        {"title": "直徑間隙與徑向間隙", "body": "Base孔Ø6與銷Ø5.8的直徑差0.2、理想同心徑向間隙0.1；Coupon孔Ø6.2與銷Ø5.8的直徑差0.4、徑向間隙0.2。0.2板間間隔則是兩平面距離，三者不能混用。"},
+        {"title": "展示定位不等於實際夾持", "body": "這是理想同心的教學展示，沒有施力機構。兩銷可保留繞自身軸線旋轉；Coupon用最小獨立約束定位，避免以兩組重複方向約束造成冗餘。幾何間隙不等於真實定位精度或公差分析。"}
+      ],
+      "steps": [
+        {"title": "列共同參數與基準", "action": "建立Fixture/P80資料夾，列P=80、孔中心±P/2、Coupon長=P+20。Base以底面中心為原點，X沿孔距、Y沿板寬、Z向上；選擇共同參數／公式或明確的逐檔變更表。", "checkpoint": "表中分清自動依存與手動同步，不把相同數字誤稱為已連動。", "evidence": "32_parameter_map.txt：P與各檔案／特徵的依存表。"},
+        {"title": "建立Base與Pin", "action": "Base.CATPart：XY中心矩形120×70，向+Z Pad10，兩Ø6通孔中心X=±40、Y=0。Pin.CATPart：XY圓Ø5.8，向+Z Pad30。為零件及關鍵特徵命名。", "checkpoint": "Base外形X=±60、Y=±35、Z=0～10；Pin局部Z=0～30。", "evidence": "33_base.png、34_pin.png及兩份CATPart。"},
+        {"title": "建立Coupon", "action": "Coupon.CATPart：XY中心矩形長100、寬30，向+Z Pad10，兩Ø6.2通孔中心X=±40、Y=0。將長度與P+20的關係保留在公式或變更表。", "checkpoint": "局部Coupon外形X=±50、Y=±15、Z=0～10；孔中心距各自最近端部10。", "evidence": "35_coupon.png：外形、孔徑、孔距與端邊距。"},
+        {"title": "建立四元件組合", "action": "新建Fixture.CATProduct，插入Base、Coupon及同一Pin檔的兩個實例。固定Base；將銷軸置於X=±40、Y=0，底端Z=0。Coupon底面距Base頂面0.2，對應組合Z=10.2。用一孔軸及獨立方向基準定位，檢查冗餘。", "checkpoint": "三種零件、四個元件；Pin頂端Z=30、Coupon頂面Z=20.2。銷的軸向旋轉已記錄，非用重複Fix掩蓋。", "evidence": "36_fixture_tree.png、37_fixture_position.png與約束說明。"},
+        {"title": "量測配合與剖面", "action": "沿Y=0的XZ截面查看兩銷、底板與試片，量測孔徑／銷徑並計算兩種徑向間隙。另量Base頂面與Coupon底面距離，保存P80版。", "checkpoint": "Base配合徑向0.1、Coupon配合徑向0.2、板間0.2；三項各有自己的基準與證據。", "evidence": "38_fixture_section.png及孔銷配合量測表。"}
+      ],
+      "pitfalls": [
+        {"symptom": "將Ø6與Ø5.8的0.2差值稱為每側間隙。", "cause": "混淆直徑差與理想同心時的徑向間隙。", "fix": "將直徑差除2；Base徑向間隙為0.1，再用截面說明兩側如何分配。"},
+        {"symptom": "Coupon加入第二個孔軸重合後出現冗餘。", "cause": "第二項約束可能重複控制第一項已限制的方向。", "fix": "檢查各關係的作用，改用獨立的中心連線／方向基準控制姿態，保留足夠但不重複的定位關係。"}
+      ],
+      "quiz": [
+        {"id": "fixture-parameters-q1", "question": "Ø5.8銷與Ø6.2孔理想同心時，徑向間隙是多少？", "options": ["0.1 mm", "0.2 mm", "0.4 mm", "1 mm"], "answer": 1, "explanation": "直徑差為6.2−5.8=0.4，徑向間隙為0.4/2=0.2 mm。"},
+        {"id": "fixture-parameters-q2", "question": "Base、Coupon與兩支相同Pin組成的治具，有幾種零件、幾個元件？", "options": ["2種、3個", "3種、3個", "3種、4個", "4種、4個"], "answer": 2, "explanation": "Base、Coupon、Pin是三種零件；Pin有兩個實例，所以元件合計四個。"}
+      ],
+      "sources": [
+        {"title": "Dassault Systèmes｜CATIA Part Design 2：參數化特徵", "url": "https://3dswym.3dexperience.3ds.com/wiki/catia-user-community/catia-part-design-2-pdg_wUklCUysT4GXL-WVU4ZrWQ"},
+        {"title": "Dassault Systèmes｜CATIA Assembly Design 2：元件與約束", "url": "https://3dswym.3dexperience.3ds.com/wiki/catia-user-community/catia-assembly-design-2-asd_Lx2jW-oPR9qcb3gZNgrKhw"}
+      ]
+    },
+    {
+      "id": "fixture-drafting",
+      "stage_id": "project-modular",
+      "title": "08｜建立能讓他人讀懂的工程圖",
+      "duration_minutes": 60,
+      "objectives": ["選擇正投影、等角與必要剖視圖", "標示足以核對三種零件的尺寸", "保存CATDrawing與相符PDF"],
+      "knowledge": [
+        {"title": "視圖服務於可判讀性", "body": "等角圖有助理解組合，但不適合單獨交代所有孔距與厚度。本題可用組合正投影說明位置，再以零件尺寸圖及沿Y=0的XZ剖面交代兩銷與板間關係。投影法須在圖面中保持一致並清楚註明。"},
+        {"title": "不要只靠截圖量尺寸", "body": "工程圖需包含必要外形尺寸、孔徑、孔距、中心線、單位、比例與件數。標註應對應正確幾何，不用手改文字假裝模型已更新；模型、視圖與PDF三者必須同版。"},
+        {"title": "關聯圖面也要更新檢查", "body": "3D變更後應更新相關視圖並重新核對尺寸及失效參照。官方Drafting教材說明投影、剖視與標註的一般學習方向；實際V5命令配置依版本與授權而異，請按目前工作台提供的功能操作。"}
+      ],
+      "steps": [
+        {"title": "建立圖面規格", "action": "新建CATDrawing，採A3、mm及能清楚呈現模型的比例，本題可先用1:1。設定或確認投影法，在圖框標明名稱、版本P80、比例、日期及繪圖者。", "checkpoint": "讀者能辨識單位、比例及投影法；不是只看到一張沒有版本的圖片。", "evidence": "39_drawing_setup.png與P80版CATDrawing。"},
+        {"title": "建立組合視圖", "action": "從Fixture.CATProduct建立正投影與等角視圖，選能看清兩銷位置的主視方向；相關投影視圖保持一致。必要時調整比例與配置，避免視圖或尺寸重疊。", "checkpoint": "四元件的組合關係可讀，視圖引用的是P80組合。", "evidence": "40_assembly_views.png：圖面中可見版本與視圖。"},
+        {"title": "以剖視揭露配合", "action": "建立沿Y=0的XZ剖視，確認切過兩支銷的軸線。依課程圖面規範表達剖面線、銷與孔、Base頂面及Coupon底面間隔；若工作台功能不足，記錄限制並以3D剖面補充。", "checkpoint": "剖面能核對Base厚10、Coupon組合底面10.2及Pin頂端30，未把投影輪廓當成剖面。", "evidence": "41_section_view.png，並標明剖切位置。"},
+        {"title": "補齊三種零件尺寸", "action": "另用零件圖或多頁圖標Base 120×70×10與2×Ø6孔、Pin Ø5.8×30且件數2、Coupon 100×30×10與2×Ø6.2孔。標孔距80、中心線及必要基準，檢查尺寸沒有互相矛盾。", "checkpoint": "另一位同學可由圖面核對各零件，不需從等角外觀猜孔徑或厚度。", "evidence": "42_part_dimensions.png與逐項標註清單。"},
+        {"title": "輸出與重開比對", "action": "更新圖面，保存CATDrawing並輸出P80版PDF。重新開啟PDF，逐項核對孔距、孔徑、厚度、比例、件數及版本；確認文字可讀且未被裁切。", "checkpoint": "CATDrawing與PDF對應同一份3D版本，PDF沒有遺漏頁面或尺寸。", "evidence": "P80.CATDrawing、P80.pdf及43_pdf_check.txt。"}
+      ],
+      "pitfalls": [
+        {"symptom": "PDF仍標舊孔距，3D已改新版。", "cause": "圖面或視圖沒有更新，或PDF從舊CATDrawing輸出。", "fix": "核對引用路徑與版本，更新視圖後重新檢查尺寸，再輸出新PDF，不只改標註文字。"},
+        {"symptom": "只有等角圖，讀者無法確認孔中心或板厚。", "cause": "視圖選擇偏重外觀，缺少尺寸所需的投影與剖視。", "fix": "增加能呈現孔距／厚度的投影與必要剖面，附完整零件尺寸。"}
+      ],
+      "quiz": [
+        {"id": "fixture-drafting-q1", "question": "本題要讓XZ剖面同時通過兩支銷的軸線，剖切面應位於哪裡？", "options": ["Y=0", "Y=35", "Z=0", "X=60"], "answer": 0, "explanation": "兩支銷軸線的Y皆為0，沿Y=0的XZ面可同時通過兩軸。"},
+        {"id": "fixture-drafting-q2", "question": "3D孔距改成90但圖面仍顯示80時，應如何處理？", "options": ["直接把標註文字改90即可", "更新並核對引用模型、視圖與尺寸，再輸出新版PDF", "只改PDF檔名", "只提供等角截圖"], "answer": 1, "explanation": "需恢復圖模一致並驗證關聯，不可用手改文字掩蓋失效或錯版的參照。"}
+      ],
+      "sources": [{"title": "Dassault Systèmes EDU｜Learn Advance – Drafting：投影、剖視與尺寸標註學習方向", "url": "https://3dswym.3dexperience.3ds.com/post/3dexperience-edu-students/learn-advance-%E2%80%93-drafting_qLRgBmRGR1-79RXAAeiTPg"}]
+    },
+    {
+      "id": "fixture-handoff",
+      "stage_id": "project-modular",
+      "title": "09｜完成 P90 變更、版本交接與個人答辯",
+      "duration_minutes": 60,
+      "objectives": ["依變更單同步更新零件、組合與工程圖", "在另一資料夾重開並驗證連結", "以可追溯證據說明個人理解與合作貢獻"],
+      "knowledge": [
+        {"title": "修改一個需求，追蹤整條依存", "body": "P由80改90時，Base與Coupon孔中心及兩銷組合位置改到X=±45，Coupon長度從100改110。Base外形120×70×10、Pin幾何Ø5.8×30及孔徑維持。不能只改試片卻忘記底板孔或元件位置。"},
+        {"title": "交付要測試接手者的情境", "body": "原作者電腦仍能找到舊路徑，可能掩蓋缺檔。把完整資料整理到新的交付位置，再從該位置開啟CATProduct與CATDrawing，核對引用檔與版本。工作完成紀錄應能指出誰改了哪項、如何驗證。"},
+        {"title": "網站作答與CAD證據分開保存", "body": "免費學習站把文字作答及進度保存在這個瀏覽器，不會代存CATPart或自動把作業寄給教師。請匯出學習紀錄，另外保留CAD檔、圖面與截圖，依教師指定管道繳交；換電腦前先匯出，之後可匯入續作。"}
+      ],
+      "steps": [
+        {"title": "建立P90變更單", "action": "保留P80原版，列出P90的變更項與維持項：孔中心±45、Coupon長110、兩銷位置±45；Base外形、Pin尺寸、孔徑與板間距維持。先填預測，再操作。", "checkpoint": "Coupon端面±55，孔中心到最近端部仍為10；Base孔中心到最近X端部為15。", "evidence": "44_P90_change_order.txt：項目、原值、新值、責任人與預測。"},
+        {"title": "建立完整新版", "action": "用儲存管理或等效方式建立P90資料夾。依共同參數或逐檔變更表更新Base、Coupon與組合中的兩銷位置，更新後核對Pin檔是正確版本，沒有意外修改P80。", "checkpoint": "孔、銷與試片長度一致，原版可單獨重開；手動同步已完整勾核。", "evidence": "45_P90_models.png、P90組合與三種CATPart。"},
+        {"title": "更新配合證據與圖面", "action": "重新量測孔距、Coupon長度、板間距與名義間隙。更新相關CATDrawing視圖與標註，輸出P90 PDF，核對所有尺寸與新3D相符。", "checkpoint": "P90孔距90、Coupon長110，孔徑與配合值維持；圖面與PDF沒有舊P80數值。", "evidence": "46_P90_measurements.png、P90.CATDrawing與P90.pdf。"},
+        {"title": "他人重開與錯版檢查", "action": "請同儕將交付資料複製到另一資料夾，從該處開啟CATProduct及CATDrawing。逐項確認完整檔名、版本、引用路徑、兩銷位置與一項圖面尺寸；個人練習則關閉原檔後自我測試並明示。", "checkpoint": "檢查結果能由另一人重現，若有缺檔或漏改，保留發現依據、修復項及再測結果。", "evidence": "47_handoff_check.txt：測試者、位置、各項結果與修復紀錄。"},
+        {"title": "整理並匯出學習成果", "action": "在網站回答本階段題目，引用一個零件、一個組合及一個工程圖證據；匯出學習紀錄，核對檔案可讀。另整理CAD／PDF／截圖清單，準備依課程管道繳交，並提出有量測驗收條件的自選延伸。", "checkpoint": "能分清網站文字備份與CAD附件；個人理解、同儕工作及未驗證條件都有具體說明。", "evidence": "學習紀錄匯出檔、完整交付清單與個人答辯筆記。"}
+      ],
+      "pitfalls": [
+        {"symptom": "只有Coupon改成P90，Pin與Base仍留在P80位置。", "cause": "把跨零件變更視為單一草圖修改，沒有追蹤完整依存。", "fix": "依變更單逐項核對Base孔、Coupon孔、兩銷位置、Coupon長度與工程圖，更新後重新量測。"},
+        {"symptom": "換電腦後找不到網站作答或CAD檔。", "cause": "瀏覽器本機保存不會跨裝置同步，網站也沒有上傳CAD附件。", "fix": "離開原電腦前匯出作答並另備份CAD／PDF／截圖；到新電腦匯入學習紀錄，再依清單開啟CAD檔。"}
+      ],
+      "quiz": [
+        {"id": "fixture-handoff-q1", "question": "P=90且Coupon長=P+20，Coupon長度與兩孔X為何？", "options": ["長100，X=±40", "長110，X=±45", "長120，X=±50", "長90，X=±45"], "answer": 1, "explanation": "長度90+20=110，孔中心以±P/2定位，即±45；孔到最近端部為55−45=10。"},
+        {"id": "fixture-handoff-q2", "question": "免費GitHub學習站中，換電腦續作最可靠的做法是？", "options": ["只記住網址，所有作答會自動同步", "先匯出學習紀錄並備份CAD檔，新電腦再匯入紀錄", "只複製瀏覽器畫面截圖", "把CATProduct改名final"], "answer": 1, "explanation": "文字進度保存在各自瀏覽器；匯出／匯入才能移轉紀錄，CAD附件也需另行保管。"}
+      ],
+      "sources": [
+        {"title": "Dassault Systèmes｜CATIA Assembly Design 2：結構、相依連結與修改管理", "url": "https://3dswym.3dexperience.3ds.com/wiki/catia-user-community/catia-assembly-design-2-asd_Lx2jW-oPR9qcb3gZNgrKhw"},
+        {"title": "Dassault Systèmes EDU｜Learn Advance – Drafting：圖面整理與標註方向", "url": "https://3dswym.3dexperience.3ds.com/post/3dexperience-edu-students/learn-advance-%E2%80%93-drafting_qLRgBmRGR1-79RXAAeiTPg"}
+      ]
+    }
+  ],
+  "glossary": [
+    {"term": "Sketcher｜草圖", "definition": "在選定平面或面上建立2D輪廓與約束。本課先以XY面定義零件的基礎形狀。"},
+    {"term": "Constraint｜約束", "definition": "以尺寸、重合、水平、對稱等關係限制幾何的大小、位置或方向；應符合設計意圖並避免矛盾或重複。"},
+    {"term": "Pad｜凸台／拉伸", "definition": "把有效草圖輪廓沿指定方向延伸形成實體特徵。必須同時確認支撐面、方向與長度。"},
+    {"term": "Hole｜孔", "definition": "依支撐面、中心位置、孔徑及終止條件建立孔特徵。孔中心正確與穿透方向正確是不同檢查項。"},
+    {"term": "Mirror｜鏡射", "definition": "依參照面建立對稱特徵。本課用X=0的YZ面使底座孔位保持左右對稱。"},
+    {"term": "Parameter／Formula｜參數／公式", "definition": "將命名尺寸及其關係明確化，例如L控制共同長度、Coupon長=P+20。相同數值若沒有依存，不會自然同步。"},
+    {"term": "Feature dependency｜特徵依存", "definition": "後續特徵對草圖、面、基準或參數的引用關係。變更時須核對受影響的子項與失效參照。"},
+    {"term": "CATPart｜零件檔", "definition": "CATIA零件的原生檔案，保存該零件的幾何與特徵設計資料；本課以原檔供教師或同儕檢查。"},
+    {"term": "CATProduct｜組合檔", "definition": "組織零件實例、子組合、元件位置及組合關係的檔案。交付時須檢查引用的CATPart是否齊全。"},
+    {"term": "Assembly constraint｜組合約束", "definition": "以固定、重合、偏移等關係控制元件的相對位置與姿態；需說明選取幾何及保留的運動。"},
+    {"term": "Degree of freedom｜自由度", "definition": "元件尚能獨立進行的運動。三維自由剛體通常有三平移與三旋轉；本課滑塊只保留沿X平移。"},
+    {"term": "Drafting／CATDrawing｜工程製圖／圖檔", "definition": "以投影、剖視、中心線與尺寸等表達3D設計。CATDrawing與輸出PDF應和引用模型保持同一版本。"}
+  ]
+}

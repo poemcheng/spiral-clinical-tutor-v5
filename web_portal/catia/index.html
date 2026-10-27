@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173c36">
+  <meta name="description" content="免費 CATIA V5 學習工作室：從參數化零件、組合設計到工程圖，透過九堂知識與實作課、三項任務和具體問答建立設計能力。">
+  <title>CATIA 學習工作室｜知其然・知其所以然</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./learning-data.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="site-header">
+    <a class="brand" href="#overview" aria-label="CATIA 學習工作室首頁"><span class="brand-symbol" aria-hidden="true">⌘</span><span>知其然・知其所以然<small>CATIA LEARNING STUDIO</small></span></a>
+    <nav aria-label="主要導覽">
+      <a href="#overview" data-nav="overview">學習地圖</a>
+      <a href="#lessons" data-nav="lessons">知識與實作</a>
+      <a href="#glossary" data-nav="glossary">指令字典</a>
+      <a href="#progress" data-nav="progress">我的作答</a>
+    </nav>
+    <button type="button" class="button small outline" data-action="export">匯出學習紀錄 <span aria-hidden="true">↗</span></button>
+  </header>
+  <div class="storage-bar"><span class="status-dot" aria-hidden="true"></span><span>進度儲存在此瀏覽器；匯出檔案可備份或交給老師。</span><span id="save-status" role="status" aria-live="polite">尚未開始</span></div>
+  <main id="main" tabindex="-1"><p class="loading">正在準備你的 CATIA 學習工作室…</p></main>
+  <footer class="site-footer"><div><strong>先預測，再操作；先驗證，再說明。</strong><p>CATIA V5 自學與課堂實作教材。請在已安裝且具適當授權的 CATIA 中操作。</p></div><div><a href="https://github.com/poemcheng/spiral-clinical-tutor-v5/tree/codex/graphics-teaching-practice" target="_blank" rel="noreferrer">教材與原始碼 ↗</a><small>練習回饋供自我檢核；課程正式評量依教師規範。</small></div></footer>
+  <input id="import-file" type="file" accept="application/json,.json" hidden aria-label="匯入學習紀錄 JSON">
+  <div id="notice" role="status" aria-live="polite"></div>
+  <noscript><p>請啟用 JavaScript 以閱讀互動教材及保存練習作答。</p></noscript>
+</body>
+</html>
