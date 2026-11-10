@@ -42,3 +42,11 @@ Open `http://127.0.0.1:8000`. External-model connectors have not been deployed p
 ## License
 
 MIT License, copyright (c) 2026 CareLab contributors. Third-party libraries are subject to their own licenses. The content contains no clinical data.
+
+## v3 interface and avatar refinement (2026-11-11)
+
+The public teaching interface now uses a refined clinical dashboard, a purpose-built 3D staging environment, front/side/three-quarter camera controls, and an articulated procedural older-adult figure with detailed facial features, clothing, hands, elbows, knees, and animated gait / chair transfer. When the 3D libraries cannot be loaded, a detailed animated 2D illustration is shown instead of a stick figure. A matching AI-generated fictional character portrait is included at `web_portal/carelab-v2/assets/lin-portrait.webp`.
+
+The default character remains a **stylized visualization**, not a photorealistic digital human, and no clinical biomechanics, human pose estimation or gait classification is implied. Users may load a separately licensed VRM asset using the file chooser to increase visual fidelity; check that asset's licence before redistributing it. No real patient data or medical claims are embedded in the character.
+
+The frontend remains static and uses deterministic synthetic API responses. No external medical model is connected to GitHub Pages. For the most realistic avatar experience, provide a legally licensed VRM 1.0 adult/senior model and validate its skeleton and animations individually.
